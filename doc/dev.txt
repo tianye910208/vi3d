@@ -3,6 +3,34 @@ dir and files
 
 
 
+vicommon
+viobject
+virender
+
+viscript
+
+visystem
+visample
+
+viextend
+
+
+
+
+vimath
+vifile
+vifont
+viaudio
+vibase
+virender
+visystem
+visample
+vithread
+vinet
+vi2d
+vi3d
+
+
 
 
 
