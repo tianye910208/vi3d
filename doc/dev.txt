@@ -2,21 +2,6 @@ dir and files
 
 
 
-
-vicommon
-viobject
-virender
-
-viscript
-
-visystem
-visample
-
-viextend
-
-
-
-
 vimath
 vifile
 vifont
@@ -29,6 +14,136 @@ vithread
 vinet
 vi2d
 vi3d
+
+
+
+
+
+
+
+
+
+
+
+
+====vicommon===
+macro
+vec2
+vec3
+vec4
+mat3
+mat4
+quad
+
+
+===viobject===
+object
+object_manager
+object_scheduler
+
+buffer
+
+
+--inner
+vi_object_init()
+vi_object_loop(dt)
+
+--outer
+vi_object_get(id)
+vi_object_retain(id)
+vi_object_release(id)
+vi_object_func(id, func, dt, priority)
+vi_object_exit(id, func)
+
+vi_buffer_new(size)
+vi_buffer_read(fid, fmt)
+vi_buffer_write(fid, fmt, data)
+
+vi_visual_new()
+vi_visual_set_pos(vid, val)
+vi_visual_set_rot(vid, val)
+vi_visual_set_scale(vid, val)
+
+
+===virender===
+vi_render_init()
+vi_render_loop(dt)
+vi_render_func(func, op)  op=beforeRender[pass]/afterRender[pass]/finishRender[pass]
+
+
+vi_target_new()
+vi_target_get()
+vi_target_bind(tid)
+
+
+vi_vbuffer_new(bid, size)
+vi_vbuffer_set(bid, size, offset)
+vi_vbuffer_prop(vbid, prop)
+
+vi_ibuffer_new(bid, size, type)
+vi_ibuffer_set(bid, size, offset)
+
+vi_texture_new(path, props)
+
+vi_shader_new(vert, frag)
+vi_shader_set(vert, frag)
+
+vi_material_new(sid, glstate, glprops)
+vi_material_set(sid, glstate, glprops)
+
+
+vi_mesh_new()
+vi_mesh_set_vbuffer(mid, vbid)
+vi_mesh_set_ibuffer(mid, ibid)
+vi_mesh_set_vertex_data(mid, buffer, size)
+vi_mesh_set_vertex_prop(mid, props)
+vi_mesh_set_material(mid, mat)
+
+vi_font_new(font, size)
+vi_font_set_text(fid, text)
+vi_font_set_color(fid, c)
+vi_font_get_width(fid)
+vi_font_get_height(fid)
+
+
+
+
+
+===viscene===
+
+
+===viscript===
+vi_script_init()
+vi_script_loop(dt)
+
+===visystem===
+
+--inner
+vi_system_init()
+vi_system_loop(dt)
+vi_system_time()
+
+--outer
+vi_system_info()
+vi_system_exit(reason)
+vi_system_event_push(queue, e)  queue=usr/sys
+vi_system_event_pull(queue, e)
+
+vi_system_fopen(path, mode)
+vi_system_fseekg(fid, n, offset)
+vi_system_ftellg(fid)
+vi_system_fclose(fid)
+vi_system_fread(fid, buffer, n)
+vi_system_fwrite(fid, buffer, n)
+
+
+===visample===
+
+===viextend===
+
+
+
+
 
 
 
