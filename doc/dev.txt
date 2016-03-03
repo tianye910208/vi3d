@@ -40,20 +40,24 @@ quad
 object
 object_manager
 object_scheduler
-
 buffer
+visual
 
 
---inner
+
+
 vi_object_init()
 vi_object_loop(dt)
 
---outer
+
 vi_object_get(id)
 vi_object_retain(id)
 vi_object_release(id)
-vi_object_func(id, func, dt, priority)
-vi_object_exit(id, func)
+
+vi_object_listen_func(id, func, dt, priority)
+vi_object_remove_func(id, func)
+vi_object_listen_exit(id, func)
+vi_object_remove_exit(id, func)
 
 vi_buffer_new(size)
 vi_buffer_read(fid, fmt)
@@ -63,6 +67,7 @@ vi_visual_new()
 vi_visual_set_pos(vid, val)
 vi_visual_set_rot(vid, val)
 vi_visual_set_scale(vid, val)
+vi_visual_set_parent(vid, pvid)
 
 
 ===virender===
@@ -99,17 +104,11 @@ vi_mesh_set_vertex_data(mid, buffer, size)
 vi_mesh_set_vertex_prop(mid, props)
 vi_mesh_set_material(mid, mat)
 
-vi_font_new(font, size)
-vi_font_set_text(fid, text)
-vi_font_set_color(fid, c)
-vi_font_get_width(fid)
-vi_font_get_height(fid)
-
-
-
-
-
-===viscene===
+vi_text_new(font, size)
+vi_text_set_string(fid, str)
+vi_text_set_color(fid, c)
+vi_text_get_width(fid)
+vi_text_get_height(fid)
 
 
 ===viscript===
@@ -118,23 +117,35 @@ vi_script_loop(dt)
 
 ===visystem===
 
---inner
+
 vi_system_init()
 vi_system_loop(dt)
+vi_system_wait(dt)
 vi_system_time()
-
---outer
 vi_system_info()
 vi_system_exit(reason)
-vi_system_event_push(queue, e)  queue=usr/sys
-vi_system_event_pull(queue, e)
 
-vi_system_fopen(path, mode)
-vi_system_fseekg(fid, n, offset)
-vi_system_ftellg(fid)
-vi_system_fclose(fid)
-vi_system_fread(fid, buffer, n)
-vi_system_fwrite(fid, buffer, n)
+vi_system_event_push(e)
+vi_system_event_pull(e)
+vi_system_event_pass(e)
+
+vi_window_init()
+vi_window_exit()
+vi_window_event_push(e)
+vi_window_event_pull(e)
+vi_window_event_pass(e)
+
+vi_window_set_fullscreen(flag)
+vi_window_set_size(w, h)
+vi_window_get_size(&w, &h)
+
+
+vi_file_open(path, mode)
+vi_file_seek(fid, n, offset)
+vi_file_tell(fid)
+vi_file_close(fid)
+vi_file_read(fid, buffer, n)
+vi_file_write(fid, buffer, n)
 
 
 ===visample===
