@@ -46,6 +46,7 @@ visual
 
 
 
+
 vi_object_init()
 vi_object_loop(dt)
 
@@ -129,7 +130,7 @@ vi_system_event_push(e)
 vi_system_event_pull(e)
 vi_system_event_pass(e)
 
-vi_window_init()
+vi_window_init(title, w, h)
 vi_window_exit()
 vi_window_event_push(e)
 vi_window_event_pull(e)
