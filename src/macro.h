@@ -1,5 +1,5 @@
-#ifndef _VI_MACRO_
-#define _VI_MACRO_
+#ifndef _VI3D_MACRO_
+#define _VI3D_MACRO_
 
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
@@ -43,6 +43,9 @@
 #	define ASSERT( exp )
 #endif
 
+#ifndef NULL
+#   define NULL 0
+#endif
 
 //TYPES
 typedef signed char         int8;

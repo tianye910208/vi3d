@@ -1,5 +1,5 @@
-#ifndef _VI_SYSTEM_
-#define _VI_SYSTEM_
+#ifndef _VI3D_SYSTEM_
+#define _VI3D_SYSTEM_
 
 
 

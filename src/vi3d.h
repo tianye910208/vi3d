@@ -1,5 +1,5 @@
-#ifndef _VI_VI3D_
-#define _VI_VI3D_
+#ifndef _VI3D_H_
+#define _VI3D_H_
 
 
 

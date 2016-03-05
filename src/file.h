@@ -1,5 +1,5 @@
-#ifndef _VI_FILE_
-#define _VI_FILE_
+#ifndef _VI3D_FILE_
+#define _VI3D_FILE_
 
 
 

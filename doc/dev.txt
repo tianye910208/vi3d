@@ -72,10 +72,12 @@ vi_visual_set_parent(vid, pvid)
 
 
 ===virender===
-vi_render_init()
-vi_render_loop(dt)
-vi_render_func(func, op)  op=beforeRender[pass]/afterRender[pass]/finishRender[pass]
+vi_render_new()
+vi_render_loop(rid, dt)
 
+
+vi_render_listen_func(func, op)  op=beforeRender[pass]/afterRender[pass]/finishRender[pass]
+vi_render_remove_func(func)
 
 vi_target_new()
 vi_target_get()
@@ -115,6 +117,7 @@ vi_text_get_height(fid)
 ===viscript===
 vi_script_init()
 vi_script_loop(dt)
+vi_script_main(file)
 
 ===visystem===
 
@@ -126,21 +129,23 @@ vi_system_time()
 vi_system_info()
 vi_system_exit(reason)
 
-vi_system_event_push(e)
-vi_system_event_pull(e)
-vi_system_event_pass(e)
+vi_system_run_event(e)
+
+
 
 vi_window_init(title, w, h)
 vi_window_exit()
-vi_window_event_push(e)
-vi_window_event_pull(e)
-vi_window_event_pass(e)
+
+vi_window_get_event(e)
+
 
 vi_window_set_fullscreen(flag)
 vi_window_set_size(w, h)
 vi_window_get_size(&w, &h)
 
 
+
+vi_file_new()
 vi_file_open(path, mode)
 vi_file_seek(fid, n, offset)
 vi_file_tell(fid)
