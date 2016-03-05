@@ -18,7 +18,7 @@ public:
 
     void retain();
     void release();
-}
+};
 
 class ObjectMgr
 {
@@ -38,7 +38,7 @@ public:
     void del(Object* obj);
 
     void loop(float dt);
-}
+};
 
 
 
