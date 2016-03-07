@@ -11,7 +11,7 @@ class Event
 public:
     enum EventType
     {
-        WM_EXIT, 
+        WM_CLOSE, 
         WM_RESIZE, 
         WM_GOT_FOCUS, 
         WM_LOST_FOCUS,
@@ -25,11 +25,20 @@ public:
         IO_WHEEL,
     
         SYS_EXIT,
-        USR_CUSTOM
+        USR_DATA
     };
 
 public:
     int    type;
+    union {
+        struct {float w; float h;} size;
+        struct {int ctrl; int code;} key;
+        struct {int type; int idx; float x; float y;} touch;
+        struct {float x; float y; float dt;} wheel;
+        void* ptr;
+        int   n;
+        float f;
+    } data;
     Event* next;
 
 public:
@@ -37,64 +46,34 @@ public:
     {
         next = NULL;
     }
-};
 
-class SysEvent:public Event
-{
-public:
-    union {
-        struct {float w; float h;} size;
-        struct {int ctrl; int code;} key;
-        struct {int type; int idx; float x; float y;} touch;
-        struct {float x; float y; float dt;} wheel;
-    } data;
-public:
-    SysEvent()
-    {
-
-    }
-    SysEvent(int t)
+    Event(int t)
     {
         type = t;
+        next = NULL;
     }
-};
-
-class UsrEvent:public Event
-{
-public:
-    void* data;
-public:
-    UsrEvent()
+    
+    Event(SysEvent e)
     {
-        type = USR_CUSTOM;
-        data = NULL;
-    }
-    UsrEvent(void *p)
-    {
-        type = USR_CUSTOM;
-        data = p;
+        type = e.type;
+        data = e.data;
+        next = e.next;
     }
 };
 
 class EventQueue
 {
 public:
+    Event* temp;
     Event* head;
     Event* tail;
 public:
     EventQueue();
     ~EventQueue();
 
-    void push(Event *e);
-    Event* pull();
+    void put(Event &e);
+    bool get(Event &e);
 };
-
-
-
-
-
-
-
 
 
 }

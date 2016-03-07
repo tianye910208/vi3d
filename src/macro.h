@@ -4,24 +4,29 @@
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
 #   define WIN32_LEAN_AND_MEAN
-#	define VI_OS_WIN
+#	define VI3D_PLATFORM_WIN
+#	define VI3D_PLATFORM "WIN"
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
 #   if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-#       define VI_OS_IOS
+#       define VI3D_PLATFORM_IOS
+#       define VI3D_PLATFORM "IOS"
 #   else
-#       define VI_OS_OSX
+#       define VI3D_PLATFORM_OSX
+#       define VI3D_PLATFORM "OSX"
 #   endif
 #elif defined(__ANDROID__)
-#   define VI_OS_ANDROID
+#   define VI3D_PLATFORM_ANDROID
+#   define VI3D_PLATFORM "ANDROID"
 #elif defined(__linux__)
-#   define VI_OS_LINUX
+#   define VI3D_PLATFORM_LINUX
+#   define VI3D_PLATFORM "LINUX"
 #else
-#   error VI_ERROR_PLATFORM_UNKNOWN
+#   error VI3D_ERROR_PLATFORM_UNKNOWN
 #endif
 
 //DLLEXPORT
 #ifndef DLLEXP
-#	ifdef VI_OS_WIN
+#	ifdef VI3D_PLATFORM_WIN
 #		define DLLEXP extern "C" __declspec( dllexport )
 #	else
 #		if defined(__GNUC__) && __GNUC__ >= 4
@@ -36,7 +41,7 @@
 
 //ASSERT
 #if defined(_DEBUG)
-#   define VI_DEBUG
+#   define VI3D_DEBUG
 #   include <assert.h>
 #	define ASSERT( exp ) assert( exp );
 #else

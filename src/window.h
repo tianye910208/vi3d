@@ -1,42 +1,39 @@
 #ifndef _VI3D_WINDOW_
 #define _VI3D_WINDOW_
 
-
-
+namespace vi3d
+{
 
 
 class Window
 {
 public:
-    static Window* g_inst;
-    int w;
-    int h;
-public:
+    static Window* gptr;
     static Window* inst();
-    virtual void init(char* title, int w, int h);
-    virtual void exit();
+    static void    exit();
 
-    virtual void pushEvent(void* e);
-    virtual void pullEvent(void* e);
-    virtual void execEvent(void* e);
+public:
+    Window();
+    virtual ~Window();
+
+    virtual void show(char* title, int w, int h);
+
+    virtual bool getEvent(void* e);
+
+    virtual void setFullscreen(bool flag);
 
     virtual void setSize(int w, int h);
-    virtual void setFullscreen(bool flag);
+    virtual void getSize(int &w, int &h);
+public:
+    int w;
+    int h;
 };
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+}
 #endif
 
 

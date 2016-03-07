@@ -7,6 +7,7 @@ namespace vi3d
 
 EventQueue::EventQueue()
 {
+    temp = NULL;
     head = NULL;
     tail = NULL;
 }
@@ -21,10 +22,33 @@ EventQueue::~EventQueue()
         e = next;
     }
 
+    e = temp;
+    while(e)
+    {
+        Event* next = e->next;
+        delete e;
+        e = next;
+    }
+
+
+
 }
 
-void EventQueue::push(Event *e)
+void EventQueue::put(Event &ev)
 {
+    Event* e;
+    if(temp)
+    {
+        e = temp;
+        temp = e->next;
+
+        *e = ev;
+    }
+    else
+    {
+        e = new Event(ev);
+    }
+
     if(tail)
     {
         tail->next = e;
@@ -34,11 +58,9 @@ void EventQueue::push(Event *e)
     {
         head = tail = e;
     }
-
-
 }
 
-Event* EventQueue::pull()
+bool EventQueue::get(Event &ev)
 {
     if(head)
     {
@@ -47,16 +69,18 @@ Event* EventQueue::pull()
             head = e->next;
         else
             head = tail = NULL;
-        return e;
+
+        ev = *e;
+
+        e->next = temp;
+        temp = e;
+        return true;
     }
     else
     {
-        return NULL;
+        return false;
     }
 }
-
-
-
 
 
 

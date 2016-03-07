@@ -19,7 +19,7 @@ OBJS += $(SRC1:$(ROOT)%.cpp=obj/%.o)
 all:$(OBJS)
 	@echo [M]Link...
 	@mkdir -p bin
-	g++ $(OBJS) -o bin/$(EXEC) -L/usr/local/lib/ -lGL -lGLU -lX11 
+	g++ $(OBJS) -o bin/$(EXEC) -L/usr/local/lib/ -lGL -lGLU -lX11
 
 
 obj/%.o:$(ROOT)%.cpp
