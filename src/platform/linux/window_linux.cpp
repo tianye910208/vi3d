@@ -25,9 +25,9 @@ public:
     ~WindowLinux();
 
     void show(const char* title, int w, int h);
-    bool getEvent(Event &e);
     void setFullscreen(bool flag);
     void getSize(int &w, int &h);
+    bool getEvent(Event &e);
 private:
     ::Window   x_window;
     ::Display* x_display;
@@ -110,137 +110,137 @@ bool WindowLinux::getEvent(Event &ev)
 
         switch (e.type)
         {
-            case FocusIn:
-                ev.type = Event::WM_GOT_FOCUS;
-                return true;
-            case FocusOut:
-                ev.type = Event::WM_LOST_FOCUS;
-                return true;
-            case Expose:
-                //if (e.xexpose.count == 0)
-                //    Event::REFRESH;
-                break;
-            case ConfigureNotify:
-                if (e.xconfigure.width != w|| e.xconfigure.height != h)
+        case FocusIn:
+            ev.type = Event::WM_GOT_FOCUS;
+            return true;
+        case FocusOut:
+            ev.type = Event::WM_LOST_FOCUS;
+            return true;
+        case Expose:
+            //if (e.xexpose.count == 0)
+            //    Event::REFRESH;
+            break;
+        case ConfigureNotify:
+            if (e.xconfigure.width != w|| e.xconfigure.height != h)
+            {
+                ev.type = Event::WM_RESIZE;
+                ev.data.size.w = e.xconfigure.width;
+                ev.data.size.h = e.xconfigure.height;
+            }
+            return true;
+        case ButtonPress:
+            {
+                ev.type = Event::IO_TOUCH_DOWN;
+                ev.data.touch.x = e.xmotion.x;
+                ev.data.touch.y = e.xmotion.y;
+                ev.data.touch.idx = 0;
+                if (e.xbutton.button == Button1)
                 {
-                    ev.type = Event::WM_RESIZE;
-                    ev.data.size.w = e.xconfigure.width;
-                    ev.data.size.h = e.xconfigure.height;
+                    ev.data.touch.type = 1;//LEFT
+                    return true;
                 }
-                return true;
-            case ButtonPress:
+                else if (e.xbutton.button == Button2)
                 {
-                    ev.type = Event::IO_TOUCH_DOWN;
+                    ev.data.touch.type = 2;//RIGHT
+                    return true;
+                }
+            }
+            break;
+        case ButtonRelease:
+            {
+                if (e.xbutton.button == Button1)
+                {
+                    ev.type = Event::IO_TOUCH_UP;
                     ev.data.touch.x = e.xmotion.x;
                     ev.data.touch.y = e.xmotion.y;
                     ev.data.touch.idx = 0;
-                    if (e.xbutton.button == Button1)
-                    {
-                        ev.data.touch.type = 1;//LEFT
-                        return true;
-                    }
-                    else if (e.xbutton.button == Button2)
-                    {
-                        ev.data.touch.type = 2;//RIGHT
-                        return true;
-                    }
+                    ev.data.touch.type = 1;//LEFT
+                    return true;
                 }
-                break;
-            case ButtonRelease:
+                else if (e.xbutton.button == Button2)
                 {
-                    if (e.xbutton.button == Button1)
-                    {
-                        ev.type = Event::IO_TOUCH_UP;
-                        ev.data.touch.x = e.xmotion.x;
-                        ev.data.touch.y = e.xmotion.y;
-                        ev.data.touch.idx = 0;
-                        ev.data.touch.type = 1;//LEFT
-                        return true;
-                    }
-                    else if (e.xbutton.button == Button2)
-                    {
-                        ev.type = Event::IO_TOUCH_UP;
-                        ev.data.touch.x = e.xmotion.x;
-                        ev.data.touch.y = e.xmotion.y;
-                        ev.data.touch.idx = 0;
-                        ev.data.touch.type = 2;//RIGHT
-                        return true;
-                    }
-                    else if (e.xbutton.button == Button4)
-                    {
-                        ev.type = Event::IO_WHEEL;
-                        ev.data.wheel.x = e.xmotion.x;
-                        ev.data.wheel.y = e.xmotion.x;
-                        ev.data.wheel.dt = 100;
-                        return true;
-                    }
-                    else if (e.xbutton.button == Button5)
-                    {
-                        ev.type = Event::IO_WHEEL;
-                        ev.data.wheel.x = e.xmotion.x;
-                        ev.data.wheel.y = e.xmotion.x;
-                        ev.data.wheel.dt = -100;
-                        return true;
-                    }
-                }
-                break;
-            case MotionNotify:
-                {
-                    ev.type = Event::IO_TOUCH_MOVE;
-                    ev.data.touch.type = (e.xmotion.state & Button1Mask) ? 1 : 0 | (false) ? 3 : 0 | (e.xmotion.state & Button2Mask) ? 2 : 0;
+                    ev.type = Event::IO_TOUCH_UP;
                     ev.data.touch.x = e.xmotion.x;
                     ev.data.touch.y = e.xmotion.y;
                     ev.data.touch.idx = 0;
+                    ev.data.touch.type = 2;//RIGHT
+                    return true;
                 }
+                else if (e.xbutton.button == Button4)
+                {
+                    ev.type = Event::IO_WHEEL;
+                    ev.data.wheel.x = e.xmotion.x;
+                    ev.data.wheel.y = e.xmotion.x;
+                    ev.data.wheel.dt = 100;
+                    return true;
+                }
+                else if (e.xbutton.button == Button5)
+                {
+                    ev.type = Event::IO_WHEEL;
+                    ev.data.wheel.x = e.xmotion.x;
+                    ev.data.wheel.y = e.xmotion.x;
+                    ev.data.wheel.dt = -100;
+                    return true;
+                }
+            }
+            break;
+        case MotionNotify:
+            {
+                ev.type = Event::IO_TOUCH_MOVE;
+                ev.data.touch.type = (e.xmotion.state & Button1Mask) ? 1 : 0 | (false) ? 3 : 0 | (e.xmotion.state & Button2Mask) ? 2 : 0;
+                ev.data.touch.x = e.xmotion.x;
+                ev.data.touch.y = e.xmotion.y;
+                ev.data.touch.idx = 0;
+            }
+            return true;
+	    case KeymapNotify:
+	        XRefreshKeyboardMapping(&e.xmapping);
+            break;
+        case KeyPress: 
+            {
+                char string[20];
+	            KeySym keysym;
+	            int len = XLookupString(&e.xkey, string, 20, &keysym, NULL);
+	            if (len > 0) {
+                    XEvent ev = {0};
+                    ev.type = ClientMessage;
+                    ev.xclient.window = x_window;
+                    ev.xclient.message_type = m_msg_char;
+                    ev.xclient.format = 8;
+                    memcpy(ev.xclient.data.b, string, 20);
+	        	    XSendEvent(x_display, x_window, false, 0, &ev);
+	            }
+            }
+            //go to next
+        case KeyRelease:
+            {
+                ev.type = (e.type == KeyPress) ? Event::IO_KEY_DOWN : Event::IO_KEY_UP;
+            
+                unsigned int mods;
+                KeySym keySym;
+                if (XkbLookupKeySym(e.xkey.display, e.xkey.keycode, 0, &mods, &keySym))
+                {
+                    ev.data.key.code = keySym;
+                    ev.data.key.ctrl = (e.xkey.state & ShiftMask) ? 1 : ((e.xkey.state & ControlMask) ? 2 : ((e.xkey.state & Mod1Mask) ? 3 : 0));
+                    return true;
+                }
+            }
+            break;
+        case ClientMessage:
+            if (e.xclient.data.l[0] == m_msg_exit)
+            {
+                ev.type = Event::WM_CLOSE;
                 return true;
-	        case KeymapNotify:
-	    	    XRefreshKeyboardMapping(&e.xmapping);
-                break;
-            case KeyPress: 
-                {
-                    char string[20];
-	    	        KeySym keysym;
-	    	        int len = XLookupString(&e.xkey, string, 20, &keysym, NULL);
-	    	        if (len > 0) {
-                        XEvent ev = {0};
-                        ev.type = ClientMessage;
-                        ev.xclient.window = x_window;
-                        ev.xclient.message_type = m_msg_char;
-                        ev.xclient.format = 8;
-                        memcpy(ev.xclient.data.b, string, 20);
-	    	    	    XSendEvent(x_display, x_window, false, 0, &ev);
-	    	        }
-                }
-                //go to next
-            case KeyRelease:
-                {
-                    ev.type = (e.type == KeyPress) ? Event::IO_KEY_DOWN : Event::IO_KEY_UP;
-                
-                    unsigned int mods;
-                    KeySym keySym;
-                    if (XkbLookupKeySym(e.xkey.display, e.xkey.keycode, 0, &mods, &keySym))
-                    {
-                        ev.data.key.code = keySym;
-                        ev.data.key.ctrl = (e.xkey.state & ShiftMask) ? 1 : ((e.xkey.state & ControlMask) ? 2 : ((e.xkey.state & Mod1Mask) ? 3 : 0));
-                        return true;
-                    }
-                }
-                break;
-            case ClientMessage:
-                if (e.xclient.data.l[0] == m_msg_exit)
-                {
-                    ev.type = Event::WM_CLOSE;
-                    return true;
-                }
-                else if(e.xclient.message_type == m_msg_char)
-                {
-                    static char string[20];
-                    memcpy(string, e.xclient.data.b, 20);
-                    ev.type = Event::IO_TEXT_INPUT;
-                    ev.data.ptr  = (void*)string;
-                    return true;
-                }
-                break;
+            }
+            else if(e.xclient.message_type == m_msg_char)
+            {
+                static char string[20];
+                memcpy(string, e.xclient.data.b, 20);
+                ev.type = Event::IO_TEXT_INPUT;
+                ev.data.ptr  = (void*)string;
+                return true;
+            }
+            break;
         }
     }
     return false;

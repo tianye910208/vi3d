@@ -15,6 +15,7 @@ public:
         WM_RESIZE, 
         WM_GOT_FOCUS, 
         WM_LOST_FOCUS,
+        WM_ORIENTATION,
         
         IO_TEXT_INPUT, 
         IO_KEY_DOWN, 
