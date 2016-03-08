@@ -2,7 +2,8 @@
 #include "system.h"
 #include "window.h"
 
-using namespace vi3d;
+namespace vi3d
+{
 
 void vi_system_init()
 {
@@ -18,11 +19,6 @@ float vi_system_time()
 void vi_system_wait(float dt)
 {
     System::inst()->wait(dt);
-}
-
-char* vi_system_info()
-{
-    return System::inst()->info();
 }
 
 void vi_system_quit(int reason)
@@ -66,6 +62,10 @@ float vi_system_get_fps_dt()
     return System::inst()->getFpsDt();
 }
 
+const char* vi_system_info()
+{
+    return System::inst()->info();
+}
 
 
 void vi_window_show(const char* title, int w, int h)
@@ -96,5 +96,7 @@ void vi_window_get_size(int &w, int &h)
 
 
 
+
+}
 
 

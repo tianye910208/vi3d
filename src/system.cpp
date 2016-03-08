@@ -48,7 +48,7 @@ float System::time()
 #endif
 }
 
-void SystemLinux::wait(float dt)
+void System::wait(float dt)
 {
 #ifdef VI3D_PLATFORM_WIN
     Sleep(DWORD(dt * 1000));
@@ -57,7 +57,7 @@ void SystemLinux::wait(float dt)
 #endif
 }
 
-char* SystemLinux::info()
+const char* System::info()
 {
     return VI3D_PLATFORM;
 }
@@ -97,6 +97,9 @@ bool System::getEvent(Event &e)
 
 void System::runEvent(Event &e)
 {
+
+
+}
 
 
 }

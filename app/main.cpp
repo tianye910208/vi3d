@@ -1,4 +1,5 @@
 #include "vi3d.h"
+using namespace vi3d;
 
 bool g_loop = true;
 
@@ -12,7 +13,6 @@ bool handle(Event ev)
 
     return true;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
 
         while(dt > vt)
         {
-            vi_object_loop(dt);
+            //vi_object_loop(dt);
             dt = dt - vt;
         }
-        vi_render_loop(dt);
+        //vi_render_loop(dt);
 
         float tt = vi_system_time();
         dt = dt + tt - pt;

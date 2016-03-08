@@ -1,4 +1,3 @@
-
 #include "event.h"
 
 namespace vi3d

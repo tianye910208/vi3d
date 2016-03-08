@@ -53,7 +53,7 @@ public:
         next = NULL;
     }
     
-    Event(SysEvent e)
+    Event(Event &e)
     {
         type = e.type;
         data = e.data;

@@ -1,4 +1,6 @@
 #include "macro.h"
+#include "event.h"
+#include "window.h"
 
 #ifdef VI3D_PLATFORM_LINUX
 #include <X11/Xlib.h>
@@ -14,22 +16,6 @@ namespace vi3d
 {
 
 
-class WindowLinux;
-Window* Window::inst()
-{
-    if(gptr)
-    {
-        return gptr;
-    }
-    else
-    {
-        gptr = new WindowLinux();
-        return gptr;
-    }
-
-}
-
-
 
 
 class WindowLinux:public Window
@@ -38,10 +24,10 @@ public:
     WindowLinux();
     ~WindowLinux();
 
-    void show(char* title, int w, int h);
-    bool getEvent(void* e);
+    void show(const char* title, int w, int h);
+    bool getEvent(Event &e);
     void setFullscreen(bool flag);
-   
+    void getSize(int &w, int &h);
 private:
     ::Window   x_window;
     ::Display* x_display;
@@ -68,7 +54,7 @@ WindowLinux::~WindowLinux()
     XCloseDisplay(x_display);
 }
 
-void WindowLinux::show(const char* title, unsigned int width, unsigned int height)
+void WindowLinux::show(const char* title, int width, int height)
 {
     x_display = XOpenDisplay(NULL);
     x_window = XCreateWindow(x_display, DefaultRootWindow(x_display), 0, 0, width, height, 0, CopyFromParent, InputOutput, CopyFromParent, 0, 0);
@@ -94,7 +80,7 @@ void WindowLinux::show(const char* title, unsigned int width, unsigned int heigh
 }
 
 
-void WindowLinux::setFullscreen(int flag) 
+void WindowLinux::setFullscreen(bool flag) 
 { 
     if (m_fullscreen == flag) 
         return; 
@@ -104,7 +90,7 @@ void WindowLinux::setFullscreen(int flag)
     XSendEvent(x_display, DefaultRootWindow(x_display), False, SubstructureNotifyMask, &m_fullscreenXEvent);
 }
 
-void WindowLinux::getSize(unsigned int &width, unsigned int &height) 
+void WindowLinux::getSize(int &width, int &height) 
 {
     XWindowAttributes attr;
     XGetWindowAttributes(x_display, x_window, &attr);
@@ -201,7 +187,7 @@ bool WindowLinux::getEvent(Event &ev)
             case MotionNotify:
                 {
                     ev.type = Event::IO_TOUCH_MOVE;
-                    ev.touch.type = (e.xmotion.state & Button1Mask) ? 1 : 0 | (false) ? 3 : 0 | (e.xmotion.state & Button2Mask) ? 2 : 0;
+                    ev.data.touch.type = (e.xmotion.state & Button1Mask) ? 1 : 0 | (false) ? 3 : 0 | (e.xmotion.state & Button2Mask) ? 2 : 0;
                     ev.data.touch.x = e.xmotion.x;
                     ev.data.touch.y = e.xmotion.y;
                     ev.data.touch.idx = 0;
@@ -258,6 +244,21 @@ bool WindowLinux::getEvent(Event &ev)
         }
     }
     return false;
+}
+
+
+Window* Window::inst()
+{
+    if(gptr)
+    {
+        return gptr;
+    }
+    else
+    {
+        gptr = new WindowLinux();
+        return gptr;
+    }
+
 }
 
 

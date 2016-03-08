@@ -4,6 +4,7 @@
 namespace vi3d
 {
 
+class Event;
 
 class Window
 {
@@ -16,9 +17,9 @@ public:
     Window();
     virtual ~Window();
 
-    virtual void show(char* title, int w, int h);
+    virtual void show(const char* title, int w, int h);
 
-    virtual bool getEvent(void* e);
+    virtual bool getEvent(Event &e);
 
     virtual void setFullscreen(bool flag);
 

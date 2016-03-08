@@ -1,11 +1,11 @@
-
 #include "window.h"
+#include "macro.h"
 
 namespace vi3d
 {
 
 
-Window* gptr = NULL;
+Window* Window::gptr = NULL;
 void Window::exit()
 {
     if(gptr)
@@ -26,12 +26,12 @@ Window::~Window()
 
 }
 
-void Window::show(char* title, int w, int h)
+void Window::show(const char* title, int w, int h)
 {
 
 }
 
-bool Window::getEvent(void* e)
+bool Window::getEvent(Event &e)
 {
     return false;
 }

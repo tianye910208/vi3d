@@ -1,8 +1,10 @@
 #ifndef _VI3D_SYSTEM_
 #define _VI3D_SYSTEM_
 
-class Event;
-class EventQueue;
+#include "event.h"
+
+namespace vi3d
+{
 
 class System
 {
@@ -12,9 +14,9 @@ public:
     static void     exit();
 
 public:
-    float time();
-    void  wait(float dt);
-    char* info();
+    float       time();
+    void        wait(float dt);
+    const char* info();
 
     void  quit(int reason);
 
@@ -30,9 +32,15 @@ private:
     int         _fps;
     float       _fpsDt;
     EventQueue  _eventQueue;
+};
+
+
+
+
+
+
+
 }
-
-
 #endif
 
 
