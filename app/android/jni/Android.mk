@@ -18,7 +18,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    	:= vi3d
 LOCAL_SRC_FILES 	:= ../../main.cpp
-LOCAL_C_INCLUDES	:= ../../../src
+LOCAL_C_INCLUDES	:= ../../src
 
 LOCAL_LDLIBS    	   := -llog -landroid -lEGL -lGLESv2
 LOCAL_STATIC_LIBRARIES := vi3d_static
