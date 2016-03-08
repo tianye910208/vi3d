@@ -4,21 +4,21 @@
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
 #   define WIN32_LEAN_AND_MEAN
-#	define VI3D_PLATFORM_WIN
+#	define VI3D_PLATFORM_WIN 1
 #	define VI3D_PLATFORM "WIN"
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
 #   if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-#       define VI3D_PLATFORM_IOS
+#       define VI3D_PLATFORM_IOS 2
 #       define VI3D_PLATFORM "IOS"
 #   else
-#       define VI3D_PLATFORM_OSX
+#       define VI3D_PLATFORM_OSX 3
 #       define VI3D_PLATFORM "OSX"
 #   endif
 #elif defined(__ANDROID__)
-#   define VI3D_PLATFORM_ANDROID
+#   define VI3D_PLATFORM_ANDROID 4
 #   define VI3D_PLATFORM "ANDROID"
 #elif defined(__linux__)
-#   define VI3D_PLATFORM_LINUX
+#   define VI3D_PLATFORM_LINUX 5
 #   define VI3D_PLATFORM "LINUX"
 #else
 #   error VI3D_ERROR_PLATFORM_UNKNOWN
