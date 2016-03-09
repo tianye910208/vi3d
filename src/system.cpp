@@ -27,6 +27,17 @@ System* System::inst()
     }
 }
 
+System::System()
+{
+    setFps(60);
+}
+
+System::~System()
+{
+
+}
+
+
 void System::exit()
 {
     if(gptr)

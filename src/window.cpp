@@ -31,6 +31,11 @@ void Window::show(const char* title, int w, int h)
 
 }
 
+void Window::swap()
+{
+
+}
+
 bool Window::getEvent(Event &e)
 {
     return false;

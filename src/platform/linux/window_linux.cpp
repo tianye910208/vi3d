@@ -11,6 +11,9 @@
 #include <sys/time.h>
 #include <unistd.h>
 
+#include <GL/gl.h>
+#include <GL/glx.h>
+
 
 namespace vi3d
 {
@@ -25,12 +28,14 @@ public:
     ~WindowLinux();
 
     void show(const char* title, int w, int h);
+    void swap();
     void setFullscreen(bool flag);
     void getSize(int &w, int &h);
     bool getEvent(Event &e);
 private:
-    ::Window   x_window;
-    ::Display* x_display;
+    ::Window        x_window;
+    ::Display*      x_display;
+    ::GLXContext    x_context;
     
     ::Atom     m_msg_char;
     ::Atom     m_msg_exit;
@@ -49,7 +54,9 @@ WindowLinux::~WindowLinux()
 {
     if (m_fullscreen)
         setFullscreen(false);
-    
+
+    glXDestroyContext(x_display, x_context);
+
     XDestroyWindow(x_display, x_window);
     XCloseDisplay(x_display);
 }
@@ -66,6 +73,13 @@ void WindowLinux::show(const char* title, int width, int height)
     XFlush(x_display);
     XMapWindow(x_display, x_window);
 
+    static const GLint attr[] = { GLX_RGBA, GLX_RED_SIZE, 8, GLX_GREEN_SIZE, 8, GLX_BLUE_SIZE, 8, GLX_DEPTH_SIZE, 24, GLX_DOUBLEBUFFER, None};
+    XVisualInfo* vi = glXChooseVisual(x_display, 0, (int*)&attr);
+    x_context = glXCreateContext(x_display, vi, NULL, GL_TRUE);
+    glXMakeCurrent(x_display, x_window, x_context);
+    XFree(vi);
+
+
     // Prepare a fullscreen window message
     m_fullscreenXEvent.type = ClientMessage;
     m_fullscreenXEvent.xclient.window = x_window;
@@ -79,6 +93,10 @@ void WindowLinux::show(const char* title, int width, int height)
     XSetWMProtocols(x_display, x_window, &m_msg_exit, 1);
 }
 
+void WindowLinux::swap()
+{
+    glXSwapBuffers(x_display, x_window);
+}
 
 void WindowLinux::setFullscreen(bool flag) 
 { 

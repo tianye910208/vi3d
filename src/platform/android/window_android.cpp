@@ -18,6 +18,10 @@
 #include <android/looper.h>
 #include <android/input.h>
 #include <android/native_activity.h>
+#include <android/native_window.h>
+
+#include <EGL/egl.h>
+
 
 #include "event.h"
 #include "window.h"
@@ -56,9 +60,10 @@ private:
 
 
 
-ANativeWindow*   windowInstance = 0;
-ANativeActivity* nativeActivity = 0;
-AInputQueue*     inputQueue;
+bool             windowInitflag = false;
+ANativeWindow*   windowInstance = NULL;
+ANativeActivity* nativeActivity = NULL;
+AInputQueue*     inputQueue     = NULL;
 
 
 static void onStart(ANativeActivity* activity) 		{ }
@@ -96,12 +101,14 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
 { 
     Lock guard(&mutex); 
     windowInstance = window; 
+    windowInitflag = true;
 }
 
 static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
 { 
     Lock guard(&mutex); 
-    windowInstance = 0; 
+    windowInstance = NULL; 
+    windowInitflag = true;
 }
 
 static void onDestroy(ANativeActivity* activity)
@@ -162,21 +169,39 @@ public:
     ~WindowAndroid();
 
     void show(const char* title, int w, int h);
+    void swap();
     void getSize(int &w, int &h);
     bool getEvent(Event &e);
 private:
     bool getEvent(AInputEvent* pEvent, Event &ev);
+
+private:
+    ANativeWindow*   m_window;
+    EGLDisplay  m_display;
+    EGLConfig   m_config;
+    EGLint      m_format;
+    EGLSurface  m_surface;
+    EGLContext  m_context;
 };
 
 WindowAndroid::WindowAndroid()
+:m_window(NULL)
 {
 
 }
 
 WindowAndroid::~WindowAndroid()
 { 
-    if(windowInstance)
-        ANativeWindow_release(windowInstance); 
+    eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+    eglDestroySurface(m_display, m_surface);
+    eglDestroyContext(m_display, m_context);
+    eglTerminate(m_display);
+
+    if(m_window)
+    {
+        ANativeWindow_release(m_window); 
+        m_window = NULL;
+    }
 }
 
 void WindowAndroid::show(const char* title, int w, int h)
@@ -184,15 +209,38 @@ void WindowAndroid::show(const char* title, int w, int h)
 	while(windowInstance == 0)
 		usleep(10000);
 
-	ANativeWindow_acquire(windowInstance);
+    m_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+    eglInitialize(m_display, 0, 0);
+    eglBindAPI(EGL_OPENGL_ES_API);
+    
+    EGLint numConfigs;
+    static const EGLint attribs[] = { EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT, EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_BLUE_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_RED_SIZE, 8, EGL_ALPHA_SIZE, 8, EGL_DEPTH_SIZE, 16, EGL_NONE };
+    eglChooseConfig(m_display, attribs, &m_config, 1, &numConfigs);
+    eglGetConfigAttrib(m_display, m_config, EGL_NATIVE_VISUAL_ID, &m_format);
+
+    EGLint contextAttrs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
+    m_context = eglCreateContext(m_display, m_config, NULL, contextAttrs);
+
+}
+
+void WindowAndroid::swap()
+{
+    eglSwapBuffers(m_display, m_surface);
 }
 
 void WindowAndroid::getSize(int &width, int &height)
 { 
-    if(windowInstance)
+    if(m_window)
     {
-        width = ANativeWindow_getWidth(windowInstance); 
-        height = ANativeWindow_getHeight(windowInstance); 
+        //width = ANativeWindow_getWidth(m_window); 
+        //height = ANativeWindow_getHeight(m_window); 
+
+        EGLint tw, th; 
+        eglQuerySurface(m_display, m_surface, EGL_WIDTH, &tw);
+        eglQuerySurface(m_display, m_surface, EGL_HEIGHT, &th);
+
+        width = tw;
+        height = th;
     }
     else
     {
@@ -205,6 +253,25 @@ void WindowAndroid::getSize(int &width, int &height)
 bool WindowAndroid::getEvent(Event &ev)
 {
 	Lock guard(&mutex);
+    if(windowInitflag)
+    {
+        if(m_window)
+        {
+            ANativeWindow_release(m_window); 
+            m_window = NULL;
+        }
+
+        if(windowInstance)
+        {
+            m_window = windowInstance;
+	        ANativeWindow_acquire(m_window);
+
+            m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
+            eglMakeCurrent(m_display, m_surface, m_surface, m_context);// should == EGL_TRUE
+        }
+        windowInitflag = false;
+    }
+
 	bool handled = false;
 	while(!handled && inputQueue && AInputQueue_hasEvents(inputQueue) > 0)
 	{

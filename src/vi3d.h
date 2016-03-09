@@ -23,6 +23,7 @@ DLLEXP float   vi_system_get_fps_dt();
 DLLEXP const char*   vi_system_info();
 
 DLLEXP void    vi_window_show(const char* title, int w, int h);
+DLLEXP void    vi_window_swap();
 DLLEXP bool    vi_window_get_event(Event &e);
 DLLEXP void    vi_window_set_fullscreen(bool flag);
 DLLEXP void    vi_window_set_size(int w, int h);

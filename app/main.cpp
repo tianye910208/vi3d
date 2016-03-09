@@ -1,6 +1,16 @@
 #include "vi3d.h"
 using namespace vi3d;
 
+#ifdef VI3D_PLATFORM_LINUX
+#include <GL/gl.h>
+#include <GL/glx.h>
+#else
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#include <EGL/egl.h>
+#endif
+
+
 bool g_loop = true;
 
 bool handle(Event ev)
@@ -54,6 +64,12 @@ int main(int argc, char *argv[])
         pt = tt;
         if(dt < vt)
             vi_system_wait(vt - dt);
+
+        glClearColor(0,0,255,255);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        vi_window_swap();
+
     }
 
     vi_system_exit();

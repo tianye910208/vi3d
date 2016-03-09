@@ -14,6 +14,10 @@ public:
     static void     exit();
 
 public:
+    System();
+    ~System();
+
+
     float       time();
     void        wait(float dt);
     const char* info();

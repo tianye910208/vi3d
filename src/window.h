@@ -18,6 +18,7 @@ public:
     virtual ~Window();
 
     virtual void show(const char* title, int w, int h);
+    virtual void swap();
 
     virtual bool getEvent(Event &e);
 

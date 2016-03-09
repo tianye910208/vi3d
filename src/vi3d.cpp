@@ -73,6 +73,11 @@ void vi_window_show(const char* title, int w, int h)
     Window::inst()->show(title, w, h);
 }
 
+void vi_window_swap()
+{
+    Window::inst()->swap();
+}
+
 bool vi_window_get_event(Event &e)
 {
     return Window::inst()->getEvent(e);
