@@ -42,11 +42,6 @@ bool vi_system_get_event(Event &e)
     return System::inst()->getEvent(e);
 }
 
-void vi_system_run_event(Event &e)
-{
-    System::inst()->runEvent(e);
-}
-
 void vi_system_set_fps(int fps)
 {
     System::inst()->setFps(fps);

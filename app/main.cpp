@@ -21,6 +21,7 @@ bool handle(Event ev)
         return false;
     }
 
+    //vi_script_run_event(ev);
     return true;
 }
 
@@ -41,16 +42,10 @@ int main(int argc, char *argv[])
 
         Event ev;
         while (vi_window_get_event(ev))
-        {
-            if(handle(ev))
-                vi_system_run_event(ev);
-        }
+            handle(ev);
 
         while (vi_system_get_event(ev))
-        {
-            if(handle(ev))
-                vi_system_run_event(ev);
-        }
+            handle(ev);
 
         while(dt > vt)
         {

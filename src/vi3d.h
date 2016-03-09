@@ -15,7 +15,6 @@ DLLEXP void    vi_system_quit(int reason);
 DLLEXP void    vi_system_exit();
 DLLEXP void    vi_system_put_event(Event &e);
 DLLEXP bool    vi_system_get_event(Event &e);
-DLLEXP void    vi_system_run_event(Event &e);
 DLLEXP void    vi_system_set_fps(int fps);
 DLLEXP int     vi_system_get_fps();
 DLLEXP float   vi_system_get_fps_dt();

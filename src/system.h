@@ -30,7 +30,6 @@ public:
 
     void  putEvent(Event &e);
     bool  getEvent(Event &e);
-    void  runEvent(Event &e);
 
 private:
     int         _fps;

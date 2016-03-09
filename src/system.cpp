@@ -106,12 +106,6 @@ bool System::getEvent(Event &e)
     return _eventQueue.get(e);
 }
 
-void System::runEvent(Event &e)
-{
-
-
-}
-
 
 }
 
