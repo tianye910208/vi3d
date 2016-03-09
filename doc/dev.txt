@@ -120,6 +120,7 @@ vi_text_get_height(fid)
 ===viscript===
 vi_script_main(file)
 vi_script_exit()
+vi_script_run_event(e)
 
 ===visystem===
 
@@ -133,7 +134,6 @@ vi_system_exit()
 
 vi_system_put_event(e)
 vi_system_get_event(e)
-vi_system_run_event(e)
 
 vi_system_set_fps()
 vi_system_get_fps()
@@ -142,7 +142,7 @@ vi_system_get_fps_dt()
 
 
 vi_window_show(title, w, h)
-
+vi_window_swap()
 vi_window_get_event(e)
 vi_window_set_fullscreen(flag)
 vi_window_set_size(w, h)
