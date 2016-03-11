@@ -14,12 +14,14 @@
 #include <GL/gl.h>
 #include <GL/glx.h>
 
+int vi_main(int argc, char* argv[]);
+int main(int argc, char* argv[])
+{
+    return vi_main(argc, argv);
+}
 
 namespace vi3d
 {
-
-
-
 
 class WindowLinux:public Window
 {

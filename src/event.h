@@ -24,8 +24,13 @@ public:
         IO_TOUCH_UP, 
         IO_TOUCH_MOVE, 
         IO_WHEEL,
-    
-        SYS_EXIT,
+
+        APP_PAUSE,
+        APP_RESUME,
+        APP_STOP,
+        APP_RESTART,
+
+        SYS_QUIT,
         USR_DATA
     };
 

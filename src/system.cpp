@@ -76,7 +76,7 @@ const char* System::info()
 
 void System::quit(int reason)
 {
-    Event e(Event::SYS_EXIT);
+    Event e(Event::SYS_QUIT);
     putEvent(e);
 }
 
@@ -98,11 +98,13 @@ float System::getFpsDt()
 
 void System::putEvent(Event &e)
 {
+    //TODO mutex
     _eventQueue.put(e);
 }
 
 bool System::getEvent(Event &e)
 {
+    //TODO mutex
     return _eventQueue.get(e);
 }
 

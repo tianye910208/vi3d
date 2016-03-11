@@ -33,11 +33,11 @@ using namespace vi3d;
 
 
 
-int main(int argc, char *argv[]);
-void* start_main(void* param) 
+int vi_main(int argc, char* argv[]);
+void* vi_main_thread(void* param) 
 { 
-    main(0,0); 
-    return 0; 
+    vi_main(0, NULL); 
+    return NULL; 
 }
 
 
@@ -155,7 +155,7 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
     // Start the main thread
     pthread_mutex_init(&mutex, 0);
     pthread_t tid;
-    pthread_create(&tid, 0, &start_main, 0);
+    pthread_create(&tid, 0, &vi_main_thread, 0);
 }
 
 
@@ -186,6 +186,7 @@ private:
 
 WindowAndroid::WindowAndroid()
 :m_window(NULL)
+,m_surface(EGL_NO_SURFACE)
 {
 
 }
@@ -193,25 +194,20 @@ WindowAndroid::WindowAndroid()
 WindowAndroid::~WindowAndroid()
 { 
     eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
-    eglDestroySurface(m_display, m_surface);
     eglDestroyContext(m_display, m_context);
     eglTerminate(m_display);
-
-    if(m_window)
-    {
-        ANativeWindow_release(m_window); 
-        m_window = NULL;
-    }
 }
 
 void WindowAndroid::show(const char* title, int w, int h)
 {
-	while(windowInstance == 0)
+	while(windowInstance == NULL)
 		usleep(10000);
+    m_window = windowInstance;
 
     m_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     eglInitialize(m_display, 0, 0);
     eglBindAPI(EGL_OPENGL_ES_API);
+    eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
     
     EGLint numConfigs;
     static const EGLint attribs[] = { EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT, EGL_SURFACE_TYPE, EGL_WINDOW_BIT, EGL_BLUE_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_RED_SIZE, 8, EGL_ALPHA_SIZE, 8, EGL_DEPTH_SIZE, 16, EGL_NONE };
@@ -221,6 +217,8 @@ void WindowAndroid::show(const char* title, int w, int h)
     EGLint contextAttrs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
     m_context = eglCreateContext(m_display, m_config, NULL, contextAttrs);
 
+    m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
+    eglMakeCurrent(m_display, m_surface, m_surface, m_context);// should == EGL_TRUE
 }
 
 void WindowAndroid::swap()
@@ -230,17 +228,19 @@ void WindowAndroid::swap()
 
 void WindowAndroid::getSize(int &width, int &height)
 { 
-    if(m_window)
+    if(m_surface != EGL_NO_SURFACE)
     {
-        //width = ANativeWindow_getWidth(m_window); 
-        //height = ANativeWindow_getHeight(m_window); 
-
         EGLint tw, th; 
         eglQuerySurface(m_display, m_surface, EGL_WIDTH, &tw);
         eglQuerySurface(m_display, m_surface, EGL_HEIGHT, &th);
 
         width = tw;
         height = th;
+    }
+    else if(m_window)
+    {
+        width = ANativeWindow_getWidth(m_window); 
+        height = ANativeWindow_getHeight(m_window); 
     }
     else
     {
@@ -255,21 +255,21 @@ bool WindowAndroid::getEvent(Event &ev)
 	Lock guard(&mutex);
     if(windowInitflag)
     {
-        if(m_window)
-        {
-            ANativeWindow_release(m_window); 
-            m_window = NULL;
-        }
+        windowInitflag = false;
 
         if(windowInstance)
         {
-            m_window = windowInstance;
-	        ANativeWindow_acquire(m_window);
-
-            m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
-            eglMakeCurrent(m_display, m_surface, m_surface, m_context);// should == EGL_TRUE
+            if(windowInstance != m_window)
+            {
+                m_window = windowInstance;
+                m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
+                eglMakeCurrent(m_display, m_surface, m_surface, m_context);// should == EGL_TRUE
+            }
         }
-        windowInitflag = false;
+        else
+        {
+            m_window = NULL;
+        }
     }
 
 	bool handled = false;
