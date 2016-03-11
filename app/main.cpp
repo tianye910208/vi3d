@@ -2,12 +2,18 @@
 using namespace vi3d;
 
 #ifdef VI3D_PLATFORM_LINUX
-#include <GL/gl.h>
-#include <GL/glx.h>
-#else
+#   include <GL/gl.h>
+#   include <GL/glx.h>
+#endif
+
+#ifdef VI3D_PLATFORM_ANDROID
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #include <EGL/egl.h>
+#endif
+
+#ifdef VI3D_PLATFORM_IOS
+#import <OpenGLES/ES2/gl.h>
 #endif
 
 

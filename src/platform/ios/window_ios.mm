@@ -1,11 +1,12 @@
 #include "macro.h"
 #ifdef VI3D_PLATFORM_IOS
-
+#include "pthread.h"
 #include "window.h"
 #include "system.h"
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/CAEAGLLayer.h>
+#import <OpenGLES/ES2/gl.h>
 
 using namespace vi3d;
 
@@ -21,7 +22,6 @@ void* vi_main_thread(void* args)
 @interface AppDelegate : UIResponder <UIApplicationDelegate> { } @end
 @implementation AppDelegate
 
-- (void)dealloc                                                     { [super dealloc]; }
 - (void)applicationWillResignActive:(UIApplication *)application    { Event ev(Event::APP_PAUSE);     System::inst()->putEvent(ev); }
 - (void)applicationDidBecomeActive:(UIApplication *)application     { Event ev(Event::APP_RESUME);    System::inst()->putEvent(ev); }
 - (void)applicationDidEnterBackground:(UIApplication *)application  { Event ev(Event::APP_STOP);      System::inst()->putEvent(ev); }
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
 @implementation GLWindow { }
 +(Class)layerClass                          { return [CAEAGLLayer class]; }
-- (void)dealloc                             { [super dealloc]; }
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -105,15 +105,6 @@ int main(int argc, char *argv[])
 }
 @end
 
-@interface GLController : NSObject {}
--(void)show;
--(void)hide;
-@end
-
-@implementation GLController
--(void)show { [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone]; }
--(void)hide { [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone]; }
-@end
 
 
 namespace vi3d 
@@ -122,18 +113,16 @@ namespace vi3d
 class WindowIOS:public Window
 {
 public:
-    WindowIOS(const char* title, int width, int height);
+    WindowIOS();
     ~WindowIOS();
     
-    void show();
+    void show(const char* title, int w, int h);
     void swap();
-    void setFullscreen(bool flag);
     void getSize(int w, int h);
     bool getEvent(Event &ev);
 private:
     void exec(NSObject* obj, SEL sel);
 private:
-    GLController*   m_controller;
     GLWindow*       m_window;
     EAGLContext*    m_context;
 
@@ -145,28 +134,20 @@ private:
 
 WindowIOS::WindowIOS()
 {
-    m_controller = NULL;
     m_window = NULL;
     m_context = NULL;
 }
 
 WindowIOS::~WindowIOS()
 {
-    glDeleteRenderbuffers(1, &_ColorBuffer);
-    glDeleteRenderbuffers(1, &_DepthBuffer);
-    glDeleteFramebuffers(1, &_FrameBuffer);
+    glDeleteRenderbuffers(1, &colorBuffer);
+    glDeleteRenderbuffers(1, &depthBuffer);
+    glDeleteFramebuffers(1, &frameBuffer);
 
-    if(m_context)
-        [m_context release]; 
-    if(m_window)
-        [m_window release]; 
-    if(m_controller)
-        [m_controller release];
 }
 
 void WindowIOS::show(const char* title, int w, int h)
 {
-    m_controller = [[GLController alloc] init];
     m_window = [[GLWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [m_window performSelectorOnMainThread:@selector(setScreen:) withObject:[UIScreen mainScreen] waitUntilDone:YES];
     exec(m_window, @selector(makeKeyAndVisible)); 
@@ -189,7 +170,7 @@ void WindowIOS::show(const char* title, int w, int h)
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &h);
     
     glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24_OES, w, h);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w, h);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);
 
     [m_window performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:YES];
@@ -216,13 +197,6 @@ void WindowIOS::getSize(int width, int height)
     }
 }
 
-void WindowIOS::setFullscreen(bool flag)
-{ 
-    if(flag)
-        exec(m_controller, @selector(hide));
-    else
-        exec(m_controller, @selector(show));
-}
  
 bool WindowIOS::getEvent(Event &ev)
 {

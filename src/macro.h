@@ -7,7 +7,7 @@
 #	define VI3D_PLATFORM_WIN 1
 #	define VI3D_PLATFORM "WIN"
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
-#   if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#   if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 #       define VI3D_PLATFORM_IOS 2
 #       define VI3D_PLATFORM "IOS"
 #   else
