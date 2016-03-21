@@ -106,6 +106,15 @@ int main(int argc, char *argv[])
 @end
 
 
+@interface GLController : UIViewController { } @end
+
+@implementation GLController { }
+
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+@end
 
 namespace vi3d 
 {
@@ -123,6 +132,7 @@ public:
 private:
     void exec(NSObject* obj, SEL sel);
 private:
+    GLController*   m_controller;
     GLWindow*       m_window;
     EAGLContext*    m_context;
 
@@ -134,6 +144,7 @@ private:
 
 WindowIOS::WindowIOS()
 {
+    m_controller = NULL;
     m_window = NULL;
     m_context = NULL;
 }
@@ -148,9 +159,11 @@ WindowIOS::~WindowIOS()
 
 void WindowIOS::show(const char* title, int w, int h)
 {
+    m_controller = [GLController alloc];
     m_window = [[GLWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [m_window setRootViewController:m_controller];
     [m_window performSelectorOnMainThread:@selector(setScreen:) withObject:[UIScreen mainScreen] waitUntilDone:YES];
-    exec(m_window, @selector(makeKeyAndVisible)); 
+    exec(m_window, @selector(makeKeyAndVisible));
 
     m_context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     [EAGLContext setCurrentContext:m_context];
@@ -160,6 +173,7 @@ void WindowIOS::show(const char* title, int w, int h)
     glGenRenderbuffers(1, &depthBuffer);
 
     CAEAGLLayer* layer = (CAEAGLLayer*)[m_window layer];
+    
 
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, colorBuffer);
@@ -168,7 +182,7 @@ void WindowIOS::show(const char* title, int w, int h)
 
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &w);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &h);
-    
+
     glBindRenderbuffer(GL_RENDERBUFFER, depthBuffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w, h);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBuffer);

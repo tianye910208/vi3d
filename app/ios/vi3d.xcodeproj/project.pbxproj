@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6A8AA51C9FF9A1001A6A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D6A8AA41C9FF9A1001A6A63 /* LaunchScreen.storyboard */; };
 		1DE7AD1F1C92BE3F0041A1B0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7AD1E1C92BE3F0041A1B0 /* main.cpp */; };
 		1DE7AD221C92BEE30041A1B0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE7AD211C92BEE30041A1B0 /* OpenGLES.framework */; };
 		1DE7AD241C92BEFF0041A1B0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE7AD231C92BEFF0041A1B0 /* QuartzCore.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D6A8AA41C9FF9A1001A6A63 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D6FA1BC1C903D0100732649 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6FA1D01C903D0200732649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DE7AD1E1C92BE3F0041A1B0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		1D6FA1BE1C903D0100732649 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				1D6A8AA41C9FF9A1001A6A63 /* LaunchScreen.storyboard */,
 				1DE7AD1E1C92BE3F0041A1B0 /* main.cpp */,
 				1D6FA1D01C903D0200732649 /* Info.plist */,
 			);
@@ -209,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6A8AA51C9FF9A1001A6A63 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,24 +325,24 @@
 		1D6FA1D41C903D0200732649 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = vi3d/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viware.vi3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		1D6FA1D51C903D0200732649 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = vi3d/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.viware.vi3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
