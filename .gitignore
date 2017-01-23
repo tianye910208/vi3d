@@ -1,3 +1,5 @@
+app/linux/bin/
+
 # Compiled Object files
 *.slo
 *.lo
