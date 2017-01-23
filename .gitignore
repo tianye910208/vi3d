@@ -28,3 +28,5 @@ app/linux/bin/
 *.exe
 *.out
 *.app
+*.sdf
+*.suo
