@@ -1,372 +1,180 @@
-
-
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 #include <stdio.h>
 
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
-#include <windows.h>
 
-//#pragma comment(lib, "libEGL.lib")
-//#pragma comment(lib, "libGLESv2.lib")
+#pragma comment(lib, "libEGL.lib")
+#pragma comment(lib, "libGLESv2.lib")
 
 
-#define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
-#define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
+EGLNativeDisplayType nativedpy = NULL;
+EGLNativeWindowType nativewin = NULL;
 
-class esContext
+BOOL egl_init()
 {
-public:
-    esContext() :
-        nativeDisplay(0), nativeWin(0),
-        eglDisplay(0), eglSurface(0), eglContext(0), 
-        nWindowWidth(0), nWindowHeight(0)
-    {}
 
-    ~esContext() {}
-
-    EGLNativeDisplayType nativeDisplay;
-    EGLNativeWindowType nativeWin;
-    EGLDisplay eglDisplay;
-    EGLSurface eglSurface;
-    EGLContext eglContext;
-
-    int         nWindowWidth;
-    int         nWindowHeight;
-
-};
-
-esContext ctx;
+	EGLConfig config;
+	EGLint majorVersion;
+	EGLint minorVersion;
+	EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
 
 
-/************************************************************************************************************
- * windows
-************************************************************************************************************/
-static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	unsigned int key = 0;
-	// Handle relevant messages individually
-	switch(uMsg)
+
+	EGLDisplay display = eglGetDisplay(nativedpy);
+
+	if (display == EGL_NO_DISPLAY)
+		return FALSE;
+	
+	if (!eglInitialize(display, &majorVersion, &minorVersion))
+		return FALSE;
+	
+
+   
+	EGLint numConfigs = 0;
+	EGLint attribList[] =
 	{
-	case WM_ACTIVATE:
-	case WM_SETFOCUS:
-		return 0;
-	case WM_SIZE:
-//		OnNativeWinResize(LOWORD(lParam), HIWORD(lParam));
+		EGL_RED_SIZE, 5,
+		EGL_GREEN_SIZE, 6,
+		EGL_BLUE_SIZE, 5,
+		EGL_ALPHA_SIZE, EGL_DONT_CARE,
+		EGL_DEPTH_SIZE, EGL_DONT_CARE,
+		EGL_STENCIL_SIZE, EGL_DONT_CARE,
+		EGL_SAMPLE_BUFFERS, 0,
+		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+		EGL_NONE
+	};
+
+	// Choose config
+	if (!eglChooseConfig(display, attribList, &config, 1, &numConfigs))
+		return FALSE;
+	  
+	if (numConfigs < 1)
+		return FALSE;
+	   
+
+    // Create a surface
+	EGLSurface surface = eglCreateWindowSurface(display, config, nativewin, NULL);
+    if (surface == EGL_NO_SURFACE)
+		return FALSE;
+   
+    // Create a GL context
+	EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);
+    if (context == EGL_NO_CONTEXT)
+		return FALSE;
+   
+   // Make the context current
+   if (!eglMakeCurrent(display, surface, surface, context))
+	   return FALSE;
+
+   return TRUE;
+}
+
+
+
+LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	LRESULT  lRet = 1;
+
+	switch (uMsg)
+	{
+	case WM_CREATE:
 		break;
-	case WM_CLOSE:
+	case WM_PAINT:
+		break;
+	case WM_DESTROY:
 		PostQuitMessage(0);
-		return 0;
-	case WM_KEYDOWN:
-		switch (wParam)
-		{
-		case VK_ESCAPE:
-			PostMessage(hWnd, WM_CLOSE, 0, 0);
-			return 0;
-		default:
-			break;
-		}
 		break;
-	case WM_MOUSEMOVE:
-		//opengl_touch(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 1);
-		break;
-	case WM_LBUTTONDOWN:
-		//opengl_touch(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 0);
-		break;
-	case WM_LBUTTONUP:
-		//opengl_touch(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 2);
-		break;
-	case WM_MOUSEWHEEL:
-		if(GET_Y_LPARAM(wParam)>0)
-		{
-			//opengl_touch(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 5);
-		}
-		else if(GET_Y_LPARAM(wParam)<0)
-		{
-			//opengl_touch(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), 6);
-		}
+	case WM_CHAR:
 		break;
 	default:
+		lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
 		break;
 	}
 
-	return DefWindowProc(hWnd,uMsg,wParam,lParam);
+	return lRet;
 }
 
-bool OpenNativeDisplay(EGLNativeDisplayType* nativedisp_out)
-{
-	*nativedisp_out = (EGLNativeDisplayType) NULL;
-	return true;
-}
 
-void CloseNativeDisplay(EGLNativeDisplayType nativedisp)
+BOOL win_init()
 {
-}
-
-bool CreateNativeWin(EGLNativeDisplayType nativedisp, int width, int height, int visid, EGLNativeWindowType* nativewin_out)
-{
-	bool result = true;
 	HINSTANCE hInstance = GetModuleHandle(NULL);
-	HWND hWnd = NULL;
-	DWORD dwExtStyle;
-	DWORD dwWindStyle;
 
-	TCHAR szWindowName[50] =  TEXT("OpenGL ES Sample");
-	TCHAR szClassName[50]  =  TEXT("OGL_CLASS");
+	WNDCLASS winclass = {0};
+	winclass.style = CS_OWNDC;
+	winclass.lpfnWndProc = (WNDPROC)win_proc;
+	winclass.hInstance = hInstance;
+	winclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	winclass.lpszClassName = "vi3d";
 
-	// setup window class
-	WNDCLASS wndClass;
-	wndClass.lpszClassName = szClassName;                // Set the name of the Class
-	wndClass.lpfnWndProc   = (WNDPROC)WndProc;
-	wndClass.hInstance     = hInstance;              // Use this module for the module handle
-	wndClass.hCursor       = LoadCursor(NULL, IDC_ARROW);// Pick the default mouse cursor
-	wndClass.hIcon         = LoadIcon(NULL, IDI_WINLOGO);// Pick the default windows icons
-	wndClass.hbrBackground = NULL;                       // No Background
-	wndClass.lpszMenuName  = NULL;                       // No menu for this window
-	wndClass.style         = CS_HREDRAW | CS_OWNDC |     // set styles for this class, specifically to catch
-		CS_VREDRAW;               // window redraws, unique DC, and resize
-	wndClass.cbClsExtra    = 0;                          // Extra class memory
-	wndClass.cbWndExtra    = 0;                          // Extra window memory
+	if (!RegisterClass(&winclass))
+		return FALSE;
 
-	// Register the newly defined class
-	if(!RegisterClass( &wndClass ))
-	{
-		result = false;
-	}
 
-	if(result)
-	{
-		dwExtStyle  = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
-		dwWindStyle = WS_OVERLAPPEDWINDOW;
-		ShowCursor(TRUE);
+	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION;
+	RECT winrect;
+	winrect.left = 0;
+	winrect.top = 0;
+	winrect.right = 800;
+	winrect.bottom = 480;
+	AdjustWindowRect(&winrect, winstyle, FALSE);
 
-		RECT windowRect;
-		windowRect.left   = 0;
-		windowRect.right  = width;
-		windowRect.top    = 0;
-		windowRect.bottom = height;
 
-		// Setup window width and height
-		AdjustWindowRectEx(&windowRect, dwWindStyle, FALSE, dwExtStyle);
+	HWND hwnd = CreateWindow("vi3d","vi3d",winstyle,0,0,winrect.right - winrect.left,winrect.bottom - winrect.top,NULL,NULL,hInstance,NULL);
+	if (hwnd == NULL)
+		return FALSE;
+	
 
-		//Adjust for adornments
-		int nWindowWidth  = windowRect.right  - windowRect.left;
-		int nWindowHeight = windowRect.bottom - windowRect.top;
+	ShowWindow(hwnd, TRUE);
 
-		// Create window
-		hWnd = CreateWindowEx(
-			dwExtStyle,      // Extended style
-			szClassName,     // class name
-			szWindowName,    // window name
-			dwWindStyle |
-			WS_CLIPSIBLINGS |
-			WS_CLIPCHILDREN, // window stlye
-			0,               // window position, x
-			0,               // window position, y
-			nWindowWidth,    // height
-			nWindowHeight,   // width
-			NULL,            // Parent window
-			NULL,            // menu
-			hInstance,       // instance
-			NULL);           // pass this to WM_CREATE
 
-		ShowWindow(hWnd, SW_SHOWDEFAULT);
-	}
-	*nativewin_out = (EGLNativeWindowType) hWnd;
-	return result;
+	nativewin = hwnd;
+
+	return TRUE;
 }
 
-void DestroyNativeWin(EGLNativeDisplayType nativedisp, EGLNativeWindowType nativewin)
-{
-	WINDOWINFO info;
-	GetWindowInfo((HWND) nativewin, &info);
-	DestroyWindow((HWND) nativewin);
-	UnregisterClass((LPCTSTR) info.atomWindowType, GetModuleHandle(NULL));
-}
 
-bool UpdateNativeWin(EGLNativeDisplayType nativedisp, EGLNativeWindowType nativewin)
+void win_loop()
 {
-	bool result = true;
-	// Peek or wait for messages
-	MSG msg;
-	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	MSG msg = { 0 };
+	DWORD lastTime = GetTickCount();
+
+	while (true)
 	{
-		if (msg.message==WM_QUIT)
+		DWORD curTime = GetTickCount();
+		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
+		lastTime = curTime;
+
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
-			result = false;
+			if (msg.message == WM_QUIT)
+				return;
+			
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+			
 		}
-		else
-		{
-			TranslateMessage(&msg); 
-			DispatchMessage(&msg); 
-		}
+		
+		//update
+		//render
 	}
-	return result;
 }
 
-/************************************************************************************************************
- * egl
-/************************************************************************************************************/
 
-
-EGLBoolean Setup(esContext &ctx)
+int main(int argc, char *argv[])
 {
-    EGLBoolean bsuccess;
+	if (win_init() == FALSE)
+		return 1;
 
-    // create native window
-    EGLNativeDisplayType nativeDisplay;
-    if(!OpenNativeDisplay(&nativeDisplay))
-    {
-        printf("Could not get open native display\n");
-        return GL_FALSE;
-    }
+	if (egl_init() == FALSE)
+		return 1;
 
-    // get egl display handle
-    EGLDisplay eglDisplay;
-    eglDisplay = eglGetDisplay(nativeDisplay);
-    if(eglDisplay == EGL_NO_DISPLAY)
-    {
-        printf("Could not get EGL display\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-    ctx.eglDisplay = eglDisplay;
+	printf((const char*)glGetString(GL_EXTENSIONS));
 
-    // Initialize the display
-    EGLint major = 0;
-    EGLint minor = 0;
-    bsuccess = eglInitialize(eglDisplay, &major, &minor);
-    if (!bsuccess)
-    {
-        printf("Could not initialize EGL display\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-/*    if (major < 1 || minor < 3)
-    {
-        // Does not support EGL 1.4
-        printf("System does not support at least EGL 1.4\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }*/
-
-    // Obtain the first configuration with a depth buffer
-    EGLint attrs[] = { EGL_DEPTH_SIZE, 16, EGL_NONE };
-    EGLint numConfig =0;
-    EGLConfig eglConfig = 0;
-    bsuccess = eglChooseConfig(eglDisplay, attrs, &eglConfig, 1, &numConfig);
-    if (!bsuccess)
-    {
-        printf("Could not find valid EGL config\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-
-    // Get the native visual id
-    int nativeVid;
-    if (!eglGetConfigAttrib(eglDisplay, eglConfig, EGL_NATIVE_VISUAL_ID, &nativeVid))
-    {
-        printf("Could not get native visual id\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-
-    EGLNativeWindowType nativeWin;
-    if(!CreateNativeWin(nativeDisplay, 640, 480, nativeVid, &nativeWin))
-    {
-        printf("Could not create window\n");
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-
-    // Create a surface for the main window
-    EGLSurface eglSurface;
-    eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWin, NULL);
-    if (eglSurface == EGL_NO_SURFACE)
-    {
-        printf("Could not create EGL surface\n");
-        DestroyNativeWin(nativeDisplay, nativeWin);
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-    ctx.eglSurface = eglSurface;
-
-    // Create an OpenGL ES context
-    EGLContext eglContext;
-    eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, NULL);
-    if (eglContext == EGL_NO_CONTEXT)
-    {
-        printf("Could not create EGL context\n");
-        DestroyNativeWin(nativeDisplay, nativeWin);
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-
-    // Make the context and surface current
-    bsuccess = eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext);
-    if(!bsuccess)
-    {
-        printf("Could not activate EGL context\n");
-        DestroyNativeWin(nativeDisplay, nativeWin);
-        CloseNativeDisplay(nativeDisplay);
-        return GL_FALSE;
-    }
-
-    ctx.nativeDisplay = nativeDisplay;
-    ctx.nativeWin = nativeWin;
-	ctx.eglContext = eglContext;
-    return GL_TRUE;
-}
-
-static double         f;
-
-void ResetTimer() 
-{
-	LARGE_INTEGER freq;
-	QueryPerformanceFrequency(&freq);
-	f = (double) freq.QuadPart;
-}
-
-double get_time()
-{
-	LARGE_INTEGER s;
-	double d;
-	QueryPerformanceCounter(&s);
-	d = (double)(s.QuadPart) / f;
-
-	return d;
-}
-int main(int argc, char** argv)
-{
-	ResetTimer();
-    ctx.nWindowWidth  = 640;
-    ctx.nWindowHeight = 480;
-    int lRet = 0;
-
-    // create window and setup egl
-    if(Setup(ctx) == GL_FALSE)
-    {
-        return lRet;
-    }
-
-	//opengl_init(ctx.nWindowWidth, ctx.nWindowHeight);
-    // main loop
-    while (UpdateNativeWin(ctx.nativeDisplay, ctx.nativeWin))
-    {
-        // render the model
-		//opengl_display();
-		eglSwapBuffers(ctx.eglDisplay, ctx.eglSurface);
-    }
-
-	//opengl_end();
-
-    eglMakeCurrent(EGL_NO_DISPLAY, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
-    eglDestroyContext(ctx.eglDisplay, ctx.eglContext);
-    eglDestroySurface(ctx.eglDisplay, ctx.eglSurface);
-    eglTerminate(ctx.eglDisplay);
-    DestroyNativeWin(ctx.nativeDisplay, ctx.nativeWin);
-    CloseNativeDisplay(ctx.nativeDisplay);
-
-    return lRet;
+	win_loop();
+	
+	return 0;
 }
