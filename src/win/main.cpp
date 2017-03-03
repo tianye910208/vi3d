@@ -6,36 +6,32 @@
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
+#include "test.h"
 
 #pragma comment(lib, "libEGL.lib")
 #pragma comment(lib, "libGLESv2.lib")
 
 
-EGLNativeDisplayType nativedpy = NULL;
-EGLNativeWindowType nativewin = NULL;
+EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
+EGLNativeWindowType  nativeWindow = NULL;
 
-BOOL egl_init()
+EGLDisplay eglDisplay;
+EGLContext eglContext;
+EGLSurface eglSurface;
+
+bool egl_init()
 {
 
 	EGLConfig config;
+	EGLint configNum = 0;
 	EGLint majorVersion;
 	EGLint minorVersion;
-	EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
-
-
-
-	EGLDisplay display = eglGetDisplay(nativedpy);
-
-	if (display == EGL_NO_DISPLAY)
-		return FALSE;
-	
-	if (!eglInitialize(display, &majorVersion, &minorVersion))
-		return FALSE;
-	
-
-   
-	EGLint numConfigs = 0;
-	EGLint attribList[] =
+	EGLint ctxAttribList[] = 
+	{
+		EGL_CONTEXT_CLIENT_VERSION, 2, 
+		EGL_NONE 
+	};
+	EGLint cfgAttribList[] =
 	{
 		EGL_RED_SIZE, 5,
 		EGL_GREEN_SIZE, 6,
@@ -48,29 +44,39 @@ BOOL egl_init()
 		EGL_NONE
 	};
 
-	// Choose config
-	if (!eglChooseConfig(display, attribList, &config, 1, &numConfigs))
-		return FALSE;
+
+	eglDisplay = eglGetDisplay(nativeDisplay);
+
+	if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
+		return false;
+	
+	if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	if (!eglChooseConfig(eglDisplay, cfgAttribList, &config, 1, &configNum) || configNum < 1)
+		return false;
 	  
-	if (numConfigs < 1)
-		return FALSE;
-	   
+	eglContext = eglCreateContext(eglDisplay, config, EGL_NO_CONTEXT, ctxAttribList);
+	if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
+		return false;
 
-    // Create a surface
-	EGLSurface surface = eglCreateWindowSurface(display, config, nativewin, NULL);
-    if (surface == EGL_NO_SURFACE)
-		return FALSE;
+	eglSurface = eglCreateWindowSurface(eglDisplay, config, nativeWindow, NULL);
+	if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
+		return false;
    
-    // Create a GL context
-	EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);
-    if (context == EGL_NO_CONTEXT)
-		return FALSE;
-   
-   // Make the context current
-   if (!eglMakeCurrent(display, surface, surface, context))
-	   return FALSE;
+    // Make the context current
+	if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
+	   return false;
 
-   return TRUE;
+    return true;
+}
+
+void egl_exit()
+{
+	eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
+	eglDestroyContext(eglDisplay, eglContext);
+	eglDestroySurface(eglDisplay, eglSurface);
+	eglTerminate(eglDisplay);
 }
 
 
@@ -81,10 +87,6 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	switch (uMsg)
 	{
-	case WM_CREATE:
-		break;
-	case WM_PAINT:
-		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
@@ -99,7 +101,7 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 
-BOOL win_init()
+bool win_init(const char* name, int w, int h)
 {
 	HINSTANCE hInstance = GetModuleHandle(NULL);
 
@@ -108,45 +110,43 @@ BOOL win_init()
 	winclass.lpfnWndProc = (WNDPROC)win_proc;
 	winclass.hInstance = hInstance;
 	winclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	winclass.lpszClassName = "vi3d";
+	winclass.lpszClassName = name;
 
 	if (!RegisterClass(&winclass))
-		return FALSE;
+		return false;
 
 
-	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION;
+	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX;
 	RECT winrect;
 	winrect.left = 0;
 	winrect.top = 0;
-	winrect.right = 800;
-	winrect.bottom = 480;
+	winrect.right = w;
+	winrect.bottom = h;
 	AdjustWindowRect(&winrect, winstyle, FALSE);
 
 
-	HWND hwnd = CreateWindow("vi3d","vi3d",winstyle,0,0,winrect.right - winrect.left,winrect.bottom - winrect.top,NULL,NULL,hInstance,NULL);
+	HWND hwnd = CreateWindow(name, name, winstyle, 0, 0, winrect.right - winrect.left, winrect.bottom - winrect.top, NULL, NULL, hInstance, NULL);
 	if (hwnd == NULL)
-		return FALSE;
+		return false;
 	
-
 	ShowWindow(hwnd, TRUE);
+	nativeWindow = hwnd;
 
-
-	nativewin = hwnd;
-
-	return TRUE;
+	return true;
 }
 
 
 void win_loop()
 {
-	MSG msg = { 0 };
-	DWORD lastTime = GetTickCount();
+	DWORD t1, t2;
+	t1 = GetTickCount();
 
+	MSG msg = { 0 };
 	while (true)
 	{
-		DWORD curTime = GetTickCount();
-		float deltaTime = (float)(curTime - lastTime) / 1000.0f;
-		lastTime = curTime;
+		t2 = GetTickCount();
+		float dt = (float)(t2 - t1) / 1000.0f;
+		t1 = t2;
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
@@ -156,25 +156,33 @@ void win_loop()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 			
+		}else
+		{
+			Sleep(10);
+			//update
+			//render
+			test_draw();
+			eglSwapBuffers(eglDisplay, eglSurface);
 		}
-		
-		//update
-		//render
 	}
 }
 
 
 int main(int argc, char *argv[])
 {
-	if (win_init() == FALSE)
+	if (win_init("vi3d", 800, 480) == false)
 		return 1;
 
-	if (egl_init() == FALSE)
+	if (egl_init() == false)
 		return 1;
 
 	printf((const char*)glGetString(GL_EXTENSIONS));
 
+	test_init();
+
 	win_loop();
+
+	egl_exit();
 	
 	return 0;
 }
