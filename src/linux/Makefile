@@ -1,16 +1,10 @@
 TARGET := test
 
 SRC1 :=	 $(wildcard ./*.cpp) \
-		 $(wildcard ./*/*.cpp) \
-		 $(wildcard ./*/*/*.cpp) \
-		 $(wildcard ./*/*/*/*.cpp) \
-		 $(wildcard ./*/*/*/*/*.cpp)
+	 $(wildcard ../*.cpp) \
 
 SRC2 :=  $(wildcard ./*.c) \
-		 $(wildcard ./*/*.c) \
-		 $(wildcard ./*/*/*.c) \
-		 $(wildcard ./*/*/*/*.c) \
-		 $(wildcard ./*/*/*/*/*.c)
+	 $(wildcard ../*.c) \
 
 
 OBJS := $(SRC2:%.c=obj/%.o)
@@ -19,7 +13,7 @@ OBJS += $(SRC1:%.cpp=obj/%.o)
 all:$(OBJS)
 	@echo [M]Link...
 	@mkdir -p bin
-	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lGL -lGLU -lX11 -lXxf86vm -lXrandr -lpthread -lXi -lasound
+	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lEGL -lGLESv2 -lX11 -lXxf86vm -lXrandr -lpthread -lXi
 
 
 obj/%.o:%.cpp
