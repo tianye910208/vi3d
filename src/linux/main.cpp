@@ -12,6 +12,8 @@
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
+#include "test.h"
+
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow;
@@ -126,6 +128,7 @@ void win_loop()
 
             //update
             //render
+            test_draw();
 
             eglSwapBuffers(eglDisplay, eglSurface);
         }
@@ -149,6 +152,7 @@ int main(int argc, char *argv[])
         return 1;
 
     //printf((const char*)glGetString(GL_EXTENSIONS));
+    test_init();
 
     win_loop();
 

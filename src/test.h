@@ -54,7 +54,7 @@ GLuint LoadShader(GLenum type, const char *shaderSrc)
 }
 
 GLuint programObject;
-int test_init()
+bool test_init()
 {
     char vShaderStr[] =
         "#version 300 es                          \n"
@@ -116,12 +116,12 @@ int test_init()
         }
 
         glDeleteProgram(programObject);
-        return FALSE;
+        return false;
     }
 
 
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-    return TRUE;
+    return true;
 }
 
 ///

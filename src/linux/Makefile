@@ -19,12 +19,12 @@ all:$(OBJS)
 obj/%.o:%.cpp
 	@echo [M]Compile CXX...
 	@mkdir -p $(@D)
-	g++ -c $< -o $@
+	g++ -c $< -o $@ -I../
 
 obj/%.o:%.c
 	@echo [M]Compile C...
 	@mkdir -p $(@D)
-	g++ -c $< -o $@
+	g++ -c $< -o $@ -I../
 
 run:
 	./bin/$(TARGET)
