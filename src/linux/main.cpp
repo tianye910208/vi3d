@@ -13,9 +13,6 @@
 #include <EGL/eglext.h>
 
 
-// X11 related local variables
-static Display *x_display = NULL;
-
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow;
 
@@ -87,126 +84,60 @@ void egl_exit()
 bool win_init(const char *title, int w, int h)
 {
  
-    Window root;
-    XSetWindowAttributes swa;
-    XSetWindowAttributes  xattr;
-    Atom wm_state;
-    XWMHints hints;
-    XEvent xev;
-    EGLConfig ecfg;
-    EGLint num_config;
-    Window win;
-
-    /*
-    * X11 native display initialization
-    */
-
-    x_display = XOpenDisplay(NULL);
-    if (x_display == NULL)
-    {
+    nativeDisplay = XOpenDisplay(NULL);
+    if (nativeDisplay == NULL)
         return false;
-    }
 
-    root = DefaultRootWindow(x_display);
-
-    swa.event_mask = ExposureMask | PointerMotionMask | KeyPressMask;
-    win = XCreateWindow(
-        x_display, root,
+    nativeWindow = XCreateWindow(
+        nativeDisplay, 
+        DefaultRootWindow(nativeDisplay),
         0, 0, w, h, 0,
         CopyFromParent, InputOutput,
-        CopyFromParent, CWEventMask,
-        &swa);
+        CopyFromParent, 0, 0);
 
-    xattr.override_redirect = false;
-    XChangeWindowAttributes(x_display, win, CWOverrideRedirect, &xattr);
+    XMapWindow(nativeDisplay, nativeWindow);
 
-    hints.input = true;
-    hints.flags = InputHint;
-    XSetWMHints(x_display, win, &hints);
-
-    // make the window visible on the screen
-        XMapWindow(x_display, win);
-    XStoreName(x_display, win, title);
-
-    // get identifiers for the provided atom name strings
-    wm_state = XInternAtom(x_display, "_NET_WM_STATE", false);
-
-    memset(&xev, 0, sizeof(xev));
-    xev.type = ClientMessage;
-    xev.xclient.window = win;
-    xev.xclient.message_type = wm_state;
-    xev.xclient.format = 32;
-    xev.xclient.data.l[0] = 1;
-    xev.xclient.data.l[1] = false;
-    XSendEvent(
-        x_display,
-        DefaultRootWindow(x_display),
-        false,
-        SubstructureNotifyMask,
-        &xev);
-
-    nativeWindow = (EGLNativeWindowType)win;
-    nativeDisplay = (EGLNativeDisplayType)x_display;
     return true;
 }
 
-///
-//  userInterrupt()
-//
-//      Reads from X11 event loop and interrupt program if there is a keypress, or
-//      window close action.
-//
-bool userInterrupt()
-{
-    XEvent xev;
-    KeySym key;
-
-    bool userinterrupt = false;
-    char text;
-
-    // Pump all messages from X server. Keypresses are directed to keyfunc (if defined)
-    while (XPending(x_display))
-    {
-        XNextEvent(x_display, &xev);
-        if (xev.type == KeyPress)
-        {
-            if (XLookupString(&xev.xkey, &text, 1, &key, 0) == 1)
-            {
-                //prinrf(text);
-            }
-        }
-        if (xev.type == DestroyNotify)
-            userinterrupt = true;
-    }
-    return userinterrupt;
-}
-
-///
-//  WinLoop()
-//
-//      Start main windows loop
-//
 void win_loop()
 {
+    float dt;
     struct timeval t1, t2;
     struct timezone tz;
-    float deltatime;
 
     gettimeofday(&t1, &tz);
 
-    while (userInterrupt() == false)
+    XEvent xev;
+    while (true)
     {
-        gettimeofday(&t2, &tz);
-        deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
-        t1 = t2;
+    
+        if(XPending(nativeDisplay))
+        {
+            XNextEvent(nativeDisplay, &xev);
+            if (xev.type == DestroyNotify)
+                return;
+        }
+        else
+        {
+            gettimeofday(&t2, &tz);
+            dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+            t1 = t2;
 
-        //update
-        //render
+            //update
+            //render
 
-        eglSwapBuffers(eglDisplay, eglSurface);
+            eglSwapBuffers(eglDisplay, eglSurface);
+        }
+
     }
 }
 
+void win_exit()
+{
+    XDestroyWindow(nativeDisplay, nativeWindow);
+    XCloseDisplay(nativeDisplay);
+}
 
 int main(int argc, char *argv[])
 {
@@ -217,11 +148,17 @@ int main(int argc, char *argv[])
     if (egl_init() == false)
         return 1;
 
-    printf((const char*)glGetString(GL_EXTENSIONS));
+    //printf((const char*)glGetString(GL_EXTENSIONS));
 
     win_loop();
 
     egl_exit();
 
+    win_exit();
+
     return 0;
 }
+
+
+
+

@@ -125,12 +125,11 @@ bool win_init(const char* name, int w, int h)
     AdjustWindowRect(&winrect, winstyle, FALSE);
 
 
-    HWND hwnd = CreateWindow(name, name, winstyle, 0, 0, winrect.right - winrect.left, winrect.bottom - winrect.top, NULL, NULL, hInstance, NULL);
-    if (hwnd == NULL)
+    nativeWindow = CreateWindow(name, name, winstyle, 0, 0, winrect.right - winrect.left, winrect.bottom - winrect.top, NULL, NULL, hInstance, NULL);
+    if (nativeWindow == NULL)
         return false;
     
-    ShowWindow(hwnd, TRUE);
-    nativeWindow = hwnd;
+    ShowWindow(nativeWindow, TRUE);
 
     return true;
 }
@@ -138,16 +137,13 @@ bool win_init(const char* name, int w, int h)
 
 void win_loop()
 {
+    float dt;
     DWORD t1, t2;
     t1 = GetTickCount();
 
     MSG msg = { 0 };
     while (true)
     {
-        t2 = GetTickCount();
-        float dt = (float)(t2 - t1) / 1000.0f;
-        t1 = t2;
-
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
         {
             if (msg.message == WM_QUIT)
@@ -156,13 +152,19 @@ void win_loop()
             TranslateMessage(&msg);
             DispatchMessage(&msg);
             
-        }else
+        }
+        else
         {
-            Sleep(10);
+            t2 = GetTickCount();
+            dt = (float)(t2 - t1) / 1000.0f;
+            t1 = t2;
+
             //update
             //render
             test_draw();
             eglSwapBuffers(eglDisplay, eglSurface);
+
+            Sleep(10);
         }
     }
 }
