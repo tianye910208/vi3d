@@ -13,7 +13,7 @@ OBJS += $(SRC1:%.cpp=obj/%.o)
 all:$(OBJS)
 	@echo [M]Link...
 	@mkdir -p bin
-	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lEGL -lGLESv2 -lX11 -lXxf86vm -lXrandr -lpthread -lXi
+	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lEGL -lGLESv2 -lX11 
 
 
 obj/%.o:%.cpp

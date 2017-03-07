@@ -101,12 +101,21 @@ bool win_init(const char *title, int w, int h)
 
     XSelectInput(nativeDisplay, nativeWindow, ExposureMask | StructureNotifyMask | FocusChangeMask | VisibilityChangeMask | KeyPressMask | KeyReleaseMask | KeymapStateMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask );
 
-    XFlush(nativeDisplay);
 
-    XMapWindow(nativeDisplay, nativeWindow);
 
     wmDeleteWindow = XInternAtom(nativeDisplay, "WM_DELETE_WINDOW", False);
     XSetWMProtocols(nativeDisplay, nativeWindow, &wmDeleteWindow, 1);
+
+    XSizeHints* hints = XAllocSizeHints();
+    hints->flags |= (PMinSize | PMaxSize);
+    hints->min_width  = hints->max_width  = w;
+    hints->min_height = hints->max_height = h;
+    XSetWMNormalHints(nativeDisplay, nativeWindow, hints);
+    XFree(hints);
+
+
+    XFlush(nativeDisplay);
+    XMapWindow(nativeDisplay, nativeWindow);
 
     return true;
 }
