@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#include <unistd.h>
 #include <sys/time.h>
 
 #include  <X11/Xlib.h>
@@ -21,6 +19,8 @@ EGLNativeWindowType  nativeWindow;
 EGLDisplay eglDisplay;
 EGLContext eglContext;
 EGLSurface eglSurface;
+
+Atom wmDeleteWindow;
 
 bool egl_init()
 {
@@ -97,9 +97,24 @@ bool win_init(const char *title, int w, int h)
         CopyFromParent, InputOutput,
         CopyFromParent, 0, 0);
 
+    XStoreName(nativeDisplay, nativeWindow, title);
+
+    XSelectInput(nativeDisplay, nativeWindow, ExposureMask | StructureNotifyMask | FocusChangeMask | VisibilityChangeMask | KeyPressMask | KeyReleaseMask | KeymapStateMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask );
+
+    XFlush(nativeDisplay);
+
     XMapWindow(nativeDisplay, nativeWindow);
 
+    wmDeleteWindow = XInternAtom(nativeDisplay, "WM_DELETE_WINDOW", False);
+    XSetWMProtocols(nativeDisplay, nativeWindow, &wmDeleteWindow, 1);
+
     return true;
+}
+
+void win_exit()
+{
+    XDestroyWindow(nativeDisplay, nativeWindow);
+    XCloseDisplay(nativeDisplay);
 }
 
 void win_loop()
@@ -117,7 +132,7 @@ void win_loop()
         if(XPending(nativeDisplay))
         {
             XNextEvent(nativeDisplay, &xev);
-            if (xev.type == DestroyNotify)
+            if (xev.type == ClientMessage && xev.xclient.data.l[0] == wmDeleteWindow)
                 return;
         }
         else
@@ -131,16 +146,12 @@ void win_loop()
             test_draw();
 
             eglSwapBuffers(eglDisplay, eglSurface);
+            usleep(10000);
         }
 
     }
 }
 
-void win_exit()
-{
-    XDestroyWindow(nativeDisplay, nativeWindow);
-    XCloseDisplay(nativeDisplay);
-}
 
 int main(int argc, char *argv[])
 {

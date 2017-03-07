@@ -134,6 +134,11 @@ bool win_init(const char* name, int w, int h)
     return true;
 }
 
+void win_exit()
+{
+    //when exit
+}
+
 
 void win_loop()
 {
@@ -185,6 +190,17 @@ int main(int argc, char *argv[])
     win_loop();
 
     egl_exit();
+
+    win_exit();
     
     return 0;
 }
+
+
+
+
+
+
+
+
+
