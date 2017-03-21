@@ -26,6 +26,9 @@
 #include <android/log.h>
 #include <android_native_app_glue.h>
 
+
+#include "../../test.h"
+
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
@@ -45,7 +48,6 @@ struct engine {
     struct android_app* app;
 
     ASensorManager* sensorManager;
-    const ASensor* accelerometerSensor;
     ASensorEventQueue* sensorEventQueue;
 
     int animating;
@@ -68,13 +70,24 @@ static int engine_init_display(struct engine* engine) {
      * Below, we select an EGLConfig with at least 8 bits per color
      * component compatible with on-screen windows
      */
-    const EGLint attribs[] = {
-            EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-            EGL_BLUE_SIZE, 8,
-            EGL_GREEN_SIZE, 8,
-            EGL_RED_SIZE, 8,
-            EGL_NONE
-    };
+	EGLint ctxAttribList[] =
+	{
+		EGL_CONTEXT_CLIENT_VERSION, 2,
+		EGL_NONE
+	};
+	EGLint cfgAttribList[] =
+	{
+		EGL_RED_SIZE, 5,
+		EGL_GREEN_SIZE, 6,
+		EGL_BLUE_SIZE, 5,
+		EGL_ALPHA_SIZE, EGL_DONT_CARE,
+		EGL_DEPTH_SIZE, EGL_DONT_CARE,
+		EGL_STENCIL_SIZE, EGL_DONT_CARE,
+		EGL_SAMPLE_BUFFERS, 0,
+		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+		EGL_NONE
+	};
+   
     EGLint w, h, dummy, format;
     EGLint numConfigs;
     EGLConfig config;
@@ -88,7 +101,7 @@ static int engine_init_display(struct engine* engine) {
     /* Here, the application chooses the configuration it desires. In this
      * sample, we have a very simplified selection process, where we pick
      * the first EGLConfig that matches our criteria */
-    eglChooseConfig(display, attribs, &config, 1, &numConfigs);
+	eglChooseConfig(display, cfgAttribList, &config, 1, &numConfigs);
 
     /* EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
      * guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
@@ -99,7 +112,7 @@ static int engine_init_display(struct engine* engine) {
     ANativeWindow_setBuffersGeometry(engine->app->window, 0, 0, format);
 
     surface = eglCreateWindowSurface(display, config, engine->app->window, NULL);
-    context = eglCreateContext(display, config, NULL, NULL);
+	context = eglCreateContext(display, config, NULL, ctxAttribList);
 
     if (eglMakeCurrent(display, surface, surface, context) == EGL_FALSE) {
         LOGW("Unable to eglMakeCurrent");
@@ -116,11 +129,8 @@ static int engine_init_display(struct engine* engine) {
     engine->height = h;
     engine->state.angle = 0;
 
-    // Initialize GL state.
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-    glEnable(GL_CULL_FACE);
-    glShadeModel(GL_SMOOTH);
-    glDisable(GL_DEPTH_TEST);
+
+	test_init();
 
     return 0;
 }
@@ -134,10 +144,9 @@ static void engine_draw_frame(struct engine* engine) {
         return;
     }
 
-    // Just fill the screen with a color.
-    glClearColor(((float)engine->state.x)/engine->width, engine->state.angle,
-            ((float)engine->state.y)/engine->height, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+
+	test_draw();
 
     eglSwapBuffers(engine->display, engine->surface);
 }
@@ -200,22 +209,12 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
             engine_term_display(engine);
             break;
         case APP_CMD_GAINED_FOCUS:
-            // When our app gains focus, we start monitoring the accelerometer.
-            if (engine->accelerometerSensor != NULL) {
-                ASensorEventQueue_enableSensor(engine->sensorEventQueue,
-                        engine->accelerometerSensor);
-                // We'd like to get 60 events per second (in us).
-                ASensorEventQueue_setEventRate(engine->sensorEventQueue,
-                        engine->accelerometerSensor, (1000L/60)*1000);
-            }
+           
+            
             break;
         case APP_CMD_LOST_FOCUS:
-            // When our app loses focus, we stop monitoring the accelerometer.
-            // This is to avoid consuming battery while not being used.
-            if (engine->accelerometerSensor != NULL) {
-                ASensorEventQueue_disableSensor(engine->sensorEventQueue,
-                        engine->accelerometerSensor);
-            }
+            
+           
             // Also stop animating.
             engine->animating = 0;
             engine_draw_frame(engine);
@@ -242,8 +241,6 @@ void android_main(struct android_app* state) {
 
     // Prepare to monitor accelerometer
     engine.sensorManager = ASensorManager_getInstance();
-    engine.accelerometerSensor = ASensorManager_getDefaultSensor(engine.sensorManager,
-            ASENSOR_TYPE_ACCELEROMETER);
     engine.sensorEventQueue = ASensorManager_createEventQueue(engine.sensorManager,
             state->looper, LOOPER_ID_USER, NULL, NULL);
 
@@ -253,7 +250,6 @@ void android_main(struct android_app* state) {
     }
 
     // loop waiting for stuff to do.
-
     while (1) {
         // Read all pending events.
         int ident;
@@ -271,18 +267,6 @@ void android_main(struct android_app* state) {
                 source->process(state, source);
             }
 
-            // If a sensor has data, process it now.
-            if (ident == LOOPER_ID_USER) {
-                if (engine.accelerometerSensor != NULL) {
-                    ASensorEvent event;
-                    while (ASensorEventQueue_getEvents(engine.sensorEventQueue,
-                            &event, 1) > 0) {
-                        LOGI("accelerometer: x=%f y=%f z=%f",
-                                event.acceleration.x, event.acceleration.y,
-                                event.acceleration.z);
-                    }
-                }
-            }
 
             // Check if we are exiting.
             if (state->destroyRequested != 0) {
@@ -291,17 +275,12 @@ void android_main(struct android_app* state) {
             }
         }
 
-        if (engine.animating) {
-            // Done with events; draw next animation frame.
-            engine.state.angle += .01f;
-            if (engine.state.angle > 1) {
-                engine.state.angle = 0;
-            }
 
-            // Drawing is throttled to the screen update rate, so there
-            // is no need to do timing here.
-            engine_draw_frame(&engine);
-        }
+
+       // Drawing is throttled to the screen update rate, so there
+       // is no need to do timing here.
+       engine_draw_frame(&engine);
+        
     }
 }
 //END_INCLUDE(all)

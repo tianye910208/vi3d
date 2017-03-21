@@ -33,6 +33,7 @@ bool egl_init()
     };
     EGLint cfgAttribList[] =
     {
+		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_RED_SIZE, 5,
         EGL_GREEN_SIZE, 6,
         EGL_BLUE_SIZE, 5,
