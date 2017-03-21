@@ -1,75 +1,43 @@
-/*
- * Copyright (C) 2010 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-//BEGIN_INCLUDE(all)
 #include <jni.h>
 #include <errno.h>
+#include <unistd.h>
+#include <pthread.h>
 
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 
-#include <android/sensor.h>
 #include <android/log.h>
-#include <android_native_app_glue.h>
+#include <android/input.h>
+#include <android/sensor.h>
+#include <android/looper.h>
+#include <android/configuration.h>
+#include <android/native_window.h>
+#include <android/native_activity.h>
+
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "VI3D", __VA_ARGS__))
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "VI3D", __VA_ARGS__))
 
 
 #include "../../test.h"
 
-#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
-#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
-/**
- * Our saved state data.
- */
-struct saved_state {
-    float angle;
-    int32_t x;
-    int32_t y;
-};
+ANativeActivity* nativeActivity = NULL;
+ANativeWindow*	 nativeShowWindow = NULL;
+AInputQueue*     nativeInputQueue = NULL;
 
-/**
- * Shared state for our app.
- */
-struct engine {
-    struct android_app* app;
+EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
+EGLNativeWindowType  nativeWindow = NULL;
 
-    ASensorManager* sensorManager;
-    ASensorEventQueue* sensorEventQueue;
+EGLConfig  eglConfig;
+EGLDisplay eglDisplay;
+EGLContext eglContext;
+EGLSurface eglSurface;
 
-    int animating;
-    EGLDisplay display;
-    EGLSurface surface;
-    EGLContext context;
-    int32_t width;
-    int32_t height;
-    struct saved_state state;
-};
-
-/**
- * Initialize an EGL context for the current display.
- */
-static int engine_init_display(struct engine* engine) {
-    // initialize OpenGL ES and EGL
-
-    /*
-     * Here specify the attributes of the desired configuration.
-     * Below, we select an EGLConfig with at least 8 bits per color
-     * component compatible with on-screen windows
-     */
+bool egl_init()
+{
+	EGLint configNum = 0;
+	EGLint majorVersion;
+	EGLint minorVersion;
 	EGLint ctxAttribList[] =
 	{
 		EGL_CONTEXT_CLIENT_VERSION, 2,
@@ -77,6 +45,7 @@ static int engine_init_display(struct engine* engine) {
 	};
 	EGLint cfgAttribList[] =
 	{
+		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
 		EGL_RED_SIZE, 5,
 		EGL_GREEN_SIZE, 6,
 		EGL_BLUE_SIZE, 5,
@@ -87,200 +56,251 @@ static int engine_init_display(struct engine* engine) {
 		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
 		EGL_NONE
 	};
-   
-    EGLint w, h, dummy, format;
-    EGLint numConfigs;
-    EGLConfig config;
-    EGLSurface surface;
-    EGLContext context;
-
-    EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-
-    eglInitialize(display, 0, 0);
-
-    /* Here, the application chooses the configuration it desires. In this
-     * sample, we have a very simplified selection process, where we pick
-     * the first EGLConfig that matches our criteria */
-	eglChooseConfig(display, cfgAttribList, &config, 1, &numConfigs);
-
-    /* EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
-     * guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
-     * As soon as we picked a EGLConfig, we can safely reconfigure the
-     * ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID. */
-    eglGetConfigAttrib(display, config, EGL_NATIVE_VISUAL_ID, &format);
-
-    ANativeWindow_setBuffersGeometry(engine->app->window, 0, 0, format);
-
-    surface = eglCreateWindowSurface(display, config, engine->app->window, NULL);
-	context = eglCreateContext(display, config, NULL, ctxAttribList);
-
-    if (eglMakeCurrent(display, surface, surface, context) == EGL_FALSE) {
-        LOGW("Unable to eglMakeCurrent");
-        return -1;
-    }
-
-    eglQuerySurface(display, surface, EGL_WIDTH, &w);
-    eglQuerySurface(display, surface, EGL_HEIGHT, &h);
-
-    engine->display = display;
-    engine->context = context;
-    engine->surface = surface;
-    engine->width = w;
-    engine->height = h;
-    engine->state.angle = 0;
 
 
+	eglDisplay = eglGetDisplay(nativeDisplay);
+
+	if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	if (!eglChooseConfig(eglDisplay, cfgAttribList, &eglConfig, 1, &configNum) || configNum < 1)
+		return false;
+
+	eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, ctxAttribList);
+	if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
+	if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
+		return false;
+
+	return true;
+}
+
+void egl_exit()
+{
+	eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
+	eglDestroySurface(eglDisplay, eglSurface);
+	eglDestroyContext(eglDisplay, eglContext);
+	eglTerminate(eglDisplay);
+}
+
+
+
+
+
+bool win_init()
+{
+	while (nativeShowWindow == NULL)
+		usleep(10000);
+	nativeWindow = nativeShowWindow;
+	return true;
+}
+
+void win_exit()
+{
+	//when exit
+}
+
+void win_loop()
+{
+	float dt;
+	struct timeval t1, t2;
+	struct timezone tz;
+	gettimeofday(&t1, &tz);
+
+	while (true)
+	{
+		if (nativeInputQueue && AInputQueue_hasEvents(nativeInputQueue) > 0)
+		{
+			AInputEvent* ev;
+			if (AInputQueue_getEvent(nativeInputQueue, &ev) >= 0)
+			{
+				//handle event
+			}
+			AInputQueue_finishEvent(nativeInputQueue, ev, true);
+		}
+		else if (nativeShowWindow == NULL)
+		{
+			while (nativeShowWindow == NULL)
+				usleep(1000);
+		
+			if (nativeWindow != nativeShowWindow)
+			{ 
+				nativeWindow = nativeShowWindow;
+				eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
+				if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
+					LOGI("[VI3D]eglCreateWindowSurface %d", eglGetError());
+				if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
+					LOGI("[VI3D]eglMakeCurrent %d", eglGetError());
+			}
+		}
+		else
+		{
+			gettimeofday(&t2, &tz);
+			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+			t1 = t2;
+
+			//update
+			//render
+			test_draw();
+
+			eglSwapBuffers(eglDisplay, eglSurface);
+			usleep(10000);
+		}
+		
+	}
+}
+
+
+
+void* android_main(void* args)
+{
+	if (win_init() == false)
+		return NULL;
+	if (egl_init() == false)
+		return NULL;
+
+
+	//LOGI((const char*)glGetString(GL_EXTENSIONS));
 	test_init();
 
-    return 0;
+
+	win_loop();
+
+
+	egl_exit();
+	win_exit();
+	return NULL;
 }
 
-/**
- * Just the current frame in the display.
- */
-static void engine_draw_frame(struct engine* engine) {
-    if (engine->display == NULL) {
-        // No display.
-        return;
-    }
 
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
-	test_draw();
 
-    eglSwapBuffers(engine->display, engine->surface);
+
+//NativeActivity
+static void onStart(ANativeActivity* activity)
+{
+
 }
 
-/**
- * Tear down the EGL context currently associated with the display.
- */
-static void engine_term_display(struct engine* engine) {
-    if (engine->display != EGL_NO_DISPLAY) {
-        eglMakeCurrent(engine->display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
-        if (engine->context != EGL_NO_CONTEXT) {
-            eglDestroyContext(engine->display, engine->context);
-        }
-        if (engine->surface != EGL_NO_SURFACE) {
-            eglDestroySurface(engine->display, engine->surface);
-        }
-        eglTerminate(engine->display);
-    }
-    engine->animating = 0;
-    engine->display = EGL_NO_DISPLAY;
-    engine->context = EGL_NO_CONTEXT;
-    engine->surface = EGL_NO_SURFACE;
+static void onResume(ANativeActivity* activity)
+{
+
 }
 
-/**
- * Process the next input event.
- */
-static int32_t engine_handle_input(struct android_app* app, AInputEvent* event) {
-    struct engine* engine = (struct engine*)app->userData;
-    if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-        engine->animating = 1;
-        engine->state.x = AMotionEvent_getX(event, 0);
-        engine->state.y = AMotionEvent_getY(event, 0);
-        return 1;
-    }
-    return 0;
+static void onPause(ANativeActivity* activity)
+{
+
 }
 
-/**
- * Process the next main command.
- */
-static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
-    struct engine* engine = (struct engine*)app->userData;
-    switch (cmd) {
-        case APP_CMD_SAVE_STATE:
-            // The system has asked us to save our current state.  Do so.
-            engine->app->savedState = malloc(sizeof(struct saved_state));
-            *((struct saved_state*)engine->app->savedState) = engine->state;
-            engine->app->savedStateSize = sizeof(struct saved_state);
-            break;
-        case APP_CMD_INIT_WINDOW:
-            // The window is being shown, get it ready.
-            if (engine->app->window != NULL) {
-                engine_init_display(engine);
-                engine_draw_frame(engine);
-            }
-            break;
-        case APP_CMD_TERM_WINDOW:
-            // The window is being hidden or closed, clean it up.
-            engine_term_display(engine);
-            break;
-        case APP_CMD_GAINED_FOCUS:
-           
-            
-            break;
-        case APP_CMD_LOST_FOCUS:
-            
-           
-            // Also stop animating.
-            engine->animating = 0;
-            engine_draw_frame(engine);
-            break;
-    }
+static void onStop(ANativeActivity* activity)
+{
+
 }
 
-/**
- * This is the main entry point of a native application that is using
- * android_native_app_glue.  It runs in its own thread, with its own
- * event loop for receiving input events and doing other things.
- */
-void android_main(struct android_app* state) {
-    struct engine engine;
+static void onDestroy(ANativeActivity* activity)
+{
 
-    // Make sure glue isn't stripped.
-    app_dummy();
-
-    memset(&engine, 0, sizeof(engine));
-    state->userData = &engine;
-    state->onAppCmd = engine_handle_cmd;
-    state->onInputEvent = engine_handle_input;
-    engine.app = state;
-
-    // Prepare to monitor accelerometer
-    engine.sensorManager = ASensorManager_getInstance();
-    engine.sensorEventQueue = ASensorManager_createEventQueue(engine.sensorManager,
-            state->looper, LOOPER_ID_USER, NULL, NULL);
-
-    if (state->savedState != NULL) {
-        // We are starting with a previous saved state; restore from it.
-        engine.state = *(struct saved_state*)state->savedState;
-    }
-
-    // loop waiting for stuff to do.
-    while (1) {
-        // Read all pending events.
-        int ident;
-        int events;
-        struct android_poll_source* source;
-
-        // If not animating, we will block forever waiting for events.
-        // If animating, we loop until all events are read, then continue
-        // to draw the next frame of animation.
-        while ((ident=ALooper_pollAll(engine.animating ? 0 : -1, NULL, &events,
-                (void**)&source)) >= 0) {
-
-            // Process this event.
-            if (source != NULL) {
-                source->process(state, source);
-            }
-
-
-            // Check if we are exiting.
-            if (state->destroyRequested != 0) {
-                engine_term_display(&engine);
-                return;
-            }
-        }
-
-
-
-       // Drawing is throttled to the screen update rate, so there
-       // is no need to do timing here.
-       engine_draw_frame(&engine);
-        
-    }
 }
-//END_INCLUDE(all)
+
+static void onLowMemory(ANativeActivity* activity)
+{
+
+}
+
+static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen)
+{
+	outLen = 0;
+	return 0;
+}
+
+static void onWindowFocusChanged(ANativeActivity* activity, int focused)
+{
+	LOGI("[VI3D]onWindowFocusChanged %d", focused);
+}
+
+static void onConfigurationChanged(ANativeActivity* activity)
+{
+	LOGI("[VI3D]onConfigurationChanged");
+}
+
+static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
+{
+	LOGI("[VI3D]onNativeWindowCreated  %p, %p", nativeShowWindow, window);
+	nativeShowWindow = window;
+}
+
+static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
+{
+	nativeShowWindow = NULL;
+	LOGI("[VI3D]onNativeWindowDestroyed %p", window);
+}
+
+static void onInputQueueCreated(ANativeActivity* activity, AInputQueue* queue)
+{
+	nativeInputQueue = queue;
+}
+
+static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
+{
+	nativeInputQueue = NULL;
+}
+
+
+
+
+void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize)
+{
+	LOGI("[VI3D]Creating: %p", activity);
+
+	if (nativeActivity != activity)
+	{
+		activity->callbacks->onStart = onStart;
+		activity->callbacks->onResume = onResume;
+		activity->callbacks->onPause = onPause;
+		activity->callbacks->onStop = onStop;
+		activity->callbacks->onDestroy = onDestroy;
+		activity->callbacks->onLowMemory = onLowMemory;
+		activity->callbacks->onSaveInstanceState = onSaveInstanceState;
+		activity->callbacks->onWindowFocusChanged = onWindowFocusChanged;
+		activity->callbacks->onConfigurationChanged = onConfigurationChanged;
+		activity->callbacks->onNativeWindowCreated = onNativeWindowCreated;
+		activity->callbacks->onNativeWindowDestroyed = onNativeWindowDestroyed;
+		activity->callbacks->onInputQueueCreated = onInputQueueCreated;
+		activity->callbacks->onInputQueueDestroyed = onInputQueueDestroyed;
+	}
+	
+	if (nativeActivity == NULL)
+	{
+		pthread_t tid;
+		pthread_create(&tid, 0, &android_main, 0);
+	}
+
+	nativeActivity = activity;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

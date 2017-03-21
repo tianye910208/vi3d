@@ -14,18 +14,15 @@
 
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
-EGLNativeWindowType  nativeWindow;
+EGLNativeWindowType  nativeWindow = NULL;
 
+EGLConfig  eglConfig;
 EGLDisplay eglDisplay;
 EGLContext eglContext;
 EGLSurface eglSurface;
 
-Atom wmDeleteWindow;
-
 bool egl_init()
 {
-
-    EGLConfig config;
     EGLint configNum = 0;
     EGLint majorVersion;
     EGLint minorVersion;
@@ -36,6 +33,7 @@ bool egl_init()
     };
     EGLint cfgAttribList[] =
     {
+		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_RED_SIZE, 5,
         EGL_GREEN_SIZE, 6,
         EGL_BLUE_SIZE, 5,
@@ -56,18 +54,17 @@ bool egl_init()
     if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
         return false;
 
-    if (!eglChooseConfig(eglDisplay, cfgAttribList, &config, 1, &configNum) || configNum < 1)
+	if (!eglChooseConfig(eglDisplay, cfgAttribList, &eglConfig, 1, &configNum) || configNum < 1)
         return false;
 
-    eglContext = eglCreateContext(eglDisplay, config, EGL_NO_CONTEXT, ctxAttribList);
+	eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, ctxAttribList);
     if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
         return false;
 
-    eglSurface = eglCreateWindowSurface(eglDisplay, config, nativeWindow, NULL);
+	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
     if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
         return false;
 
-    // Make the context current
     if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
         return false;
 
@@ -131,7 +128,6 @@ void win_loop()
     float dt;
     struct timeval t1, t2;
     struct timezone tz;
-
     gettimeofday(&t1, &tz);
 
     XEvent xev;
@@ -167,19 +163,19 @@ int main(int argc, char *argv[])
 
     if (win_init("vi3d", 800, 480) == false)
         return 1;
-
     if (egl_init() == false)
         return 1;
+
 
     //printf((const char*)glGetString(GL_EXTENSIONS));
     test_init();
 
+
     win_loop();
 
+
     egl_exit();
-
     win_exit();
-
     return 0;
 }
 
