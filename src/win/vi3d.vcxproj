@@ -153,10 +153,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\file.cpp" />
+    <ClCompile Include="..\log.cpp" />
     <ClCompile Include="..\sys.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\file.h" />
+    <ClInclude Include="..\log.h" />
     <ClInclude Include="..\sys.h" />
     <ClInclude Include="..\test.h" />
   </ItemGroup>

@@ -3,9 +3,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\sys.cpp" />
+    <ClCompile Include="..\file.cpp" />
+    <ClCompile Include="..\log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\test.h" />
     <ClInclude Include="..\sys.h" />
+    <ClInclude Include="..\file.h" />
+    <ClInclude Include="..\log.h" />
   </ItemGroup>
 </Project>
