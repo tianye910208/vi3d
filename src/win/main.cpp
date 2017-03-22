@@ -1,15 +1,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <stdio.h>
 
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
-
+#include "sys.h"
 #include "test.h"
-
-#pragma comment(lib, "libEGL.lib")
-#pragma comment(lib, "libGLESv2.lib")
 
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
@@ -78,8 +71,6 @@ void egl_exit()
     eglTerminate(eglDisplay);
 }
 
-
-Atom wmDeleteWindow;
 
 LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {

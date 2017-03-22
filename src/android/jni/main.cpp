@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#include <EGL/egl.h>
-#include <GLES/gl.h>
-
 #include <android/log.h>
 #include <android/input.h>
 #include <android/sensor.h>
@@ -17,7 +14,7 @@
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "VI3D", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "VI3D", __VA_ARGS__))
 
-
+#include "../../sys.h"
 #include "../../test.h"
 
 

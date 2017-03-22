@@ -1,15 +1,10 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#include <X11/Xutil.h>
 
-#include  <X11/Xlib.h>
-#include  <X11/Xatom.h>
-#include  <X11/Xutil.h>
-
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
-
+#include "conf.h"
 #include "test.h"
 
 
