@@ -11,11 +11,9 @@
 #include <android/native_window.h>
 #include <android/native_activity.h>
 
-#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "VI3D", __VA_ARGS__))
-#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "VI3D", __VA_ARGS__))
 
-#include "../../sys.h"
-#include "../../test.h"
+#include "../../vi3d.h"
+
 
 
 ANativeActivity* nativeActivity = NULL;
@@ -133,9 +131,9 @@ void win_loop()
 				nativeWindow = nativeShowWindow;
 				eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
 				if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-					LOGI("[VI3D]eglCreateWindowSurface %d", eglGetError());
+					log_i("eglCreateWindowSurface %d", eglGetError());
 				if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-					LOGI("[VI3D]eglMakeCurrent %d", eglGetError());
+					log_i("eglMakeCurrent %d", eglGetError());
 			}
 		}
 		else
@@ -220,24 +218,24 @@ static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen)
 
 static void onWindowFocusChanged(ANativeActivity* activity, int focused)
 {
-	LOGI("[VI3D]onWindowFocusChanged %d", focused);
+	log_i("onWindowFocusChanged %d", focused);
 }
 
 static void onConfigurationChanged(ANativeActivity* activity)
 {
-	LOGI("[VI3D]onConfigurationChanged");
+	log_i("onConfigurationChanged");
 }
 
 static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
 {
-	LOGI("[VI3D]onNativeWindowCreated  %p, %p", nativeShowWindow, window);
+	log_i("onNativeWindowCreated  %p, %p", nativeShowWindow, window);
 	nativeShowWindow = window;
 }
 
 static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
 {
 	nativeShowWindow = NULL;
-	LOGI("[VI3D]onNativeWindowDestroyed %p", window);
+	log_i("onNativeWindowDestroyed %p", window);
 }
 
 static void onInputQueueCreated(ANativeActivity* activity, AInputQueue* queue)
@@ -255,7 +253,7 @@ static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
 
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize)
 {
-	LOGI("[VI3D]Creating: %p", activity);
+	log_i("Creating: %p", activity);
 
 	if (nativeActivity != activity)
 	{

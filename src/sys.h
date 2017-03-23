@@ -7,30 +7,30 @@
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
 	#define WIN32_LEAN_AND_MEAN
-	#define VI3D_PLATFORM_WIN 1
-	#define VI3D_PLATFORM "WIN"
+	#define VI3D_SYS_WIN 1
+	#define VI3D_SYS "WIN"
 
 	#include <GLES2/gl2.h>
 	#include <EGL/egl.h>
 	#include <EGL/eglext.h>
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
 	#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
-		#define VI3D_PLATFORM_IOS 2
-		#define VI3D_PLATFORM "IOS"
+		#define VI3D_SYS_IOS 2
+		#define VI3D_SYS "IOS"
 	#else
-		#define VI3D_PLATFORM_OSX 3
-		#define VI3D_PLATFORM "OSX"
+		#define VI3D_SYS_OSX 3
+		#define VI3D_SYS "OSX"
 	#endif
 #elif defined(__ANDROID__)
-	#define VI3D_PLATFORM_ANDROID 4
-	#define VI3D_PLATFORM "ANDROID"
+	#define VI3D_SYS_ANDROID 4
+	#define VI3D_SYS "ANDROID"
 	
 	#include <GLES2/gl2.h>
 	#include <EGL/egl.h>
 	#include <EGL/eglext.h>
 #elif defined(__linux__)
-	#define VI3D_PLATFORM_LINUX 5
-	#define VI3D_PLATFORM "LINUX"
+	#define VI3D_SYS_LINUX 5
+	#define VI3D_SYS "LINUX"
 
 	#include <GLES2/gl2.h>
 	#include <EGL/egl.h>
@@ -41,7 +41,7 @@
 
 
 //ASSERT
-#if defined(_DEBUG)
+#if defined(_DEBUG) || defined(DEBUG)
 	#define VI3D_DEBUG
 	#include <assert.h>
 	#define ASSERT(exp) assert(exp)

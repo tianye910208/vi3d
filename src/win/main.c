@@ -173,7 +173,8 @@ int main(int argc, char *argv[])
         return 2;
 
 
-    printf((const char*)glGetString(GL_EXTENSIONS));
+	log_d("%s", (const char*)glGetString(GL_EXTENSIONS));
+
     test_init();
 
 
