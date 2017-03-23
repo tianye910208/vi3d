@@ -4,8 +4,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
 
-#include "conf.h"
-#include "test.h"
+#include "vi3d.h"
 
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
@@ -16,7 +15,7 @@ EGLDisplay eglDisplay;
 EGLContext eglContext;
 EGLSurface eglSurface;
 
-bool egl_init()
+int egl_init()
 {
     EGLint configNum = 0;
     EGLint majorVersion;
@@ -44,26 +43,26 @@ bool egl_init()
     eglDisplay = eglGetDisplay(nativeDisplay);
 
     if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
-        return false;
+        return 1;
 
     if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
-        return false;
+        return 2;
 
 	if (!eglChooseConfig(eglDisplay, cfgAttribList, &eglConfig, 1, &configNum) || configNum < 1)
-        return false;
+        return 3;
 
 	eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, ctxAttribList);
     if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
-        return false;
+        return 4;
 
 	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
     if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-        return false;
+        return 5;
 
     if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-        return false;
+        return 6;
 
-    return true;
+    return 0;
 }
 
 void egl_exit()
@@ -75,12 +74,12 @@ void egl_exit()
 }
 
 
-bool win_init(const char *title, int w, int h)
+int win_init(const char *title, int w, int h)
 {
  
     nativeDisplay = XOpenDisplay(NULL);
     if (nativeDisplay == NULL)
-        return false;
+        return 1;
 
     nativeWindow = XCreateWindow(
         nativeDisplay, 
@@ -109,7 +108,7 @@ bool win_init(const char *title, int w, int h)
     XFlush(nativeDisplay);
     XMapWindow(nativeDisplay, nativeWindow);
 
-    return true;
+    return 0;
 }
 
 void win_exit()
@@ -126,7 +125,7 @@ void win_loop()
     gettimeofday(&t1, &tz);
 
     XEvent xev;
-    while (true)
+    while (1)
     {
     
         if(XPending(nativeDisplay))
@@ -156,10 +155,10 @@ void win_loop()
 int main(int argc, char *argv[])
 {
 
-    if (win_init("vi3d", 800, 480) == false)
+    if (win_init("vi3d", 800, 480) != 0)
         return 1;
-    if (egl_init() == false)
-        return 1;
+    if (egl_init() != 0)
+        return 2;
 
 
     //printf((const char*)glGetString(GL_EXTENSIONS));

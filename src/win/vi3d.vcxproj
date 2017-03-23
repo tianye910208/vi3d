@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app.c" />
+    <ClCompile Include="..\file.c" />
+    <ClCompile Include="..\log.c" />
+    <ClCompile Include="..\math.c" />
+    <ClCompile Include="..\mem.c" />
+    <ClCompile Include="..\msg.c" />
+    <ClCompile Include="..\script.c" />
+    <ClCompile Include="..\sys.c" />
+    <ClCompile Include="..\test.c" />
+    <ClCompile Include="..\vi3d.c" />
+    <ClCompile Include="main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\app.h" />
+    <ClInclude Include="..\file.h" />
+    <ClInclude Include="..\log.h" />
+    <ClInclude Include="..\math.h" />
+    <ClInclude Include="..\mem.h" />
+    <ClInclude Include="..\msg.h" />
+    <ClInclude Include="..\script.h" />
+    <ClInclude Include="..\sys.h" />
+    <ClInclude Include="..\test.h" />
+    <ClInclude Include="..\vi3d.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\doc.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{24066E83-F43B-4606-9A84-53F8473FCAA7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -152,18 +180,6 @@
       <AdditionalLibraryDirectories>.\gles\include\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\file.cpp" />
-    <ClCompile Include="..\log.cpp" />
-    <ClCompile Include="..\sys.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\file.h" />
-    <ClInclude Include="..\log.h" />
-    <ClInclude Include="..\sys.h" />
-    <ClInclude Include="..\test.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
