@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
         return 2;
 
 
-    log_i((const char*)glGetString(GL_EXTENSIONS));
+    log((const char*)glGetString(GL_EXTENSIONS));
     test_init();
 
 

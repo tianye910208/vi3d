@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)

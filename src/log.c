@@ -24,7 +24,7 @@ log_func log_get_func()
 int _log_print(const char* msg, const char* file, int line)
 {
 	char tmp[LOG_MAX_LEN];
-	sprintf(tmp, "%s  @%s:%d", msg, file, line);
+	sprintf(tmp, "%s  @%s:%d\n", msg, file, line);
 	log_print(tmp);
 	return 0;
 }

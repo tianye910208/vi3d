@@ -8,7 +8,7 @@
 #include<android/log.h>
 #define log_print(x) (__android_log_print(ANDROID_LOG_INFO, "VI3D", x))
 #else
-#define log_print(x) (printf(x))
+#define log_print(x) (printf("%s", x))
 #endif
 
 #define log		     _log_mark(__FILE__, __LINE__)&&_log_work
