@@ -8,7 +8,7 @@
 
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
-EGLNativeWindowType  nativeWindow = NULL;
+EGLNativeWindowType  nativeWindow = 0;
 
 EGLConfig  eglConfig;
 EGLDisplay eglDisplay;
@@ -74,6 +74,7 @@ void egl_exit()
 }
 
 
+Atom wmDeleteWindow;
 int win_init(const char *title, int w, int h)
 {
  
@@ -161,7 +162,7 @@ int main(int argc, char *argv[])
         return 2;
 
 
-    //printf((const char*)glGetString(GL_EXTENSIONS));
+    log_i((const char*)glGetString(GL_EXTENSIONS));
     test_init();
 
 

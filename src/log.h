@@ -3,8 +3,11 @@
 
 #include "sys.h"
 
-#define log_d(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_d(__FILE__, __LINE__, (const char*)str);}while(0)
-#define log_i(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_i(__FILE__, __LINE__, (const char*)str);}while(0)
+#define log_format(fmt) const char* str = fmt
+#define log_format(fmt, ...) char str[4096]; sprintf(str, fmt, __VA_ARGS__)
+
+#define log_d(...)  do{log_format(__VA_ARGS__);_log_d(__FILE__, __LINE__, (const char*)str);}while(0)
+#define log_i(...)  do{log_format(__VA_ARGS__);_log_i(__FILE__, __LINE__, (const char*)str);}while(0)
 #define log_w(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_w(__FILE__, __LINE__, (const char*)str);}while(0)
 #define log_e(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_e(__FILE__, __LINE__, (const char*)str);}while(0)
 

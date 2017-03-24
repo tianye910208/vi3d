@@ -1,14 +1,14 @@
 TARGET := test
 
-SRC1 :=	 $(wildcard ./*.cpp) \
+SRC1 :=	 $(wildcard ../linux/*.cpp) \
 	 $(wildcard ../*.cpp) \
 
-SRC2 :=  $(wildcard ./*.c) \
+SRC2 :=  $(wildcard ../linux/*.c) \
 	 $(wildcard ../*.c) \
 
 
-OBJS := $(SRC2:%.c=obj/%.o)
-OBJS += $(SRC1:%.cpp=obj/%.o)
+OBJS := $(SRC2:../%.c=obj/%.o)
+OBJS += $(SRC1:../%.cpp=obj/%.o)
 
 all:$(OBJS)
 	@echo [M]Link...
@@ -16,15 +16,15 @@ all:$(OBJS)
 	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lEGL -lGLESv2 -lX11 
 
 
-obj/%.o:%.cpp
+obj/%.o:../%.cpp
 	@echo [M]Compile CXX...
 	@mkdir -p $(@D)
 	g++ -c $< -o $@ -I../
 
-obj/%.o:%.c
+obj/%.o:../%.c
 	@echo [M]Compile C...
 	@mkdir -p $(@D)
-	g++ -c $< -o $@ -I../
+	gcc -c $< -o $@ -I../
 
 run:
 	./bin/$(TARGET)
