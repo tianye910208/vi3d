@@ -17,9 +17,11 @@ typedef struct _file
 } file;
 
 
-file* file_open(const char* filename, const char* mode);
-int file_close(file* f);
+file* file_open(const char* filepath, const char* mode);
 int file_read(file* f, char* data, int n);
+int file_seek(file* f, int offset, int origin);
+int file_size(file* f);
+int file_close(file* f);
 
 
 

@@ -52,10 +52,12 @@ GLuint programObject;
 int test_init()
 {
 
-	file* f = file_open("test.txt", "r");
-	log("fileopen:%p", f);
+	file* f = file_open("data/test.txt", "r");
+	log("file_open: %p", f);
+	log("file_size: %d", file_size(f));
 	char data[512];
-	log("fileread:%d", file_read(f, data, 16));
+	memset(data, 0, sizeof(data));
+	log("file_read: %d", file_read(f, data, file_size(f)));
 	file_close(f);
 	log(data);
 

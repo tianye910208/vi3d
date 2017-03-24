@@ -4,7 +4,6 @@
 
 const char* __log_mark_file = NULL;
 int		    __log_mark_line = 0;
-char		__log_work_data[LOG_MAX_LEN];
 log_func	__log_func = _log_print;
 
 
@@ -40,14 +39,15 @@ int _log_work(const char* fmt, ...)
 {
 	if (__log_func)
 	{
+		char str[LOG_MAX_LEN];
 		va_list ap;
 		va_start(ap, fmt);
-		int n = vsnprintf(__log_work_data, LOG_MAX_LEN - 1, fmt, ap);
+		int n = vsnprintf(str, LOG_MAX_LEN - 1, fmt, ap);
 		if (n < 0 || n >= LOG_MAX_LEN - 1)
-			__log_work_data[LOG_MAX_LEN - 1] = '\0';
+			str[LOG_MAX_LEN - 1] = '\0';
 		va_end(ap);
 
-		__log_func(__log_work_data, __log_mark_file, __log_mark_line);
+		__log_func(str, __log_mark_file, __log_mark_line);
 	}
 	return 0;
 }
