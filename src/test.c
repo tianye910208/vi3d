@@ -1,5 +1,6 @@
 #include "test.h"
-
+#include "file.h"
+#include "log.h"
 
 GLuint LoadShader(GLenum type, const char *shaderSrc)
 {
@@ -50,6 +51,14 @@ GLuint LoadShader(GLenum type, const char *shaderSrc)
 GLuint programObject;
 int test_init()
 {
+
+	file* f = file_open("test.txt", "r");
+	log("fileopen:%p", f);
+	char data[512];
+	log("fileread:%d", file_read(f, data, 16));
+	file_close(f);
+	log(data);
+
     char vShaderStr[] =
         "#version 300 es                          \n"
         "layout(location = 0) in vec4 vPosition;  \n"

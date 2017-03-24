@@ -6,7 +6,7 @@
 
 #ifdef VI3D_SYS_ANDROID
 #include<android/log.h>
-#define log_print(x) (__android_log_print(ANDROID_LOG_INFO, "VI3D", x))
+#define log_print(x) (__android_log_print(ANDROID_LOG_INFO, "VI3D", "%s", x))
 #else
 #define log_print(x) (printf("%s", x))
 #endif

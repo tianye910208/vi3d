@@ -173,12 +173,9 @@ int main(int argc, char *argv[])
         return 2;
 
 	log("%s", (const char*)glGetString(GL_EXTENSIONS));
-
     test_init();
 
-
     win_loop();
-
 
     egl_exit();
     win_exit();

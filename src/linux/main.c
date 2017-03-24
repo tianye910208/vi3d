@@ -161,13 +161,10 @@ int main(int argc, char *argv[])
     if (egl_init() != 0)
         return 2;
 
-
     log((const char*)glGetString(GL_EXTENSIONS));
     test_init();
 
-
     win_loop();
-
 
     egl_exit();
     win_exit();

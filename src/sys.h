@@ -1,19 +1,10 @@
 #ifndef _VI3D_SYS_
 #define _VI3D_SYS_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
-	#define WIN32_LEAN_AND_MEAN
 	#define VI3D_SYS_WIN 1
 	#define VI3D_SYS "WIN"
-
-	#include <GLES2/gl2.h>
-	#include <EGL/egl.h>
-	#include <EGL/eglext.h>
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
 	#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 		#define VI3D_SYS_IOS 2
@@ -25,21 +16,17 @@
 #elif defined(__ANDROID__)
 	#define VI3D_SYS_ANDROID 4
 	#define VI3D_SYS "ANDROID"
-	
-	#include <GLES2/gl2.h>
-	#include <EGL/egl.h>
-	#include <EGL/eglext.h>
 #elif defined(__linux__)
 	#define VI3D_SYS_LINUX 5
 	#define VI3D_SYS "LINUX"
-
-	#include <GLES2/gl2.h>
-	#include <EGL/egl.h>
-	#include <EGL/eglext.h>
 #else
 	#error VI3D_ERROR_PLATFORM_UNKNOWN
 #endif
 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
 
 //ASSERT
 #if defined(_DEBUG) || defined(DEBUG)
@@ -63,6 +50,37 @@ typedef signed int          int32;
 typedef unsigned int        uint32;
 typedef signed long long    int64;
 typedef unsigned long long  uint64;
+
+
+
+#ifdef VI3D_SYS_WIN
+
+#define WIN32_LEAN_AND_MEAN
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+
+#endif
+
+#ifdef VI3D_SYS_LINUX
+
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+
+#endif
+
+#ifdef VI3D_SYS_ANDROID
+
+#include <GLES2/gl2.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <android/native_activity.h>
+
+int sys_set_activity(ANativeActivity* activity);
+ANativeActivity* sys_get_activity();
+
+#endif
 
 
 #endif 

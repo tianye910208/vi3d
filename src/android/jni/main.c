@@ -131,9 +131,9 @@ void win_loop()
 				nativeWindow = nativeShowWindow;
 				eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
 				if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-					log_i("eglCreateWindowSurface %d", eglGetError());
+					log("eglCreateWindowSurface %d", eglGetError());
 				if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-					log_i("eglMakeCurrent %d", eglGetError());
+					log("eglMakeCurrent %d", eglGetError());
 			}
 		}
 		else
@@ -163,12 +163,10 @@ void* android_main(void* args)
 		return NULL;
 
 
-	//LOGI((const char*)glGetString(GL_EXTENSIONS));
+	log((const char*)glGetString(GL_EXTENSIONS));
 	test_init();
 
-
 	win_loop();
-
 
 	egl_exit();
 	win_exit();
@@ -218,24 +216,24 @@ static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen)
 
 static void onWindowFocusChanged(ANativeActivity* activity, int focused)
 {
-	log_i("onWindowFocusChanged %d", focused);
+	log("onWindowFocusChanged %d", focused);
 }
 
 static void onConfigurationChanged(ANativeActivity* activity)
 {
-	log_i("onConfigurationChanged");
+	log("onConfigurationChanged");
 }
 
 static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
 {
-	log_i("onNativeWindowCreated  %p, %p", nativeShowWindow, window);
+	log("onNativeWindowCreated  %p, %p", nativeShowWindow, window);
 	nativeShowWindow = window;
 }
 
 static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
 {
 	nativeShowWindow = NULL;
-	log_i("onNativeWindowDestroyed %p", window);
+	log("onNativeWindowDestroyed %p", window);
 }
 
 static void onInputQueueCreated(ANativeActivity* activity, AInputQueue* queue)
@@ -253,7 +251,7 @@ static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
 
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize)
 {
-	log_i("Creating: %p", activity);
+	log("Creating: %p", activity);
 
 	if (nativeActivity != activity)
 	{
@@ -279,6 +277,8 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 	}
 
 	nativeActivity = activity;
+
+	sys_set_activity(nativeActivity);
 }
 
 

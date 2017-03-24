@@ -6,7 +6,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := vi3dnative
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv2
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../
 
 
