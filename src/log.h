@@ -3,20 +3,26 @@
 
 #include "sys.h"
 
-#define log_format(fmt) const char* str = fmt
-#define log_format(fmt, ...) char str[4096]; sprintf(str, fmt, __VA_ARGS__)
 
-#define log_d(...)  do{log_format(__VA_ARGS__);_log_d(__FILE__, __LINE__, (const char*)str);}while(0)
-#define log_i(...)  do{log_format(__VA_ARGS__);_log_i(__FILE__, __LINE__, (const char*)str);}while(0)
-#define log_w(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_w(__FILE__, __LINE__, (const char*)str);}while(0)
-#define log_e(...)  do{char str[4096]; sprintf(str, __VA_ARGS__);_log_e(__FILE__, __LINE__, (const char*)str);}while(0)
+#ifdef VI3D_SYS_ANDROID
+#include<android/log.h>
+#define log_print(x) (__android_log_print(ANDROID_LOG_INFO, "VI3D", x))
+#else
+#define log_print(x) (printf(x))
+#endif
+
+#define log		     _log_mark(__FILE__, __LINE__)&&_log_work
 
 
+typedef int (*log_func)(const char* msg, const char* file, int line);
 
-void _log_d(const char* file, int line, const char* str);
-void _log_i(const char* file, int line, const char* str);
-void _log_w(const char* file, int line, const char* str);
-void _log_e(const char* file, int line, const char* str);
+int		 log_set_func(log_func func);
+log_func log_get_func();
+
+int _log_print(const char* msg, const char* file, int line);
+int _log_mark(const char* file, int line);
+int _log_work(const char* fmt, ...);
+
 
 
 #endif 

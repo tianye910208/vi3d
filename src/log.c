@@ -1,35 +1,61 @@
 #include "log.h"
 
-#ifdef VI3D_SYS_ANDROID
-#include<android/log.h>
-#define _log_d_print(...) ((void)__android_log_print(ANDROID_LOG_DEBUG, "VI3D", __VA_ARGS__))
-#define _log_i_print(...) ((void)__android_log_print(ANDROID_LOG_INFO, "VI3D", __VA_ARGS__))
-#define _log_w_print(...) ((void)__android_log_print(ANDROID_LOG_WARN, "VI3D", __VA_ARGS__))
-#define _log_e_print(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "VI3D", __VA_ARGS__))
-#else
-#define _log_d_print(...)  printf(__VA_ARGS__)
-#define _log_i_print(...)  printf(__VA_ARGS__)
-#define _log_w_print(...)  printf(__VA_ARGS__)
-#define _log_e_print(...)  printf(__VA_ARGS__)
-#endif
+#define LOG_MAX_LEN 4096
+
+const char* __log_mark_file = NULL;
+int		    __log_mark_line = 0;
+char		__log_work_data[LOG_MAX_LEN];
+log_func	__log_func = _log_print;
 
 
-void _log_d(const char* file, int line, const char* str)
+int log_set_func(log_func func)
 {
-	_log_d_print("[VI3D][D] %s\n@%s:%d", str, file, line);
+	__log_func = func;
+	return 0;
 }
-void _log_i(const char* file, int line, const char* str)
+
+log_func log_get_func()
 {
-	_log_i_print("[VI3D][I] %s\n@%s:%d", str, file, line);
+	return __log_func;
 }
-void _log_w(const char* file, int line, const char* str)
+
+
+
+int _log_print(const char* msg, const char* file, int line)
 {
-	_log_w_print("[VI3D][W] %s\n@%s:%d", str, file, line);
+	char tmp[LOG_MAX_LEN];
+	sprintf(tmp, "%s  @%s:%d", msg, file, line);
+	log_print(tmp);
+	return 0;
 }
-void _log_e(const char* file, int line, const char* str)
+
+int _log_mark(const char* file, int line)
 {
-	_log_e_print("[VI3D][E] %s\n@%s:%d", str, file, line);
+	__log_mark_file = (char*)file;
+	__log_mark_line = line;
+	return 1;
 }
+
+int _log_work(const char* fmt, ...)
+{
+	if (__log_func)
+	{
+		va_list ap;
+		va_start(ap, fmt);
+		int n = vsnprintf(__log_work_data, LOG_MAX_LEN - 1, fmt, ap);
+		if (n < 0 || n >= LOG_MAX_LEN - 1)
+			__log_work_data[LOG_MAX_LEN - 1] = '\0';
+		va_end(ap);
+
+		__log_func(__log_work_data, __log_mark_file, __log_mark_line);
+	}
+	return 0;
+}
+
+
+
+
+
 
 
 

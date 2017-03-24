@@ -172,8 +172,7 @@ int main(int argc, char *argv[])
     if (egl_init() != 0)
         return 2;
 
-
-	log_d("%s", (const char*)glGetString(GL_EXTENSIONS));
+	log("%s", (const char*)glGetString(GL_EXTENSIONS));
 
     test_init();
 
