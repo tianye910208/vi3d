@@ -24,5 +24,12 @@
     <ClInclude Include="..\vi_msg.h" />
     <ClInclude Include="..\vi_sys.h" />
     <ClInclude Include="..\vi3d.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vi3d.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
 </Project>

@@ -42,6 +42,13 @@
     <ClInclude Include="..\vi_mem.h" />
     <ClInclude Include="..\vi_msg.h" />
     <ClInclude Include="..\vi_sys.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vi3d.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{24066E83-F43B-4606-9A84-53F8473FCAA7}</ProjectGuid>

@@ -1,6 +1,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-
+#include "resource.h"
 #include "vi3d.h"
 
 
@@ -97,6 +97,7 @@ int win_init(const char* name, int w, int h)
 
     WNDCLASS winclass = {0};
     winclass.style = CS_OWNDC;
+	winclass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON);
     winclass.lpfnWndProc = (WNDPROC)win_proc;
     winclass.hInstance = hInstance;
     winclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
