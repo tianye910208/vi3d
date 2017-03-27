@@ -2,9 +2,9 @@
 
 #define LOG_MAX_LEN 4096
 
-const char* __log_mark_file = NULL;
-int		    __log_mark_line = 0;
-log_func	__log_func = _log_print;
+static const char*	__log_mark_file = NULL;
+static int			__log_mark_line = 0;
+static log_func		__log_func = _log_print;
 
 
 int log_set_func(log_func func)
