@@ -1,4 +1,4 @@
-#include "log.h"
+#include "vi_log.h"
 
 #define LOG_MAX_LEN 4096
 

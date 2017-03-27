@@ -1,7 +1,7 @@
 #ifndef _VI3D_FILE_
 #define _VI3D_FILE_
 
-#include "sys.h"
+#include "vi_sys.h"
 
 #ifdef VI3D_SYS_ANDROID
 #include <android/asset_manager.h>

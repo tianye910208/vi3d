@@ -1,6 +1,4 @@
 #include "test.h"
-#include "file.h"
-#include "log.h"
 
 GLuint LoadShader(GLenum type, const char *shaderSrc)
 {

@@ -1,1 +1,223 @@
 vi3d by viware.cn
+
+
+ref
+res
+
+
+hash
+hash_new()
+hash_set(k,v)
+hash_get(k)
+hash_del(v)
+hash_key(&ite)
+
+list
+list_new()
+list_len()
+list_set(i,v)
+list_get(i)
+list_del(i)
+list_add(v)
+
+
+
+file_open
+file_read
+file_seek
+file_write
+file_close
+
+log_i
+log_w
+log_e
+
+
+
+
+--math
+vec2
+vec3
+vec4
+quat
+mat4
+
+
+
+--render
+device
+render
+
+ref_del
+ref_add
+ref_free
+ref_desc()
+
+
+shader_new
+
+vs fs
+
+tex_new 
+vbo_new
+ibo_new
+rbo_new
+
+fbo
+
+mtl
+obj
+cam
+
+
+
+
+
+
+
+base
+math
+system
+render
+audio
+video
+
+
+
+
+vertex_buffer
+->static_vb
+->dynamic_vb
+
+index_buffer
+->static_ib
+->dynamic_ib
+
+render_buffer
+->color_tex
+->depth_tex
+->stencil_tex
+->depth_stencil_tex
+
+texture
+->static_tex
+->dynamic_tex
+->static_cube
+->color_rt
+->depth_rt
+->depth_stencil_rt
+
+frame_rt
+
+vertex_shader
+pixel_shader
+shader_program
+
+texture_sampler
+
+
+
+
+
+
+
+
+
+
+game.init = function()
+     device = device_new()
+     render = render_new()
+
+     render.setpipeline({
+         {
+             pass = "pass1",
+
+
+             target = "",
+
+             cullface = 0,
+             
+             zwrite = true,
+             zorder = 1,
+             
+             depthtest = true,
+             depthtestfunc = nil,
+             
+
+             alphatest = false,
+             alphatestfunc = nil,
+
+             alphablend = false,
+             alphablendfunc = nil'
+
+             shader = nil'
+
+             scissor = nil'
+         }
+     })
+
+
+     obj = obj_new()
+     obj.active = false
+     obj.vbo = {}
+     obj.ibo = {}
+     obj.shader = {
+         pass1 = {
+             tex_n = tex_new(),
+         }
+     }
+
+end
+
+game.update = function()
+     obj.trans(100,100,0)
+    
+end
+
+game.render = function()
+     render.clear()
+     render.draw()
+     render.swap()
+end
+
+
+
+entity
+camera
+render
+target
+rstate
+shader
+texture
+material
+geometry
+pipeline
+
+
+
+buffer
+shader
+rstate
+texture
+
+
+
+render.push(op, op_data)
+op_target
+op_clear
+op_rstate
+op_buffer
+op_shader
+op_params
+op_draw
+
+render.sort()
+
+
+render.draw()
+
+
+
+
+
+

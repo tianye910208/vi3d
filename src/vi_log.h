@@ -1,7 +1,7 @@
 #ifndef _VI3D_LOG_
 #define _VI3D_LOG_
 
-#include "sys.h"
+#include "vi_sys.h"
 
 
 #ifdef VI3D_SYS_ANDROID

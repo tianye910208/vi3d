@@ -1,5 +1,5 @@
-#include "file.h"
-#include "mem.h"
+#include "vi_file.h"
+#include "vi_mem.h"
 
 
 file* file_open(const char* filepath, const char* mode)

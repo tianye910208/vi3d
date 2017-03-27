@@ -2,30 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.c" />
-    <ClCompile Include="..\app.c" />
-    <ClCompile Include="..\file.c" />
-    <ClCompile Include="..\log.c" />
-    <ClCompile Include="..\math.c" />
-    <ClCompile Include="..\mem.c" />
-    <ClCompile Include="..\msg.c" />
-    <ClCompile Include="..\script.c" />
-    <ClCompile Include="..\sys.c" />
-    <ClCompile Include="..\vi3d.c" />
     <ClCompile Include="..\test.c" />
+    <ClCompile Include="..\vi_app.c" />
+    <ClCompile Include="..\vi_file.c" />
+    <ClCompile Include="..\vi_log.c" />
+    <ClCompile Include="..\vi_lua.c" />
+    <ClCompile Include="..\vi_math.c" />
+    <ClCompile Include="..\vi_mem.c" />
+    <ClCompile Include="..\vi_msg.c" />
+    <ClCompile Include="..\vi_sys.c" />
+    <ClCompile Include="..\vi3d.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\app.h" />
-    <ClInclude Include="..\file.h" />
-    <ClInclude Include="..\log.h" />
-    <ClInclude Include="..\math.h" />
-    <ClInclude Include="..\mem.h" />
-    <ClInclude Include="..\msg.h" />
-    <ClInclude Include="..\script.h" />
-    <ClInclude Include="..\sys.h" />
     <ClInclude Include="..\test.h" />
+    <ClInclude Include="..\vi_app.h" />
+    <ClInclude Include="..\vi_file.h" />
+    <ClInclude Include="..\vi_log.h" />
+    <ClInclude Include="..\vi_lua.h" />
+    <ClInclude Include="..\vi_math.h" />
+    <ClInclude Include="..\vi_mem.h" />
+    <ClInclude Include="..\vi_msg.h" />
+    <ClInclude Include="..\vi_sys.h" />
     <ClInclude Include="..\vi3d.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\doc.txt" />
   </ItemGroup>
 </Project>
