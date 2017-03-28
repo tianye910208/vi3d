@@ -5,23 +5,23 @@
 
 #ifdef VI3D_SYS_ANDROID
 #include <android/asset_manager.h>
-typedef AAsset rawfile;
+typedef AAsset vi_rawfile;
 #else
-typedef FILE rawfile;
+typedef FILE vi_rawfile;
 #endif
 
-typedef struct _file
+typedef struct _vi_file
 {
-	rawfile* fd;
-	void*	 ud;
-} file;
+	vi_rawfile* fd;
+	void*		ud;
+} vi_file;
 
 
-file* file_open(const char* filepath, const char* mode);
-int file_read(file* f, char* data, int n);
-int file_seek(file* f, int offset, int origin);
-int file_size(file* f);
-int file_close(file* f);
+vi_file* vi_file_open(const char* filepath, const char* mode);
+int vi_file_read(vi_file* f, char* data, int n);
+int vi_file_seek(vi_file* f, int offset, int origin);
+int vi_file_size(vi_file* f);
+int vi_file_close(vi_file* f);
 
 
 

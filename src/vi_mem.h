@@ -2,8 +2,8 @@
 #define _VI3D_MEM_
 
 
-#define mem_alloc malloc
-#define mem_free  free
+#define vi_mem_alloc malloc
+#define vi_mem_free  free
 
 
 

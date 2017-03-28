@@ -14,21 +14,18 @@ call %VCVARS%
 
 set ANDROID_NDK=D:\android\android-ndk-r10e
 
+for %%i in (armeabi-v7a, armeabi, arm64-v8a, mips, mips64, x86, x86_64) do (
+
 mkdir build & pushd build
-
-cmake .. -G "NMake Makefiles" -DCMAKE_TOOLCHAIN_FILE=..\cmake\android.toolchain.cmake -DANDROID_TOOLCHAIN_NAME=arm-linux-androideabi-clang3.6 -DANDROID_NATIVE_API_LEVEL=android-9
-
+cmake .. -G "NMake Makefiles" -DANDROID_ABI=%%i -DCMAKE_TOOLCHAIN_FILE=..\cmake\android.toolchain.cmake > ttt.txt
 nmake
 popd
 
-
-mkdir lib_android\
-
-copy /Y build\liblua.a lib_android\liblua.a
-
+mkdir lib_android\%%i
+copy /Y build\liblua.a lib_android\%%i\liblua.a
 rmdir /s /q build
 
-
+)
 
 goto waiting
 
@@ -38,3 +35,4 @@ echo Can't find Visual Studio 2013.
 
 :waiting
 pause
+

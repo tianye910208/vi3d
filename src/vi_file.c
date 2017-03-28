@@ -2,10 +2,10 @@
 #include "vi_mem.h"
 
 
-file* file_open(const char* filepath, const char* mode)
+vi_file* vi_file_open(const char* filepath, const char* mode)
 {
-	rawfile* fd = NULL;
-	void* ud = NULL;
+	vi_rawfile* fd = NULL;
+	void*		ud = NULL;
 
 #ifdef VI3D_SYS_ANDROID
 	if(filepath[0] == '/')
@@ -14,7 +14,7 @@ file* file_open(const char* filepath, const char* mode)
 	}
 	else
 	{	
-		ANativeActivity* activity = sys_get_activity();
+		ANativeActivity* activity = vi_sys_get_activity();
 		if (activity && activity->assetManager)
 		{
 			fd = AAssetManager_open(activity->assetManager, filepath, AASSET_MODE_STREAMING);
@@ -26,7 +26,7 @@ file* file_open(const char* filepath, const char* mode)
 
 	if (fd || ud)
 	{
-		file* f = mem_alloc(sizeof(file));
+		vi_file* f = vi_mem_alloc(sizeof(vi_file));
 		f->fd = fd;
 		f->ud = ud;
 		return f;
@@ -37,7 +37,7 @@ file* file_open(const char* filepath, const char* mode)
 	}
 }
 
-int file_read(file* f, char* data, int n)
+int vi_file_read(vi_file* f, char* data, int n)
 {
 	int read = 0;
 
@@ -56,7 +56,7 @@ int file_read(file* f, char* data, int n)
 	return read;
 }
 
-int file_seek(file* f, int offset, int origin)
+int vi_file_seek(vi_file* f, int offset, int origin)
 {
 	if (f && f->fd)
 	{
@@ -69,7 +69,7 @@ int file_seek(file* f, int offset, int origin)
 	return 1;
 }
 
-int file_size(file* f)
+int vi_file_size(vi_file* f)
 {
 	if (f && f->fd)
 	{
@@ -88,20 +88,21 @@ int file_size(file* f)
 	return 0;
 }
 
-int file_close(file* f)
+int vi_file_close(vi_file* f)
 {
-	if (f && f->fd)
-	{
-#ifdef VI3D_SYS_ANDROID
-		AAsset_close(f->fd);
-#else
-		fclose(f->fd);
-#endif
-		f->fd = NULL;
-	}
 	if (f)
 	{
-		mem_free(f);
+		if (f->fd)
+		{
+#ifdef VI3D_SYS_ANDROID
+			AAsset_close(f->fd);
+#else
+			fclose(f->fd);
+#endif
+			f->fd = NULL;
+		}
+
+		vi_mem_free(f);
 	}
 	return 0;
 }

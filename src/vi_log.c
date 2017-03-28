@@ -4,38 +4,38 @@
 
 static const char*	__log_mark_file = NULL;
 static int			__log_mark_line = 0;
-static log_func		__log_func = _log_print;
+static vi_log_func	__log_func = _vi_log_print;
 
 
-int log_set_func(log_func func)
+int vi_log_setfunc(vi_log_func func)
 {
 	__log_func = func;
 	return 0;
 }
 
-log_func log_get_func()
+vi_log_func vi_log_getfunc()
 {
 	return __log_func;
 }
 
 
 
-int _log_print(const char* msg, const char* file, int line)
+int _vi_log_print(const char* msg, const char* file, int line)
 {
 	char tmp[LOG_MAX_LEN];
 	sprintf(tmp, "%s  @%s:%d\n", msg, file, line);
-	log_print(tmp);
+	vi_log_print(tmp);
 	return 0;
 }
 
-int _log_mark(const char* file, int line)
+int _vi_log_mark(const char* file, int line)
 {
 	__log_mark_file = (char*)file;
 	__log_mark_line = line;
 	return 1;
 }
 
-int _log_work(const char* fmt, ...)
+int _vi_log_work(const char* fmt, ...)
 {
 	if (__log_func)
 	{

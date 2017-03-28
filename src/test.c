@@ -50,14 +50,18 @@ GLuint programObject;
 int test_init()
 {
 
-	file* f = file_open("data/test.txt", "r");
-	log("file_open: %p", f);
-	log("file_size: %d", file_size(f));
+	vi_file* f = vi_file_open("data/test.txt", "r");
+	vi_log("file_open: %p", f);
+	vi_log("file_size: %d", vi_file_size(f));
 	char data[512];
 	memset(data, 0, sizeof(data));
-	log("file_read: %d", file_read(f, data, file_size(f)));
-	file_close(f);
-	log(data);
+	vi_log("file_read: %d", vi_file_read(f, data, vi_file_size(f)));
+	vi_file_close(f);
+	vi_log(data);
+
+
+	vi_lua_init();
+	vi_lua_exec("print('From Lua:Hello World!', nil, {}, true, 101)");
 
     char vShaderStr[] =
         "#version 300 es                          \n"
