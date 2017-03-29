@@ -3,9 +3,9 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE  := vi3dnative
-LOCAL_LDLIBS  := -llog -landroid -lEGL -lGLESv2
-
+LOCAL_MODULE := vi3dnative
+LOCAL_CFLAGS := -std=c99
+LOCAL_LDLIBS := -llog -landroid -lm -lEGL -lGLESv2
 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/

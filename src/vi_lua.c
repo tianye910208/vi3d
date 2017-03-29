@@ -6,41 +6,28 @@ static vi_lua_state* __lua_state = NULL;
 
 int _vi_lua_print(lua_State* L)
 {
-	int nargs = lua_gettop(L);
 	char str[4096];
-	int i;
-	for (i = 1; i <= nargs; i++)
+	str[0] = '\0';
+
+	int n = lua_gettop(L); 
+	lua_getglobal(L, "tostring");
+	for (int i = 1; i <= n; i++) 
 	{
-		if (lua_istable(L, i))
-			strcat(str, "table");
-		else if (lua_isnone(L, i))
-			strcat(str, "none");
-		else if (lua_isnil(L, i))
-			strcat(str, "nil");
-		else if (lua_isboolean(L, i))
-		{
-			if (lua_toboolean(L, i) != 0)
-				strcat(str, "true");
-			else
-				strcat(str, "false");
-		}
-		else if (lua_isfunction(L, i))
-			strcat(str, "function");
-		else if (lua_islightuserdata(L, i))
-			strcat(str, "lightuserdata");
-		else if (lua_isthread(L, i))
-			strcat(str, "thread");
-		else
-		{
-			const char * s = lua_tostring(L, i);
-			if (s)
-				strcat(str, s);
-			else
-				strcat(str, lua_typename(L, lua_type(L, i)));
-		}
-		if (i != nargs)
+		const char *s;
+		size_t l;
+		lua_pushvalue(L, -1);  /* function to be called */
+		lua_pushvalue(L, i);   /* value to print */
+		lua_call(L, 1, 1);
+		s = lua_tolstring(L, -1, &l);  /* get result */
+		if (i > 1)
 			strcat(str, "\t");
+		if (s == NULL)
+			strcat(str, "***");
+		else
+			strcat(str, s);
+		lua_pop(L, 1);  /* pop result */
 	}
+
 	vi_log_print(str);
 	return 0;
 }
@@ -56,7 +43,7 @@ int vi_lua_init()
 	luaL_openlibs(L);
 
 	const luaL_Reg funcs[] = {
-		//{"print", _vi_lua_print},
+		{"print", _vi_lua_print},
 		{NULL, NULL}
 	};
 	lua_getglobal(L, "_G");

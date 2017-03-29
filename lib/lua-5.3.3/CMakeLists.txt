@@ -1,34 +1,27 @@
 cmake_minimum_required(VERSION 2.8)
 
-if ( WIN32 AND NOT CYGWIN )
+if (WIN32 AND NOT CYGWIN)
 	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} /MT" CACHE STRING "")
 	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MTd" CACHE STRING "")
 	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT" CACHE STRING "")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd" CACHE STRING "")
 endif ()
 
-project(Lua)
-
-option (UINT_ESPECIALLY "using custom ulong" OFF )
-option (USING_LUAJIT "using luajit" OFF )
-
-
-set (LUA_IDSIZE 120 CACHE NUMBER "gives the maximum size for the description of the source." )
+project(lua)
 
 
 include_directories(
-    ${CMAKE_SOURCE_DIR}
     src
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${THIRDPART_INC}
 )
 
 set (LUA_CORE src/lapi.c src/lcode.c src/lctype.c src/ldebug.c src/ldo.c src/ldump.c
     src/lfunc.c src/lgc.c src/llex.c src/lmem.c src/lobject.c src/lopcodes.c src/lparser.c
-    src/lstate.c src/lstring.c src/ltable.c src/ltm.c src/lundump.c src/lvm.c src/lzio.c )
+    src/lstate.c src/lstring.c src/ltable.c src/ltm.c src/lundump.c src/lvm.c src/lzio.c)
 set (LUA_LIB src/lauxlib.c src/lbaselib.c src/lbitlib.c src/lcorolib.c src/ldblib.c
     src/liolib.c src/lmathlib.c src/loslib.c src/lstrlib.c src/ltablib.c src/linit.c
-    src/lutf8lib.c src/loadlib.c )
+    src/lutf8lib.c src/loadlib.c)
 
 
 
@@ -38,30 +31,29 @@ if (APPLE)
         add_library(lua STATIC
            ${LUA_CORE}
            ${LUA_LIB}
-           ${THIRDPART_SRC}
         )
     else ()
         set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_STANDARD_32_64_BIT)")
         add_library(lua MODULE
             ${LUA_CORE}
             ${LUA_LIB}
-            ${THIRDPART_SRC}
         )
         set_target_properties ( lua PROPERTIES BUNDLE TRUE )
     endif ()
-else ( )
+else ()
     add_library(lua STATIC
         ${LUA_CORE}
         ${LUA_LIB}
-        ${THIRDPART_SRC}
     )
-endif ( )
+endif ()
 
-if ( WIN32 AND NOT CYGWIN )
-#    target_compile_definitions (xlua PRIVATE LUA_BUILD_AS_DLL)
-endif ( )
+if (WIN32 AND NOT CYGWIN)
+#    target_compile_definitions (lua PRIVATE LUA_BUILD_AS_DLL)
+else ()
+    target_link_libraries(lua m)
+endif ()
 
-
+set_property(TARGET lua PROPERTY C_STANDARD 99)
 
 
 

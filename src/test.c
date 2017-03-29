@@ -61,7 +61,7 @@ int test_init()
 
 
 	vi_lua_init();
-	vi_lua_exec("print('From Lua:Hello World!', nil, {}, true, 101)");
+	vi_lua_exec("print('[ViLua]From Lua:Hello World!', nil, {}, true, 101)");
 
     char vShaderStr[] =
         "#version 300 es                          \n"
