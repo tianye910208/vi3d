@@ -32,7 +32,7 @@ int _vi_lua_print(lua_State* L)
 		lua_pop(L, 1);  /* pop result */
 	}
 
-	vi_log_print(str);
+	vi_log_print("%s", str);
 	return 0;
 }
 

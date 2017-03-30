@@ -48,7 +48,7 @@ else ()
 endif ()
 
 if (WIN32 AND NOT CYGWIN)
-    add_definitions(-DLUA_USE_WINDOWS)
+#    add_definitions(-DLUA_USE_WINDOWS)
 else ()
     add_definitions(-DLUA_USE_POSIX)
     target_link_libraries(lua m)
