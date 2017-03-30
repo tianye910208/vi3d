@@ -1,5 +1,11 @@
 TARGET := test
 
+CCFLAG := -I../ -I../../lib/lua-5.3.3/src/
+LDFLAG := -L../../lib/lua-5.3.3/lib_linux/
+LDLIBS := -lEGL -lGLESv2 -lX11 -llua
+
+
+
 SRC1 :=	 $(wildcard ../linux/*.cpp) \
 	 $(wildcard ../*.cpp) \
 
@@ -13,18 +19,18 @@ OBJS += $(SRC1:../%.cpp=obj/%.o)
 all:$(OBJS)
 	@echo [M]Link...
 	@mkdir -p bin
-	g++ $(OBJS) -o bin/$(TARGET) -L/usr/local/lib/ -lEGL -lGLESv2 -lX11 
+	g++ $(OBJS) -o bin/$(TARGET) $(LDFLAG) $(LDLIBS)
 
 
 obj/%.o:../%.cpp
 	@echo [M]Compile CXX...
 	@mkdir -p $(@D)
-	g++ -c $< -o $@ -I../
+	g++ -c $< -o $@ $(CCFLAG)
 
 obj/%.o:../%.c
 	@echo [M]Compile C...
 	@mkdir -p $(@D)
-	gcc -c $< -o $@ -I../
+	gcc -c $< -o $@ $(CCFLAG)
 
 run:
 	./bin/$(TARGET)

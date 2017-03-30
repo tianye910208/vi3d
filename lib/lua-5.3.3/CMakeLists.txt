@@ -48,8 +48,9 @@ else ()
 endif ()
 
 if (WIN32 AND NOT CYGWIN)
-#    target_compile_definitions (lua PRIVATE LUA_BUILD_AS_DLL)
+    add_definitions(-DLUA_USE_WINDOWS)
 else ()
+    add_definitions(-DLUA_USE_POSIX)
     target_link_libraries(lua m)
 endif ()
 

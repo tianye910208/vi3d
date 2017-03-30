@@ -19,12 +19,16 @@ int _vi_lua_print(lua_State* L)
 		lua_pushvalue(L, i);   /* value to print */
 		lua_call(L, 1, 1);
 		s = lua_tolstring(L, -1, &l);  /* get result */
-		if (i > 1)
-			strcat(str, "\t");
 		if (s == NULL)
 			strcat(str, "***");
 		else
 			strcat(str, s);
+
+		if (i == n)
+			strcat(str, "\n");
+        else
+			strcat(str, "\t");
+
 		lua_pop(L, 1);  /* pop result */
 	}
 
