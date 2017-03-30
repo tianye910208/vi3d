@@ -58,7 +58,7 @@ int vi_lua_init()
 	return 0;
 }
 
-int vi_lua_exit()
+void vi_lua_exit()
 {
 	if (__lua_state)
 	{
@@ -66,7 +66,6 @@ int vi_lua_exit()
 		vi_mem_free(__lua_state);
 		__lua_state = NULL;
 	}
-	return 0;
 }
 
 vi_lua_state* vi_lua_getstate()

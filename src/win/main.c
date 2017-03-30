@@ -4,6 +4,10 @@
 #include "vi3d.h"
 
 
+#define APP_W 800
+#define APP_H 480
+
+
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow = NULL;
 
@@ -80,6 +84,9 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+	case WM_SIZE:
+		vi_app_screen_size(LOWORD(lParam), HIWORD(lParam));
+		break;
     case WM_CHAR:
         break;
     default:
@@ -107,7 +114,7 @@ int win_init(const char* name, int w, int h)
         return 1;
 
 
-    DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX;
+	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME;
     RECT winrect;
     winrect.left = 0;
     winrect.top = 0;
@@ -155,11 +162,8 @@ void win_loop()
             dt = (float)(t2 - t1) / 1000.0f;
             t1 = t2;
 
-            //update
-            //render
-            test_draw();
-            eglSwapBuffers(eglDisplay, eglSurface);
-
+			vi_app_loop(dt);
+			eglSwapBuffers(eglDisplay, eglSurface);
             Sleep(10);
         }
     }
@@ -168,15 +172,18 @@ void win_loop()
 
 int main(int argc, char *argv[])
 {
-    if (win_init("vi3d", 800, 480) != 0)
+	if (win_init("vi3d", APP_W, APP_H) != 0)
         return 1;
     if (egl_init() != 0)
         return 2;
 
 	vi_log("%s", (const char*)glGetString(GL_EXTENSIONS));
-    test_init();
-
+	vi_app_init();
+	vi_app_screen_size(APP_W, APP_H);
+	
     win_loop();
+
+	vi_app_exit();
 
     egl_exit();
     win_exit();

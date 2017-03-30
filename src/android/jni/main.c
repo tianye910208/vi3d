@@ -14,7 +14,8 @@
 
 #include "vi3d.h"
 
-
+int screenWidth = 0;
+int screenHeight = 0;
 
 ANativeActivity* nativeActivity = NULL;
 ANativeWindow*	 nativeShowWindow = NULL;
@@ -123,18 +124,20 @@ void win_loop()
 		}
 		else if (nativeShowWindow == NULL)
 		{
-			while (nativeShowWindow == NULL)
-				usleep(1000);
-		
-			if (nativeWindow != nativeShowWindow)
-			{ 
-				nativeWindow = nativeShowWindow;
-				eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
-				if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-					vi_log("eglCreateWindowSurface %d", eglGetError());
-				if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-					vi_log("eglMakeCurrent %d", eglGetError());
-			}
+			usleep(10000);
+		}
+		else if (nativeShowWindow != nativeWindow)
+		{ 
+			nativeWindow = nativeShowWindow;
+			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
+			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
+				vi_log("eglCreateWindowSurface %d", eglGetError());
+			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
+				vi_log("eglMakeCurrent %d", eglGetError());
+			screenWidth = ANativeWindow_getWidth(nativeWindow);
+			screenHeight = ANativeWindow_getHeight(nativeWindow);
+			vi_log("xxxxxxxxxxxxxxxxxxxxxxx w:%d h:%d", screenWidth, screenHeight);
+			vi_app_screen_size(screenWidth, screenHeight);
 		}
 		else
 		{
@@ -142,10 +145,7 @@ void win_loop()
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
 
-			//update
-			//render
-			test_draw();
-
+			vi_app_loop(dt);
 			eglSwapBuffers(eglDisplay, eglSurface);
 			usleep(10000);
 		}
@@ -164,9 +164,12 @@ void* android_main(void* args)
 
 
 	vi_log((const char*)glGetString(GL_EXTENSIONS));
-	test_init();
+	vi_app_init();
+	vi_app_screen_size(screenWidth, screenHeight);
 
 	win_loop();
+
+	vi_app_exit();
 
 	egl_exit();
 	win_exit();
@@ -217,16 +220,26 @@ static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen)
 static void onWindowFocusChanged(ANativeActivity* activity, int focused)
 {
 	vi_log("onWindowFocusChanged %d", focused);
+
 }
 
 static void onConfigurationChanged(ANativeActivity* activity)
 {
 	vi_log("onConfigurationChanged");
+	if (nativeShowWindow)
+	{
+		screenWidth = ANativeWindow_getWidth(nativeShowWindow);
+		screenHeight = ANativeWindow_getHeight(nativeShowWindow);
+		vi_log("onConfigurationChanged w:%d h:%d", screenWidth, screenHeight);
+	}
 }
 
 static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
 {
-	vi_log("onNativeWindowCreated  %p, %p", nativeShowWindow, window);
+	screenWidth = ANativeWindow_getWidth(window);
+	screenHeight = ANativeWindow_getHeight(window);
+	
+	vi_log("onNativeWindowCreated  %p, %p, w:%d h:%d", nativeShowWindow, window, screenWidth, screenHeight);
 	nativeShowWindow = window;
 }
 

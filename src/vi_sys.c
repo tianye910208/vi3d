@@ -12,7 +12,7 @@
 #ifdef VI3D_SYS_ANDROID
 
 static ANativeActivity* __sys_activity = NULL;
-int vi_sys_set_activity(ANativeActivity* activity)
+void vi_sys_set_activity(ANativeActivity* activity)
 {
 	__sys_activity = activity;
 }

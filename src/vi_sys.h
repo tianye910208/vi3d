@@ -78,7 +78,7 @@ typedef unsigned long long  uint64;
 #include <EGL/eglext.h>
 #include <android/native_activity.h>
 
-int vi_sys_set_activity(ANativeActivity* activity);
+void vi_sys_set_activity(ANativeActivity* activity);
 ANativeActivity* vi_sys_get_activity();
 
 #endif

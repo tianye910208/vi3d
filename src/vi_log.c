@@ -4,10 +4,9 @@
 
 static vi_log_func	__log_func = _vi_log_print;
 
-int vi_log_setfunc(vi_log_func func)
+void vi_log_setfunc(vi_log_func func)
 {
 	__log_func = func;
-	return 0;
 }
 
 vi_log_func vi_log_getfunc()
@@ -17,13 +16,12 @@ vi_log_func vi_log_getfunc()
 
 
 
-int _vi_log_print(const char* file, int line, const char* msg)
+void _vi_log_print(const char* file, int line, const char* msg)
 {
 	vi_log_print("%s  @%s:%d\n", msg, file, line);
-	return 0;
 }
 
-int _vi_log(const char* file, int line, const char* fmt, ...)
+void _vi_log(const char* file, int line, const char* fmt, ...)
 {
 	if (__log_func)
 	{
@@ -37,7 +35,6 @@ int _vi_log(const char* file, int line, const char* fmt, ...)
 
 		__log_func(file, line, str);
 	}
-	return 0;
 }
 
 

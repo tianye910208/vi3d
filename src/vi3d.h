@@ -14,7 +14,6 @@ extern "C" {
 #include "vi_app.h"
 #include "vi_msg.h"
 #include "vi_lua.h"
-#include "test.h"
 
 
 

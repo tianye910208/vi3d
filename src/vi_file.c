@@ -37,6 +37,24 @@ vi_file* vi_file_open(const char* filepath, const char* mode)
 	}
 }
 
+void vi_file_close(vi_file* f)
+{
+	if (f)
+	{
+		if (f->fd)
+		{
+#ifdef VI3D_SYS_ANDROID
+			AAsset_close(f->fd);
+#else
+			fclose(f->fd);
+#endif
+			f->fd = NULL;
+		}
+
+		vi_mem_free(f);
+	}
+}
+
 int vi_file_read(vi_file* f, char* data, int n)
 {
 	int read = 0;
@@ -88,24 +106,6 @@ int vi_file_size(vi_file* f)
 	return 0;
 }
 
-int vi_file_close(vi_file* f)
-{
-	if (f)
-	{
-		if (f->fd)
-		{
-#ifdef VI3D_SYS_ANDROID
-			AAsset_close(f->fd);
-#else
-			fclose(f->fd);
-#endif
-			f->fd = NULL;
-		}
-
-		vi_mem_free(f);
-	}
-	return 0;
-}
 
 
 

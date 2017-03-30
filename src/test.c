@@ -50,6 +50,8 @@ GLuint programObject;
 int test_init()
 {
 
+	vi_app_design_size(1280, 720);
+
 	vi_file* f = vi_file_open("data/test.txt", "r");
 	vi_log("file_open: %p", f);
 	vi_log("file_size: %d", vi_file_size(f));
@@ -60,7 +62,6 @@ int test_init()
 	vi_log(data);
 
 
-	vi_lua_init();
 	vi_lua_exec("print('[ViLua]From Lua:Hello World!', nil, {}, true, 101)");
 
     char vShaderStr[] =
@@ -126,7 +127,6 @@ int test_init()
         return 0;
     }
 
-
     glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
     return 1;
 }
@@ -143,7 +143,8 @@ void test_draw()
     };
 
     // Set the viewport
-    glViewport(0, 0, 800, 480);
+	vi_app* app = vi_app_info();
+	glViewport(app->viewport_x, app->viewport_y, app->viewport_w, app->viewport_h);
 
     // Clear the color buffer
     glClear(GL_COLOR_BUFFER_BIT);
