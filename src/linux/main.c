@@ -7,6 +7,10 @@
 #include "vi3d.h"
 
 
+#define APP_W 800
+#define APP_H 480
+
+
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow = 0;
 
@@ -98,12 +102,12 @@ int win_init(const char *title, int w, int h)
     wmDeleteWindow = XInternAtom(nativeDisplay, "WM_DELETE_WINDOW", False);
     XSetWMProtocols(nativeDisplay, nativeWindow, &wmDeleteWindow, 1);
 
-    XSizeHints* hints = XAllocSizeHints();
-    hints->flags |= (PMinSize | PMaxSize);
-    hints->min_width  = hints->max_width  = w;
-    hints->min_height = hints->max_height = h;
-    XSetWMNormalHints(nativeDisplay, nativeWindow, hints);
-    XFree(hints);
+    //XSizeHints* hints = XAllocSizeHints();
+    //hints->flags |= (PMinSize | PMaxSize);
+    //hints->min_width  = hints->max_width  = w;
+    //hints->min_height = hints->max_height = h;
+    //XSetWMNormalHints(nativeDisplay, nativeWindow, hints);
+    //XFree(hints);
 
 
     XFlush(nativeDisplay);
@@ -116,6 +120,18 @@ void win_exit()
 {
     XDestroyWindow(nativeDisplay, nativeWindow);
     XCloseDisplay(nativeDisplay);
+}
+
+void win_proc(XEvent* pev)
+{
+    switch(pev->type)
+    {
+        case ConfigureNotify:
+            vi_app_screen_size(pev->xconfigure.width, pev->xconfigure.height);
+            break;
+        default:
+            break;
+    }
 }
 
 void win_loop()
@@ -134,6 +150,7 @@ void win_loop()
             XNextEvent(nativeDisplay, &xev);
             if (xev.type == ClientMessage && xev.xclient.data.l[0] == wmDeleteWindow)
                 return;
+            win_proc(&xev);
         }
         else
         {
@@ -141,10 +158,7 @@ void win_loop()
             dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
             t1 = t2;
 
-            //update
-            //render
-            test_draw();
-
+            vi_app_loop(dt);
             eglSwapBuffers(eglDisplay, eglSurface);
             usleep(10000);
         }
@@ -156,16 +170,18 @@ void win_loop()
 int main(int argc, char *argv[])
 {
 
-    if (win_init("vi3d", 800, 480) != 0)
+    if (win_init("vi3d", APP_W, APP_H) != 0)
         return 1;
     if (egl_init() != 0)
         return 2;
 
     vi_log((const char*)glGetString(GL_EXTENSIONS));
-    test_init();
+    vi_app_init();
+    vi_app_screen_size(APP_W, APP_H);
 
     win_loop();
 
+    vi_app_exit();
     egl_exit();
     win_exit();
     return 0;
