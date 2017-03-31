@@ -134,10 +134,7 @@ void win_loop()
 				vi_log("eglCreateWindowSurface %d", eglGetError());
 			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
 				vi_log("eglMakeCurrent %d", eglGetError());
-			screenWidth = ANativeWindow_getWidth(nativeWindow);
-			screenHeight = ANativeWindow_getHeight(nativeWindow);
-			vi_log("xxxxxxxxxxxxxxxxxxxxxxx w:%d h:%d", screenWidth, screenHeight);
-			vi_app_screen_size(screenWidth, screenHeight);
+			//vi_app_screen_size(screenWidth, screenHeight);
 		}
 		else
 		{
@@ -226,12 +223,6 @@ static void onWindowFocusChanged(ANativeActivity* activity, int focused)
 static void onConfigurationChanged(ANativeActivity* activity)
 {
 	vi_log("onConfigurationChanged");
-	if (nativeShowWindow)
-	{
-		screenWidth = ANativeWindow_getWidth(nativeShowWindow);
-		screenHeight = ANativeWindow_getHeight(nativeShowWindow);
-		vi_log("onConfigurationChanged w:%d h:%d", screenWidth, screenHeight);
-	}
 }
 
 static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
