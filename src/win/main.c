@@ -114,7 +114,7 @@ int win_init(const char* name, int w, int h)
         return 1;
 
 
-	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME;
+	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
     RECT winrect;
     winrect.left = 0;
     winrect.top = 0;
