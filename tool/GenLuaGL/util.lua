@@ -2,7 +2,7 @@
 --@tianye112197
 --@2016-12-07
 ------------------------------------
-local lfs = require("lfs")
+local lfs = lfs or require("lfs")
 
 function lsdir(path, ext, ret)
     ret = ret or {}
