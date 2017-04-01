@@ -10,7 +10,7 @@ LOCAL_LDLIBS := -llog -landroid -lm -lEGL -lGLESv2
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../lib/lua-5.3.3/src
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../3rd/lua-5.3.3/src
 
 
 SRC_FILES := $(wildcard $(LOCAL_PATH)/*.cpp)
@@ -24,7 +24,7 @@ LOCAL_STATIC_LIBRARIES := lua_static
 
 include $(BUILD_SHARED_LIBRARY)
 
-$(call import-add-path, $(LOCAL_PATH)/../../../lib)
+$(call import-add-path, $(LOCAL_PATH)/../../../3rd)
 $(call import-module, lua-5.3.3/lib_android)
 
 
