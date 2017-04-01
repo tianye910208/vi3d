@@ -10,7 +10,7 @@ goto missing
 
 :build
 
-call %VCVARS% 
+call %VCVARS% x64
 
 set ANDROID_NDK=D:\android\android-ndk-r10e
 
