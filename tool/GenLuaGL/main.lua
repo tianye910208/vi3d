@@ -53,10 +53,15 @@ end
 
 function main()
     local deflist = loaddef()
+    
+    local retTypes = {}
+    local argTypes = {}
     for i,v in ipairs(deflist) do
+        retTypes[v.type] = (retTypes[v.type] or 0) + 1
         local str = v.type.."\t"..v.name.."("
         local n = #v.args
         for i,arg in ipairs(v.args) do
+            argTypes[arg.type] = (argTypes[arg.type] or 0) + 1
             str = str .. arg.type.." "..arg.name
             if i < n then
                 str = str .. ", "
@@ -64,6 +69,13 @@ function main()
         end
         str = str .. ")"
         print(str)
+    end
+    
+    for k,v in pairs(retTypes) do
+        print("ret", k,"",v)
+    end
+    for k,v in pairs(argTypes) do
+        print("arg", k,"",v)
     end
 end
 

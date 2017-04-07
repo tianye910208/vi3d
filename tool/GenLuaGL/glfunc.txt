@@ -1,0 +1,335 @@
+
+D:\workdir\vi3d\tool\GenLuaGL>..\bin\lua.exe main.lua 
+main-----------------------------
+======xml/glActiveTexture.xml======
+======xml/glAttachShader.xml======
+======xml/glBindAttribLocation.xml======
+======xml/glBindBuffer.xml======
+======xml/glBindFramebuffer.xml======
+======xml/glBindRenderbuffer.xml======
+======xml/glBindTexture.xml======
+======xml/glBlendColor.xml======
+======xml/glBlendEquation.xml======
+======xml/glBlendEquationSeparate.xml======
+======xml/glBlendFunc.xml======
+======xml/glBlendFuncSeparate.xml======
+======xml/glBufferData.xml======
+======xml/glBufferSubData.xml======
+======xml/glCheckFramebufferStatus.xml======
+======xml/glClear.xml======
+======xml/glClearColor.xml======
+======xml/glClearDepthf.xml======
+======xml/glClearStencil.xml======
+======xml/glColorMask.xml======
+======xml/glCompileShader.xml======
+======xml/glCompressedTexImage2D.xml======
+======xml/glCompressedTexSubImage2D.xml======
+======xml/glCopyTexImage2D.xml======
+======xml/glCopyTexSubImage2D.xml======
+======xml/glCreateProgram.xml======
+======xml/glCreateShader.xml======
+======xml/glCullFace.xml======
+======xml/glDeleteBuffers.xml======
+======xml/glDeleteFramebuffers.xml======
+======xml/glDeleteProgram.xml======
+======xml/glDeleteRenderbuffers.xml======
+======xml/glDeleteShader.xml======
+======xml/glDeleteTextures.xml======
+======xml/glDepthFunc.xml======
+======xml/glDepthMask.xml======
+======xml/glDepthRangef.xml======
+======xml/glDetachShader.xml======
+======xml/glDrawArrays.xml======
+======xml/glDrawElements.xml======
+======xml/glEnable.xml======
+======xml/glEnableVertexAttribArray.xml======
+======xml/glFinish.xml======
+======xml/glFlush.xml======
+======xml/glFramebufferRenderbuffer.xml======
+======xml/glFramebufferTexture2D.xml======
+======xml/glFrontFace.xml======
+======xml/glGenBuffers.xml======
+======xml/glGenerateMipmap.xml======
+======xml/glGenFramebuffers.xml======
+======xml/glGenRenderbuffers.xml======
+======xml/glGenTextures.xml======
+======xml/glGet.xml======
+======xml/glGetActiveAttrib.xml======
+======xml/glGetActiveUniform.xml======
+======xml/glGetAttachedShaders.xml======
+======xml/glGetAttribLocation.xml======
+======xml/glGetBufferParameteriv.xml======
+======xml/glGetError.xml======
+======xml/glGetFramebufferAttachmentParameteriv.xml======
+======xml/glGetProgramInfoLog.xml======
+======xml/glGetProgramiv.xml======
+======xml/glGetRenderbufferParameteriv.xml======
+======xml/glGetShaderInfoLog.xml======
+======xml/glGetShaderiv.xml======
+======xml/glGetShaderPrecisionFormat.xml======
+======xml/glGetShaderSource.xml======
+======xml/glGetString.xml======
+======xml/glGetTexParameter.xml======
+======xml/glGetUniform.xml======
+======xml/glGetUniformLocation.xml======
+======xml/glGetVertexAttrib.xml======
+======xml/glGetVertexAttribPointerv.xml======
+======xml/glHint.xml======
+======xml/glIsBuffer.xml======
+======xml/glIsEnabled.xml======
+======xml/glIsFramebuffer.xml======
+======xml/glIsProgram.xml======
+======xml/glIsRenderbuffer.xml======
+======xml/glIsShader.xml======
+======xml/glIsTexture.xml======
+======xml/glLineWidth.xml======
+======xml/glLinkProgram.xml======
+======xml/glPixelStorei.xml======
+======xml/glPolygonOffset.xml======
+======xml/glReadPixels.xml======
+======xml/glReleaseShaderCompiler.xml======
+======xml/glRenderbufferStorage.xml======
+======xml/glSampleCoverage.xml======
+======xml/glScissor.xml======
+======xml/glShaderBinary.xml======
+======xml/glShaderSource.xml======
+======xml/glStencilFunc.xml======
+======xml/glStencilFuncSeparate.xml======
+======xml/glStencilMask.xml======
+======xml/glStencilMaskSeparate.xml======
+======xml/glStencilOp.xml======
+======xml/glStencilOpSeparate.xml======
+======xml/glTexImage2D.xml======
+======xml/glTexParameter.xml======
+======xml/glTexSubImage2D.xml======
+======xml/glUniform.xml======
+======xml/glUseProgram.xml======
+======xml/glValidateProgram.xml======
+======xml/glVertexAttrib.xml======
+======xml/glVertexAttribPointer.xml======
+======xml/glViewport.xml======
+
+
+void 	glActiveTexture(GLenum  texture)
+void 	glAttachShader(GLuint  program, GLuint  shader)
+void 	glBindAttribLocation(GLuint  program, GLuint  index, const GLchar * name)
+void 	glBindBuffer(GLenum  target, GLuint  buffer)
+void 	glBindFramebuffer(GLenum  target, GLuint  framebuffer)
+void 	glBindRenderbuffer(GLenum  target, GLuint  renderbuffer)
+void 	glBindTexture(GLenum  target, GLuint  texture)
+void 	glBlendColor(GLclampf  red, GLclampf  green, GLclampf  blue, GLclampf  alpha)
+void 	glBlendEquation(GLenum  mode)
+void 	glBlendEquationSeparate(GLenum  modeRGB, GLenum  modeAlpha)
+void 	glBlendFunc(GLenum  sfactor, GLenum  dfactor)
+void 	glBlendFuncSeparate(GLenum  srcRGB, GLenum  dstRGB, GLenum  srcAlpha, GLenum  dstAlpha)
+void 	glBufferData(GLenum  target, GLsizeiptr  size, const GLvoid *  data, GLenum  usage)
+void 	glBufferSubData(GLenum  target, GLintptr  offset, GLsizeiptr  size, const GLvoid *  data)
+GLenum 	glCheckFramebufferStatus(GLenum  target)
+void 	glClear(GLbitfield  mask)
+void 	glClearColor(GLclampf  red, GLclampf  green, GLclampf  blue, GLclampf  alpha)
+void 	glClearDepthf(GLclampf  depth)
+void 	glClearStencil(GLint  s)
+void 	glColorMask(GLboolean  red, GLboolean  green, GLboolean  blue, GLboolean  alpha)
+void 	glCompileShader(GLuint  shader)
+void 	glCompressedTexImage2D(GLenum  target, GLint  level, GLenum  internalformat, GLsizei  width, GLsizei  height, GLint  border, GLsizei  imageSize, const GLvoid *  data)
+void 	glCompressedTexSubImage2D(GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLsizei  width, GLsizei  height, GLenum  format, GLsizei  imageSize, const GLvoid *  data)
+void 	glCopyTexImage2D(GLenum  target, GLint  level, GLenum  internalformat, GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLint  border)
+void 	glCopyTexSubImage2D(GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLint  x, GLint  y, GLsizei  width, GLsizei  height)
+GLuint 	glCreateProgram()
+GLuint 	glCreateShader(GLenum  shaderType)
+void 	glCullFace(GLenum  mode)
+void 	glDeleteProgram(GLuint  program)
+void 	glDeleteShader(GLuint  shader)
+void 	glDepthFunc(GLenum  func)
+void 	glDepthMask(GLboolean  flag)
+void 	glDepthRangef(GLclampf  nearVal, GLclampf  farVal)
+void 	glDetachShader(GLuint  program, GLuint  shader)
+void 	glDrawArrays(GLenum  mode, GLint  first, GLsizei  count)
+void 	glDrawElements(GLenum  mode, GLsizei  count, GLenum  type, const GLvoid *  indices)
+void 	glEnable(GLenum  cap)
+void 	glDisable(GLenum  cap)
+void 	glEnableVertexAttribArray(GLuint  index)
+void 	glDisableVertexAttribArray(GLuint  index)
+void 	glFinish()
+void 	glFlush()
+void 	glFramebufferRenderbuffer(GLenum  target, GLenum  attachment, GLenum  renderbuffertarget, GLuint  renderbuffer)
+void 	glFramebufferTexture2D(GLenum  target, GLenum  attachment, GLenum  textarget, GLuint  texture, GLint  level)
+void 	glFrontFace(GLenum  mode)
+void 	glGenerateMipmap(GLenum  target)
+void 	glHint(GLenum  target, GLenum  mode)
+GLboolean 	glIsBuffer(GLuint  buffer)
+GLboolean 	glIsEnabled(GLenum  cap)
+GLboolean 	glIsFramebuffer(GLuint  framebuffer)
+GLboolean 	glIsProgram(GLuint  program)
+GLboolean 	glIsRenderbuffer(GLuint  renderbuffer)
+GLboolean 	glIsShader(GLuint  shader)
+GLboolean 	glIsTexture(GLuint  texture)
+void 	glLineWidth(GLfloat  width)
+void 	glLinkProgram(GLuint  program)
+void 	glPixelStorei(GLenum  pname, GLint  param)
+void 	glPolygonOffset(GLfloat  factor, GLfloat  units)
+
+void 	glReleaseShaderCompiler()
+void 	glRenderbufferStorage(GLenum  target, GLenum  internalformat, GLsizei  width, GLsizei  height)
+void 	glSampleCoverage(GLclampf  value, GLboolean  invert)
+void 	glScissor(GLint  x, GLint  y, GLsizei  width, GLsizei  height)
+
+void 	glShaderBinary(GLsizei  n, const GLuint * shaders, GLenum  binaryformat, const void * binary, GLsizei  length)
+
+void 	glStencilFunc(GLenum  func, GLint  ref, GLuint  mask)
+void 	glStencilFuncSeparate(GLenum  face, GLenum  func, GLint  ref, GLuint  mask)
+void 	glStencilMask(GLuint  mask)
+void 	glStencilMaskSeparate(GLenum  face, GLuint  mask)
+void 	glStencilOp(GLenum  sfail, GLenum  dpfail, GLenum  dppass)
+void 	glStencilOpSeparate(GLenum  face, GLenum  sfail, GLenum  dpfail, GLenum  dppass)
+void 	glTexImage2D(GLenum  target, GLint  level, GLint  internalformat, GLsizei  width, GLsizei  height, GLint  border, GLenum  format, GLenum  type, const GLvoid *  data)
+void 	glTexParameterf(GLenum  target, GLenum  pname, GLfloat  param)
+void 	glTexParameteri(GLenum  target, GLenum  pname, GLint  param)
+void 	glTexParameterfv(GLenum  target, GLenum  pname, const GLfloat *  params)
+void 	glTexParameteriv(GLenum  target, GLenum  pname, const GLint *  params)
+void 	glTexSubImage2D(GLenum  target, GLint  level, GLint  xoffset, GLint  yoffset, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, const GLvoid *  data)
+void 	glUniform1f(GLint  location, GLfloat  v0)
+void 	glUniform2f(GLint  location, GLfloat  v0, GLfloat  v1)
+void 	glUniform3f(GLint  location, GLfloat  v0, GLfloat  v1, GLfloat  v2)
+void 	glUniform4f(GLint  location, GLfloat  v0, GLfloat  v1, GLfloat  v2, GLfloat  v3)
+void 	glUniform1i(GLint  location, GLint  v0)
+void 	glUniform2i(GLint  location, GLint  v0, GLint  v1)
+void 	glUniform3i(GLint  location, GLint  v0, GLint  v1, GLint  v2)
+void 	glUniform4i(GLint  location, GLint  v0, GLint  v1, GLint  v2, GLint  v3)
+void 	glUniform1fv(GLint  location, GLsizei  count, const GLfloat * value)
+void 	glUniform2fv(GLint  location, GLsizei  count, const GLfloat * value)
+void 	glUniform3fv(GLint  location, GLsizei  count, const GLfloat * value)
+void 	glUniform4fv(GLint  location, GLsizei  count, const GLfloat * value)
+void 	glUniform1iv(GLint  location, GLsizei  count, const GLint * value)
+void 	glUniform2iv(GLint  location, GLsizei  count, const GLint * value)
+void 	glUniform3iv(GLint  location, GLsizei  count, const GLint * value)
+void 	glUniform4iv(GLint  location, GLsizei  count, const GLint * value)
+void 	glUniformMatrix2fv(GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat * value)
+void 	glUniformMatrix3fv(GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat * value)
+void 	glUniformMatrix4fv(GLint  location, GLsizei  count, GLboolean  transpose, const GLfloat * value)
+void 	glUseProgram(GLuint  program)
+void 	glValidateProgram(GLuint  program)
+void 	glVertexAttrib1f(GLuint  index, GLfloat  v0)
+void 	glVertexAttrib2f(GLuint  index, GLfloat  v0, GLfloat  v1)
+void 	glVertexAttrib3f(GLuint  index, GLfloat  v0, GLfloat  v1, GLfloat  v2)
+void 	glVertexAttrib4f(GLuint  index, GLfloat  v0, GLfloat  v1, GLfloat  v2, GLfloat  v3)
+void 	glVertexAttrib1fv(GLuint  index, const GLfloat * v)
+void 	glVertexAttrib2fv(GLuint  index, const GLfloat * v)
+void 	glVertexAttrib3fv(GLuint  index, const GLfloat * v)
+void 	glVertexAttrib4fv(GLuint  index, const GLfloat * v)
+void 	glVertexAttribPointer(GLuint  index, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const GLvoid *  pointer)
+void 	glViewport(GLint  x, GLint  y, GLsizei  width, GLsizei  height)
+
+GLenum 	glGetError()
+const GLubyte* 	glGetString(GLenum  name)
+GLint 	glGetAttribLocation(GLuint  program, const GLchar * name)
+GLint 	glGetUniformLocation(GLuint  program, const GLchar * name)
+
+
+
+
+void 	glGenBuffers(GLsizei  n, GLuint *  buffers)
+void 	glGenFramebuffers(GLsizei  n, GLuint *  framebuffers)
+void 	glGenRenderbuffers(GLsizei  n, GLuint *  renderbuffers)
+void 	glGenTextures(GLsizei  n, GLuint *  textures)
+
+void 	glDeleteBuffers(GLsizei  n, const GLuint *  buffers)
+void 	glDeleteFramebuffers(GLsizei  n, const GLuint *  framebuffers)
+void 	glDeleteRenderbuffers(GLsizei  n, const GLuint *  renderbuffers)
+void 	glDeleteTextures(GLsizei  n, const GLuint *  textures)
+
+
+void 	glGetBooleanv(GLenum  pname, GLboolean *  params)
+void 	glGetFloatv(GLenum  pname, GLfloat *  params)
+void 	glGetIntegerv(GLenum  pname, GLint *  params)
+
+void 	glGetBufferParameteriv(GLenum  target, GLenum  value, GLint *  data)
+
+void 	glGetFramebufferAttachmentParameteriv(GLenum  target, GLenum  attachment, GLenum  pname, GLint *  params)
+
+void 	glGetProgramiv(GLuint  program, GLenum  pname, GLint * params)
+void 	glGetRenderbufferParameteriv(GLenum  target, GLenum  pname, GLint *  params)
+
+void 	glGetShaderiv(GLuint  shader, GLenum  pname, GLint * params)
+void 	glGetShaderPrecisionFormat(GLenum  shaderType, GLenum  precisionType, GLint * range, GLint * precision)
+
+
+void 	glGetTexParameterfv(GLenum  target, GLenum  pname, GLfloat *  params)
+void 	glGetTexParameteriv(GLenum  target, GLenum  pname, GLint *  params)
+void 	glGetUniformfv(GLuint  program, GLint  location, GLfloat * params)
+void 	glGetUniformiv(GLuint  program, GLint  location, GLint * params)
+void 	glGetVertexAttribfv(GLuint  index, GLenum  pname, GLfloat * params)
+void 	glGetVertexAttribiv(GLuint  index, GLenum  pname, GLint * params)
+
+
+
+
+
+
+void 	glGetActiveAttrib(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
+void 	glGetActiveUniform(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
+void 	glGetShaderSource(GLuint  shader, GLsizei  bufSize, GLsizei * length, GLchar * source)
+
+void 	glGetProgramInfoLog(GLuint  program, GLsizei  maxLength, GLsizei * length, GLchar * infoLog)
+void 	glGetShaderInfoLog(GLuint  shader, GLsizei  maxLength, GLsizei * length, GLchar * infoLog)
+
+
+
+
+
+[DEL]void 	glGetVertexAttribPointerv(GLuint  index, GLenum  pname, GLvoid ** pointer)
+
+[MMM]void 	glShaderSource(GLuint  shader, GLsizei  count, const GLchar * const * string, const GLint * length)
+
+[MMM]void 	glGetAttachedShaders(GLuint  program, GLsizei  maxCount, GLsizei * count, GLuint * shaders)
+
+[MMM]void 	glReadPixels(GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, GLvoid *  data)
+
+
+
+
+
+
+
+ret	GLint 		2
+ret	const GLubyte* 		1
+ret	void 		124
+ret	GLboolean 		7
+ret	GLuint 		2
+ret	GLenum 		2
+
+arg	GLuint * 		4
+arg	GLsizei *		5
+arg	GLenum *		2
+arg	GLchar *		5
+arg	GLint * 		13
+arg	GLfloat *		4
+arg	GLboolean * 		1
+
+
+
+
+arg	const void *		1
+arg	const GLvoid * 		8
+arg	const GLchar *		3
+arg	const GLfloat *		11
+arg	const GLint *		5
+arg	const GLuint *		5
+arg	const GLfloat * 		1
+
+
+arg	GLint 		63
+arg	GLuint 		54
+arg	GLenum 		95
+arg	GLfloat 		24
+arg	GLboolean 		10
+arg	GLsizei 		49
+arg	GLbitfield 		1
+arg	GLclampf 		12
+arg	GLintptr 		1
+arg	GLsizeiptr 		2
+
+
+
+
+
