@@ -4,7 +4,7 @@
 
 static vi_lua_state* __lua_state = NULL;
 
-int _vi_lua_print(lua_State* L)
+static int _vi_lua_print(lua_State* L)
 {
 	char str[4096];
 	str[0] = '\0';

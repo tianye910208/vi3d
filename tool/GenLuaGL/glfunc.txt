@@ -266,10 +266,13 @@ void 	glGetVertexAttribiv(GLuint  index, GLenum  pname, GLint * params)
 
 
 
+
+
+
+
 void 	glGetActiveAttrib(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
 void 	glGetActiveUniform(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
 void 	glGetShaderSource(GLuint  shader, GLsizei  bufSize, GLsizei * length, GLchar * source)
-
 void 	glGetProgramInfoLog(GLuint  program, GLsizei  maxLength, GLsizei * length, GLchar * infoLog)
 void 	glGetShaderInfoLog(GLuint  shader, GLsizei  maxLength, GLsizei * length, GLchar * infoLog)
 
@@ -291,43 +294,43 @@ void 	glGetShaderInfoLog(GLuint  shader, GLsizei  maxLength, GLsizei * length, G
 
 
 
-ret	GLint 		2
-ret	const GLubyte* 		1
-ret	void 		124
-ret	GLboolean 		7
-ret	GLuint 		2
-ret	GLenum 		2
+type--------------------------
+ret	GLboolean		7
+ret	const GLubyte*		1
+ret	GLuint		2
+ret	GLint		2
+ret	GLenum		2
+ret	void		124
 
-arg	GLuint * 		4
-arg	GLsizei *		5
-arg	GLenum *		2
-arg	GLchar *		5
-arg	GLint * 		13
+
+arg	GLboolean *		1
 arg	GLfloat *		4
-arg	GLboolean * 		1
+arg	GLsizei *		5
+arg	GLint *		13
+arg	GLenum *		2
+arg	GLuint *		4
+arg	GLchar *		5
 
 
 
 
-arg	const void *		1
-arg	const GLvoid * 		8
+arg	GLintptr		1
+arg	GLclampf		12
+arg	GLfloat		24
+arg	GLuint		54
+arg	GLsizeiptr		2
+arg	GLsizei		49
+arg	GLbitfield		1
+arg	GLenum		95
+arg	GLint		63
+arg	GLboolean		10
+
 arg	const GLchar *		3
-arg	const GLfloat *		11
+arg	const GLvoid *		8
 arg	const GLint *		5
 arg	const GLuint *		5
-arg	const GLfloat * 		1
-
-
-arg	GLint 		63
-arg	GLuint 		54
-arg	GLenum 		95
-arg	GLfloat 		24
-arg	GLboolean 		10
-arg	GLsizei 		49
-arg	GLbitfield 		1
-arg	GLclampf 		12
-arg	GLintptr 		1
-arg	GLsizeiptr 		2
+arg	const GLfloat *		12
+arg	const void *		1
 
 
 
