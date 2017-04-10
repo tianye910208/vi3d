@@ -47,7 +47,7 @@ local load_f_list = function(name, tt, idx)
     return tt.." "..name.." = ("..tt..")lua_tonumber(L, "..idx..");\n"
 end
 
-local load_ptr_var = function(name, tt, idx)
+local load_def_ptr = function(name, tt, idx)
     return string.gsub(tt, "%*$", name..";"), "&"..name
 end
 
@@ -88,11 +88,11 @@ local arg_type = {
     ["const void *"] = {load_s},
 
 
-    ["GLboolean *"] = {load_ptr_var, push_b},
-    ["GLfloat *"] = {load_ptr_var, push_f},
-    ["GLsizei *"] = {load_ptr_var, push_n},
-    ["GLint *"] = {load_ptr_var, push_n},
-    ["GLenum *"] = {load_ptr_var, push_n},
+    ["GLboolean *"] = {load_def_ptr, push_b},
+    ["GLfloat *"] = {load_def_ptr, push_f},
+    ["GLsizei *"] = {load_def_ptr, push_n},
+    ["GLint *"] = {load_def_ptr, push_n},
+    ["GLenum *"] = {load_def_ptr, push_n},
     ["GLuint *"] = {load_def_var, push_n_list},
     ["GLchar *"] = {load_def_str, push_s},
 }
