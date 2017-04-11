@@ -20,6 +20,7 @@
 #include "lualib.h"
 
 #include "lfs.h"
+#include "liconv.h"
 
 #if !defined(LUA_PROMPT)
 #define LUA_PROMPT		"> "
@@ -568,6 +569,7 @@ static int pmain (lua_State *L) {
   }
   luaL_openlibs(L);  /* open standard libraries */
   luaopen_lfs(L);  /* open lfs libraries */
+  luaopen_liconv(L);
   createargtable(L, argv, argc, script);  /* create table 'arg' */
   if (!(args & has_E)) {  /* no option '-E'? */
     if (handle_luainit(L) != LUA_OK)  /* run LUA_INIT */
