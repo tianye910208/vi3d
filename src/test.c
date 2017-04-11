@@ -62,7 +62,7 @@ int test_init()
 	vi_log(data);
 
 
-	vi_lua_exec("print('[ViLua]From Lua:Hello World!', nil, {}, true, 101)");
+	vi_lua_exec("print('[ViLua]From Lua:Hello World!', nil, {}, true, 101)\nprint(glGetString(0x1F03))");
 
     char vShaderStr[] =
         "#version 300 es                          \n"

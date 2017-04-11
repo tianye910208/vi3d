@@ -12,6 +12,8 @@
     <ClCompile Include="..\vi_msg.c" />
     <ClCompile Include="..\vi_sys.c" />
     <ClCompile Include="..\vi3d.c" />
+    <ClCompile Include="..\ll_gles.c" />
+    <ClCompile Include="..\ll_all.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\test.h" />
@@ -25,6 +27,7 @@
     <ClInclude Include="..\vi_sys.h" />
     <ClInclude Include="..\vi3d.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\ll_all.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="vi3d.rc" />

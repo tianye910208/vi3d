@@ -1,6 +1,7 @@
 #include "vi_lua.h"
 #include "vi_log.h"
 #include "vi_mem.h"
+#include "ll_all.h"
 
 static vi_lua_state* __lua_state = NULL;
 
@@ -45,6 +46,7 @@ int vi_lua_init()
 		return 1;
 	}
 	luaL_openlibs(L);
+	ll_all_open(L);
 
 	const luaL_Reg funcs[] = {
 		{"print", _vi_lua_print},

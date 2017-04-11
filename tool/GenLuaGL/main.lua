@@ -10,7 +10,10 @@ for i,v in ipairs(deflist) do
 end
 
 local fd = io.open("ll_gles.c", "w+")
-fd:write("#include \"sys.h\"\n")
+fd:write("#include \"vi_sys.h\"\n")
+fd:write("#include \"vi_lua.h\"\n")
+fd:write("#ifdef VI3D_SYS_WIN\n#include <malloc.h>\n#endif\n")
+
 for i,v in ipairs(srclist) do
     fd:write("\n")
     fd:write(v.desc)
