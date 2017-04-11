@@ -5,6 +5,7 @@
 #endif
 
 //void glActiveTexture(GLenum texture)
+//glActiveTexture(<int>texture)
 static int _llfunc_glActiveTexture(lua_State* L) {
     GLenum texture = (GLenum)luaL_checkinteger(L, 1);
 
@@ -14,6 +15,7 @@ static int _llfunc_glActiveTexture(lua_State* L) {
 }
 
 //void glAttachShader(GLuint program, GLuint shader)
+//glAttachShader(<int>program, <int>shader)
 static int _llfunc_glAttachShader(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLuint shader = (GLuint)luaL_checkinteger(L, 2);
@@ -24,6 +26,7 @@ static int _llfunc_glAttachShader(lua_State* L) {
 }
 
 //void glBindAttribLocation(GLuint program, GLuint index, const GLchar * name)
+//glBindAttribLocation(<int>program, <int>index, <string>name)
 static int _llfunc_glBindAttribLocation(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLuint index = (GLuint)luaL_checkinteger(L, 2);
@@ -35,6 +38,7 @@ static int _llfunc_glBindAttribLocation(lua_State* L) {
 }
 
 //void glBindBuffer(GLenum target, GLuint buffer)
+//glBindBuffer(<int>target, <int>buffer)
 static int _llfunc_glBindBuffer(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLuint buffer = (GLuint)luaL_checkinteger(L, 2);
@@ -45,6 +49,7 @@ static int _llfunc_glBindBuffer(lua_State* L) {
 }
 
 //void glBindFramebuffer(GLenum target, GLuint framebuffer)
+//glBindFramebuffer(<int>target, <int>framebuffer)
 static int _llfunc_glBindFramebuffer(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLuint framebuffer = (GLuint)luaL_checkinteger(L, 2);
@@ -55,6 +60,7 @@ static int _llfunc_glBindFramebuffer(lua_State* L) {
 }
 
 //void glBindRenderbuffer(GLenum target, GLuint renderbuffer)
+//glBindRenderbuffer(<int>target, <int>renderbuffer)
 static int _llfunc_glBindRenderbuffer(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLuint renderbuffer = (GLuint)luaL_checkinteger(L, 2);
@@ -65,6 +71,7 @@ static int _llfunc_glBindRenderbuffer(lua_State* L) {
 }
 
 //void glBindTexture(GLenum target, GLuint texture)
+//glBindTexture(<int>target, <int>texture)
 static int _llfunc_glBindTexture(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLuint texture = (GLuint)luaL_checkinteger(L, 2);
@@ -75,6 +82,7 @@ static int _llfunc_glBindTexture(lua_State* L) {
 }
 
 //void glBlendColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)
+//glBlendColor(<float>red, <float>green, <float>blue, <float>alpha)
 static int _llfunc_glBlendColor(lua_State* L) {
     GLclampf red = (GLclampf)luaL_checknumber(L, 1);
     GLclampf green = (GLclampf)luaL_checknumber(L, 2);
@@ -87,6 +95,7 @@ static int _llfunc_glBlendColor(lua_State* L) {
 }
 
 //void glBlendEquation(GLenum mode)
+//glBlendEquation(<int>mode)
 static int _llfunc_glBlendEquation(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
 
@@ -96,6 +105,7 @@ static int _llfunc_glBlendEquation(lua_State* L) {
 }
 
 //void glBlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha)
+//glBlendEquationSeparate(<int>modeRGB, <int>modeAlpha)
 static int _llfunc_glBlendEquationSeparate(lua_State* L) {
     GLenum modeRGB = (GLenum)luaL_checkinteger(L, 1);
     GLenum modeAlpha = (GLenum)luaL_checkinteger(L, 2);
@@ -106,6 +116,7 @@ static int _llfunc_glBlendEquationSeparate(lua_State* L) {
 }
 
 //void glBlendFunc(GLenum sfactor, GLenum dfactor)
+//glBlendFunc(<int>sfactor, <int>dfactor)
 static int _llfunc_glBlendFunc(lua_State* L) {
     GLenum sfactor = (GLenum)luaL_checkinteger(L, 1);
     GLenum dfactor = (GLenum)luaL_checkinteger(L, 2);
@@ -116,6 +127,7 @@ static int _llfunc_glBlendFunc(lua_State* L) {
 }
 
 //void glBlendFuncSeparate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+//glBlendFuncSeparate(<int>srcRGB, <int>dstRGB, <int>srcAlpha, <int>dstAlpha)
 static int _llfunc_glBlendFuncSeparate(lua_State* L) {
     GLenum srcRGB = (GLenum)luaL_checkinteger(L, 1);
     GLenum dstRGB = (GLenum)luaL_checkinteger(L, 2);
@@ -128,6 +140,7 @@ static int _llfunc_glBlendFuncSeparate(lua_State* L) {
 }
 
 //void glBufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage)
+//glBufferData(<int>target, <int>size, <string>data, <int>usage)
 static int _llfunc_glBufferData(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLsizeiptr size = (GLsizeiptr)luaL_checkinteger(L, 2);
@@ -140,6 +153,7 @@ static int _llfunc_glBufferData(lua_State* L) {
 }
 
 //void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid * data)
+//glBufferSubData(<int>target, <int>offset, <int>size, <string>data)
 static int _llfunc_glBufferSubData(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLintptr offset = (GLintptr)luaL_checkinteger(L, 2);
@@ -152,6 +166,7 @@ static int _llfunc_glBufferSubData(lua_State* L) {
 }
 
 //GLenum glCheckFramebufferStatus(GLenum target)
+//local <int>_ll_ret = glCheckFramebufferStatus(<int>target)
 static int _llfunc_glCheckFramebufferStatus(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
 
@@ -162,6 +177,7 @@ static int _llfunc_glCheckFramebufferStatus(lua_State* L) {
 }
 
 //void glClear(GLbitfield mask)
+//glClear(<int>mask)
 static int _llfunc_glClear(lua_State* L) {
     GLbitfield mask = (GLbitfield)luaL_checkinteger(L, 1);
 
@@ -171,6 +187,7 @@ static int _llfunc_glClear(lua_State* L) {
 }
 
 //void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)
+//glClearColor(<float>red, <float>green, <float>blue, <float>alpha)
 static int _llfunc_glClearColor(lua_State* L) {
     GLclampf red = (GLclampf)luaL_checknumber(L, 1);
     GLclampf green = (GLclampf)luaL_checknumber(L, 2);
@@ -183,6 +200,7 @@ static int _llfunc_glClearColor(lua_State* L) {
 }
 
 //void glClearDepthf(GLclampf depth)
+//glClearDepthf(<float>depth)
 static int _llfunc_glClearDepthf(lua_State* L) {
     GLclampf depth = (GLclampf)luaL_checknumber(L, 1);
 
@@ -192,6 +210,7 @@ static int _llfunc_glClearDepthf(lua_State* L) {
 }
 
 //void glClearStencil(GLint s)
+//glClearStencil(<int>s)
 static int _llfunc_glClearStencil(lua_State* L) {
     GLint s = (GLint)luaL_checkinteger(L, 1);
 
@@ -201,6 +220,7 @@ static int _llfunc_glClearStencil(lua_State* L) {
 }
 
 //void glColorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha)
+//glColorMask(<bool>red, <bool>green, <bool>blue, <bool>alpha)
 static int _llfunc_glColorMask(lua_State* L) {
     GLboolean red = (GLboolean)lua_toboolean(L, 1);
     GLboolean green = (GLboolean)lua_toboolean(L, 2);
@@ -213,6 +233,7 @@ static int _llfunc_glColorMask(lua_State* L) {
 }
 
 //void glCompileShader(GLuint shader)
+//glCompileShader(<int>shader)
 static int _llfunc_glCompileShader(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
 
@@ -222,6 +243,7 @@ static int _llfunc_glCompileShader(lua_State* L) {
 }
 
 //void glCompressedTexImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid * data)
+//glCompressedTexImage2D(<int>target, <int>level, <int>internalformat, <int>width, <int>height, <int>border, <int>imageSize, <string>data)
 static int _llfunc_glCompressedTexImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -238,6 +260,7 @@ static int _llfunc_glCompressedTexImage2D(lua_State* L) {
 }
 
 //void glCompressedTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid * data)
+//glCompressedTexSubImage2D(<int>target, <int>level, <int>xoffset, <int>yoffset, <int>width, <int>height, <int>format, <int>imageSize, <string>data)
 static int _llfunc_glCompressedTexSubImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -255,6 +278,7 @@ static int _llfunc_glCompressedTexSubImage2D(lua_State* L) {
 }
 
 //void glCopyTexImage2D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border)
+//glCopyTexImage2D(<int>target, <int>level, <int>internalformat, <int>x, <int>y, <int>width, <int>height, <int>border)
 static int _llfunc_glCopyTexImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -271,6 +295,7 @@ static int _llfunc_glCopyTexImage2D(lua_State* L) {
 }
 
 //void glCopyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+//glCopyTexSubImage2D(<int>target, <int>level, <int>xoffset, <int>yoffset, <int>x, <int>y, <int>width, <int>height)
 static int _llfunc_glCopyTexSubImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -286,7 +311,8 @@ static int _llfunc_glCopyTexSubImage2D(lua_State* L) {
     return 0;
 }
 
-//GLuint glCreateProgram(
+//GLuint glCreateProgram()
+//local <int>_ll_ret = glCreateProgram()
 static int _llfunc_glCreateProgram(lua_State* L) {
 
     GLuint _ll_ret = glCreateProgram();
@@ -296,6 +322,7 @@ static int _llfunc_glCreateProgram(lua_State* L) {
 }
 
 //GLuint glCreateShader(GLenum shaderType)
+//local <int>_ll_ret = glCreateShader(<int>shaderType)
 static int _llfunc_glCreateShader(lua_State* L) {
     GLenum shaderType = (GLenum)luaL_checkinteger(L, 1);
 
@@ -306,6 +333,7 @@ static int _llfunc_glCreateShader(lua_State* L) {
 }
 
 //void glCullFace(GLenum mode)
+//glCullFace(<int>mode)
 static int _llfunc_glCullFace(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
 
@@ -315,6 +343,7 @@ static int _llfunc_glCullFace(lua_State* L) {
 }
 
 //void glDeleteBuffers(GLsizei n, const GLuint * buffers)
+//glDeleteBuffers(<int>n, {[int]}buffers)
 static int _llfunc_glDeleteBuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -335,6 +364,7 @@ static int _llfunc_glDeleteBuffers(lua_State* L) {
 }
 
 //void glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers)
+//glDeleteFramebuffers(<int>n, {[int]}framebuffers)
 static int _llfunc_glDeleteFramebuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -355,6 +385,7 @@ static int _llfunc_glDeleteFramebuffers(lua_State* L) {
 }
 
 //void glDeleteProgram(GLuint program)
+//glDeleteProgram(<int>program)
 static int _llfunc_glDeleteProgram(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
 
@@ -364,6 +395,7 @@ static int _llfunc_glDeleteProgram(lua_State* L) {
 }
 
 //void glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers)
+//glDeleteRenderbuffers(<int>n, {[int]}renderbuffers)
 static int _llfunc_glDeleteRenderbuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -384,6 +416,7 @@ static int _llfunc_glDeleteRenderbuffers(lua_State* L) {
 }
 
 //void glDeleteShader(GLuint shader)
+//glDeleteShader(<int>shader)
 static int _llfunc_glDeleteShader(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
 
@@ -393,6 +426,7 @@ static int _llfunc_glDeleteShader(lua_State* L) {
 }
 
 //void glDeleteTextures(GLsizei n, const GLuint * textures)
+//glDeleteTextures(<int>n, {[int]}textures)
 static int _llfunc_glDeleteTextures(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -413,6 +447,7 @@ static int _llfunc_glDeleteTextures(lua_State* L) {
 }
 
 //void glDepthFunc(GLenum func)
+//glDepthFunc(<int>func)
 static int _llfunc_glDepthFunc(lua_State* L) {
     GLenum func = (GLenum)luaL_checkinteger(L, 1);
 
@@ -422,6 +457,7 @@ static int _llfunc_glDepthFunc(lua_State* L) {
 }
 
 //void glDepthMask(GLboolean flag)
+//glDepthMask(<bool>flag)
 static int _llfunc_glDepthMask(lua_State* L) {
     GLboolean flag = (GLboolean)lua_toboolean(L, 1);
 
@@ -431,6 +467,7 @@ static int _llfunc_glDepthMask(lua_State* L) {
 }
 
 //void glDepthRangef(GLclampf nearVal, GLclampf farVal)
+//glDepthRangef(<float>nearVal, <float>farVal)
 static int _llfunc_glDepthRangef(lua_State* L) {
     GLclampf nearVal = (GLclampf)luaL_checknumber(L, 1);
     GLclampf farVal = (GLclampf)luaL_checknumber(L, 2);
@@ -441,6 +478,7 @@ static int _llfunc_glDepthRangef(lua_State* L) {
 }
 
 //void glDetachShader(GLuint program, GLuint shader)
+//glDetachShader(<int>program, <int>shader)
 static int _llfunc_glDetachShader(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLuint shader = (GLuint)luaL_checkinteger(L, 2);
@@ -451,6 +489,7 @@ static int _llfunc_glDetachShader(lua_State* L) {
 }
 
 //void glDrawArrays(GLenum mode, GLint first, GLsizei count)
+//glDrawArrays(<int>mode, <int>first, <int>count)
 static int _llfunc_glDrawArrays(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
     GLint first = (GLint)luaL_checkinteger(L, 2);
@@ -462,6 +501,7 @@ static int _llfunc_glDrawArrays(lua_State* L) {
 }
 
 //void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices)
+//glDrawElements(<int>mode, <int>count, <int>type, <string>indices)
 static int _llfunc_glDrawElements(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -474,6 +514,7 @@ static int _llfunc_glDrawElements(lua_State* L) {
 }
 
 //void glEnable(GLenum cap)
+//glEnable(<int>cap)
 static int _llfunc_glEnable(lua_State* L) {
     GLenum cap = (GLenum)luaL_checkinteger(L, 1);
 
@@ -483,6 +524,7 @@ static int _llfunc_glEnable(lua_State* L) {
 }
 
 //void glDisable(GLenum cap)
+//glDisable(<int>cap)
 static int _llfunc_glDisable(lua_State* L) {
     GLenum cap = (GLenum)luaL_checkinteger(L, 1);
 
@@ -492,6 +534,7 @@ static int _llfunc_glDisable(lua_State* L) {
 }
 
 //void glEnableVertexAttribArray(GLuint index)
+//glEnableVertexAttribArray(<int>index)
 static int _llfunc_glEnableVertexAttribArray(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
 
@@ -501,6 +544,7 @@ static int _llfunc_glEnableVertexAttribArray(lua_State* L) {
 }
 
 //void glDisableVertexAttribArray(GLuint index)
+//glDisableVertexAttribArray(<int>index)
 static int _llfunc_glDisableVertexAttribArray(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
 
@@ -509,7 +553,8 @@ static int _llfunc_glDisableVertexAttribArray(lua_State* L) {
     return 0;
 }
 
-//void glFinish(
+//void glFinish()
+//glFinish()
 static int _llfunc_glFinish(lua_State* L) {
 
     glFinish();
@@ -517,7 +562,8 @@ static int _llfunc_glFinish(lua_State* L) {
     return 0;
 }
 
-//void glFlush(
+//void glFlush()
+//glFlush()
 static int _llfunc_glFlush(lua_State* L) {
 
     glFlush();
@@ -526,6 +572,7 @@ static int _llfunc_glFlush(lua_State* L) {
 }
 
 //void glFramebufferRenderbuffer(GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
+//glFramebufferRenderbuffer(<int>target, <int>attachment, <int>renderbuffertarget, <int>renderbuffer)
 static int _llfunc_glFramebufferRenderbuffer(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum attachment = (GLenum)luaL_checkinteger(L, 2);
@@ -538,6 +585,7 @@ static int _llfunc_glFramebufferRenderbuffer(lua_State* L) {
 }
 
 //void glFramebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
+//glFramebufferTexture2D(<int>target, <int>attachment, <int>textarget, <int>texture, <int>level)
 static int _llfunc_glFramebufferTexture2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum attachment = (GLenum)luaL_checkinteger(L, 2);
@@ -551,6 +599,7 @@ static int _llfunc_glFramebufferTexture2D(lua_State* L) {
 }
 
 //void glFrontFace(GLenum mode)
+//glFrontFace(<int>mode)
 static int _llfunc_glFrontFace(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
 
@@ -560,6 +609,7 @@ static int _llfunc_glFrontFace(lua_State* L) {
 }
 
 //void glGenBuffers(GLsizei n, GLuint * buffers)
+//local {[int]}buffers = glGenBuffers(<int>n)
 static int _llfunc_glGenBuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -580,6 +630,7 @@ static int _llfunc_glGenBuffers(lua_State* L) {
 }
 
 //void glGenerateMipmap(GLenum target)
+//glGenerateMipmap(<int>target)
 static int _llfunc_glGenerateMipmap(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
 
@@ -589,6 +640,7 @@ static int _llfunc_glGenerateMipmap(lua_State* L) {
 }
 
 //void glGenFramebuffers(GLsizei n, GLuint * framebuffers)
+//local {[int]}framebuffers = glGenFramebuffers(<int>n)
 static int _llfunc_glGenFramebuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -609,6 +661,7 @@ static int _llfunc_glGenFramebuffers(lua_State* L) {
 }
 
 //void glGenRenderbuffers(GLsizei n, GLuint * renderbuffers)
+//local {[int]}renderbuffers = glGenRenderbuffers(<int>n)
 static int _llfunc_glGenRenderbuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -629,6 +682,7 @@ static int _llfunc_glGenRenderbuffers(lua_State* L) {
 }
 
 //void glGenTextures(GLsizei n, GLuint * textures)
+//local {[int]}textures = glGenTextures(<int>n)
 static int _llfunc_glGenTextures(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -649,6 +703,7 @@ static int _llfunc_glGenTextures(lua_State* L) {
 }
 
 //void glGetBooleanv(GLenum pname, GLboolean * params)
+//local <bool>params = glGetBooleanv(<int>pname)
 static int _llfunc_glGetBooleanv(lua_State* L) {
     GLenum pname = (GLenum)luaL_checkinteger(L, 1);
     GLboolean params;
@@ -660,6 +715,7 @@ static int _llfunc_glGetBooleanv(lua_State* L) {
 }
 
 //void glGetFloatv(GLenum pname, GLfloat * params)
+//local <float>params = glGetFloatv(<int>pname)
 static int _llfunc_glGetFloatv(lua_State* L) {
     GLenum pname = (GLenum)luaL_checkinteger(L, 1);
     GLfloat params;
@@ -671,6 +727,7 @@ static int _llfunc_glGetFloatv(lua_State* L) {
 }
 
 //void glGetIntegerv(GLenum pname, GLint * params)
+//local <int>params = glGetIntegerv(<int>pname)
 static int _llfunc_glGetIntegerv(lua_State* L) {
     GLenum pname = (GLenum)luaL_checkinteger(L, 1);
     GLint params;
@@ -682,6 +739,7 @@ static int _llfunc_glGetIntegerv(lua_State* L) {
 }
 
 //void glGetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
+//local <int>length, <int>size, <int>type, <string>name = glGetActiveAttrib(<int>program, <int>index, <int>bufSize)
 static int _llfunc_glGetActiveAttrib(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLuint index = (GLuint)luaL_checkinteger(L, 2);
@@ -706,6 +764,7 @@ static int _llfunc_glGetActiveAttrib(lua_State* L) {
 }
 
 //void glGetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
+//local <int>length, <int>size, <int>type, <string>name = glGetActiveUniform(<int>program, <int>index, <int>bufSize)
 static int _llfunc_glGetActiveUniform(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLuint index = (GLuint)luaL_checkinteger(L, 2);
@@ -730,6 +789,7 @@ static int _llfunc_glGetActiveUniform(lua_State* L) {
 }
 
 //GLint glGetAttribLocation(GLuint program, const GLchar * name)
+//local <int>_ll_ret = glGetAttribLocation(<int>program, <string>name)
 static int _llfunc_glGetAttribLocation(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     const GLchar * name = (const GLchar *)luaL_checkstring(L, 2);
@@ -741,6 +801,7 @@ static int _llfunc_glGetAttribLocation(lua_State* L) {
 }
 
 //void glGetBufferParameteriv(GLenum target, GLenum value, GLint * data)
+//local <int>data = glGetBufferParameteriv(<int>target, <int>value)
 static int _llfunc_glGetBufferParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum value = (GLenum)luaL_checkinteger(L, 2);
@@ -752,7 +813,8 @@ static int _llfunc_glGetBufferParameteriv(lua_State* L) {
     return 1;
 }
 
-//GLenum glGetError(
+//GLenum glGetError()
+//local <int>_ll_ret = glGetError()
 static int _llfunc_glGetError(lua_State* L) {
 
     GLenum _ll_ret = glGetError();
@@ -762,6 +824,7 @@ static int _llfunc_glGetError(lua_State* L) {
 }
 
 //void glGetFramebufferAttachmentParameteriv(GLenum target, GLenum attachment, GLenum pname, GLint * params)
+//local <int>params = glGetFramebufferAttachmentParameteriv(<int>target, <int>attachment, <int>pname)
 static int _llfunc_glGetFramebufferAttachmentParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum attachment = (GLenum)luaL_checkinteger(L, 2);
@@ -775,6 +838,7 @@ static int _llfunc_glGetFramebufferAttachmentParameteriv(lua_State* L) {
 }
 
 //void glGetProgramInfoLog(GLuint program, GLsizei maxLength, GLsizei * length, GLchar * infoLog)
+//local <int>length, <string>infoLog = glGetProgramInfoLog(<int>program, <int>maxLength)
 static int _llfunc_glGetProgramInfoLog(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLsizei maxLength = (GLsizei)luaL_checkinteger(L, 2);
@@ -794,6 +858,7 @@ static int _llfunc_glGetProgramInfoLog(lua_State* L) {
 }
 
 //void glGetProgramiv(GLuint program, GLenum pname, GLint * params)
+//local <int>params = glGetProgramiv(<int>program, <int>pname)
 static int _llfunc_glGetProgramiv(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -806,6 +871,7 @@ static int _llfunc_glGetProgramiv(lua_State* L) {
 }
 
 //void glGetRenderbufferParameteriv(GLenum target, GLenum pname, GLint * params)
+//local <int>params = glGetRenderbufferParameteriv(<int>target, <int>pname)
 static int _llfunc_glGetRenderbufferParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -818,6 +884,7 @@ static int _llfunc_glGetRenderbufferParameteriv(lua_State* L) {
 }
 
 //void glGetShaderInfoLog(GLuint shader, GLsizei maxLength, GLsizei * length, GLchar * infoLog)
+//local <int>length, <string>infoLog = glGetShaderInfoLog(<int>shader, <int>maxLength)
 static int _llfunc_glGetShaderInfoLog(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
     GLsizei maxLength = (GLsizei)luaL_checkinteger(L, 2);
@@ -837,6 +904,7 @@ static int _llfunc_glGetShaderInfoLog(lua_State* L) {
 }
 
 //void glGetShaderiv(GLuint shader, GLenum pname, GLint * params)
+//local <int>params = glGetShaderiv(<int>shader, <int>pname)
 static int _llfunc_glGetShaderiv(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -849,6 +917,7 @@ static int _llfunc_glGetShaderiv(lua_State* L) {
 }
 
 //void glGetShaderPrecisionFormat(GLenum shaderType, GLenum precisionType, GLint * range, GLint * precision)
+//local <int>range, <int>precision = glGetShaderPrecisionFormat(<int>shaderType, <int>precisionType)
 static int _llfunc_glGetShaderPrecisionFormat(lua_State* L) {
     GLenum shaderType = (GLenum)luaL_checkinteger(L, 1);
     GLenum precisionType = (GLenum)luaL_checkinteger(L, 2);
@@ -863,6 +932,7 @@ static int _llfunc_glGetShaderPrecisionFormat(lua_State* L) {
 }
 
 //void glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei * length, GLchar * source)
+//local <int>length, <string>source = glGetShaderSource(<int>shader, <int>bufSize)
 static int _llfunc_glGetShaderSource(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
     GLsizei bufSize = (GLsizei)luaL_checkinteger(L, 2);
@@ -882,6 +952,7 @@ static int _llfunc_glGetShaderSource(lua_State* L) {
 }
 
 //const GLubyte* glGetString(GLenum name)
+//local <string>_ll_ret = glGetString(<int>name)
 static int _llfunc_glGetString(lua_State* L) {
     GLenum name = (GLenum)luaL_checkinteger(L, 1);
 
@@ -892,6 +963,7 @@ static int _llfunc_glGetString(lua_State* L) {
 }
 
 //void glGetTexParameterfv(GLenum target, GLenum pname, GLfloat * params)
+//local <float>params = glGetTexParameterfv(<int>target, <int>pname)
 static int _llfunc_glGetTexParameterfv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -904,6 +976,7 @@ static int _llfunc_glGetTexParameterfv(lua_State* L) {
 }
 
 //void glGetTexParameteriv(GLenum target, GLenum pname, GLint * params)
+//local <int>params = glGetTexParameteriv(<int>target, <int>pname)
 static int _llfunc_glGetTexParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -916,6 +989,7 @@ static int _llfunc_glGetTexParameteriv(lua_State* L) {
 }
 
 //void glGetUniformfv(GLuint program, GLint location, GLfloat * params)
+//local <float>params = glGetUniformfv(<int>program, <int>location)
 static int _llfunc_glGetUniformfv(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLint location = (GLint)luaL_checkinteger(L, 2);
@@ -928,6 +1002,7 @@ static int _llfunc_glGetUniformfv(lua_State* L) {
 }
 
 //void glGetUniformiv(GLuint program, GLint location, GLint * params)
+//local <int>params = glGetUniformiv(<int>program, <int>location)
 static int _llfunc_glGetUniformiv(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     GLint location = (GLint)luaL_checkinteger(L, 2);
@@ -940,6 +1015,7 @@ static int _llfunc_glGetUniformiv(lua_State* L) {
 }
 
 //GLint glGetUniformLocation(GLuint program, const GLchar * name)
+//local <int>_ll_ret = glGetUniformLocation(<int>program, <string>name)
 static int _llfunc_glGetUniformLocation(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
     const GLchar * name = (const GLchar *)luaL_checkstring(L, 2);
@@ -951,6 +1027,7 @@ static int _llfunc_glGetUniformLocation(lua_State* L) {
 }
 
 //void glGetVertexAttribfv(GLuint index, GLenum pname, GLfloat * params)
+//local <float>params = glGetVertexAttribfv(<int>index, <int>pname)
 static int _llfunc_glGetVertexAttribfv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -963,6 +1040,7 @@ static int _llfunc_glGetVertexAttribfv(lua_State* L) {
 }
 
 //void glGetVertexAttribiv(GLuint index, GLenum pname, GLint * params)
+//local <int>params = glGetVertexAttribiv(<int>index, <int>pname)
 static int _llfunc_glGetVertexAttribiv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -975,6 +1053,7 @@ static int _llfunc_glGetVertexAttribiv(lua_State* L) {
 }
 
 //void glHint(GLenum target, GLenum mode)
+//glHint(<int>target, <int>mode)
 static int _llfunc_glHint(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum mode = (GLenum)luaL_checkinteger(L, 2);
@@ -985,6 +1064,7 @@ static int _llfunc_glHint(lua_State* L) {
 }
 
 //GLboolean glIsBuffer(GLuint buffer)
+//local <bool>_ll_ret = glIsBuffer(<int>buffer)
 static int _llfunc_glIsBuffer(lua_State* L) {
     GLuint buffer = (GLuint)luaL_checkinteger(L, 1);
 
@@ -995,6 +1075,7 @@ static int _llfunc_glIsBuffer(lua_State* L) {
 }
 
 //GLboolean glIsEnabled(GLenum cap)
+//local <bool>_ll_ret = glIsEnabled(<int>cap)
 static int _llfunc_glIsEnabled(lua_State* L) {
     GLenum cap = (GLenum)luaL_checkinteger(L, 1);
 
@@ -1005,6 +1086,7 @@ static int _llfunc_glIsEnabled(lua_State* L) {
 }
 
 //GLboolean glIsFramebuffer(GLuint framebuffer)
+//local <bool>_ll_ret = glIsFramebuffer(<int>framebuffer)
 static int _llfunc_glIsFramebuffer(lua_State* L) {
     GLuint framebuffer = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1015,6 +1097,7 @@ static int _llfunc_glIsFramebuffer(lua_State* L) {
 }
 
 //GLboolean glIsProgram(GLuint program)
+//local <bool>_ll_ret = glIsProgram(<int>program)
 static int _llfunc_glIsProgram(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1025,6 +1108,7 @@ static int _llfunc_glIsProgram(lua_State* L) {
 }
 
 //GLboolean glIsRenderbuffer(GLuint renderbuffer)
+//local <bool>_ll_ret = glIsRenderbuffer(<int>renderbuffer)
 static int _llfunc_glIsRenderbuffer(lua_State* L) {
     GLuint renderbuffer = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1035,6 +1119,7 @@ static int _llfunc_glIsRenderbuffer(lua_State* L) {
 }
 
 //GLboolean glIsShader(GLuint shader)
+//local <bool>_ll_ret = glIsShader(<int>shader)
 static int _llfunc_glIsShader(lua_State* L) {
     GLuint shader = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1045,6 +1130,7 @@ static int _llfunc_glIsShader(lua_State* L) {
 }
 
 //GLboolean glIsTexture(GLuint texture)
+//local <bool>_ll_ret = glIsTexture(<int>texture)
 static int _llfunc_glIsTexture(lua_State* L) {
     GLuint texture = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1055,6 +1141,7 @@ static int _llfunc_glIsTexture(lua_State* L) {
 }
 
 //void glLineWidth(GLfloat width)
+//glLineWidth(<float>width)
 static int _llfunc_glLineWidth(lua_State* L) {
     GLfloat width = (GLfloat)luaL_checknumber(L, 1);
 
@@ -1064,6 +1151,7 @@ static int _llfunc_glLineWidth(lua_State* L) {
 }
 
 //void glLinkProgram(GLuint program)
+//glLinkProgram(<int>program)
 static int _llfunc_glLinkProgram(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1073,6 +1161,7 @@ static int _llfunc_glLinkProgram(lua_State* L) {
 }
 
 //void glPixelStorei(GLenum pname, GLint param)
+//glPixelStorei(<int>pname, <int>param)
 static int _llfunc_glPixelStorei(lua_State* L) {
     GLenum pname = (GLenum)luaL_checkinteger(L, 1);
     GLint param = (GLint)luaL_checkinteger(L, 2);
@@ -1083,6 +1172,7 @@ static int _llfunc_glPixelStorei(lua_State* L) {
 }
 
 //void glPolygonOffset(GLfloat factor, GLfloat units)
+//glPolygonOffset(<float>factor, <float>units)
 static int _llfunc_glPolygonOffset(lua_State* L) {
     GLfloat factor = (GLfloat)luaL_checknumber(L, 1);
     GLfloat units = (GLfloat)luaL_checknumber(L, 2);
@@ -1092,7 +1182,8 @@ static int _llfunc_glPolygonOffset(lua_State* L) {
     return 0;
 }
 
-//void glReleaseShaderCompiler(
+//void glReleaseShaderCompiler()
+//glReleaseShaderCompiler()
 static int _llfunc_glReleaseShaderCompiler(lua_State* L) {
 
     glReleaseShaderCompiler();
@@ -1101,6 +1192,7 @@ static int _llfunc_glReleaseShaderCompiler(lua_State* L) {
 }
 
 //void glRenderbufferStorage(GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
+//glRenderbufferStorage(<int>target, <int>internalformat, <int>width, <int>height)
 static int _llfunc_glRenderbufferStorage(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum internalformat = (GLenum)luaL_checkinteger(L, 2);
@@ -1113,6 +1205,7 @@ static int _llfunc_glRenderbufferStorage(lua_State* L) {
 }
 
 //void glSampleCoverage(GLclampf value, GLboolean invert)
+//glSampleCoverage(<float>value, <bool>invert)
 static int _llfunc_glSampleCoverage(lua_State* L) {
     GLclampf value = (GLclampf)luaL_checknumber(L, 1);
     GLboolean invert = (GLboolean)lua_toboolean(L, 2);
@@ -1123,6 +1216,7 @@ static int _llfunc_glSampleCoverage(lua_State* L) {
 }
 
 //void glScissor(GLint x, GLint y, GLsizei width, GLsizei height)
+//glScissor(<int>x, <int>y, <int>width, <int>height)
 static int _llfunc_glScissor(lua_State* L) {
     GLint x = (GLint)luaL_checkinteger(L, 1);
     GLint y = (GLint)luaL_checkinteger(L, 2);
@@ -1135,6 +1229,7 @@ static int _llfunc_glScissor(lua_State* L) {
 }
 
 //void glShaderBinary(GLsizei n, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
+//glShaderBinary(<int>n, {[int]}shaders, <int>binaryformat, <string>binary, <int>length)
 static int _llfunc_glShaderBinary(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -1158,6 +1253,7 @@ static int _llfunc_glShaderBinary(lua_State* L) {
 }
 
 //void glStencilFunc(GLenum func, GLint ref, GLuint mask)
+//glStencilFunc(<int>func, <int>ref, <int>mask)
 static int _llfunc_glStencilFunc(lua_State* L) {
     GLenum func = (GLenum)luaL_checkinteger(L, 1);
     GLint ref = (GLint)luaL_checkinteger(L, 2);
@@ -1169,6 +1265,7 @@ static int _llfunc_glStencilFunc(lua_State* L) {
 }
 
 //void glStencilFuncSeparate(GLenum face, GLenum func, GLint ref, GLuint mask)
+//glStencilFuncSeparate(<int>face, <int>func, <int>ref, <int>mask)
 static int _llfunc_glStencilFuncSeparate(lua_State* L) {
     GLenum face = (GLenum)luaL_checkinteger(L, 1);
     GLenum func = (GLenum)luaL_checkinteger(L, 2);
@@ -1181,6 +1278,7 @@ static int _llfunc_glStencilFuncSeparate(lua_State* L) {
 }
 
 //void glStencilMask(GLuint mask)
+//glStencilMask(<int>mask)
 static int _llfunc_glStencilMask(lua_State* L) {
     GLuint mask = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1190,6 +1288,7 @@ static int _llfunc_glStencilMask(lua_State* L) {
 }
 
 //void glStencilMaskSeparate(GLenum face, GLuint mask)
+//glStencilMaskSeparate(<int>face, <int>mask)
 static int _llfunc_glStencilMaskSeparate(lua_State* L) {
     GLenum face = (GLenum)luaL_checkinteger(L, 1);
     GLuint mask = (GLuint)luaL_checkinteger(L, 2);
@@ -1200,6 +1299,7 @@ static int _llfunc_glStencilMaskSeparate(lua_State* L) {
 }
 
 //void glStencilOp(GLenum sfail, GLenum dpfail, GLenum dppass)
+//glStencilOp(<int>sfail, <int>dpfail, <int>dppass)
 static int _llfunc_glStencilOp(lua_State* L) {
     GLenum sfail = (GLenum)luaL_checkinteger(L, 1);
     GLenum dpfail = (GLenum)luaL_checkinteger(L, 2);
@@ -1211,6 +1311,7 @@ static int _llfunc_glStencilOp(lua_State* L) {
 }
 
 //void glStencilOpSeparate(GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass)
+//glStencilOpSeparate(<int>face, <int>sfail, <int>dpfail, <int>dppass)
 static int _llfunc_glStencilOpSeparate(lua_State* L) {
     GLenum face = (GLenum)luaL_checkinteger(L, 1);
     GLenum sfail = (GLenum)luaL_checkinteger(L, 2);
@@ -1223,6 +1324,7 @@ static int _llfunc_glStencilOpSeparate(lua_State* L) {
 }
 
 //void glTexImage2D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid * data)
+//glTexImage2D(<int>target, <int>level, <int>internalformat, <int>width, <int>height, <int>border, <int>format, <int>type, <string>data)
 static int _llfunc_glTexImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -1240,6 +1342,7 @@ static int _llfunc_glTexImage2D(lua_State* L) {
 }
 
 //void glTexParameterf(GLenum target, GLenum pname, GLfloat param)
+//glTexParameterf(<int>target, <int>pname, <float>param)
 static int _llfunc_glTexParameterf(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1251,6 +1354,7 @@ static int _llfunc_glTexParameterf(lua_State* L) {
 }
 
 //void glTexParameteri(GLenum target, GLenum pname, GLint param)
+//glTexParameteri(<int>target, <int>pname, <int>param)
 static int _llfunc_glTexParameteri(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1262,6 +1366,7 @@ static int _llfunc_glTexParameteri(lua_State* L) {
 }
 
 //void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)
+//glTexParameterfv(<int>target, <int>pname, {[float]}params)
 static int _llfunc_glTexParameterfv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1283,6 +1388,7 @@ static int _llfunc_glTexParameterfv(lua_State* L) {
 }
 
 //void glTexParameteriv(GLenum target, GLenum pname, const GLint * params)
+//glTexParameteriv(<int>target, <int>pname, {[int]}params)
 static int _llfunc_glTexParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1304,6 +1410,7 @@ static int _llfunc_glTexParameteriv(lua_State* L) {
 }
 
 //void glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid * data)
+//glTexSubImage2D(<int>target, <int>level, <int>xoffset, <int>yoffset, <int>width, <int>height, <int>format, <int>type, <string>data)
 static int _llfunc_glTexSubImage2D(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLint level = (GLint)luaL_checkinteger(L, 2);
@@ -1321,6 +1428,7 @@ static int _llfunc_glTexSubImage2D(lua_State* L) {
 }
 
 //void glUniform1f(GLint location, GLfloat v0)
+//glUniform1f(<int>location, <float>v0)
 static int _llfunc_glUniform1f(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1331,6 +1439,7 @@ static int _llfunc_glUniform1f(lua_State* L) {
 }
 
 //void glUniform2f(GLint location, GLfloat v0, GLfloat v1)
+//glUniform2f(<int>location, <float>v0, <float>v1)
 static int _llfunc_glUniform2f(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1342,6 +1451,7 @@ static int _llfunc_glUniform2f(lua_State* L) {
 }
 
 //void glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
+//glUniform3f(<int>location, <float>v0, <float>v1, <float>v2)
 static int _llfunc_glUniform3f(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1354,6 +1464,7 @@ static int _llfunc_glUniform3f(lua_State* L) {
 }
 
 //void glUniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+//glUniform4f(<int>location, <float>v0, <float>v1, <float>v2, <float>v3)
 static int _llfunc_glUniform4f(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1367,6 +1478,7 @@ static int _llfunc_glUniform4f(lua_State* L) {
 }
 
 //void glUniform1i(GLint location, GLint v0)
+//glUniform1i(<int>location, <int>v0)
 static int _llfunc_glUniform1i(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLint v0 = (GLint)luaL_checkinteger(L, 2);
@@ -1377,6 +1489,7 @@ static int _llfunc_glUniform1i(lua_State* L) {
 }
 
 //void glUniform2i(GLint location, GLint v0, GLint v1)
+//glUniform2i(<int>location, <int>v0, <int>v1)
 static int _llfunc_glUniform2i(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLint v0 = (GLint)luaL_checkinteger(L, 2);
@@ -1388,6 +1501,7 @@ static int _llfunc_glUniform2i(lua_State* L) {
 }
 
 //void glUniform3i(GLint location, GLint v0, GLint v1, GLint v2)
+//glUniform3i(<int>location, <int>v0, <int>v1, <int>v2)
 static int _llfunc_glUniform3i(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLint v0 = (GLint)luaL_checkinteger(L, 2);
@@ -1400,6 +1514,7 @@ static int _llfunc_glUniform3i(lua_State* L) {
 }
 
 //void glUniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
+//glUniform4i(<int>location, <int>v0, <int>v1, <int>v2, <int>v3)
 static int _llfunc_glUniform4i(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLint v0 = (GLint)luaL_checkinteger(L, 2);
@@ -1413,6 +1528,7 @@ static int _llfunc_glUniform4i(lua_State* L) {
 }
 
 //void glUniform1fv(GLint location, GLsizei count, const GLfloat * value)
+//glUniform1fv(<int>location, <int>count, {[float]}value)
 static int _llfunc_glUniform1fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1434,6 +1550,7 @@ static int _llfunc_glUniform1fv(lua_State* L) {
 }
 
 //void glUniform2fv(GLint location, GLsizei count, const GLfloat * value)
+//glUniform2fv(<int>location, <int>count, {[float]}value)
 static int _llfunc_glUniform2fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1455,6 +1572,7 @@ static int _llfunc_glUniform2fv(lua_State* L) {
 }
 
 //void glUniform3fv(GLint location, GLsizei count, const GLfloat * value)
+//glUniform3fv(<int>location, <int>count, {[float]}value)
 static int _llfunc_glUniform3fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1476,6 +1594,7 @@ static int _llfunc_glUniform3fv(lua_State* L) {
 }
 
 //void glUniform4fv(GLint location, GLsizei count, const GLfloat * value)
+//glUniform4fv(<int>location, <int>count, {[float]}value)
 static int _llfunc_glUniform4fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1497,6 +1616,7 @@ static int _llfunc_glUniform4fv(lua_State* L) {
 }
 
 //void glUniform1iv(GLint location, GLsizei count, const GLint * value)
+//glUniform1iv(<int>location, <int>count, {[int]}value)
 static int _llfunc_glUniform1iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1518,6 +1638,7 @@ static int _llfunc_glUniform1iv(lua_State* L) {
 }
 
 //void glUniform2iv(GLint location, GLsizei count, const GLint * value)
+//glUniform2iv(<int>location, <int>count, {[int]}value)
 static int _llfunc_glUniform2iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1539,6 +1660,7 @@ static int _llfunc_glUniform2iv(lua_State* L) {
 }
 
 //void glUniform3iv(GLint location, GLsizei count, const GLint * value)
+//glUniform3iv(<int>location, <int>count, {[int]}value)
 static int _llfunc_glUniform3iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1560,6 +1682,7 @@ static int _llfunc_glUniform3iv(lua_State* L) {
 }
 
 //void glUniform4iv(GLint location, GLsizei count, const GLint * value)
+//glUniform4iv(<int>location, <int>count, {[int]}value)
 static int _llfunc_glUniform4iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1581,6 +1704,7 @@ static int _llfunc_glUniform4iv(lua_State* L) {
 }
 
 //void glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+//glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, {[float]}value)
 static int _llfunc_glUniformMatrix2fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1603,6 +1727,7 @@ static int _llfunc_glUniformMatrix2fv(lua_State* L) {
 }
 
 //void glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+//glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, {[float]}value)
 static int _llfunc_glUniformMatrix3fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1625,6 +1750,7 @@ static int _llfunc_glUniformMatrix3fv(lua_State* L) {
 }
 
 //void glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
+//glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, {[float]}value)
 static int _llfunc_glUniformMatrix4fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1647,6 +1773,7 @@ static int _llfunc_glUniformMatrix4fv(lua_State* L) {
 }
 
 //void glUseProgram(GLuint program)
+//glUseProgram(<int>program)
 static int _llfunc_glUseProgram(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1656,6 +1783,7 @@ static int _llfunc_glUseProgram(lua_State* L) {
 }
 
 //void glValidateProgram(GLuint program)
+//glValidateProgram(<int>program)
 static int _llfunc_glValidateProgram(lua_State* L) {
     GLuint program = (GLuint)luaL_checkinteger(L, 1);
 
@@ -1665,6 +1793,7 @@ static int _llfunc_glValidateProgram(lua_State* L) {
 }
 
 //void glVertexAttrib1f(GLuint index, GLfloat v0)
+//glVertexAttrib1f(<int>index, <float>v0)
 static int _llfunc_glVertexAttrib1f(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1675,6 +1804,7 @@ static int _llfunc_glVertexAttrib1f(lua_State* L) {
 }
 
 //void glVertexAttrib2f(GLuint index, GLfloat v0, GLfloat v1)
+//glVertexAttrib2f(<int>index, <float>v0, <float>v1)
 static int _llfunc_glVertexAttrib2f(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1686,6 +1816,7 @@ static int _llfunc_glVertexAttrib2f(lua_State* L) {
 }
 
 //void glVertexAttrib3f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2)
+//glVertexAttrib3f(<int>index, <float>v0, <float>v1, <float>v2)
 static int _llfunc_glVertexAttrib3f(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1698,6 +1829,7 @@ static int _llfunc_glVertexAttrib3f(lua_State* L) {
 }
 
 //void glVertexAttrib4f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+//glVertexAttrib4f(<int>index, <float>v0, <float>v1, <float>v2, <float>v3)
 static int _llfunc_glVertexAttrib4f(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLfloat v0 = (GLfloat)luaL_checknumber(L, 2);
@@ -1711,6 +1843,7 @@ static int _llfunc_glVertexAttrib4f(lua_State* L) {
 }
 
 //void glVertexAttrib1fv(GLuint index, const GLfloat * v)
+//glVertexAttrib1fv(<int>index, {[float]}v)
 static int _llfunc_glVertexAttrib1fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -1731,6 +1864,7 @@ static int _llfunc_glVertexAttrib1fv(lua_State* L) {
 }
 
 //void glVertexAttrib2fv(GLuint index, const GLfloat * v)
+//glVertexAttrib2fv(<int>index, {[float]}v)
 static int _llfunc_glVertexAttrib2fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -1751,6 +1885,7 @@ static int _llfunc_glVertexAttrib2fv(lua_State* L) {
 }
 
 //void glVertexAttrib3fv(GLuint index, const GLfloat * v)
+//glVertexAttrib3fv(<int>index, {[float]}v)
 static int _llfunc_glVertexAttrib3fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -1771,6 +1906,7 @@ static int _llfunc_glVertexAttrib3fv(lua_State* L) {
 }
 
 //void glVertexAttrib4fv(GLuint index, const GLfloat * v)
+//glVertexAttrib4fv(<int>index, {[float]}v)
 static int _llfunc_glVertexAttrib4fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     int _ll_tabn = (int)luaL_len(L, 2);
@@ -1791,6 +1927,7 @@ static int _llfunc_glVertexAttrib4fv(lua_State* L) {
 }
 
 //void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer)
+//glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer)
 static int _llfunc_glVertexAttribPointer(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLint size = (GLint)luaL_checkinteger(L, 2);
@@ -1805,6 +1942,7 @@ static int _llfunc_glVertexAttribPointer(lua_State* L) {
 }
 
 //void glViewport(GLint x, GLint y, GLsizei width, GLsizei height)
+//glViewport(<int>x, <int>y, <int>width, <int>height)
 static int _llfunc_glViewport(lua_State* L) {
     GLint x = (GLint)luaL_checkinteger(L, 1);
     GLint y = (GLint)luaL_checkinteger(L, 2);

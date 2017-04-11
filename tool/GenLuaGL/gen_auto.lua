@@ -2,19 +2,19 @@
 
 
 local load_b = function(name, tt, idx, def)
-    return tt.." "..name.." = ("..tt..")lua_toboolean(L, "..idx..");\n"
+    return tt.." "..name.." = ("..tt..")lua_toboolean(L, "..idx..");\n", "<bool>"..name
 end
 
 local load_n = function(name, tt, idx, def)
-    return tt.." "..name.." = ("..tt..")luaL_checkinteger(L, "..idx..");\n"
+    return tt.." "..name.." = ("..tt..")luaL_checkinteger(L, "..idx..");\n", "<int>"..name
 end
 
 local load_f = function(name, tt, idx, def)
-    return tt.." "..name.." = ("..tt..")luaL_checknumber(L, "..idx..");\n"
+    return tt.." "..name.." = ("..tt..")luaL_checknumber(L, "..idx..");\n", "<float>"..name
 end
 
 local load_s = function(name, tt, idx, def)
-    return tt.." "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n"
+    return tt.." "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n", "<string>"..name
 end
 
 local load_n_list = function(name, tt, idx, def)
@@ -30,7 +30,7 @@ local load_n_list = function(name, tt, idx, def)
                 "        lua_pop(L, 1);\n"..
                 "    }\n"
 
-    return src, "("..tt..")"..name
+    return src, "{[int]}"..name, "("..tt..")"..name
 end
 
 local load_f_list = function(name, tt, idx, def)
@@ -46,11 +46,11 @@ local load_f_list = function(name, tt, idx, def)
                 "        lua_pop(L, 1);\n"..
                 "    }\n"
 
-    return src, "("..tt..")"..name
+    return src, "{[float]}"..name, "("..tt..")"..name
 end
 
 local load_def_ptr = function(name, tt, idx, def)
-    return string.gsub(tt, "%*$", name..";\n"), "&"..name
+    return string.gsub(tt, "%*$", name..";\n"), nil, "&"..name
 end
 
 local load_def_vec = function(name, tt, idx, def)
@@ -77,24 +77,24 @@ local load_def_vec = function(name, tt, idx, def)
                 "\n#else\n    "..ttt.." "..name.."["..arg_maxn.."];"..
                 "\n#endif\n"
     
-    return src
+    return src, nil, nil
 end
 
 
 local push_b = function(name, tt, idx, def)
-    return "lua_pushboolean(L, (int)"..name..");\n"
+    return "lua_pushboolean(L, (int)"..name..");\n", "<bool>"..name
 end
 
 local push_n = function(name, tt, idx, def)
-    return "lua_pushinteger(L, (lua_Integer)"..name..");\n"
+    return "lua_pushinteger(L, (lua_Integer)"..name..");\n", "<int>"..name
 end
 
 local push_f = function(name, tt, idx, def)
-    return "lua_pushnumber(L, (lua_Number)"..name..");\n"
+    return "lua_pushnumber(L, (lua_Number)"..name..");\n", "<float>"..name
 end
 
 local push_s = function(name, tt, idx, def)
-    return "lua_pushstring(L, (const char*)"..name..");\n"
+    return "lua_pushstring(L, (const char*)"..name..");\n", "<string>"..name
 end
 
 local push_n_list = function(name, tt, idx, def)
@@ -117,7 +117,7 @@ local push_n_list = function(name, tt, idx, def)
                 "        lua_pushinteger(L, (lua_Integer)"..name.."[i]);\n"..
                 "        lua_rawseti(L, -2, i+1);\n"..
                 "    }\n"
-    return src
+    return src, "{[int]}"..name
 end
 
 
@@ -160,17 +160,20 @@ local arg_type = {
 
 
 
-function gen_src(def, tag)
-    local retn = 0
-    local argn = #def.args
-
+local function gen_src_auto(def, tag)
+    
+    local doc = {name = def.name, args = {}, rets = {}}
     local src = "static int "..tag.."(lua_State* L) {\n"
     
     for i,v in ipairs(def.args) do
         local f = arg_type[v.type]
-        local ss,vv = f[1](v.name, v.type, i, def)
-        v.mark = vv
-        src = src .. "    " .. ss
+        local text,desc,mark = f[1](v.name, v.type, i, def)
+        v.mark = mark or v.name
+        src = src .. "    " .. text
+        
+        if desc then
+            table.insert(doc.args, desc)
+        end
     end
     
     local retf = ret_type[def.type]
@@ -178,48 +181,79 @@ function gen_src(def, tag)
     src = src .. "\n    " .. (retf and (def.type.." _ll_ret = ") or (""))
     src = src .. def.name .. "("
     for i,v in ipairs(def.args) do
-        src = src .. (v.mark or v.name)
-        if i < argn then
+        if i > 1 then
             src = src .. ", "
         end
+        src = src .. v.mark
     end
     src = src .. ");\n\n"
     
-    
+    local retn = 0
     if retf then
-        src = src .. "    " .. retf("_ll_ret", def.type, 0, def)
+        local text, desc = retf("_ll_ret", def.type, 0, def)
+        src = src .. "    " .. text
         retn = retn + 1
+        
+        if desc then
+            table.insert(doc.rets, desc)
+        end
     end
     for i,v in ipairs(def.args) do
         local f = arg_type[v.type]
         if f[2] then
-            src = src .. "    " .. f[2](v.name, v.type, i, def)
+            local text, desc = f[2](v.name, v.type, i, def)
+            src = src .. "    " .. text
             retn = retn + 1
+            
+            if desc then
+                table.insert(doc.rets, desc)
+            end
         end
     end
     
     
     src = src .. "    return "..retn..";"
     src = src .. "\n}"
-    return src
+    return src, doc
 end
 
 
-function work_func(def)
-    local str = "//"..def.type.." "..def.name.."("
-    local n = #def.args
+function gen_auto(def)
+    local str = def.type.." "..def.name.."("
     for i,arg in ipairs(def.args) do
-        str = str .. arg.type.." "..arg.name
-        if i < n then
+        if i > 1 then
             str = str .. ", "
-        else 
-            str = str .. ")"
         end
+        str = str .. arg.type.." "..arg.name
     end
-
+    str = str .. ")"
 
     local tag = "_llfunc_"..def.name
-    return str, tag, gen_src(def, tag)
+    local src, doc = gen_src_auto(def, tag)
+    
+    local docs = ""
+    for i,v in ipairs(doc.rets) do
+        if i == 1 then
+            docs = docs .. v
+        else
+            docs = docs .. ", " .. v
+        end
+    end
+    if #doc.rets > 0 then
+        docs = "local " .. docs .. " = "
+    end
+    
+    docs = docs .. doc.name .. "("
+    for i,v in ipairs(doc.args) do
+        if i == 1 then
+            docs = docs .. v
+        else
+            docs = docs .. ", " .. v
+        end
+    end
+    docs = docs ..  ")"
+    
+    return str, tag, src, docs
 end
 
 

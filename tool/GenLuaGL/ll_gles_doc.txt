@@ -1,114 +1,52 @@
 
-D:\workdir\vi3d\tool\GenLuaGL>..\bin\lua.exe main.lua 
-main-----------------------------
-======xml/glActiveTexture.xml======
-======xml/glAttachShader.xml======
-======xml/glBindAttribLocation.xml======
-======xml/glBindBuffer.xml======
-======xml/glBindFramebuffer.xml======
-======xml/glBindRenderbuffer.xml======
-======xml/glBindTexture.xml======
-======xml/glBlendColor.xml======
-======xml/glBlendEquation.xml======
-======xml/glBlendEquationSeparate.xml======
-======xml/glBlendFunc.xml======
-======xml/glBlendFuncSeparate.xml======
-======xml/glBufferData.xml======
-======xml/glBufferSubData.xml======
-======xml/glCheckFramebufferStatus.xml======
-======xml/glClear.xml======
-======xml/glClearColor.xml======
-======xml/glClearDepthf.xml======
-======xml/glClearStencil.xml======
-======xml/glColorMask.xml======
-======xml/glCompileShader.xml======
-======xml/glCompressedTexImage2D.xml======
-======xml/glCompressedTexSubImage2D.xml======
-======xml/glCopyTexImage2D.xml======
-======xml/glCopyTexSubImage2D.xml======
-======xml/glCreateProgram.xml======
-======xml/glCreateShader.xml======
-======xml/glCullFace.xml======
-======xml/glDeleteBuffers.xml======
-======xml/glDeleteFramebuffers.xml======
-======xml/glDeleteProgram.xml======
-======xml/glDeleteRenderbuffers.xml======
-======xml/glDeleteShader.xml======
-======xml/glDeleteTextures.xml======
-======xml/glDepthFunc.xml======
-======xml/glDepthMask.xml======
-======xml/glDepthRangef.xml======
-======xml/glDetachShader.xml======
-======xml/glDrawArrays.xml======
-======xml/glDrawElements.xml======
-======xml/glEnable.xml======
-======xml/glEnableVertexAttribArray.xml======
-======xml/glFinish.xml======
-======xml/glFlush.xml======
-======xml/glFramebufferRenderbuffer.xml======
-======xml/glFramebufferTexture2D.xml======
-======xml/glFrontFace.xml======
-======xml/glGenBuffers.xml======
-======xml/glGenerateMipmap.xml======
-======xml/glGenFramebuffers.xml======
-======xml/glGenRenderbuffers.xml======
-======xml/glGenTextures.xml======
-======xml/glGet.xml======
-======xml/glGetActiveAttrib.xml======
-======xml/glGetActiveUniform.xml======
-======xml/glGetAttachedShaders.xml======
-======xml/glGetAttribLocation.xml======
-======xml/glGetBufferParameteriv.xml======
-======xml/glGetError.xml======
-======xml/glGetFramebufferAttachmentParameteriv.xml======
-======xml/glGetProgramInfoLog.xml======
-======xml/glGetProgramiv.xml======
-======xml/glGetRenderbufferParameteriv.xml======
-======xml/glGetShaderInfoLog.xml======
-======xml/glGetShaderiv.xml======
-======xml/glGetShaderPrecisionFormat.xml======
-======xml/glGetShaderSource.xml======
-======xml/glGetString.xml======
-======xml/glGetTexParameter.xml======
-======xml/glGetUniform.xml======
-======xml/glGetUniformLocation.xml======
-======xml/glGetVertexAttrib.xml======
-======xml/glGetVertexAttribPointerv.xml======
-======xml/glHint.xml======
-======xml/glIsBuffer.xml======
-======xml/glIsEnabled.xml======
-======xml/glIsFramebuffer.xml======
-======xml/glIsProgram.xml======
-======xml/glIsRenderbuffer.xml======
-======xml/glIsShader.xml======
-======xml/glIsTexture.xml======
-======xml/glLineWidth.xml======
-======xml/glLinkProgram.xml======
-======xml/glPixelStorei.xml======
-======xml/glPolygonOffset.xml======
-======xml/glReadPixels.xml======
-======xml/glReleaseShaderCompiler.xml======
-======xml/glRenderbufferStorage.xml======
-======xml/glSampleCoverage.xml======
-======xml/glScissor.xml======
-======xml/glShaderBinary.xml======
-======xml/glShaderSource.xml======
-======xml/glStencilFunc.xml======
-======xml/glStencilFuncSeparate.xml======
-======xml/glStencilMask.xml======
-======xml/glStencilMaskSeparate.xml======
-======xml/glStencilOp.xml======
-======xml/glStencilOpSeparate.xml======
-======xml/glTexImage2D.xml======
-======xml/glTexParameter.xml======
-======xml/glTexSubImage2D.xml======
-======xml/glUniform.xml======
-======xml/glUseProgram.xml======
-======xml/glValidateProgram.xml======
-======xml/glVertexAttrib.xml======
-======xml/glVertexAttribPointer.xml======
-======xml/glViewport.xml======
 
+
+type--------------------------
+ret	GLboolean		7
+ret	const GLubyte*		1
+ret	GLuint		2
+ret	GLint		2
+ret	GLenum		2
+ret	void		124
+
+
+arg	GLboolean *		1
+arg	GLfloat *		4
+arg	GLsizei *		5
+arg	GLint *		13
+arg	GLenum *		2
+arg	GLuint *		4
+arg	GLchar *		5
+
+
+
+
+arg	GLintptr		1
+arg	GLclampf		12
+arg	GLfloat		24
+arg	GLuint		54
+arg	GLsizeiptr		2
+arg	GLsizei		49
+arg	GLbitfield		1
+arg	GLenum		95
+arg	GLint		63
+arg	GLboolean		10
+
+arg	const GLchar *		3
+arg	const GLvoid *		8
+arg	const GLint *		5
+arg	const GLuint *		5
+arg	const GLfloat *		12
+arg	const void *		1
+
+
+
+
+
+
+
+
+func--------------------------------------
 
 void 	glActiveTexture(GLenum  texture)
 void 	glAttachShader(GLuint  program, GLuint  shader)
@@ -265,11 +203,6 @@ void 	glGetVertexAttribiv(GLuint  index, GLenum  pname, GLint * params)
 
 
 
-
-
-
-
-
 void 	glGetActiveAttrib(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
 void 	glGetActiveUniform(GLuint  program, GLuint  index, GLsizei  bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name)
 void 	glGetShaderSource(GLuint  shader, GLsizei  bufSize, GLsizei * length, GLchar * source)
@@ -287,50 +220,6 @@ void 	glGetShaderInfoLog(GLuint  shader, GLsizei  maxLength, GLsizei * length, G
 [MMM]void 	glGetAttachedShaders(GLuint  program, GLsizei  maxCount, GLsizei * count, GLuint * shaders)
 
 [MMM]void 	glReadPixels(GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, GLvoid *  data)
-
-
-
-
-
-
-
-type--------------------------
-ret	GLboolean		7
-ret	const GLubyte*		1
-ret	GLuint		2
-ret	GLint		2
-ret	GLenum		2
-ret	void		124
-
-
-arg	GLboolean *		1
-arg	GLfloat *		4
-arg	GLsizei *		5
-arg	GLint *		13
-arg	GLenum *		2
-arg	GLuint *		4
-arg	GLchar *		5
-
-
-
-
-arg	GLintptr		1
-arg	GLclampf		12
-arg	GLfloat		24
-arg	GLuint		54
-arg	GLsizeiptr		2
-arg	GLsizei		49
-arg	GLbitfield		1
-arg	GLenum		95
-arg	GLint		63
-arg	GLboolean		10
-
-arg	const GLchar *		3
-arg	const GLvoid *		8
-arg	const GLint *		5
-arg	const GLuint *		5
-arg	const GLfloat *		12
-arg	const void *		1
 
 
 

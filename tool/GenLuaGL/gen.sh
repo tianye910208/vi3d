@@ -1,5 +1,5 @@
 
-../bin/lua main.lua
+../bin/lua gen_main.lua
 
 
 

@@ -1,7 +1,7 @@
-require("util")
-require("xml")
+require("util_lfs")
+require("util_xml")
 
-function finddef(node, list)
+local function finddef(node, list)
     for k,v in pairs(node) do
         if type(v) == "table" then
             for i,v in ipairs(v) do
@@ -15,7 +15,7 @@ function finddef(node, list)
     end
 end
 
-function loadstr(str)
+local function loadstr(str)
     if str then
         str = string.gsub(str, "^[%s%c]*", "")
         str = string.gsub(str, "[%s%c]*$", "")
@@ -23,7 +23,7 @@ function loadstr(str)
     return str
 end
 
-function loaddef()
+local function loaddef()
     local tmplist = {}
     local xmllist = lsdir("xml")
     for i,v in ipairs(xmllist) do
@@ -58,7 +58,7 @@ function loaddef()
     return deflist
 end
 
-function read_func()
+function gen_read()
     local deflist = loaddef()
     --[[
     local retTypes = {}
