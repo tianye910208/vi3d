@@ -1,13 +1,19 @@
 require("gen_read")
 require("gen_auto")
+require("gen_manual")
 
 local srclist = {}
+
+for i,v in ipairs(gen_manual()) do
+    table.insert(srclist, v)
+end
 
 local deflist = gen_read()
 for i,v in ipairs(deflist) do
     local desc, func, text, docs = gen_auto(v)
     table.insert(srclist, {name=v.name, desc=desc, func=func, text=text, docs = docs})
 end
+
 
 
 local fdoc = io.open("ll_gles_doc.lua", "w+")

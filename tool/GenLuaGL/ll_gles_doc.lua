@@ -1,4 +1,16 @@
 
+--void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)
+--glShaderSource(<int>shader, <string>string)
+
+
+--void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)
+--local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)
+
+
+--void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)
+--local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)
+
+
 --void glActiveTexture(GLenum texture)
 --glActiveTexture(<int>texture)
 

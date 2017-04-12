@@ -4,6 +4,66 @@
 #include <malloc.h>
 #endif
 
+//void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)
+//glShaderSource(<int>shader, <string>string)
+static int _llfunc_glShaderSource(lua_State* L) {
+    GLuint shader = (GLuint)luaL_checkinteger(L, 1);
+    const GLchar * source = (const GLchar *)luaL_checkstring(L, 2);
+
+    glShaderSource(shader, 1, (const GLchar **)&source, NULL);
+
+    return 0;
+}
+
+
+//void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)
+//local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)
+static int _llfunc_glGetAttachedShaders(lua_State* L) {
+    GLuint program = (GLuint)luaL_checkinteger(L, 1);
+    GLuint maxCount = (GLuint)luaL_checkinteger(L, 2);
+    
+    GLsizei count;
+#ifdef VI3D_SYS_WIN
+    GLuint *shaders = (GLuint *)alloca(sizeof(GLuint)*maxCount);
+#else
+    GLuint shaders[maxCount];
+#endif
+
+    glGetAttachedShaders(program, maxCount, &count, shaders);
+    
+    lua_newtable(L);
+    for(int i = 0; i < count; i ++) {
+        lua_pushinteger(L, (lua_Integer)shaders[i]);
+        lua_rawseti(L, -2, i+1);
+    }
+    return 1;
+}
+
+
+//void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)
+//local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)
+static int _llfunc_glReadPixels(lua_State* L) {
+    GLuint x = (GLuint)luaL_checkinteger(L, 1);
+    GLuint y = (GLuint)luaL_checkinteger(L, 2);
+    GLuint width = (GLuint)luaL_checkinteger(L, 3);
+    GLuint height = (GLuint)luaL_checkinteger(L, 4);
+    GLuint format = (GLuint)luaL_checkinteger(L, 5);
+    GLuint type = (GLuint)luaL_checkinteger(L, 6);
+    
+    GLuint n = 4 * width * height;
+#ifdef VI3D_SYS_WIN
+    GLchar *data = (GLchar *)alloca(sizeof(GLchar)*n);
+#else
+    GLchar data[n];
+#endif
+
+    glReadPixels(x, y, width, height, format, type, (GLvoid *)data);
+    
+    lua_pushlstring(L, (const char*)data, n);
+    return 1;
+}
+
+
 //void glActiveTexture(GLenum texture)
 //glActiveTexture(<int>texture)
 static int _llfunc_glActiveTexture(lua_State* L) {
@@ -1956,6 +2016,9 @@ static int _llfunc_glViewport(lua_State* L) {
 
 
 static const luaL_Reg __lib_gles[] = {
+    {"glShaderSource", _llfunc_glShaderSource},
+    {"glGetAttachedShaders", _llfunc_glGetAttachedShaders},
+    {"glReadPixels", _llfunc_glReadPixels},
     {"glActiveTexture", _llfunc_glActiveTexture},
     {"glAttachShader", _llfunc_glAttachShader},
     {"glBindAttribLocation", _llfunc_glBindAttribLocation},
