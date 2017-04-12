@@ -11,14 +11,14 @@
 static int iconv_utf8_gbk(lua_State* L) {
 	const char *str_utf8 = luaL_checkstring(L, 1);
 
-	int len_unicode = MultiByteToWideChar(CP_UTF8, 0, (char *)str_utf8, -1, NULL, 0);//��ȡת����Unicode���������Ҫ���ַ��ռ䳤��
+	int len_unicode = MultiByteToWideChar(CP_UTF8, 0, (char *)str_utf8, -1, NULL, 0);//获取转换到Unicode编码后所需要的字符空间长度
 	WCHAR* str_unicode = (WCHAR*)malloc(sizeof(WCHAR)*(len_unicode + 1));
 	if (!MultiByteToWideChar(CP_UTF8, 0, (char *)str_utf8, -1, str_unicode, len_unicode)){
 		free(str_unicode);
 		return 0;
 	}
 
-	int len_gbk = WideCharToMultiByte(CP_ACP, 0, str_unicode, len_unicode, NULL, 0, NULL, NULL);//��ȡת����GBK���������Ҫ���ַ��ռ䳤��
+	int len_gbk = WideCharToMultiByte(CP_ACP, 0, str_unicode, len_unicode, NULL, 0, NULL, NULL);//获取转换到GBK编码后所需要的字符空间长度
 	char* str_gbk = (char*)malloc(len_gbk + 1);
 	if (!WideCharToMultiByte(CP_ACP, 0, str_unicode, len_unicode, str_gbk, len_gbk, NULL, NULL)){
 		free(str_unicode);
@@ -37,14 +37,14 @@ static int iconv_utf8_gbk(lua_State* L) {
 static int iconv_gbk_utf8(lua_State* L) {
 	const char *str_gbk = luaL_checkstring(L, 1);
 
-	int len_unicode = MultiByteToWideChar(CP_ACP, 0, (char *)str_gbk, -1, NULL, 0);//��ȡת����Unicode���������Ҫ���ַ��ռ䳤��
+	int len_unicode = MultiByteToWideChar(CP_ACP, 0, (char *)str_gbk, -1, NULL, 0);//获取转换到Unicode编码后所需要的字符空间长度
 	WCHAR* str_unicode = (WCHAR*)malloc(sizeof(WCHAR)*(len_unicode + 1));
 	if (!MultiByteToWideChar(CP_ACP, 0, (char *)str_gbk, -1, str_unicode, len_unicode)){
 		free(str_unicode);
 		return 0;
 	}
 	
-	int len_utf8 = WideCharToMultiByte(CP_UTF8, 0, str_unicode, len_unicode, NULL, 0, NULL, NULL);//��ȡת����UTF8���������Ҫ���ַ��ռ䳤��
+	int len_utf8 = WideCharToMultiByte(CP_UTF8, 0, str_unicode, len_unicode, NULL, 0, NULL, NULL);//获取转换到UTF8编码后所需要的字符空间长度
 	char* str_utf8 = (char*)malloc(len_utf8 + 1);
 	if (!WideCharToMultiByte(CP_UTF8, 0, str_unicode, len_unicode, str_utf8, len_utf8, NULL, NULL)){
 		free(str_unicode);
@@ -60,6 +60,14 @@ static int iconv_gbk_utf8(lua_State* L) {
 }
 
 #else
+
+static int iconv_utf8_gbk(lua_State* L) {
+    return 0;
+}
+
+static int iconv_gbk_utf8(lua_State* L) {
+    return 0;
+}
 
 #endif
 
