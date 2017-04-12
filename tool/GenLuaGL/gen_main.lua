@@ -15,7 +15,6 @@ for i,v in ipairs(deflist) do
 end
 
 
-
 local fdoc = io.open("ll_gles_doc.lua", "w+")
 
 local fd = io.open("ll_gles.c", "w+")

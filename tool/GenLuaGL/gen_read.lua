@@ -60,6 +60,8 @@ end
 
 function gen_read()
     local deflist = loaddef()
+    table.sort(deflist, function(a, b) return a.name < b.name end)
+    
     --[[
     local retTypes = {}
     local argTypes = {}

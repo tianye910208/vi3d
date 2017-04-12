@@ -67,24 +67,24 @@ function gen_manual()
     return {
         {
             name="glShaderSource", 
-            desc="void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)", 
+            desc="[Manual]void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)", 
             func="_llfunc_glShaderSource", 
             text=_llfunc_glShaderSource, 
-            docs="glShaderSource(<int>shader, <string>string)"
+            docs="[Manual]glShaderSource(<int>shader, <string>string)"
         },
         {
             name="glGetAttachedShaders", 
-            desc="void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)", 
+            desc="[Manual]void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)", 
             func="_llfunc_glGetAttachedShaders", 
             text=_llfunc_glGetAttachedShaders, 
-            docs="local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)"
+            docs="[Manual]local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)"
         },
         {
             name="glReadPixels", 
-            desc="void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)", 
+            desc="[Manual]void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)", 
             func="_llfunc_glReadPixels", 
             text=_llfunc_glReadPixels, 
-            docs="local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)"
+            docs="[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)"
         },
     }
 end
