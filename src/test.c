@@ -49,21 +49,6 @@ GLuint LoadShader(GLenum type, const char *shaderSrc)
 GLuint programObject;
 int test_init()
 {
-
-	vi_app_design_size(1280, 720);
-
-	vi_file* f = vi_file_open("data/test.txt", "r");
-	vi_log("file_open: %p", f);
-	vi_log("file_size: %d", vi_file_size(f));
-	char data[512];
-	memset(data, 0, sizeof(data));
-	vi_log("file_read: %d", vi_file_read(f, data, vi_file_size(f)));
-	vi_file_close(f);
-	vi_log(data);
-
-
-	vi_lua_exec("print('[ViLua]From Lua:Hello World!', nil, {}, true, 101)\nprint(glGetString(0x1F03))");
-
     char vShaderStr[] =
         "#version 300 es                          \n"
         "layout(location = 0) in vec4 vPosition;  \n"
@@ -136,27 +121,29 @@ int test_init()
 //
 void test_draw()
 {
-    GLfloat vVertices[] = { 
-        0.0f, 0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f
-    };
-
+	/*
     // Set the viewport
 	vi_app* app = vi_app_info();
 	glViewport(app->viewport_x, app->viewport_y, app->viewport_w, app->viewport_h);
 
     // Clear the color buffer
     glClear(GL_COLOR_BUFFER_BIT);
-
+	*/
     // Use the program object
-    glUseProgram(programObject);
-
+    //glUseProgram(programObject);
+	
+	/*
+	GLfloat vVertices[] = {
+		0.0f, 0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f
+	};
     // Load the vertex data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices);
     glEnableVertexAttribArray(0);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
+	*/
 }
 
 

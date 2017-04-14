@@ -85,7 +85,7 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0);
         break;
 	case WM_SIZE:
-		vi_app_screen_size(LOWORD(lParam), HIWORD(lParam));
+		vi_app_set_screen_size(LOWORD(lParam), HIWORD(lParam));
 		break;
     case WM_CHAR:
         break;
@@ -177,9 +177,11 @@ int main(int argc, char *argv[])
     if (egl_init() != 0)
         return 2;
 
-	vi_log("%s", (const char*)glGetString(GL_EXTENSIONS));
-	vi_app_init();
-	vi_app_screen_size(APP_W, APP_H);
+	for (int i = 0; i < argc; i++)
+		vi_log("[arg]%d %s", i, argv[i]);
+
+	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../dat");
+	vi_app_set_screen_size(APP_W, APP_H);
 	
     win_loop();
 

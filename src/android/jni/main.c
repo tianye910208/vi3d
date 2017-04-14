@@ -134,7 +134,7 @@ void win_loop()
 				vi_log("eglCreateWindowSurface %d", eglGetError());
 			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
 				vi_log("eglMakeCurrent %d", eglGetError());
-			//vi_app_screen_size(screenWidth, screenHeight);
+			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
 		else
 		{
@@ -159,10 +159,8 @@ void* android_main(void* args)
 	if (egl_init() != 0)
 		return NULL;
 
-
-	vi_log((const char*)glGetString(GL_EXTENSIONS));
-	vi_app_init();
-	vi_app_screen_size(screenWidth, screenHeight);
+	vi_app_init("", nativeActivity->internalDataPath);
+	vi_app_set_screen_size(screenWidth, screenHeight);
 
 	win_loop();
 
@@ -276,13 +274,17 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 	
 	if (nativeActivity == NULL)
 	{
+		nativeActivity = activity;
+		vi_sys_set_activity(nativeActivity);
+
 		pthread_t tid;
 		pthread_create(&tid, 0, &android_main, 0);
 	}
-
-	nativeActivity = activity;
-
-	vi_sys_set_activity(nativeActivity);
+	else
+	{
+		nativeActivity = activity;
+		vi_sys_set_activity(nativeActivity);
+	}
 }
 
 

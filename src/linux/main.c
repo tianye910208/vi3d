@@ -127,7 +127,7 @@ void win_proc(XEvent* pev)
     switch(pev->type)
     {
         case ConfigureNotify:
-            vi_app_screen_size(pev->xconfigure.width, pev->xconfigure.height);
+            vi_app_set_screen_size(pev->xconfigure.width, pev->xconfigure.height);
             break;
         default:
             break;
@@ -175,9 +175,8 @@ int main(int argc, char *argv[])
     if (egl_init() != 0)
         return 2;
 
-    vi_log((const char*)glGetString(GL_EXTENSIONS));
-    vi_app_init();
-    vi_app_screen_size(APP_W, APP_H);
+	vi_app_init(argc>1 ? argv[1] : "../../", argc>2 ? argv[2] : "../../dat");
+    vi_app_set_screen_size(APP_W, APP_H);
 
     win_loop();
 

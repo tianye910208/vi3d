@@ -17,16 +17,22 @@ typedef struct _vi_app
 	int viewport_y;
 	int viewport_w;
 	int viewport_h;
+
+	char data_path[256];
+	char save_path[256];
 } vi_app;
 
 vi_app* vi_app_info();
+float vi_app_time();
 
-int vi_app_init();
+int vi_app_init(const char* datapath, const char* savepath);
 void vi_app_exit();
 void vi_app_loop(float dt);
 
-void vi_app_screen_size(int w, int h);
-void vi_app_design_size(int w, int h);
+void vi_app_set_screen_size(int w, int h);
+void vi_app_set_design_size(int w, int h);
+
+
 
 
 #endif 
