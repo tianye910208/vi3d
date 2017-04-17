@@ -395,7 +395,7 @@ function LoadShader(shaderType, shaderSrc)
     glShaderSource(shader, shaderSrc)
     glCompileShader(shader)
 
-    if not glGetShaderiv(shader, GL_COMPILE_STATUS) then
+    if glGetShaderiv(shader, GL_COMPILE_STATUS) == 0  then
         local infoLen = glGetShaderiv(shader, GL_INFO_LOG_LENGTH)
         if infoLen > 1 then
             local len, log = glGetShaderInfoLog(shader, infoLen)
@@ -410,33 +410,24 @@ end
 
 local programObject = 0
 local verticeObject = ""
-function test_init()
-    print("test_init")
-    local app = vi_app_info()
+function app_init()
 	vi_app_set_design_size(1280, 720)
-
-	local f = vi_file_open(app.data_path.."res/doc.txt", "r")
-	print("file_open:", app.data_path.."res/doc.txt", f)
-	print("file_size:", vi_file_size(f))
-	--print("file_read:", vi_file_read(f, vi_file_size(f)))
-	vi_file_close(f)
-
-
 
     local vs = LoadShader(GL_VERTEX_SHADER, vShaderStr)
     local fs = LoadShader(GL_FRAGMENT_SHADER, fShaderStr)
 
-    local programObject = glCreateProgram()
+    programObject = glCreateProgram()
     if programObject == 0 then
         print("Error glCreateProgram")
         return false
     end
     
+    
     glAttachShader(programObject, vs)
     glAttachShader(programObject, fs)
     glLinkProgram(programObject)
 
-    if not glGetProgramiv(programObject, GL_LINK_STATUS) then
+    if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
         local infoLen = glGetProgramiv(programObject, GL_INFO_LOG_LENGTH)
         if infoLen > 1 then
             local len, log = glGetProgramInfoLog(programObject, infoLen)
@@ -460,35 +451,43 @@ function test_init()
     return true
 end
 
+function app_update(dt)
 
-function test_draw1()
-    --print("test_draw")
+end
 
+function app_render(dt)
 	local app = vi_app_info()
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
-
+    
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(programObject)
 
- end
- function test_draw2()
-    
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, verticeObject)
     glEnableVertexAttribArray(0)
 
-    glDrawArrays(GL_TRIANGLES, 0, 3)
-    
+    glDrawArrays(GL_TRIANGLES, 0, 3) 
 end
 
-function onerror(msg)
+function app_onerror(msg)
     print(debug.traceback(msg))
 end
 
+function app_testfile()
+    local app = vi_app_info()
+	local f = vi_file_open(app.data_path.."res/doc.txt", "r")
+	print("file_open:", app.data_path.."res/doc.txt", f)
+	print("file_size:", vi_file_size(f))
+	--print("file_read:", vi_file_read(f, vi_file_size(f)))
+	vi_file_close(f)
+end
+
 xpcall(function()
-    print(test_init())
-    vi_lua_set_func(test_draw1, test_draw2, onerror)
-end, onerror)
+    if app_init() then
+        app_testfile()
+        vi_lua_set_func(app_update, app_render, app_onerror)
+    end
+end, app_onerror)
 
 
 

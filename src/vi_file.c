@@ -22,8 +22,8 @@ vi_file* vi_file_open(const char* filepath, const char* mode)
 		ANativeActivity* activity = vi_sys_get_activity();
 		if (activity && activity->assetManager)
 		{
-			Asset* asset = AAssetManager_open(activity->assetManager, filepath, AASSET_MODE_STREAMING);
-			if (fd)
+			AAsset* asset = AAssetManager_open(activity->assetManager, filepath, AASSET_MODE_STREAMING);
+			if (asset)
 			{
 				vi_file* f = vi_mem_alloc(sizeof(vi_file));
 				f->fd = NULL;

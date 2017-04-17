@@ -53,34 +53,31 @@ typedef signed long long    int64;
 typedef unsigned long long  uint64;
 
 
+#ifdef VI3D_SYS_ANDROID
+#include<android/log.h>
+#define vi_sys_print(fmt, arg, ...) (__android_log_print(ANDROID_LOG_INFO, "VI3D", fmt, arg, ##__VA_ARGS__))
+#else
+#define vi_sys_print(fmt, arg, ...) do {printf(fmt, arg, ##__VA_ARGS__);fflush(stdout);}while(0)
+#endif
 
 #ifdef VI3D_SYS_WIN
-
 #define WIN32_LEAN_AND_MEAN
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
-
 #endif
-
 #ifdef VI3D_SYS_LINUX
-
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
-
 #endif
-
 #ifdef VI3D_SYS_ANDROID
-
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <android/native_activity.h>
-
 void vi_sys_set_activity(ANativeActivity* activity);
 ANativeActivity* vi_sys_get_activity();
-
 #endif
 
 

@@ -93,7 +93,7 @@ int vi_lua_set_func(int func_update, int func_render, int func_onerror)
 {
 	if (__lua_state)
 	{
-		vi_log("set_func %d %d %d", func_update, func_render, func_onerror);
+		//vi_log("set_func %d %d %d", func_update, func_render, func_onerror);
 		__lua_state->func_update = func_update;
 		__lua_state->func_render = func_render;
 		__lua_state->func_onerror = func_onerror;

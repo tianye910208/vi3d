@@ -25,9 +25,7 @@ static int _llfunc_vi_log_print(lua_State* L)
 		else
 			strcat(str, s);
 
-		if (i == n)
-			strcat(str, "\n");
-		else
+		if (i < n)
 			strcat(str, "\t");
 
 		lua_pop(L, 1);  /* pop result */
@@ -135,7 +133,7 @@ static int _llfunc_vi_file_read(lua_State* L)
 #ifdef VI3D_SYS_WIN
 	char *data = (char *)alloca(sizeof(char)*n);
 #else
-	char shaders[n];
+	char data[n];
 #endif
 	int read = vi_file_read(f, data, n); 
 	lua_pushlstring(L, data, n);

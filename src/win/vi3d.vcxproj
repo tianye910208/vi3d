@@ -22,7 +22,6 @@
     <ClCompile Include="..\ll_all.c" />
     <ClCompile Include="..\ll_gles.c" />
     <ClCompile Include="..\ll_vi3d.c" />
-    <ClCompile Include="..\test.c" />
     <ClCompile Include="..\vi3d.c" />
     <ClCompile Include="..\vi_app.c" />
     <ClCompile Include="..\vi_file.c" />
@@ -36,7 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ll_all.h" />
-    <ClInclude Include="..\test.h" />
     <ClInclude Include="..\vi3d.h" />
     <ClInclude Include="..\vi_app.h" />
     <ClInclude Include="..\vi_file.h" />

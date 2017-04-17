@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.c" />
-    <ClCompile Include="..\test.c" />
     <ClCompile Include="..\vi_app.c" />
     <ClCompile Include="..\vi_file.c" />
     <ClCompile Include="..\vi_log.c" />
@@ -17,7 +16,6 @@
     <ClCompile Include="..\ll_vi3d.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\test.h" />
     <ClInclude Include="..\vi_app.h" />
     <ClInclude Include="..\vi_file.h" />
     <ClInclude Include="..\vi_log.h" />

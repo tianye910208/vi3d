@@ -18,7 +18,10 @@ vi_log_func vi_log_getfunc()
 
 void _vi_log_print(const char* file, int line, const char* msg)
 {
-	vi_log_print("%s  @%s:%d\n", msg, file, line);
+	if (file)
+		vi_sys_print("%s  @%s:%d\n", msg, file, line);
+	else
+		vi_sys_print("%s\n", msg);
 }
 
 void _vi_log(const char* file, int line, const char* fmt, ...)

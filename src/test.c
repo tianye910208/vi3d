@@ -131,7 +131,6 @@ void test_draw()
 	*/
     // Use the program object
     //glUseProgram(programObject);
-	
 	/*
 	GLfloat vVertices[] = {
 		0.0f, 0.5f, 0.0f,

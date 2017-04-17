@@ -1,8 +1,8 @@
 #include "vi_app.h"
 #include "vi_mem.h"
+#include "vi_log.h"
 #include "vi_lua.h"
-
-#include "test.h"
+#include "vi_file.h"
 
 static vi_app* __app_instance = NULL;
 
@@ -25,7 +25,7 @@ int vi_app_init(const char* datapath, const char* savepath)
 	char* data_path = __app_instance->data_path;
 	strcpy(data_path, datapath);
 	int data_path_len = (int)strlen(data_path);
-	if (data_path[data_path_len - 1] != '/')
+	if (data_path_len > 0 && data_path[data_path_len - 1] != '/')
 	{
 		data_path[data_path_len] = '/';
 		data_path[data_path_len+1] = '\0';
@@ -34,7 +34,7 @@ int vi_app_init(const char* datapath, const char* savepath)
 	char* save_path = __app_instance->save_path;
 	strcpy(save_path, savepath);
 	int save_path_len = (int)strlen(save_path);
-	if (save_path[save_path_len - 1] != '/')
+	if (save_path_len > 0 && save_path[save_path_len - 1] != '/')
 	{
 		save_path[save_path_len] = '/';
 		save_path[save_path_len + 1] = '\0';
@@ -42,7 +42,6 @@ int vi_app_init(const char* datapath, const char* savepath)
 
 
 	vi_lua_init();
-	test_init();
 
 	char luafile[256];
 	memset(luafile, 0, sizeof(luafile));
@@ -80,9 +79,7 @@ void vi_app_loop(float dt)
 {
 	__app_instance->time += dt;
 	vi_lua_update(dt);
-	test_draw();
 	vi_lua_render(dt);
-	
 }
 
 void _vi_app_adjust_viewport()
