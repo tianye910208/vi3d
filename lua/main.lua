@@ -410,6 +410,7 @@ end
 
 local programObject = 0
 local verticeObject = ""
+local indexesObject = ""
 function app_init()
 	vi_app_set_design_size(1280, 720)
 
@@ -448,6 +449,25 @@ function app_init()
     for i,v in ipairs(vVertices) do
         verticeObject = verticeObject .. string.pack("<f", v)
     end
+    
+    local vIndexes = {
+        0,1,2
+    }
+    for i,v in ipairs(vIndexes) do
+        indexesObject = indexesObject .. string.pack("<I2", v)
+    end
+    
+    --test table input and output
+    local n = 10
+    local t = glGenBuffers(n)
+    local p = ""
+    for i,v in ipairs(t) do
+        print("buffer", i, v)
+        p = p..string.pack("<I4", v)
+    end
+    
+    glDeleteBuffers(n, p)
+    
     return true
 end
 
@@ -467,6 +487,7 @@ function app_render(dt)
     glEnableVertexAttribArray(0)
 
     glDrawArrays(GL_TRIANGLES, 0, 3) 
+    --glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indexesObject)
 end
 
 function app_onerror(msg)

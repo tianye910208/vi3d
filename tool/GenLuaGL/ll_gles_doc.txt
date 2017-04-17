@@ -13,7 +13,7 @@ ret	void		124
 arg	GLboolean *		1
 arg	GLfloat *		4
 arg	GLsizei *		5
-arg	GLint *		13
+arg	GLint *		       13
 arg	GLenum *		2
 arg	GLuint *		4
 arg	GLchar *		5
@@ -83,7 +83,6 @@ void 	glDepthMask(GLboolean  flag)
 void 	glDepthRangef(GLclampf  nearVal, GLclampf  farVal)
 void 	glDetachShader(GLuint  program, GLuint  shader)
 void 	glDrawArrays(GLenum  mode, GLint  first, GLsizei  count)
-void 	glDrawElements(GLenum  mode, GLsizei  count, GLenum  type, const GLvoid *  indices)
 void 	glEnable(GLenum  cap)
 void 	glDisable(GLenum  cap)
 void 	glEnableVertexAttribArray(GLuint  index)
@@ -155,7 +154,6 @@ void 	glVertexAttrib1fv(GLuint  index, const GLfloat * v)
 void 	glVertexAttrib2fv(GLuint  index, const GLfloat * v)
 void 	glVertexAttrib3fv(GLuint  index, const GLfloat * v)
 void 	glVertexAttrib4fv(GLuint  index, const GLfloat * v)
-void 	glVertexAttribPointer(GLuint  index, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const GLvoid *  pointer)
 void 	glViewport(GLint  x, GLint  y, GLsizei  width, GLsizei  height)
 
 GLenum 	glGetError()
@@ -221,7 +219,7 @@ void 	glGetShaderInfoLog(GLuint  shader, GLsizei  maxLength, GLsizei * length, G
 
 [MMM]void 	glReadPixels(GLint  x, GLint  y, GLsizei  width, GLsizei  height, GLenum  format, GLenum  type, GLvoid *  data)
 
-
-
+[MMM]void 	glVertexAttribPointer(GLuint  index, GLint  size, GLenum  type, GLboolean  normalized, GLsizei  stride, const GLvoid *  pointer)
+[MMM]void 	glDrawElements(GLenum  mode, GLsizei  count, GLenum  type, const GLvoid *  indices)
 
 

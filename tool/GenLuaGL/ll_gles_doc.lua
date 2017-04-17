@@ -11,6 +11,14 @@
 --[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)
 
 
+--[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)
+--[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)
+
+
+--[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
+--[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
+
+
 --void glActiveTexture(GLenum texture)
 --glActiveTexture(<int>texture)
 
@@ -124,11 +132,11 @@
 
 
 --void glDeleteBuffers(GLsizei n, const GLuint * buffers)
---glDeleteBuffers(<int>n, {[int]}buffers)
+--glDeleteBuffers(<int>n, {[int]}buffers/<string>buffersPacked)
 
 
 --void glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers)
---glDeleteFramebuffers(<int>n, {[int]}framebuffers)
+--glDeleteFramebuffers(<int>n, {[int]}framebuffers/<string>framebuffersPacked)
 
 
 --void glDeleteProgram(GLuint program)
@@ -136,7 +144,7 @@
 
 
 --void glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers)
---glDeleteRenderbuffers(<int>n, {[int]}renderbuffers)
+--glDeleteRenderbuffers(<int>n, {[int]}renderbuffers/<string>renderbuffersPacked)
 
 
 --void glDeleteShader(GLuint shader)
@@ -144,7 +152,7 @@
 
 
 --void glDeleteTextures(GLsizei n, const GLuint * textures)
---glDeleteTextures(<int>n, {[int]}textures)
+--glDeleteTextures(<int>n, {[int]}textures/<string>texturesPacked)
 
 
 --void glDepthFunc(GLenum func)
@@ -173,10 +181,6 @@
 
 --void glDrawArrays(GLenum mode, GLint first, GLsizei count)
 --glDrawArrays(<int>mode, <int>first, <int>count)
-
-
---void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices)
---glDrawElements(<int>mode, <int>count, <int>type, <string>indices)
 
 
 --void glEnable(GLenum cap)
@@ -388,7 +392,7 @@
 
 
 --void glShaderBinary(GLsizei n, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
---glShaderBinary(<int>n, {[int]}shaders, <int>binaryformat, <string>binary, <int>length)
+--glShaderBinary(<int>n, {[int]}shaders/<string>shadersPacked, <int>binaryformat, <string>binary, <int>length)
 
 
 --void glStencilFunc(GLenum func, GLint ref, GLuint mask)
@@ -424,7 +428,7 @@
 
 
 --void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)
---glTexParameterfv(<int>target, <int>pname, {[float]}params)
+--glTexParameterfv(<int>target, <int>pname, {[float]}params/<string>paramsPacked)
 
 
 --void glTexParameteri(GLenum target, GLenum pname, GLint param)
@@ -432,7 +436,7 @@
 
 
 --void glTexParameteriv(GLenum target, GLenum pname, const GLint * params)
---glTexParameteriv(<int>target, <int>pname, {[int]}params)
+--glTexParameteriv(<int>target, <int>pname, {[int]}params/<string>paramsPacked)
 
 
 --void glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid * data)
@@ -444,7 +448,7 @@
 
 
 --void glUniform1fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform1fv(<int>location, <int>count, {[float]}value)
+--glUniform1fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
 
 
 --void glUniform1i(GLint location, GLint v0)
@@ -452,7 +456,7 @@
 
 
 --void glUniform1iv(GLint location, GLsizei count, const GLint * value)
---glUniform1iv(<int>location, <int>count, {[int]}value)
+--glUniform1iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
 
 
 --void glUniform2f(GLint location, GLfloat v0, GLfloat v1)
@@ -460,7 +464,7 @@
 
 
 --void glUniform2fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform2fv(<int>location, <int>count, {[float]}value)
+--glUniform2fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
 
 
 --void glUniform2i(GLint location, GLint v0, GLint v1)
@@ -468,7 +472,7 @@
 
 
 --void glUniform2iv(GLint location, GLsizei count, const GLint * value)
---glUniform2iv(<int>location, <int>count, {[int]}value)
+--glUniform2iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
 
 
 --void glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
@@ -476,7 +480,7 @@
 
 
 --void glUniform3fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform3fv(<int>location, <int>count, {[float]}value)
+--glUniform3fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
 
 
 --void glUniform3i(GLint location, GLint v0, GLint v1, GLint v2)
@@ -484,7 +488,7 @@
 
 
 --void glUniform3iv(GLint location, GLsizei count, const GLint * value)
---glUniform3iv(<int>location, <int>count, {[int]}value)
+--glUniform3iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
 
 
 --void glUniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
@@ -492,7 +496,7 @@
 
 
 --void glUniform4fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform4fv(<int>location, <int>count, {[float]}value)
+--glUniform4fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
 
 
 --void glUniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
@@ -500,19 +504,19 @@
 
 
 --void glUniform4iv(GLint location, GLsizei count, const GLint * value)
---glUniform4iv(<int>location, <int>count, {[int]}value)
+--glUniform4iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
 
 
 --void glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, {[float]}value)
+--glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
 
 
 --void glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, {[float]}value)
+--glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
 
 
 --void glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, {[float]}value)
+--glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
 
 
 --void glUseProgram(GLuint program)
@@ -528,7 +532,7 @@
 
 
 --void glVertexAttrib1fv(GLuint index, const GLfloat * v)
---glVertexAttrib1fv(<int>index, {[float]}v)
+--glVertexAttrib1fv(<int>index, {[float]}v/<string>vPacked)
 
 
 --void glVertexAttrib2f(GLuint index, GLfloat v0, GLfloat v1)
@@ -536,7 +540,7 @@
 
 
 --void glVertexAttrib2fv(GLuint index, const GLfloat * v)
---glVertexAttrib2fv(<int>index, {[float]}v)
+--glVertexAttrib2fv(<int>index, {[float]}v/<string>vPacked)
 
 
 --void glVertexAttrib3f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2)
@@ -544,7 +548,7 @@
 
 
 --void glVertexAttrib3fv(GLuint index, const GLfloat * v)
---glVertexAttrib3fv(<int>index, {[float]}v)
+--glVertexAttrib3fv(<int>index, {[float]}v/<string>vPacked)
 
 
 --void glVertexAttrib4f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
@@ -552,11 +556,7 @@
 
 
 --void glVertexAttrib4fv(GLuint index, const GLfloat * v)
---glVertexAttrib4fv(<int>index, {[float]}v)
-
-
---void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer)
---glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer)
+--glVertexAttrib4fv(<int>index, {[float]}v/<string>vPacked)
 
 
 --void glViewport(GLint x, GLint y, GLsizei width, GLsizei height)

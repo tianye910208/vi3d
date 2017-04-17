@@ -19,34 +19,48 @@ end
 
 local load_n_list = function(name, tt, idx, def)
     local ttt = string.gsub(string.gsub(tt, "%s*%*$", ""), "^const%s*", "")
-    local src = "int _ll_tabn = (int)luaL_len(L, "..idx..");"
-    src = src .."\n#ifdef VI3D_SYS_WIN\n    "..ttt.." *"..name.." = ("..ttt.." *)alloca(sizeof("..ttt..")*_ll_tabn);"..
-                "\n#else\n    "..ttt.." "..name.."[_ll_tabn];"..
-                "\n#endif\n"
-    
-    src = src .."    for(int i = 0; i < _ll_tabn; i++) {\n"..
-                "        lua_rawgeti(L, "..idx..", i+1);\n"..
-                "        "..name.."[i] = ("..ttt..")luaL_checkinteger(L, -1);\n"..
-                "        lua_pop(L, 1);\n"..
+    local src = tt.." "..name..";\n"..
+                "    if(lua_istable(L, "..idx..")){\n"..
+                "        int _ll_tabn = (int)lua_rawlen(L, "..idx..");\n"..
+                "#ifdef VI3D_SYS_WIN\n"..
+                "        "..ttt.." *_"..name.." = ("..ttt.." *)alloca(sizeof("..ttt..")*_ll_tabn);\n"..
+                "#else\n"..
+                "        "..ttt.." _"..name.."[_ll_tabn];\n"..
+                "#endif\n"..
+                "        for(int i = 0; i < _ll_tabn; i++) {\n"..
+                "            lua_rawgeti(L, "..idx..", i+1);\n"..
+                "            _"..name.."[i] = ("..ttt..")luaL_checkinteger(L, -1);\n"..
+                "            lua_pop(L, 1);\n"..
+                "        }\n"..
+                "        "..name.." = ("..tt..")_"..name..";\n"..
+                "    }else{\n"..
+                "        "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n"..
                 "    }\n"
 
-    return src, "{[int]}"..name, "("..tt..")"..name
+    return src, "{[int]}"..name.."/<string>"..name.."Packed", name
 end
 
 local load_f_list = function(name, tt, idx, def)
     local ttt = string.gsub(string.gsub(tt, "%s*%*$", ""), "^const%s*", "")
-    local src = "int _ll_tabn = (int)luaL_len(L, "..idx..");"
-    src = src .."\n#ifdef VI3D_SYS_WIN\n    "..ttt.." *"..name.." = ("..ttt.." *)alloca(sizeof("..ttt..")*_ll_tabn);"..
-                "\n#else\n    "..ttt.." "..name.."[_ll_tabn];"..
-                "\n#endif\n"
-    
-    src = src .."    for(int i = 0; i < _ll_tabn; i++) {\n"..
-                "        lua_rawgeti(L, "..idx..", i+1);\n"..
-                "        "..name.."[i] = ("..ttt..")luaL_checknumber(L, -1);\n"..
-                "        lua_pop(L, 1);\n"..
+    local src = tt.." "..name..";\n"..
+                "    if(lua_istable(L, "..idx..")){\n"..
+                "        int _ll_tabn = (int)lua_rawlen(L, "..idx..");\n"..
+                "#ifdef VI3D_SYS_WIN\n"..
+                "        "..ttt.." *_"..name.." = ("..ttt.." *)alloca(sizeof("..ttt..")*_ll_tabn);\n"..
+                "#else\n"..
+                "        "..ttt.." _"..name.."[_ll_tabn];\n"..
+                "#endif\n"..
+                "        for(int i = 0; i < _ll_tabn; i++) {\n"..
+                "            lua_rawgeti(L, "..idx..", i+1);\n"..
+                "            _"..name.."[i] = ("..ttt..")luaL_checknumber(L, -1);\n"..
+                "            lua_pop(L, 1);\n"..
+                "        }\n"..
+                "        "..name.." = ("..tt..")_"..name..";\n"..
+                "    }else{\n"..
+                "        "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n"..
                 "    }\n"
-
-    return src, "{[float]}"..name, "("..tt..")"..name
+    
+    return src, "{[float]}"..name.."/<string>"..name.."Packed", name
 end
 
 local load_def_ptr = function(name, tt, idx, def)
