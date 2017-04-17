@@ -486,8 +486,8 @@ function app_render(dt)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, verticeObject)
     glEnableVertexAttribArray(0)
 
-    glDrawArrays(GL_TRIANGLES, 0, 3) 
-    --glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indexesObject)
+    --glDrawArrays(GL_TRIANGLES, 0, 3) 
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indexesObject)
 end
 
 function app_onerror(msg)
