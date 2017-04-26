@@ -1,0 +1,1309 @@
+The target system is: Darwin - 1 - 
+The host system is: Darwin - 16.5.0 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+=== BUILD TARGET CompilerIdC OF PROJECT CompilerIdC WITH THE DEFAULT CONFIGURATION (Debug) ===
+
+Check dependencies
+
+Write auxiliary files
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC.hmap
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CompilerIdC.LinkFileList
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC-generated-files.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+chmod 0755 /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC-all-target-headers.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC-own-target-headers.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC-all-non-framework-target-headers.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC-project-headers.hmap
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest
+
+ProcessProductPackaging "" CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC.xctest.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.";
+    "keychain-access-groups" =     (
+        "59L3B76TR9."
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC.xctest.xcent
+
+CompileC CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o CMakeCCompilerId.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC.hmap -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/DerivedSources -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CMakeCCompilerId.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CMakeCCompilerId.o
+
+Ld CompilerIdC.xctest/CompilerIdC normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CompilerIdC.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CompilerIdC_lto.o -Xlinker -objc_abi_version -Xlinker 2 -framework XCTest -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/CompilerIdC.xctest.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Objects-normal/i386/CompilerIdC_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest/CompilerIdC
+
+GenerateDSYMFile CompilerIdC.xctest.dSYM CompilerIdC.xctest/CompilerIdC
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest/CompilerIdC -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest.dSYM
+
+PhaseScriptExecution Run\ Script CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    /bin/sh -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.build/Debug-iphonesimulator/CompilerIdC.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+GCC_VERSION=com.apple.compilers.llvm.clang.1_0
+
+Touch CompilerIdC.xctest
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest
+
+CodeSign CompilerIdC.xctest
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest
+
+** BUILD SUCCEEDED **
+
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.xctest/CompilerIdC"
+
+The C compiler identification is AppleClang, found in "/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdC/CompilerIdC.xctest/CompilerIdC"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+=== BUILD TARGET CompilerIdCXX OF PROJECT CompilerIdCXX WITH THE DEFAULT CONFIGURATION (Debug) ===
+
+Check dependencies
+
+Write auxiliary files
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX-generated-files.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX-own-target-headers.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+chmod 0755 /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX-all-target-headers.hmap
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX.LinkFileList
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX-project-headers.hmap
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX-all-non-framework-target-headers.hmap
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest
+
+ProcessProductPackaging "" CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX.xctest.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.";
+    "keychain-access-groups" =     (
+        "59L3B76TR9."
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX.xctest.xcent
+
+CompileC CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o CMakeCXXCompilerId.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -fvisibility-inlines-hidden -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX.hmap -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/DerivedSources -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CMakeCXXCompilerId.cpp -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o
+
+Ld CompilerIdCXX.xctest/CompilerIdCXX normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX_lto.o -Xlinker -objc_abi_version -Xlinker 2 -framework XCTest -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/CompilerIdCXX.xctest.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX
+
+GenerateDSYMFile CompilerIdCXX.xctest.dSYM CompilerIdCXX.xctest/CompilerIdCXX
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest.dSYM
+
+PhaseScriptExecution Run\ Script CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    /bin/sh -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.build/Debug-iphonesimulator/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+GCC_VERSION=com.apple.compilers.llvm.clang.1_0
+
+Touch CompilerIdCXX.xctest
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest
+
+CodeSign CompilerIdCXX.xctest
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest
+
+** BUILD SUCCEEDED **
+
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.xctest/CompilerIdCXX"
+
+The CXX compiler identification is AppleClang, found in "/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/3.8.0/CompilerIdCXX/CompilerIdCXX.xctest/CompilerIdCXX"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_bf439" "-configuration" "Debug"
+=== BUILD TARGET cmTC_bf439 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app
+
+ProcessInfoPlistFile Debug/cmTC_bf439.app/Info.plist CMakeFiles/cmTC_bf439.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_bf439.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.o /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCCompilerABI.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.dia -c /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCCompilerABI.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.o
+
+Ld Debug/cmTC_bf439.app/cmTC_bf439 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -v -Wl,-v -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439
+Apple LLVM version 8.1.0 (clang-802.0.42)
+Target: i386-apple-darwin16.5.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439 -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+@(#)PROGRAM:ld  PROJECT:ld64-278.4
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib
+Framework search paths:
+	/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/
+
+GenerateDSYMFile Debug/cmTC_bf439.app.dSYM Debug/cmTC_bf439.app/cmTC_bf439
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app.dSYM
+
+Touch Debug/cmTC_bf439.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app
+
+CodeSign Debug/cmTC_bf439.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app
+
+** BUILD SUCCEEDED **
+
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_bf439" "-configuration" "Debug"]
+  ignore line: [=== BUILD TARGET cmTC_bf439 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===]
+  ignore line: []
+  ignore line: [Check dependencies]
+  ignore line: []
+  ignore line: [Write auxiliary files]
+  ignore line: [/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386]
+  ignore line: [write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList]
+  ignore line: []
+  ignore line: [Create product structure]
+  ignore line: [/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app]
+  ignore line: []
+  ignore line: [ProcessInfoPlistFile Debug/cmTC_bf439.app/Info.plist CMakeFiles/cmTC_bf439.dir/Info.plist]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_bf439.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/Info.plist]
+  ignore line: []
+  ignore line: [ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    ]
+  ignore line: []
+  ignore line: [Entitlements:]
+  ignore line: []
+  ignore line: [{]
+  ignore line: [    "application-identifier" = "59L3B76TR9.org.racing"]
+  ignore line: []
+  ignore line: [    "keychain-access-groups" =     (]
+  ignore line: [        "59L3B76TR9.org.racing"]
+  ignore line: [    )]
+  ignore line: []
+  ignore line: [}]
+  ignore line: []
+  ignore line: []
+  ignore line: [    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent]
+  ignore line: []
+  ignore line: [CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.o /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCCompilerABI.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export LANG=en_US.US-ASCII]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.dia -c /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCCompilerABI.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/CMakeCCompilerABI.o]
+  ignore line: []
+  ignore line: [Ld Debug/cmTC_bf439.app/cmTC_bf439 normal i386]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export IPHONEOS_DEPLOYMENT_TARGET=10.3]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -v -Wl,-v -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439]
+  ignore line: [Apple LLVM version 8.1.0 (clang-802.0.42)]
+  ignore line: [Target: i386-apple-darwin16.5.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  reduced line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439 -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug]
+            to: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439 -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a ]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439 -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a ]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [i386] ==> ignore
+    arg [-dead_strip] ==> ignore
+    arg [-ios_simulator_version_min] ==> ignore
+    arg [10.3.0] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk] ==> ignore
+    arg [-o] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_bf439.app/cmTC_bf439] ==> ignore
+    arg [-filelist] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439.LinkFileList] ==> ignore
+    arg [-object_path_lto] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_lto.o] ==> ignore
+    arg [-no_deduplicate] ==> ignore
+    arg [-objc_abi_version] ==> ignore
+    arg [2] ==> ignore
+    arg [-v] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-sectcreate] ==> ignore
+    arg [__TEXT] ==> ignore
+    arg [__entitlements] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/cmTC_bf439.app.xcent] ==> ignore
+    arg [-dependency_info] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_bf439.build/Objects-normal/i386/cmTC_bf439_dependency_info.dat] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a]
+  Library search paths: [;/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  Framework search paths: [;/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a]
+  collapse library dir [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug] ==> [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug], skipping non-system directory
+  collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  collapse framework dir [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug] ==> [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug], skipping non-system directory
+  collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks]
+  implicit libs: []
+  implicit dirs: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks]
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_d5a76" "-configuration" "Debug"
+=== BUILD TARGET cmTC_d5a76 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/cmTC_d5a76.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app
+
+ProcessInfoPlistFile Debug/cmTC_d5a76.app/Info.plist CMakeFiles/cmTC_d5a76.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_d5a76.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/cmTC_d5a76.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/cmTC_d5a76.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -std=c11 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_d5a76.app/cmTC_d5a76 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/cmTC_d5a76.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/cmTC_d5a76_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/cmTC_d5a76.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_d5a76.build/Objects-normal/i386/cmTC_d5a76_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app/cmTC_d5a76
+
+GenerateDSYMFile Debug/cmTC_d5a76.app.dSYM Debug/cmTC_d5a76.app/cmTC_d5a76
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app/cmTC_d5a76 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app.dSYM
+
+Touch Debug/cmTC_d5a76.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app
+
+CodeSign Debug/cmTC_d5a76.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_d5a76.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_844ba" "-configuration" "Debug"
+=== BUILD TARGET cmTC_844ba OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/cmTC_844ba.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app
+
+ProcessInfoPlistFile Debug/cmTC_844ba.app/Info.plist CMakeFiles/cmTC_844ba.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_844ba.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/cmTC_844ba.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/cmTC_844ba.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -std=c99 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_844ba.app/cmTC_844ba normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/cmTC_844ba.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/cmTC_844ba_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/cmTC_844ba.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_844ba.build/Objects-normal/i386/cmTC_844ba_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app/cmTC_844ba
+
+GenerateDSYMFile Debug/cmTC_844ba.app.dSYM Debug/cmTC_844ba.app/cmTC_844ba
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app/cmTC_844ba -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app.dSYM
+
+Touch Debug/cmTC_844ba.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app
+
+CodeSign Debug/cmTC_844ba.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_844ba.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_14097" "-configuration" "Debug"
+=== BUILD TARGET cmTC_14097 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/cmTC_14097.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app
+
+ProcessInfoPlistFile Debug/cmTC_14097.app/Info.plist CMakeFiles/cmTC_14097.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_14097.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/cmTC_14097.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/cmTC_14097.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c normal i386 c com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -std=c90 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_14097.app/cmTC_14097 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/cmTC_14097.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/cmTC_14097_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/cmTC_14097.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_14097.build/Objects-normal/i386/cmTC_14097_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app/cmTC_14097
+
+GenerateDSYMFile Debug/cmTC_14097.app.dSYM Debug/cmTC_14097.app/cmTC_14097
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app/cmTC_14097 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app.dSYM
+
+Touch Debug/cmTC_14097.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app
+
+CodeSign Debug/cmTC_14097.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_14097.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_cd6cd" "-configuration" "Debug"
+=== BUILD TARGET cmTC_cd6cd OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app
+
+ProcessInfoPlistFile Debug/cmTC_cd6cd.app/Info.plist CMakeFiles/cmTC_cd6cd.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_cd6cd.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.o /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCXXCompilerABI.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.dia -c /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCXXCompilerABI.cpp -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.o
+
+Ld Debug/cmTC_cd6cd.app/cmTC_cd6cd normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -v -Wl,-v -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd
+Apple LLVM version 8.1.0 (clang-802.0.42)
+Target: i386-apple-darwin16.5.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+@(#)PROGRAM:ld  PROJECT:ld64-278.4
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib
+Framework search paths:
+	/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug
+	/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/
+
+GenerateDSYMFile Debug/cmTC_cd6cd.app.dSYM Debug/cmTC_cd6cd.app/cmTC_cd6cd
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app.dSYM
+
+Touch Debug/cmTC_cd6cd.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app
+
+CodeSign Debug/cmTC_cd6cd.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app
+
+** BUILD SUCCEEDED **
+
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_cd6cd" "-configuration" "Debug"]
+  ignore line: [=== BUILD TARGET cmTC_cd6cd OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===]
+  ignore line: []
+  ignore line: [Check dependencies]
+  ignore line: []
+  ignore line: [Write auxiliary files]
+  ignore line: [/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386]
+  ignore line: [write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList]
+  ignore line: []
+  ignore line: [Create product structure]
+  ignore line: [/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app]
+  ignore line: []
+  ignore line: [ProcessInfoPlistFile Debug/cmTC_cd6cd.app/Info.plist CMakeFiles/cmTC_cd6cd.dir/Info.plist]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_cd6cd.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/Info.plist]
+  ignore line: []
+  ignore line: [ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    ]
+  ignore line: []
+  ignore line: [Entitlements:]
+  ignore line: []
+  ignore line: [{]
+  ignore line: [    "application-identifier" = "59L3B76TR9.org.racing"]
+  ignore line: []
+  ignore line: [    "keychain-access-groups" =     (]
+  ignore line: [        "59L3B76TR9.org.racing"]
+  ignore line: [    )]
+  ignore line: []
+  ignore line: [}]
+  ignore line: []
+  ignore line: []
+  ignore line: [    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent]
+  ignore line: []
+  ignore line: [CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.o /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCXXCompilerABI.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export LANG=en_US.US-ASCII]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.dia -c /usr/local/Cellar/cmake/3.8.0/share/cmake/Modules/CMakeCXXCompilerABI.cpp -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/CMakeCXXCompilerABI.o]
+  ignore line: []
+  ignore line: [Ld Debug/cmTC_cd6cd.app/cmTC_cd6cd normal i386]
+  ignore line: [    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp]
+  ignore line: [    export IPHONEOS_DEPLOYMENT_TARGET=10.3]
+  ignore line: [    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"]
+  ignore line: [    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -v -Wl,-v -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd]
+  ignore line: [Apple LLVM version 8.1.0 (clang-802.0.42)]
+  ignore line: [Target: i386-apple-darwin16.5.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  reduced line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug]
+            to: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a ]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch i386 -dead_strip -ios_simulator_version_min 10.3.0 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList -object_path_lto /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o -no_deduplicate -objc_abi_version 2 -v -headerpad_max_install_names -sectcreate __TEXT __entitlements /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent -dependency_info /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a ]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [i386] ==> ignore
+    arg [-dead_strip] ==> ignore
+    arg [-ios_simulator_version_min] ==> ignore
+    arg [10.3.0] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk] ==> ignore
+    arg [-o] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_cd6cd.app/cmTC_cd6cd] ==> ignore
+    arg [-filelist] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd.LinkFileList] ==> ignore
+    arg [-object_path_lto] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_lto.o] ==> ignore
+    arg [-no_deduplicate] ==> ignore
+    arg [-objc_abi_version] ==> ignore
+    arg [2] ==> ignore
+    arg [-v] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-sectcreate] ==> ignore
+    arg [__TEXT] ==> ignore
+    arg [__entitlements] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/cmTC_cd6cd.app.xcent] ==> ignore
+    arg [-dependency_info] ==> ignore
+    arg [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_cd6cd.build/Objects-normal/i386/cmTC_cd6cd_dependency_info.dat] ==> ignore
+    arg [-lc++] ==> lib [c++]
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a]
+  Library search paths: [;/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  Framework search paths: [;/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/lib/darwin/libclang_rt.ios.a]
+  collapse library dir [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug] ==> [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug], skipping non-system directory
+  collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  collapse framework dir [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug] ==> [/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug], skipping non-system directory
+  collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks/] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks]
+  implicit libs: [c++]
+  implicit dirs: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/usr/lib]
+  implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk/System/Library/Frameworks]
+
+
+
+
+Detecting CXX [-std=c++1z] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_5ecf5" "-configuration" "Debug"
+=== BUILD TARGET cmTC_5ecf5 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/cmTC_5ecf5.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app
+
+ProcessInfoPlistFile Debug/cmTC_5ecf5.app/Info.plist CMakeFiles/cmTC_5ecf5.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_5ecf5.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/cmTC_5ecf5.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/cmTC_5ecf5.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -std=c++1z -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_5ecf5.app/cmTC_5ecf5 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/cmTC_5ecf5.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/cmTC_5ecf5_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/cmTC_5ecf5.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_5ecf5.build/Objects-normal/i386/cmTC_5ecf5_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app/cmTC_5ecf5
+
+GenerateDSYMFile Debug/cmTC_5ecf5.app.dSYM Debug/cmTC_5ecf5.app/cmTC_5ecf5
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app/cmTC_5ecf5 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app.dSYM
+
+Touch Debug/cmTC_5ecf5.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app
+
+CodeSign Debug/cmTC_5ecf5.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_5ecf5.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_70942" "-configuration" "Debug"
+=== BUILD TARGET cmTC_70942 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/cmTC_70942.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app
+
+ProcessInfoPlistFile Debug/cmTC_70942.app/Info.plist CMakeFiles/cmTC_70942.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_70942.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/cmTC_70942.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/cmTC_70942.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -std=c++14 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_70942.app/cmTC_70942 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/cmTC_70942.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/cmTC_70942_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/cmTC_70942.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_70942.build/Objects-normal/i386/cmTC_70942_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app/cmTC_70942
+
+GenerateDSYMFile Debug/cmTC_70942.app.dSYM Debug/cmTC_70942.app/cmTC_70942
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app/cmTC_70942 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app.dSYM
+
+Touch Debug/cmTC_70942.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app
+
+CodeSign Debug/cmTC_70942.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_70942.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_2d617" "-configuration" "Debug"
+=== BUILD TARGET cmTC_2d617 OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/cmTC_2d617.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app
+
+ProcessInfoPlistFile Debug/cmTC_2d617.app/Info.plist CMakeFiles/cmTC_2d617.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_2d617.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/cmTC_2d617.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/cmTC_2d617.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -std=c++11 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_2d617.app/cmTC_2d617 normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/cmTC_2d617.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/cmTC_2d617_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/cmTC_2d617.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_2d617.build/Objects-normal/i386/cmTC_2d617_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app/cmTC_2d617
+
+GenerateDSYMFile Debug/cmTC_2d617.app.dSYM Debug/cmTC_2d617.app/cmTC_2d617
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app/cmTC_2d617 -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app.dSYM
+
+Touch Debug/cmTC_2d617.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app
+
+CodeSign Debug/cmTC_2d617.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_2d617.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/xcodebuild" "-project" "CMAKE_TRY_COMPILE.xcodeproj" "build" "-target" "cmTC_f0f9c" "-configuration" "Debug"
+=== BUILD TARGET cmTC_f0f9c OF PROJECT CMAKE_TRY_COMPILE WITH CONFIGURATION Debug ===
+
+Check dependencies
+
+Write auxiliary files
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386
+write-file /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/cmTC_f0f9c.LinkFileList
+
+Create product structure
+/bin/mkdir -p /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app
+
+ProcessInfoPlistFile Debug/cmTC_f0f9c.app/Info.plist CMakeFiles/cmTC_f0f9c.dir/Info.plist
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    builtin-infoPlistUtility /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_f0f9c.dir/Info.plist -genpkginfo /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app/Info.plist
+
+ProcessProductPackaging "" CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/cmTC_f0f9c.app.xcent
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+
+Entitlements:
+
+{
+    "application-identifier" = "59L3B76TR9.org.racing";
+    "keychain-access-groups" =     (
+        "59L3B76TR9.org.racing"
+    );
+}
+
+
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/cmTC_f0f9c.app.xcent
+
+CompileC CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/feature_tests.o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export LANG=en_US.US-ASCII
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -DCMAKE_INTDIR=\"Debug-iphonesimulator\" -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mios-simulator-version-min=10.3 -g -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/include -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/DerivedSources/i386 -I/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/DerivedSources -Wmost -Wno-four-char-constants -Wno-unknown-pragmas -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -fvisibility=hidden -fvisibility-inlines-hidden -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -std=c++98 -MMD -MT dependencies -MF /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/feature_tests.d --serialize-diagnostics /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/feature_tests.dia -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/feature_tests.cxx -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/feature_tests.o
+
+Ld Debug/cmTC_f0f9c.app/cmTC_f0f9c normal i386
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export IPHONEOS_DEPLOYMENT_TARGET=10.3
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator10.3.sdk -L/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -F/Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug -filelist /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/cmTC_f0f9c.LinkFileList -mios-simulator-version-min=10.3 -dead_strip -Xlinker -object_path_lto -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/cmTC_f0f9c_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Wl,-headerpad_max_install_names -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/cmTC_f0f9c.app.xcent -Xlinker -dependency_info -Xlinker /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/CMAKE_TRY_COMPILE.build/Debug-iphonesimulator/cmTC_f0f9c.build/Objects-normal/i386/cmTC_f0f9c_dependency_info.dat -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app/cmTC_f0f9c
+
+GenerateDSYMFile Debug/cmTC_f0f9c.app.dSYM Debug/cmTC_f0f9c.app/cmTC_f0f9c
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app/cmTC_f0f9c -o /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app.dSYM
+
+Touch Debug/cmTC_f0f9c.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    /usr/bin/touch -c /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app
+
+CodeSign Debug/cmTC_f0f9c.app
+    cd /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp
+    export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate
+    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    
+Signing Identity:     "-"
+
+    /usr/bin/codesign --force --sign - --timestamp=none /Users/tianye/home/workdir/vi3d/3rd/lua-5.3.3/build2/CMakeFiles/CMakeTmp/Debug/cmTC_f0f9c.app
+
+** BUILD SUCCEEDED **
+
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates

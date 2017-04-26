@@ -7,16 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D043AE61EB051DD003AD0BB /* ll_all.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043ACE1EB051DD003AD0BB /* ll_all.c */; };
+		1D043AE71EB051DD003AD0BB /* ll_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AD01EB051DD003AD0BB /* ll_gles.c */; };
+		1D043AE81EB051DD003AD0BB /* ll_vi3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AD11EB051DD003AD0BB /* ll_vi3d.c */; };
+		1D043AEA1EB051DD003AD0BB /* vi_app.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AD41EB051DD003AD0BB /* vi_app.c */; };
+		1D043AEB1EB051DD003AD0BB /* vi_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AD61EB051DD003AD0BB /* vi_file.c */; };
+		1D043AEC1EB051DD003AD0BB /* vi_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AD81EB051DD003AD0BB /* vi_log.c */; };
+		1D043AED1EB051DD003AD0BB /* vi_lua.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043ADA1EB051DD003AD0BB /* vi_lua.c */; };
+		1D043AEE1EB051DD003AD0BB /* vi_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043ADC1EB051DD003AD0BB /* vi_math.c */; };
+		1D043AEF1EB051DD003AD0BB /* vi_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043ADE1EB051DD003AD0BB /* vi_mem.c */; };
+		1D043AF01EB051DD003AD0BB /* vi_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AE01EB051DD003AD0BB /* vi_msg.c */; };
+		1D043AF11EB051DD003AD0BB /* vi_sys.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AE21EB051DD003AD0BB /* vi_sys.c */; };
+		1D043AF21EB051DD003AD0BB /* vi3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AE41EB051DD003AD0BB /* vi3d.c */; };
+		1D043AFC1EB07506003AD0BB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D043AFB1EB07506003AD0BB /* OpenGLES.framework */; };
 		1DE466C21EA9EFFF007B3AE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE466C11EA9EFFF007B3AE7 /* main.m */; };
-		1DE466C51EA9EFFF007B3AE7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE466C41EA9EFFF007B3AE7 /* AppDelegate.m */; };
 		1DE466CD1EA9EFFF007B3AE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D043ACE1EB051DD003AD0BB /* ll_all.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ll_all.c; path = ../../ll_all.c; sourceTree = "<group>"; };
+		1D043ACF1EB051DD003AD0BB /* ll_all.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ll_all.h; path = ../../ll_all.h; sourceTree = "<group>"; };
+		1D043AD01EB051DD003AD0BB /* ll_gles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ll_gles.c; path = ../../ll_gles.c; sourceTree = "<group>"; };
+		1D043AD11EB051DD003AD0BB /* ll_vi3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ll_vi3d.c; path = ../../ll_vi3d.c; sourceTree = "<group>"; };
+		1D043AD41EB051DD003AD0BB /* vi_app.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_app.c; path = ../../vi_app.c; sourceTree = "<group>"; };
+		1D043AD51EB051DD003AD0BB /* vi_app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_app.h; path = ../../vi_app.h; sourceTree = "<group>"; };
+		1D043AD61EB051DD003AD0BB /* vi_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_file.c; path = ../../vi_file.c; sourceTree = "<group>"; };
+		1D043AD71EB051DD003AD0BB /* vi_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_file.h; path = ../../vi_file.h; sourceTree = "<group>"; };
+		1D043AD81EB051DD003AD0BB /* vi_log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_log.c; path = ../../vi_log.c; sourceTree = "<group>"; };
+		1D043AD91EB051DD003AD0BB /* vi_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_log.h; path = ../../vi_log.h; sourceTree = "<group>"; };
+		1D043ADA1EB051DD003AD0BB /* vi_lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_lua.c; path = ../../vi_lua.c; sourceTree = "<group>"; };
+		1D043ADB1EB051DD003AD0BB /* vi_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_lua.h; path = ../../vi_lua.h; sourceTree = "<group>"; };
+		1D043ADC1EB051DD003AD0BB /* vi_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_math.c; path = ../../vi_math.c; sourceTree = "<group>"; };
+		1D043ADD1EB051DD003AD0BB /* vi_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_math.h; path = ../../vi_math.h; sourceTree = "<group>"; };
+		1D043ADE1EB051DD003AD0BB /* vi_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_mem.c; path = ../../vi_mem.c; sourceTree = "<group>"; };
+		1D043ADF1EB051DD003AD0BB /* vi_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_mem.h; path = ../../vi_mem.h; sourceTree = "<group>"; };
+		1D043AE01EB051DD003AD0BB /* vi_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_msg.c; path = ../../vi_msg.c; sourceTree = "<group>"; };
+		1D043AE11EB051DD003AD0BB /* vi_msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_msg.h; path = ../../vi_msg.h; sourceTree = "<group>"; };
+		1D043AE21EB051DD003AD0BB /* vi_sys.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_sys.c; path = ../../vi_sys.c; sourceTree = "<group>"; };
+		1D043AE31EB051DD003AD0BB /* vi_sys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_sys.h; path = ../../vi_sys.h; sourceTree = "<group>"; };
+		1D043AE41EB051DD003AD0BB /* vi3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi3d.c; path = ../../vi3d.c; sourceTree = "<group>"; };
+		1D043AE51EB051DD003AD0BB /* vi3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi3d.h; path = ../../vi3d.h; sourceTree = "<group>"; };
+		1D043AF91EB0745F003AD0BB /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		1D043AFB1EB07506003AD0BB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1DE466BD1EA9EFFF007B3AE7 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE466C11EA9EFFF007B3AE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1DE466C31EA9EFFF007B3AE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1DE466C41EA9EFFF007B3AE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DE466D11EA9EFFF007B3AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -26,17 +60,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D043AFC1EB07506003AD0BB /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D043AF81EB0745F003AD0BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D043AFB1EB07506003AD0BB /* OpenGLES.framework */,
+				1D043AF91EB0745F003AD0BB /* GLKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1DE466B41EA9EFFF007B3AE7 = {
 			isa = PBXGroup;
 			children = (
 				1DE466BF1EA9EFFF007B3AE7 /* vi3d */,
 				1DE466BE1EA9EFFF007B3AE7 /* Products */,
+				1D043AF81EB0745F003AD0BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,9 +96,29 @@
 		1DE466BF1EA9EFFF007B3AE7 /* vi3d */ = {
 			isa = PBXGroup;
 			children = (
+				1D043ACE1EB051DD003AD0BB /* ll_all.c */,
+				1D043ACF1EB051DD003AD0BB /* ll_all.h */,
+				1D043AD01EB051DD003AD0BB /* ll_gles.c */,
+				1D043AD11EB051DD003AD0BB /* ll_vi3d.c */,
+				1D043AD41EB051DD003AD0BB /* vi_app.c */,
+				1D043AD51EB051DD003AD0BB /* vi_app.h */,
+				1D043AD61EB051DD003AD0BB /* vi_file.c */,
+				1D043AD71EB051DD003AD0BB /* vi_file.h */,
+				1D043AD81EB051DD003AD0BB /* vi_log.c */,
+				1D043AD91EB051DD003AD0BB /* vi_log.h */,
+				1D043ADA1EB051DD003AD0BB /* vi_lua.c */,
+				1D043ADB1EB051DD003AD0BB /* vi_lua.h */,
+				1D043ADC1EB051DD003AD0BB /* vi_math.c */,
+				1D043ADD1EB051DD003AD0BB /* vi_math.h */,
+				1D043ADE1EB051DD003AD0BB /* vi_mem.c */,
+				1D043ADF1EB051DD003AD0BB /* vi_mem.h */,
+				1D043AE01EB051DD003AD0BB /* vi_msg.c */,
+				1D043AE11EB051DD003AD0BB /* vi_msg.h */,
+				1D043AE21EB051DD003AD0BB /* vi_sys.c */,
+				1D043AE31EB051DD003AD0BB /* vi_sys.h */,
+				1D043AE41EB051DD003AD0BB /* vi3d.c */,
+				1D043AE51EB051DD003AD0BB /* vi3d.h */,
 				1DE466C11EA9EFFF007B3AE7 /* main.m */,
-				1DE466C31EA9EFFF007B3AE7 /* AppDelegate.h */,
-				1DE466C41EA9EFFF007B3AE7 /* AppDelegate.m */,
 				1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */,
 				1DE466D11EA9EFFF007B3AE7 /* Info.plist */,
 			);
@@ -130,8 +195,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DE466C51EA9EFFF007B3AE7 /* AppDelegate.m in Sources */,
+				1D043AEB1EB051DD003AD0BB /* vi_file.c in Sources */,
+				1D043AF21EB051DD003AD0BB /* vi3d.c in Sources */,
+				1D043AEC1EB051DD003AD0BB /* vi_log.c in Sources */,
+				1D043AF01EB051DD003AD0BB /* vi_msg.c in Sources */,
 				1DE466C21EA9EFFF007B3AE7 /* main.m in Sources */,
+				1D043AEE1EB051DD003AD0BB /* vi_math.c in Sources */,
+				1D043AED1EB051DD003AD0BB /* vi_lua.c in Sources */,
+				1D043AEA1EB051DD003AD0BB /* vi_app.c in Sources */,
+				1D043AE71EB051DD003AD0BB /* ll_gles.c in Sources */,
+				1D043AEF1EB051DD003AD0BB /* vi_mem.c in Sources */,
+				1D043AE61EB051DD003AD0BB /* ll_all.c in Sources */,
+				1D043AF11EB051DD003AD0BB /* vi_sys.c in Sources */,
+				1D043AE81EB051DD003AD0BB /* ll_vi3d.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,13 +310,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 59L3B76TR9;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../3rd/lua-5.3.3/src";
 				INFOPLIST_FILE = vi3d/Info.plist;
+				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../3rd/lua-5.3.3/lib_ios/Debug";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-llua";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.viware.vi3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -248,13 +331,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 59L3B76TR9;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../3rd/lua-5.3.3/src";
 				INFOPLIST_FILE = vi3d/Info.plist;
+				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../3rd/lua-5.3.3/lib_ios/Release";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-llua";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.viware.vi3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -108,7 +108,7 @@ int vi_file_size(vi_file* f)
 			int size = 0;
 			if (fseek(f->fd, 0, SEEK_END) == 0)
 			{
-				size = ftell(f->fd);
+				size = (int)ftell(f->fd);
 				fseek(f->fd, 0, SEEK_SET);
 			}
 			return size;

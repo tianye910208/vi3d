@@ -6,6 +6,7 @@
 	#define VI3D_SYS_WIN 1
 	#define VI3D_SYS "WIN"
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
+    #import <TargetConditionals.h>
 	#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 		#define VI3D_SYS_IOS 2
 		#define VI3D_SYS "IOS"
@@ -65,6 +66,10 @@ typedef unsigned long long  uint64;
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
+#endif
+#ifdef VI3D_SYS_IOS
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
 #endif
 #ifdef VI3D_SYS_LINUX
 #include <GLES2/gl2.h>
