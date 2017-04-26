@@ -136,7 +136,7 @@ void win_loop()
 
 
 
-void* android_main(void* args)
+void* main_func(void* args)
 {
 	//init------------------------------------------
 	if (egl_init() != 0)
@@ -261,7 +261,7 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
 		nativeWindow = nativeShowWindow;
 
 		pthread_t tid;
-		pthread_create(&tid, 0, &android_main, 0);
+		pthread_create(&tid, 0, &main_func, 0);
 	}
 }
 

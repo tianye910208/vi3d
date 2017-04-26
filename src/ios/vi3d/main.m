@@ -7,6 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <pthread.h>
+#import "vi3d.h"
+
+
+void* main_func(void* args)
+{
+    while(true){
+        vi_log("hello");
+        usleep(1000000);
+    }
+    return NULL;
+}
+
+
 
 
 @interface AppWindow : UIWindow
@@ -73,7 +87,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.window = [[AppWindow alloc] initWithFrame:[UIScreen.mainScreen bounds]];
+    CGRect rect = UIScreen.mainScreen.bounds;
+    
+    self.window = [[AppWindow alloc] initWithFrame:rect];
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.window.rootViewController = [[UIViewController alloc] init];
@@ -81,6 +97,11 @@
     
     [self.window setScreen:UIScreen.mainScreen];
     [self.window makeKeyAndVisible];
+    
+    vi_app_set_screen_size(rect.size.width, rect.size.height);
+    
+    pthread_t tid;
+    pthread_create(&tid, 0, &main_func, 0);
     
     return YES;
 }
