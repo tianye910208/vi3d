@@ -88,22 +88,6 @@ void egl_exit()
 }
 
 
-
-
-
-int win_init()
-{
-	while (nativeShowWindow == NULL)
-		usleep(10000);
-	nativeWindow = nativeShowWindow;
-	return 0;
-}
-
-void win_exit()
-{
-	//when exit
-}
-
 void win_loop()
 {
 	float dt;
@@ -154,20 +138,62 @@ void win_loop()
 
 void* android_main(void* args)
 {
-	if (win_init() != 0)
-		return NULL;
+	//init------------------------------------------
 	if (egl_init() != 0)
 		return NULL;
 
 	vi_app_init("", nativeActivity->internalDataPath);
 	vi_app_set_screen_size(screenWidth, screenHeight);
 
-	win_loop();
 
+	//loop------------------------------------------
+	float dt;
+	struct timeval t1, t2;
+	struct timezone tz;
+	gettimeofday(&t1, &tz);
+
+	while (1)
+	{
+		if (nativeInputQueue && AInputQueue_hasEvents(nativeInputQueue) > 0)
+		{
+			AInputEvent* ev;
+			if (AInputQueue_getEvent(nativeInputQueue, &ev) >= 0)
+			{
+				//handle event
+			}
+			AInputQueue_finishEvent(nativeInputQueue, ev, 1);
+		}
+		else if (nativeShowWindow == NULL)
+		{
+			usleep(10000);
+		}
+		else if (nativeShowWindow != nativeWindow)
+		{
+			nativeWindow = nativeShowWindow;
+			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
+			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
+				vi_log("eglCreateWindowSurface %d", eglGetError());
+			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
+				vi_log("eglMakeCurrent %d", eglGetError());
+			//vi_app_set_screen_size(screenWidth, screenHeight);
+		}
+		else
+		{
+			gettimeofday(&t2, &tz);
+			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+			t1 = t2;
+
+			vi_app_loop(dt);
+			eglSwapBuffers(eglDisplay, eglSurface);
+			usleep(10000);
+		}
+
+	}
+
+	//init------------------------------------------
 	vi_app_exit();
-
 	egl_exit();
-	win_exit();
+
 	return NULL;
 }
 
@@ -175,7 +201,7 @@ void* android_main(void* args)
 
 
 
-//NativeActivity
+//NativeActivity-----------------------------------
 static void onStart(ANativeActivity* activity)
 {
 
@@ -230,6 +256,13 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
 	
 	vi_log("onNativeWindowCreated  %p, %p, w:%d h:%d", nativeShowWindow, window, screenWidth, screenHeight);
 	nativeShowWindow = window;
+
+	if (nativeWindow == NULL){
+		nativeWindow = nativeShowWindow;
+
+		pthread_t tid;
+		pthread_create(&tid, 0, &android_main, 0);
+	}
 }
 
 static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
@@ -272,19 +305,10 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 		activity->callbacks->onInputQueueDestroyed = onInputQueueDestroyed;
 	}
 	
-	if (nativeActivity == NULL)
-	{
-		nativeActivity = activity;
-		vi_sys_set_activity(nativeActivity);
 
-		pthread_t tid;
-		pthread_create(&tid, 0, &android_main, 0);
-	}
-	else
-	{
-		nativeActivity = activity;
-		vi_sys_set_activity(nativeActivity);
-	}
+	nativeActivity = activity;
+	vi_sys_set_activity(nativeActivity);
+
 }
 
 
