@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
 
 
 	//loop------------------------------------------
+    float dt;
 	struct timeval t1, t2;
 	struct timezone tz;
 	gettimeofday(&t1, &tz);
@@ -143,7 +144,7 @@ int main(int argc, char *argv[])
 		{
 			XNextEvent(nativeDisplay, &xev);
 			if (xev.type == ClientMessage && xev.xclient.data.l[0] == wmDeleteWindow)
-				return;
+				break;
 			win_proc(&xev);
 		}
 		else

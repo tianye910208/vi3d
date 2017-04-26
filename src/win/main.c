@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
-				return;
+                break;
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
