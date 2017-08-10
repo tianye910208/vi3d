@@ -47,7 +47,6 @@
 		1D043AE31EB051DD003AD0BB /* vi_sys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_sys.h; path = ../../vi_sys.h; sourceTree = "<group>"; };
 		1D043AE41EB051DD003AD0BB /* vi3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi3d.c; path = ../../vi3d.c; sourceTree = "<group>"; };
 		1D043AE51EB051DD003AD0BB /* vi3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi3d.h; path = ../../vi3d.h; sourceTree = "<group>"; };
-		1D043AF91EB0745F003AD0BB /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		1D043AFB1EB07506003AD0BB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1DE466BD1EA9EFFF007B3AE7 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE466C11EA9EFFF007B3AE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				1D043AFB1EB07506003AD0BB /* OpenGLES.framework */,
-				1D043AF91EB0745F003AD0BB /* GLKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

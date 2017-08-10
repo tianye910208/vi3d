@@ -13,15 +13,26 @@ vi_app* vi_app_info()
 
 float vi_app_time()
 {
-	return __app_instance->time;
+    if (__app_instance)
+        return __app_instance->time;
+    else
+        return 0.0f;
 }
 
+int _vi_app_create()
+{
+    if (__app_instance == NULL)
+    {
+        __app_instance = vi_mem_alloc(sizeof(vi_app));
+        memset(__app_instance, 0, sizeof(vi_app));
+    }
+    return 0;
+}
 
 int vi_app_init(const char* datapath, const char* savepath)
 {
-	__app_instance = vi_mem_alloc(sizeof(vi_app));
-	memset(__app_instance, 0, sizeof(vi_app));
-
+    _vi_app_create();
+	
 	char* data_path = __app_instance->data_path;
 	strcpy(data_path, datapath);
 	int data_path_len = (int)strlen(data_path);
@@ -82,6 +93,7 @@ void vi_app_loop(float dt)
 	vi_lua_render(dt);
 }
 
+
 void _vi_app_adjust_viewport()
 {
 	if (__app_instance->design_h <= 0 || __app_instance->design_w <= 0)
@@ -99,6 +111,7 @@ void _vi_app_adjust_viewport()
 
 void vi_app_set_screen_size(int w, int h)
 {
+    _vi_app_create();
 	if (__app_instance)
 	{
 		__app_instance->screen_w = w;
@@ -109,6 +122,7 @@ void vi_app_set_screen_size(int w, int h)
 
 void vi_app_set_design_size(int w, int h)
 {
+    _vi_app_create();
 	if (__app_instance)
 	{
 		__app_instance->design_w = w;
