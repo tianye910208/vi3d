@@ -108,7 +108,10 @@ static int _llfunc_vi_file_open(lua_State* L)
 	const char* filepath = luaL_checkstring(L, 1);
 	const char* mode = luaL_checkstring(L, 2);
 	vi_file* f = vi_file_open(filepath, mode);
-	lua_pushlightuserdata(L, (void*)f);
+	if (f != NULL)
+		lua_pushlightuserdata(L, (void*)f);
+	else
+		lua_pushnil(L);
 	return 1;
 }
 
@@ -131,12 +134,12 @@ static int _llfunc_vi_file_read(lua_State* L)
 	int n = (int)luaL_checkinteger(L, 2);
 
 #ifdef VI3D_SYS_WIN
-	char *data = (char *)alloca(sizeof(char)*n);
+	char *data = (char *)alloca(n);
 #else
 	char data[n];
 #endif
 	int read = vi_file_read(f, data, n); 
-	lua_pushlstring(L, data, n);
+	lua_pushlstring(L, (const char*)data, read);
 	lua_pushinteger(L, read);
 	return 2;
 }

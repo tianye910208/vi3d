@@ -1,6 +1,6 @@
 #include "vi_file.h"
 #include "vi_mem.h"
-
+#include "vi_log.h"
 
 vi_file* vi_file_open(const char* filepath, const char* mode)
 {
@@ -44,6 +44,7 @@ vi_file* vi_file_open(const char* filepath, const char* mode)
 	}
 #endif
 
+	vi_log("file open fail: %s", filepath);
 	return NULL;
 	
 }

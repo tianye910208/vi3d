@@ -58,6 +58,7 @@ int vi_app_init(const char* datapath, const char* savepath)
 	memset(luafile, 0, sizeof(luafile));
 	strcpy(luafile, __app_instance->data_path);
 	strcat(luafile, "lua/main.lua");
+	vi_log(luafile);
 	vi_file* f = vi_file_open(luafile, "r");
 	if (!f)
 	{

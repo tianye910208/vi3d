@@ -2,7 +2,16 @@
 
 #define LOG_MAX_LEN 4096
 
+static void _vi_log_print(const char* file, int line, const char* msg)
+{
+	if (file)
+		vi_sys_print("%s  @%s:%d\n", msg, file, line);
+	else
+		vi_sys_print("%s\n", msg);
+}
+
 static vi_log_func	__log_func = _vi_log_print;
+
 
 void vi_log_setfunc(vi_log_func func)
 {
@@ -12,16 +21,6 @@ void vi_log_setfunc(vi_log_func func)
 vi_log_func vi_log_getfunc()
 {
 	return __log_func;
-}
-
-
-
-void _vi_log_print(const char* file, int line, const char* msg)
-{
-	if (file)
-		vi_sys_print("%s  @%s:%d\n", msg, file, line);
-	else
-		vi_sys_print("%s\n", msg);
 }
 
 void _vi_log(const char* file, int line, const char* fmt, ...)

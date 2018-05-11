@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 	if (egl_init("vi3d", APP_W, APP_H) != 0)
         return 1;
 
-	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../dat");
+	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
 	vi_app_set_screen_size(APP_W, APP_H);
 	
 
