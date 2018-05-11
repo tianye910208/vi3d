@@ -1,0 +1,134 @@
+--------- beginning of system
+--------- beginning of main
+05-27 11:28:13.231 24161 24161 I VI3D    : Creating: 0x7f68087680  @jni/main.c:256
+05-27 11:28:13.363 24161 24161 I VI3D    : onNativeWindowCreated  0x0, 0x7f74854e10, w:1920 h:1080  @jni/main.c:231
+05-27 11:28:13.383 24161 24161 I VI3D    : onWindowFocusChanged 1  @jni/main.c:217
+05-27 11:28:13.462 24161 24203 I VI3D    : Hello Lua World!!!
+05-27 11:28:13.504 24161 24203 I VI3D    : buffer	1	1
+05-27 11:28:13.504 24161 24203 I VI3D    : buffer	2	2
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	3	3
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	4	4
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	5	5
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	6	6
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	7	7
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	8	8
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	9	9
+05-27 11:28:13.505 24161 24203 I VI3D    : buffer	10	10
+05-27 11:28:13.505 24161 24203 I VI3D    : file_open:	res/doc.txt	userdata: 0x7f596c2420
+05-27 11:28:13.505 24161 24203 I VI3D    : file_size:	1933
+05-27 11:28:17.700 24161 24161 I VI3D    : onWindowFocusChanged 0  @jni/main.c:217
+05-27 11:28:18.004 24161 24161 I VI3D    : onNativeWindowDestroyed 0x7f74854e10  @jni/main.c:238
+05-27 11:29:49.361 25347 25347 I VI3D    : Creating: 0x7f68087900  @jni/main.c:289
+05-27 11:29:49.410 25347 25347 I VI3D    : onNativeWindowCreated  0x0, 0x7f74854e10, w:1920 h:1080  @jni/main.c:257
+05-27 11:29:49.416 25347 25347 I VI3D    : onWindowFocusChanged 1  @jni/main.c:243
+05-27 11:29:49.426 25347 25369 I VI3D    : Hello Lua World!!!
+05-27 11:29:49.427 25347 25369 I VI3D    : GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_sync GL_OES_vertex_half_float GL_OES_framebuffer_object GL_OES_rgb8_rgba8 GL_OES_compressed_ETC1_RGB8_texture GL_AMD_compressed_ATC_texture GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_hdr GL_OES_texture_compression_astc GL_OES_texture_npot GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_OES_texture_3D GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_QCOM_alpha_test GL_OES_depth24 GL_OES_packed_depth_stencil GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_EXT_sRGB GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_EXT_texture_type_2_10_10_10_REV GL_EXT_texture_sRGB_decode GL_OES_element_index_uint GL_EXT_copy_image GL_EXT_geometry_shader GL_EXT_tessellation_shader GL_OES_texture_stencil8 GL_EXT_shader_io_blocks GL_OES_shader_image_atomic GL_OES_sample_variables GL_EXT_texture_border_clamp GL_EXT_multisampled_render_to_texture GL_OES_shad
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	1	1
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	2	2
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	3	3
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	4	4
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	5	5
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	6	6
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	7	7
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	8	8
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	9	9
+05-27 11:29:49.441 25347 25369 I VI3D    : buffer	10	10
+05-27 11:29:49.441 25347 25369 I VI3D    : file_open:	res/doc.txt	userdata: 0x7f596c3400
+05-27 11:29:49.442 25347 25369 I VI3D    : file_size:	1933
+05-27 11:31:39.284 25347 25347 I VI3D    : onWindowFocusChanged 0  @jni/main.c:243
+05-27 11:31:39.433 25347 25347 I VI3D    : onNativeWindowDestroyed 0x7f74854e10  @jni/main.c:271
+05-27 11:36:00.177 27057 27057 I VI3D    : Creating: 0x7f68087900  @jni/main.c:289
+05-27 11:36:00.220 27057 27057 I VI3D    : onNativeWindowCreated  0x0, 0x7f74854e10, w:1920 h:1080  @jni/main.c:257
+05-27 11:36:00.225 27057 27057 I VI3D    : onWindowFocusChanged 1  @jni/main.c:243
+05-27 11:36:00.245 27057 27074 I VI3D    : Hello Lua World!!!
+05-27 11:36:00.246 27057 27074 I VI3D    : 1	GL_OES_EGL_image
+05-27 11:36:00.246 27057 27074 I VI3D    : 2	GL_OES_EGL_image_external
+05-27 11:36:00.246 27057 27074 I VI3D    : 3	GL_OES_EGL_sync
+05-27 11:36:00.246 27057 27074 I VI3D    : 4	GL_OES_vertex_half_float
+05-27 11:36:00.246 27057 27074 I VI3D    : 5	GL_OES_framebuffer_object
+05-27 11:36:00.247 27057 27074 I VI3D    : 6	GL_OES_rgb8_rgba8
+05-27 11:36:00.247 27057 27074 I VI3D    : 7	GL_OES_compressed_ETC1_RGB8_texture
+05-27 11:36:00.247 27057 27074 I VI3D    : 8	GL_AMD_compressed_ATC_texture
+05-27 11:36:00.247 27057 27074 I VI3D    : 9	GL_KHR_texture_compression_astc_ldr
+05-27 11:36:00.247 27057 27074 I VI3D    : 10	GL_KHR_texture_compression_astc_hdr
+05-27 11:36:00.247 27057 27074 I VI3D    : 11	GL_OES_texture_compression_astc
+05-27 11:36:00.247 27057 27074 I VI3D    : 12	GL_OES_texture_npot
+05-27 11:36:00.247 27057 27074 I VI3D    : 13	GL_EXT_texture_filter_anisotropic
+05-27 11:36:00.247 27057 27074 I VI3D    : 14	GL_EXT_texture_format_BGRA8888
+05-27 11:36:00.247 27057 27074 I VI3D    : 15	GL_OES_texture_3D
+05-27 11:36:00.247 27057 27074 I VI3D    : 16	GL_EXT_color_buffer_float
+05-27 11:36:00.247 27057 27074 I VI3D    : 17	GL_EXT_color_buffer_half_float
+05-27 11:36:00.247 27057 27074 I VI3D    : 18	GL_QCOM_alpha_test
+05-27 11:36:00.248 27057 27074 I VI3D    : 19	GL_OES_depth24
+05-27 11:36:00.248 27057 27074 I VI3D    : 20	GL_OES_packed_depth_stencil
+05-27 11:36:00.248 27057 27074 I VI3D    : 21	GL_OES_depth_texture
+05-27 11:36:00.248 27057 27074 I VI3D    : 22	GL_OES_depth_texture_cube_map
+05-27 11:36:00.248 27057 27074 I VI3D    : 23	GL_EXT_sRGB
+05-27 11:36:00.248 27057 27074 I VI3D    : 24	GL_OES_texture_float
+05-27 11:36:00.248 27057 27074 I VI3D    : 25	GL_OES_texture_float_linear
+05-27 11:36:00.248 27057 27074 I VI3D    : 26	GL_OES_texture_half_float
+05-27 11:36:00.248 27057 27074 I VI3D    : 27	GL_OES_texture_half_float_linear
+05-27 11:36:00.248 27057 27074 I VI3D    : 28	GL_EXT_texture_type_2_10_10_10_REV
+05-27 11:36:00.248 27057 27074 I VI3D    : 29	GL_EXT_texture_sRGB_decode
+05-27 11:36:00.248 27057 27074 I VI3D    : 30	GL_OES_element_index_uint
+05-27 11:36:00.248 27057 27074 I VI3D    : 31	GL_EXT_copy_image
+05-27 11:36:00.248 27057 27074 I VI3D    : 32	GL_EXT_geometry_shader
+05-27 11:36:00.256 27057 27074 I VI3D    : 33	GL_EXT_tessellation_shader
+05-27 11:36:00.256 27057 27074 I VI3D    : 34	GL_OES_texture_stencil8
+05-27 11:36:00.256 27057 27074 I VI3D    : 35	GL_EXT_shader_io_blocks
+05-27 11:36:00.256 27057 27074 I VI3D    : 36	GL_OES_shader_image_atomic
+05-27 11:36:00.256 27057 27074 I VI3D    : 37	GL_OES_sample_variables
+05-27 11:36:00.256 27057 27074 I VI3D    : 38	GL_EXT_texture_border_clamp
+05-27 11:36:00.256 27057 27074 I VI3D    : 39	GL_EXT_multisampled_render_to_texture
+05-27 11:36:00.256 27057 27074 I VI3D    : 40	GL_OES_shader_multisample_interpolation
+05-27 11:36:00.256 27057 27074 I VI3D    : 41	GL_EXT_texture_cube_map_array
+05-27 11:36:00.256 27057 27074 I VI3D    : 42	GL_EXT_draw_buffers_indexed
+05-27 11:36:00.256 27057 27074 I VI3D    : 43	GL_EXT_gpu_shader5
+05-27 11:36:00.256 27057 27074 I VI3D    : 44	GL_EXT_robustness
+05-27 11:36:00.256 27057 27074 I VI3D    : 45	GL_EXT_texture_buffer
+05-27 11:36:00.256 27057 27074 I VI3D    : 46	GL_EXT_shader_framebuffer_fetch
+05-27 11:36:00.256 27057 27074 I VI3D    : 47	GL_ARM_shader_framebuffer_fetch_depth_stencil
+05-27 11:36:00.256 27057 27074 I VI3D    : 48	GL_OES_texture_storage_multisample_2d_array
+05-27 11:36:00.256 27057 27074 I VI3D    : 49	GL_OES_sample_shading
+05-27 11:36:00.256 27057 27074 I VI3D    : 50	GL_OES_get_program_binary
+05-27 11:36:00.256 27057 27074 I VI3D    : 51	GL_EXT_debug_label
+05-27 11:36:00.256 27057 27074 I VI3D    : 52	GL_KHR_blend_equation_advanced
+05-27 11:36:00.256 27057 27074 I VI3D    : 53	GL_KHR_blend_equation_advanced_coherent
+05-27 11:36:00.256 27057 27074 I VI3D    : 54	GL_QCOM_tiled_rendering
+05-27 11:36:00.256 27057 27074 I VI3D    : 55	GL_ANDROID_extension_pack_es31a
+05-27 11:36:00.256 27057 27074 I VI3D    : 56	GL_EXT_primitive_bounding_box
+05-27 11:36:00.257 27057 27074 I VI3D    : 57	GL_OES_standard_derivatives
+05-27 11:36:00.257 27057 27074 I VI3D    : 58	GL_OES_vertex_array_object
+05-27 11:36:00.257 27057 27074 I VI3D    : 59	GL_EXT_disjoint_timer_query
+05-27 11:36:00.257 27057 27074 I VI3D    : 60	GL_KHR_debug
+05-27 11:36:00.257 27057 27074 I VI3D    : 61	GL_EXT_YUV_target
+05-27 11:36:00.257 27057 27074 I VI3D    : 62	GL_EXT_sRGB_write_control
+05-27 11:36:00.257 27057 27074 I VI3D    : 63	GL_EXT_texture_norm16
+05-27 11:36:00.257 27057 27074 I VI3D    : 64	GL_EXT_discard_framebuffer
+05-27 11:36:00.257 27057 27074 I VI3D    : 65	GL_OES_surfaceless_context
+05-27 11:36:00.257 27057 27074 I VI3D    : 66	GL_OVR_multiview
+05-27 11:36:00.257 27057 27074 I VI3D    : 67	GL_OVR_multiview2
+05-27 11:36:00.257 27057 27074 I VI3D    : 68	GL_EXT_texture_sRGB_R8
+05-27 11:36:00.257 27057 27074 I VI3D    : 69	GL_KHR_no_error
+05-27 11:36:00.257 27057 27074 I VI3D    : 70	GL_EXT_debug_marker
+05-27 11:36:00.257 27057 27074 I VI3D    : 71	GL_OES_EGL_image_external_essl3
+05-27 11:36:00.257 27057 27074 I VI3D    : 72	GL_OVR_multiview_multisampled_render_to_texture
+05-27 11:36:00.257 27057 27074 I VI3D    : 73	GL_EXT_buffer_storage
+05-27 11:36:00.257 27057 27074 I VI3D    : 74	GL_EXT_blit_framebuffer_params
+05-27 11:36:00.257 27057 27074 I VI3D    : 75	GL_EXT_clip_cull_distance
+05-27 11:36:00.257 27057 27074 I VI3D    : 76	GL_EXT_protected_textures
+05-27 11:36:00.257 27057 27074 I VI3D    : 77	GL_EXT_shader_non_constant_global_initializers
+05-27 11:36:00.257 27057 27074 I VI3D    : 78	
+05-27 11:36:00.271 27057 27074 I VI3D    : buffer	1	1
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	2	2
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	3	3
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	4	4
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	5	5
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	6	6
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	7	7
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	8	8
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	9	9
+05-27 11:36:00.272 27057 27074 I VI3D    : buffer	10	10
+05-27 11:36:00.272 27057 27074 I VI3D    : file_open:	res/doc.txt	userdata: 0x7f59667c20
+05-27 11:36:00.273 27057 27074 I VI3D    : file_size:	1933
+05-27 11:41:00.781 27057 27057 I VI3D    : onWindowFocusChanged 0  @jni/main.c:243
