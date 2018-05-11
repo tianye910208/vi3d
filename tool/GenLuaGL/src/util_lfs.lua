@@ -4,14 +4,16 @@
 ------------------------------------
 local lfs = lfs or require("lfs")
 
-function lsdir(path, ext, ret)
+function lsdir(path, ext, ret, rflag)
     ret = ret or {}
     for file in lfs.dir(path) do
         if file ~= "." and file ~= ".." then
             local f = path.."/"..file
             local a = lfs.attributes(f)
             if a and a.mode == "directory" then
-                lsdir(f, ext, ret)
+                if rflag == nil or rflag == true then
+                    lsdir(f, ext, ret)
+                end
             else
                 if ext then
                     if string.match(f, ext) then

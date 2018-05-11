@@ -1,5 +1,101 @@
 
 
+local function finddef(node, list)
+    for k,v in pairs(node) do
+        if type(v) == "table" then
+            for i,v in ipairs(v) do
+                if v.label == "funcprototype" then
+                    list[#list+1] = v
+                else
+                    finddef(v, list)
+                end
+            end
+        end
+    end
+end
+
+local function loadstr(str)
+    if str then
+        str = string.gsub(str, "^[%s%c]*", "")
+        str = string.gsub(str, "[%s%c]*$", "")
+    end
+    return str
+end
+
+local function loaddef()
+    local tmplist = {}
+    local xmllist = lsdir("xml", "%.xml$", nil, false)
+    for i,v in ipairs(xmllist) do
+        print("======"..v.."======")
+        local fd = io.open(v, "r+")
+        local str = fd:read("*a")
+        local xml = loadxml(str)
+        if not xml then
+            error("xml load fail:", v)
+        end
+        
+        finddef(xml, tmplist)
+    end
+    local deflist = {}
+    for i,v in ipairs(tmplist) do
+        local func = v.funcdef[1]
+        local args = {}
+        for i,v in ipairs(v.paramdef or {}) do
+            local arg = {type = loadstr(v.value), name = loadstr(v.parameter[1].value)}
+            if arg.type or arg.name ~= "void" then
+                table.insert(args, arg)
+            end
+        end
+        
+        local def = {
+            type = loadstr(func.value), 
+            name = loadstr(func["function"][1].value),
+            args = args
+        }
+        deflist[#deflist+1] = def
+    end
+    return deflist
+end
+
+local function load_def_list()
+    local deflist = loaddef()
+    table.sort(deflist, function(a, b) return a.name < b.name end)
+    
+    --[[
+    local retTypes = {}
+    local argTypes = {}
+    for i,v in ipairs(deflist) do
+        retTypes[v.type] = (retTypes[v.type] or 0) + 1
+        local str = v.type.."\t"..v.name.."("
+        local n = #v.args
+        for i,arg in ipairs(v.args) do
+            argTypes[arg.type] = (argTypes[arg.type] or 0) + 1
+            str = str .. arg.type.." "..arg.name
+            if i < n then
+                str = str .. ", "
+            end
+        end
+        str = str .. ")"
+        print(str)
+        work(v)
+    end
+    
+    print("\ntype--------------------------")
+    for k,v in pairs(retTypes) do
+        print("ret", k,"",v)
+    end
+    for k,v in pairs(argTypes) do
+        print("arg", k,"",v)
+    end
+    --]]
+    return deflist
+end
+
+
+
+
+
+
 
 local load_b = function(name, tt, idx, def)
     return tt.." "..name.." = ("..tt..")lua_toboolean(L, "..idx..");\n", "<bool>"..name
@@ -175,7 +271,6 @@ local arg_type = {
 
 
 local function gen_src_auto(def, tag)
-    
     local doc = {name = def.name, args = {}, rets = {}}
     local src = "static int "..tag.."(lua_State* L) {\n"
     
@@ -232,7 +327,7 @@ local function gen_src_auto(def, tag)
 end
 
 
-function gen_auto(def)
+local function gen_by_def(def)
     local str = def.type.." "..def.name.."("
     for i,arg in ipairs(def.args) do
         if i > 1 then
@@ -271,7 +366,13 @@ function gen_auto(def)
 end
 
 
-
+function gen_by_xml(srclist)
+    local deflist = load_def_list()
+    for i,v in ipairs(deflist) do
+        local desc, func, text, docs = gen_by_def(v)
+        table.insert(srclist, {name=v.name, desc=desc, func=func, text=text, docs = docs})
+    end
+end
 
 
 

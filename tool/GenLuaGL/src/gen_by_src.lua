@@ -95,42 +95,50 @@ static int _llfunc_glVertexAttribPointer(lua_State* L) {
 }
 ]]
 
-function gen_manual()
-    return {
-        {
-            name="glShaderSource", 
-            desc="[Manual]void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)", 
-            func="_llfunc_glShaderSource", 
-            text=_llfunc_glShaderSource, 
-            docs="[Manual]glShaderSource(<int>shader, <string>string)"
-        },
-        {
-            name="glGetAttachedShaders", 
-            desc="[Manual]void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)", 
-            func="_llfunc_glGetAttachedShaders", 
-            text=_llfunc_glGetAttachedShaders, 
-            docs="[Manual]local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)"
-        },
-        {
-            name="glReadPixels", 
-            desc="[Manual]void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)", 
-            func="_llfunc_glReadPixels", 
-            text=_llfunc_glReadPixels, 
-            docs="[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)"
-        },
-        {
-            name="glDrawElements", 
-            desc="[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)", 
-            func="_llfunc_glDrawElements", 
-            text=_llfunc_glDrawElements, 
-            docs="[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)"
-        },
-        {
-            name="glVertexAttribPointer", 
-            desc="[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)", 
-            func="_llfunc_glVertexAttribPointer", 
-            text=_llfunc_glVertexAttribPointer, 
-            docs="[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)"
-        },
-    }
+local _src_list = {
+    {
+        name="glShaderSource", 
+        desc="[Manual]void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)", 
+        func="_llfunc_glShaderSource", 
+        text=_llfunc_glShaderSource, 
+        docs="[Manual]glShaderSource(<int>shader, <string>string)"
+    },
+    {
+        name="glGetAttachedShaders", 
+        desc="[Manual]void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)", 
+        func="_llfunc_glGetAttachedShaders", 
+        text=_llfunc_glGetAttachedShaders, 
+        docs="[Manual]local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)"
+    },
+    {
+        name="glReadPixels", 
+        desc="[Manual]void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)", 
+        func="_llfunc_glReadPixels", 
+        text=_llfunc_glReadPixels, 
+        docs="[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)"
+    },
+    {
+        name="glDrawElements", 
+        desc="[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)", 
+        func="_llfunc_glDrawElements", 
+        text=_llfunc_glDrawElements, 
+        docs="[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)"
+    },
+    {
+        name="glVertexAttribPointer", 
+        desc="[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)", 
+        func="_llfunc_glVertexAttribPointer", 
+        text=_llfunc_glVertexAttribPointer, 
+        docs="[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)"
+    },
+}
+
+
+function gen_by_src(srclist)
+    for i,v in ipairs(_src_list) do
+        table.insert(srclist, v)
+    end
 end
+
+
+

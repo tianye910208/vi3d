@@ -1,26 +1,22 @@
-require("gen_read")
-require("gen_auto")
-require("gen_manual")
+require("src/util_lfs")
+require("src/util_xml")
+
+require("src/gen_by_xml")
+require("src/gen_by_src")
+
 
 local srclist = {}
-
-for i,v in ipairs(gen_manual()) do
-    table.insert(srclist, v)
-end
-
-local deflist = gen_read()
-for i,v in ipairs(deflist) do
-    local desc, func, text, docs = gen_auto(v)
-    table.insert(srclist, {name=v.name, desc=desc, func=func, text=text, docs = docs})
-end
+gen_by_xml(srclist)
+gen_by_src(srclist)
 
 
-local fdoc = io.open("ll_gles_doc.lua", "w+")
-
-local fd = io.open("ll_gles.c", "w+")
+local fd = io.open("out/ll_gles.c", "w+")
 fd:write("#include \"vi_sys.h\"\n")
 fd:write("#include \"vi_lua.h\"\n")
 fd:write("#ifdef VI3D_SYS_WIN\n#include <malloc.h>\n#endif\n")
+
+fcopy("src/gles.lua", "out/gles.lua")
+local fdoc = io.open("out/gles.lua", "a")
 
 for i,v in ipairs(srclist) do
     fd:write("\n")

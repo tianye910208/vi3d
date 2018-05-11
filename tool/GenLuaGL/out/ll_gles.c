@@ -4,105 +4,6 @@
 #include <malloc.h>
 #endif
 
-//[Manual]void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)
-//[Manual]glShaderSource(<int>shader, <string>string)
-static int _llfunc_glShaderSource(lua_State* L) {
-    GLuint shader = (GLuint)luaL_checkinteger(L, 1);
-    const GLchar * source = (const GLchar *)luaL_checkstring(L, 2);
-
-    glShaderSource(shader, 1, (const GLchar **)&source, NULL);
-
-    return 0;
-}
-
-
-//[Manual]void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)
-//[Manual]local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)
-static int _llfunc_glGetAttachedShaders(lua_State* L) {
-    GLuint program = (GLuint)luaL_checkinteger(L, 1);
-    GLuint maxCount = (GLuint)luaL_checkinteger(L, 2);
-    
-    GLsizei count;
-#ifdef VI3D_SYS_WIN
-    GLuint *shaders = (GLuint *)alloca(sizeof(GLuint)*maxCount);
-#else
-    GLuint shaders[maxCount];
-#endif
-
-    glGetAttachedShaders(program, maxCount, &count, shaders);
-    
-    lua_newtable(L);
-    for(int i = 0; i < count; i ++) {
-        lua_pushinteger(L, (lua_Integer)shaders[i]);
-        lua_rawseti(L, -2, i+1);
-    }
-    return 1;
-}
-
-
-//[Manual]void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)
-//[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)
-static int _llfunc_glReadPixels(lua_State* L) {
-    GLuint x = (GLuint)luaL_checkinteger(L, 1);
-    GLuint y = (GLuint)luaL_checkinteger(L, 2);
-    GLuint width = (GLuint)luaL_checkinteger(L, 3);
-    GLuint height = (GLuint)luaL_checkinteger(L, 4);
-    GLuint format = (GLuint)luaL_checkinteger(L, 5);
-    GLuint type = (GLuint)luaL_checkinteger(L, 6);
-    
-    GLuint n = 4 * width * height;
-#ifdef VI3D_SYS_WIN
-    GLchar *data = (GLchar *)alloca(sizeof(GLchar)*n);
-#else
-    GLchar data[n];
-#endif
-
-    glReadPixels(x, y, width, height, format, type, (GLvoid *)data);
-    
-    lua_pushlstring(L, (const char*)data, n);
-    return 1;
-}
-
-
-//[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)
-//[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)
-static int _llfunc_glDrawElements(lua_State* L) {
-    GLenum mode = (GLenum)luaL_checkinteger(L, 1);
-    GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
-    GLenum type = (GLenum)luaL_checkinteger(L, 3);
-    
-    if(lua_isinteger(L, 4)){
-        GLintptr offset = (GLintptr)lua_tointeger(L, 4);
-        glDrawElements(mode, count, type, (const GLvoid *)offset);
-    }else{
-        const GLvoid * indices = (const GLvoid *)luaL_checkstring(L, 4);
-        glDrawElements(mode, count, type, indices);
-    }
-
-    return 0;
-}
-
-
-//[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
-//[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
-static int _llfunc_glVertexAttribPointer(lua_State* L) {
-    GLuint index = (GLuint)luaL_checkinteger(L, 1);
-    GLint size = (GLint)luaL_checkinteger(L, 2);
-    GLenum type = (GLenum)luaL_checkinteger(L, 3);
-    GLboolean normalized = (GLboolean)lua_toboolean(L, 4);
-    GLsizei stride = (GLsizei)luaL_checkinteger(L, 5);
-    
-    if(lua_isinteger(L, 6)){
-        GLintptr offset = (GLintptr)lua_tointeger(L, 6);
-        glVertexAttribPointer(index, size, type, normalized, stride, (const GLvoid *)offset);
-    }else{
-        const GLvoid * pointer = (const GLvoid *)luaL_checkstring(L, 6);
-        glVertexAttribPointer(index, size, type, normalized, stride, pointer);
-    }
-    return 0;
-}
-
-
 //void glActiveTexture(GLenum texture)
 //glActiveTexture(<int>texture)
 static int _llfunc_glActiveTexture(lua_State* L) {
@@ -2157,13 +2058,107 @@ static int _llfunc_glViewport(lua_State* L) {
     return 0;
 }
 
+//[Manual]void glShaderSource(GLuint shader, GLsizei count, const GLchar * const * string, const GLint * length)
+//[Manual]glShaderSource(<int>shader, <string>string)
+static int _llfunc_glShaderSource(lua_State* L) {
+    GLuint shader = (GLuint)luaL_checkinteger(L, 1);
+    const GLchar * source = (const GLchar *)luaL_checkstring(L, 2);
+
+    glShaderSource(shader, 1, (const GLchar **)&source, NULL);
+
+    return 0;
+}
+
+
+//[Manual]void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders)
+//[Manual]local <int> shaders = glGetAttachedShaders(<int>program, <int>maxCount)
+static int _llfunc_glGetAttachedShaders(lua_State* L) {
+    GLuint program = (GLuint)luaL_checkinteger(L, 1);
+    GLuint maxCount = (GLuint)luaL_checkinteger(L, 2);
+    
+    GLsizei count;
+#ifdef VI3D_SYS_WIN
+    GLuint *shaders = (GLuint *)alloca(sizeof(GLuint)*maxCount);
+#else
+    GLuint shaders[maxCount];
+#endif
+
+    glGetAttachedShaders(program, maxCount, &count, shaders);
+    
+    lua_newtable(L);
+    for(int i = 0; i < count; i ++) {
+        lua_pushinteger(L, (lua_Integer)shaders[i]);
+        lua_rawseti(L, -2, i+1);
+    }
+    return 1;
+}
+
+
+//[Manual]void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)
+//[Manual]local <string> data = glReadPixels(<int>x, <int>y, <int>width, <int>height, <int>format, <int>type)
+static int _llfunc_glReadPixels(lua_State* L) {
+    GLuint x = (GLuint)luaL_checkinteger(L, 1);
+    GLuint y = (GLuint)luaL_checkinteger(L, 2);
+    GLuint width = (GLuint)luaL_checkinteger(L, 3);
+    GLuint height = (GLuint)luaL_checkinteger(L, 4);
+    GLuint format = (GLuint)luaL_checkinteger(L, 5);
+    GLuint type = (GLuint)luaL_checkinteger(L, 6);
+    
+    GLuint n = 4 * width * height;
+#ifdef VI3D_SYS_WIN
+    GLchar *data = (GLchar *)alloca(sizeof(GLchar)*n);
+#else
+    GLchar data[n];
+#endif
+
+    glReadPixels(x, y, width, height, format, type, (GLvoid *)data);
+    
+    lua_pushlstring(L, (const char*)data, n);
+    return 1;
+}
+
+
+//[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)
+//[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)
+static int _llfunc_glDrawElements(lua_State* L) {
+    GLenum mode = (GLenum)luaL_checkinteger(L, 1);
+    GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
+    GLenum type = (GLenum)luaL_checkinteger(L, 3);
+    
+    if(lua_isinteger(L, 4)){
+        GLintptr offset = (GLintptr)lua_tointeger(L, 4);
+        glDrawElements(mode, count, type, (const GLvoid *)offset);
+    }else{
+        const GLvoid * indices = (const GLvoid *)luaL_checkstring(L, 4);
+        glDrawElements(mode, count, type, indices);
+    }
+
+    return 0;
+}
+
+
+//[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
+//[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
+static int _llfunc_glVertexAttribPointer(lua_State* L) {
+    GLuint index = (GLuint)luaL_checkinteger(L, 1);
+    GLint size = (GLint)luaL_checkinteger(L, 2);
+    GLenum type = (GLenum)luaL_checkinteger(L, 3);
+    GLboolean normalized = (GLboolean)lua_toboolean(L, 4);
+    GLsizei stride = (GLsizei)luaL_checkinteger(L, 5);
+    
+    if(lua_isinteger(L, 6)){
+        GLintptr offset = (GLintptr)lua_tointeger(L, 6);
+        glVertexAttribPointer(index, size, type, normalized, stride, (const GLvoid *)offset);
+    }else{
+        const GLvoid * pointer = (const GLvoid *)luaL_checkstring(L, 6);
+        glVertexAttribPointer(index, size, type, normalized, stride, pointer);
+    }
+    return 0;
+}
+
+
 
 static const luaL_Reg __lib_gles[] = {
-    {"glShaderSource", _llfunc_glShaderSource},
-    {"glGetAttachedShaders", _llfunc_glGetAttachedShaders},
-    {"glReadPixels", _llfunc_glReadPixels},
-    {"glDrawElements", _llfunc_glDrawElements},
-    {"glVertexAttribPointer", _llfunc_glVertexAttribPointer},
     {"glActiveTexture", _llfunc_glActiveTexture},
     {"glAttachShader", _llfunc_glAttachShader},
     {"glBindAttribLocation", _llfunc_glBindAttribLocation},
@@ -2300,6 +2295,11 @@ static const luaL_Reg __lib_gles[] = {
     {"glVertexAttrib4f", _llfunc_glVertexAttrib4f},
     {"glVertexAttrib4fv", _llfunc_glVertexAttrib4fv},
     {"glViewport", _llfunc_glViewport},
+    {"glShaderSource", _llfunc_glShaderSource},
+    {"glGetAttachedShaders", _llfunc_glGetAttachedShaders},
+    {"glReadPixels", _llfunc_glReadPixels},
+    {"glDrawElements", _llfunc_glDrawElements},
+    {"glVertexAttribPointer", _llfunc_glVertexAttribPointer},
     {NULL, NULL}
 };
 

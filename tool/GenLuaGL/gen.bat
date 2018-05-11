@@ -1,2 +1,2 @@
-..\bin\lua.exe gen_main.lua
+..\bin\lua.exe src\main.lua
 pause

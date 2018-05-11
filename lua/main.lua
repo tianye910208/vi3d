@@ -1,7 +1,4 @@
 
-print("Hello Lua World!!!")
-
-
 GL_DEPTH_BUFFER_BIT               = 0x00000100
 GL_STENCIL_BUFFER_BIT             = 0x00000400
 GL_COLOR_BUFFER_BIT               = 0x00004000
@@ -358,8 +355,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 
-
-
+print("Hello Lua World!!!")
 
 
 function string.split(input, delimiter)
@@ -513,10 +509,10 @@ end
 
 function app_testfile()
     local app = vi_app_info()
-	local f = vi_file_open(app.data_path.."res/doc.txt", "r")
-	print("file_open:", app.data_path.."res/doc.txt", f)
+	local f = vi_file_open(app.data_path.."res/ver.txt", "r")
+	print("file_open:", app.data_path.."res/ver.txt", f)
 	print("file_size:", vi_file_size(f))
-	--print("file_read:", vi_file_read(f, vi_file_size(f)))
+	print("file_read:", vi_file_read(f, vi_file_size(f)))
 	vi_file_close(f)
 end
 
