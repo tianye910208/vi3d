@@ -362,7 +362,19 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 
-
+function string.split(input, delimiter)
+    input = tostring(input)
+    delimiter = tostring(delimiter)
+    if (delimiter=='') then return false end
+    local pos,arr = 0, {}
+    -- for each divider found
+    for st,sp in function() return string.find(input, delimiter, pos, true) end do
+        table.insert(arr, string.sub(input, pos, st - 1))
+        pos = sp + 1
+    end
+    table.insert(arr, string.sub(input, pos))
+    return arr
+end
 
 
 
@@ -413,6 +425,11 @@ local verticeObject = ""
 local indexesObject = ""
 function app_init()
 	vi_app_set_design_size(1280, 720)
+    
+    local extstr = glGetString(GL_EXTENSIONS)
+    for i,v in ipairs(string.split(extstr, " ")) do
+        print(i, v) 
+    end
 
     local vs = LoadShader(GL_VERTEX_SHADER, vShaderStr)
     local fs = LoadShader(GL_FRAGMENT_SHADER, fShaderStr)
