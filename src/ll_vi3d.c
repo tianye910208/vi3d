@@ -5,33 +5,51 @@
 
 
 
-static int _llfunc_vi_log_print(lua_State* L)
+static int _llfunc_vi_log(lua_State* L)
 {
-	char str[4096];
-	str[0] = '\0';
-
+	int cnt = 1;
+	const char* ptr[128];
+	
 	int n = lua_gettop(L);
 	lua_getglobal(L, "tostring");
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		const char *s;
 		size_t l;
-		lua_pushvalue(L, -1);  /* function to be called */
-		lua_pushvalue(L, i);   /* value to print */
+		lua_pushvalue(L, -1); 
+		lua_pushvalue(L, i + 1); 
 		lua_call(L, 1, 1);
-		s = lua_tolstring(L, -1, &l);  /* get result */
-		if (s == NULL)
-			strcat(str, "***");
+		ptr[i] = lua_tolstring(L, -1, &l); 
+		if (ptr[i] == NULL)
+		{
+			ptr[i] = "***";
+			cnt += 4;
+		}
 		else
-			strcat(str, s);
-
-		if (i < n)
-			strcat(str, "\t");
-
-		lua_pop(L, 1);  /* pop result */
+		{
+			cnt += l + 1;
+		}
+		
+		lua_pop(L, 1); 
 	}
 
-	vi_log_print("%s", str);
+#ifdef VI3D_SYS_WIN
+	char *str = (char *)alloca(cnt);
+#else
+	char str[cnt];
+#endif
+
+	char* p = str;
+	for (int i = 0; i < n; i++)
+	{
+		strcpy(p, ptr[i]);
+		p += strlen(ptr[i]);
+		strcpy(p, "\t");
+		p += 1;
+	}
+	*(p - 1) = '\n';
+	*p = '\0';
+
+	vi_log_1(str);
 	return 0;
 }
 
@@ -171,8 +189,8 @@ static int _llfunc_vi_file_size(lua_State* L)
 }
 
 static const luaL_Reg __lib_vi3d[] = {
-	{ "print", _llfunc_vi_log_print },
-	{ "vi_log_print", _llfunc_vi_log_print },
+	{ "print", _llfunc_vi_log },
+	{ "vi_log", _llfunc_vi_log },
 	{ "vi_lua_set_func", _llfunc_vi_lua_set_func },
 	{ "vi_app_info", _llfunc_vi_app_info },
 	{ "vi_app_time", _llfunc_vi_app_time },

@@ -1,17 +1,14 @@
 #include "vi_log.h"
+#include <malloc.h>
 
-#define LOG_MAX_LEN 4096
+#define LOG_TMP_LEN 4096
 
-static void _vi_log_print(const char* file, int line, const char* msg)
+static void _vi_log_print(const char* msg)
 {
-	if (file)
-		vi_sys_print("%s  @%s:%d\n", msg, file, line);
-	else
-		vi_sys_print("%s\n", msg);
+	vi_sys_print(msg);
 }
 
-static vi_log_func	__log_func = _vi_log_print;
-
+vi_log_func __log_func = _vi_log_print;
 
 void vi_log_setfunc(vi_log_func func)
 {
@@ -23,27 +20,54 @@ vi_log_func vi_log_getfunc()
 	return __log_func;
 }
 
-void _vi_log(const char* file, int line, const char* fmt, ...)
-{
-	if (__log_func)
-	{
-		char str[LOG_MAX_LEN];
-		va_list ap;
-		va_start(ap, fmt);
-		int n = vsnprintf(str, LOG_MAX_LEN - 1, fmt, ap);
-		if (n < 0 || n >= LOG_MAX_LEN - 1)
-			str[LOG_MAX_LEN - 1] = '\0';
-		va_end(ap);
 
-		__log_func(file, line, str);
-	}
+void vi_log_1(const char* fmt)
+{
+	if (__log_func == NULL)
+		return;
+	__log_func(fmt);
 }
 
+void vi_log_2(const char* fmt, ...)
+{
+	if (__log_func == NULL)
+		return;
 
+	size_t fmtn = strlen(fmt);
 
+#ifdef VI3D_SYS_WIN
+	char *fmts = (char *)alloca(fmtn + 16);
+#else
+	char fmts[fmtn + 16];
+#endif	
+	strcpy(fmts, fmt);
+	strcat(fmts, "\n@%s:%d\n");
 
+	va_list ap;
+	va_start(ap, fmt);
 
+	char str[LOG_TMP_LEN];
+	int n = vsnprintf(str, LOG_TMP_LEN - 1, fmts, ap);
+	if (n > -1 && n < LOG_TMP_LEN)
+	{
+		__log_func(str);
+	}
+	else
+	{
+		n = _vscprintf(fmts, ap);
+#ifdef VI3D_SYS_WIN
+		char *tmp = (char *)alloca(n + 1);
+#else
+		char tmp[n + 1];
+#endif	
+		vsnprintf(tmp, n, fmts, ap);
+		tmp[n] = '\0';
 
+		__log_func(tmp);
+	}
+
+	va_end(ap);
+}
 
 
 
