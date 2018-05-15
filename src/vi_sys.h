@@ -58,7 +58,7 @@ typedef unsigned long long  uint64;
 #include<android/log.h>
 #define vi_sys_print(msg) (__android_log_print(ANDROID_LOG_INFO, "VI3D", "%s", msg))
 #else
-#define vi_sys_print(msg) do{ printf(msg); fflush(stdout); }while(0)
+#define vi_sys_print(msg) do{ printf("%s", msg); fflush(stdout); }while(0)
 #endif
 
 #ifdef VI3D_SYS_WIN

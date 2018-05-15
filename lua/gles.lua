@@ -925,16 +925,3 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 --[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
 --[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
 
-
-
-
-
-
-
-
-
-
-
-
-
-

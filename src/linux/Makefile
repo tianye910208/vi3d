@@ -1,36 +1,32 @@
 TARGET := test
 
+CC     := gcc
 CCFLAG := -I../ -I../../3rd/lua-5.3.3/src/
 LDFLAG := -L../../3rd/lua-5.3.3/lib_linux/
-LDLIBS := -lEGL -lGLESv2 -lX11 -llua
+LDLIBS := -lEGL -lGLESv2 -lX11 -llua -lm
 
 
 
-SRC1 :=	 $(wildcard ../linux/*.cpp) \
-	 $(wildcard ../*.cpp) \
+SRCS := $(wildcard ../*.c) \
+        $(wildcard ../linux/*.c)
 
-SRC2 :=  $(wildcard ../linux/*.c) \
-	 $(wildcard ../*.c) \
+OBJS := $(SRCS:../%.c=obj/%.o)
+DEPS := $(OBJS:%.o=%.d)
 
-
-OBJS := $(SRC2:../%.c=obj/%.o)
-OBJS += $(SRC1:../%.cpp=obj/%.o)
-
-all:$(OBJS)
-	@echo [M]Link...
+all: $(DEPS) $(OBJS)
+	@echo [M]Link $(TARGET)
 	@mkdir -p bin
-	g++ $(OBJS) -o bin/$(TARGET) $(LDFLAG) $(LDLIBS)
-
-
-obj/%.o:../%.cpp
-	@echo [M]Compile CXX...
-	@mkdir -p $(@D)
-	g++ -c $< -o $@ $(CCFLAG)
+	@$(CC) $(OBJS) -o bin/$(TARGET) $(LDFLAG) $(LDLIBS)
 
 obj/%.o:../%.c
-	@echo [M]Compile C...
+	@echo [M]Compile $@
 	@mkdir -p $(@D)
-	gcc -c $< -o $@ $(CCFLAG)
+	@$(CC) -c $< -o $@ $(CCFLAG) 
+
+obj/%.d:../%.c
+	@echo [M]Genrule $@
+	@mkdir -p $(@D)
+	@$(CC) -MM -MD $< -o $@ $(CCFLAG)
 
 run:
 	./bin/$(TARGET)
@@ -38,9 +34,8 @@ run:
 clean:
 	rm -rf bin
 	rm -rf obj
-	rm -rf out
 
-
+-include $(DEPS)
 
 
 

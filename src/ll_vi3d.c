@@ -49,7 +49,7 @@ static int _llfunc_vi_log(lua_State* L)
 	*(p - 1) = '\n';
 	*p = '\0';
 
-	vi_log_1(str);
+	vi_log(str);
 	return 0;
 }
 

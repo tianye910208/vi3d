@@ -1,7 +1,7 @@
 #include "vi_log.h"
 #include <malloc.h>
 
-#define LOG_TMP_LEN 4096
+#define LOG_TMP_LEN 1024
 
 static void _vi_log_print(const char* msg)
 {
@@ -41,32 +41,37 @@ void vi_log_2(const char* fmt, ...)
 	char fmts[fmtn + 16];
 #endif	
 	strcpy(fmts, fmt);
-	strcat(fmts, "\n@%s:%d\n");
+	strcat(fmts, " @%s:%d\n");
 
 	va_list ap;
 	va_start(ap, fmt);
 
-	char str[LOG_TMP_LEN];
-	int n = vsnprintf(str, LOG_TMP_LEN - 1, fmts, ap);
+	char str[LOG_TMP_LEN + 1];
+	int n = vsnprintf(str, LOG_TMP_LEN, fmts, ap);
+	va_end(ap);
+
 	if (n > -1 && n < LOG_TMP_LEN)
 	{
 		__log_func(str);
 	}
 	else
 	{
-		n = _vscprintf(fmts, ap);
+        va_list ap;
+	    va_start(ap, fmt);
+
 #ifdef VI3D_SYS_WIN
+		n = _vscprintf(fmts, ap);
 		char *tmp = (char *)alloca(n + 1);
 #else
 		char tmp[n + 1];
 #endif	
+
 		vsnprintf(tmp, n, fmts, ap);
-		tmp[n] = '\0';
+	    va_end(ap);
 
 		__log_func(tmp);
 	}
 
-	va_end(ap);
 }
 
 
