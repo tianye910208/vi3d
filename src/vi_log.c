@@ -65,7 +65,8 @@ void vi_log_2(const char* fmt, ...)
 #else
 		char tmp[n + 1];
 #endif	
-
+		tmp[n] = '\0';
+		
 		vsnprintf(tmp, n, fmts, ap);
 	    va_end(ap);
 

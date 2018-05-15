@@ -7,7 +7,7 @@
 
 static int _llfunc_vi_log(lua_State* L)
 {
-	int cnt = 1;
+	size_t cnt = 1;
 	const char* ptr[128];
 	
 	int n = lua_gettop(L);
@@ -49,7 +49,7 @@ static int _llfunc_vi_log(lua_State* L)
 	*(p - 1) = '\n';
 	*p = '\0';
 
-	vi_log(str);
+	vi_log_1(str);
 	return 0;
 }
 
