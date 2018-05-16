@@ -1,6 +1,14 @@
 #ifndef _VI3D_SYS_
 #define _VI3D_SYS_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <stddef.h>
+#include <math.h>
+#include <float.h>
+
 //PLATFORM
 #if defined(_WIN32) || defined(_WINDOWS) || defined(WIN32)
 	#define VI3D_SYS_WIN 1
@@ -24,11 +32,6 @@
 	#error VI3D_ERROR_PLATFORM_UNKNOWN
 #endif
 
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
 
 //ASSERT
 #if defined(_DEBUG) || defined(DEBUG)
@@ -63,6 +66,7 @@ typedef unsigned long long  uint64;
 
 #ifdef VI3D_SYS_WIN
 #define WIN32_LEAN_AND_MEAN
+#define inline __inline
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>

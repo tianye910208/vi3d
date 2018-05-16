@@ -8,7 +8,7 @@ static void _vi_log_print(const char* msg)
 	vi_sys_print(msg);
 }
 
-vi_log_func __log_func = _vi_log_print;
+static vi_log_func __log_func = _vi_log_print;
 
 void vi_log_setfunc(vi_log_func func)
 {
