@@ -9,6 +9,7 @@ int ll_all_open(lua_State* L);
 
 
 int ll_gles_open(lua_State* L);
+int ll_math_open(lua_State* L);
 int ll_vi3d_open(lua_State* L);
 
 #endif 

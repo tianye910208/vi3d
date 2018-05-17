@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\ll_all.c" />
     <ClCompile Include="..\ll_gles.c" />
+    <ClCompile Include="..\ll_math.c" />
     <ClCompile Include="..\ll_vi3d.c" />
     <ClCompile Include="..\vi3d.c" />
     <ClCompile Include="..\vi_app.c" />
