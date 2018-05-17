@@ -5,27 +5,23 @@
 
 
 
-static int _llfunc_vi_log(lua_State* L)
-{
+static int _llfunc_vi_log(lua_State* L) {
 	size_t cnt = 1;
 	const char* ptr[128];
 	
 	int n = lua_gettop(L);
 	lua_getglobal(L, "tostring");
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		size_t l;
 		lua_pushvalue(L, -1); 
 		lua_pushvalue(L, i + 1); 
 		lua_call(L, 1, 1);
 		ptr[i] = lua_tolstring(L, -1, &l); 
-		if (ptr[i] == NULL)
-		{
+		if (ptr[i] == NULL) {
 			ptr[i] = "***";
 			cnt += 4;
 		}
-		else
-		{
+		else {
 			cnt += l + 1;
 		}
 		
@@ -39,8 +35,7 @@ static int _llfunc_vi_log(lua_State* L)
 #endif
 
 	char* p = str;
-	for (int i = 0; i < n; i++)
-	{
+	for (int i = 0; i < n; i++) {
 		strcpy(p, ptr[i]);
 		p += strlen(ptr[i]);
 		strcpy(p, "\t");
@@ -53,23 +48,19 @@ static int _llfunc_vi_log(lua_State* L)
 	return 0;
 }
 
-static int _llfunc_vi_lua_set_func(lua_State* L)
-{
+static int _llfunc_vi_lua_set_func(lua_State* L) {
 	int f1 = 0;
-	if (lua_isfunction(L, 1))
-	{
+	if (lua_isfunction(L, 1)) {
 		lua_pushvalue(L, 1);
 		f1 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
 	int f2 = 0;
-	if (lua_isfunction(L, 2))
-	{
+	if (lua_isfunction(L, 2)) {
 		lua_pushvalue(L, 2);
 		f2 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
 	int f3 = 0;
-	if (lua_isfunction(L, 3))
-	{
+	if (lua_isfunction(L, 3)) {
 		lua_pushvalue(L, 3);
 		f3 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
@@ -77,8 +68,7 @@ static int _llfunc_vi_lua_set_func(lua_State* L)
 	return 0;
 }
 
-static int _llfunc_vi_app_info(lua_State* L)
-{
+static int _llfunc_vi_app_info(lua_State* L) {
 	vi_app* app = vi_app_info();
 
 	lua_createtable(L, 0, 16);
@@ -107,22 +97,19 @@ static int _llfunc_vi_app_info(lua_State* L)
 	return 1;
 }
 
-static int _llfunc_vi_app_time(lua_State* L)
-{
+static int _llfunc_vi_app_time(lua_State* L) {
 	lua_pushnumber(L, vi_app_time());
 	return 1;
 }
 
-static int _llfunc_vi_app_set_design_size(lua_State* L)
-{
+static int _llfunc_vi_app_set_design_size(lua_State* L) {
 	int w = (int)luaL_checkinteger(L, 1);
 	int h = (int)luaL_checkinteger(L, 2);
 	vi_app_set_design_size(w, h);
 	return 0;
 }
 
-static int _llfunc_vi_file_open(lua_State* L)
-{
+static int _llfunc_vi_file_open(lua_State* L) {
 	const char* filepath = luaL_checkstring(L, 1);
 	const char* mode = luaL_checkstring(L, 2);
 	vi_file* f = vi_file_open(filepath, mode);
@@ -133,8 +120,7 @@ static int _llfunc_vi_file_open(lua_State* L)
 	return 1;
 }
 
-static int _llfunc_vi_file_close(lua_State* L)
-{
+static int _llfunc_vi_file_close(lua_State* L) {
 	if (!lua_islightuserdata(L, 1))
 		luaL_argerror(L, 1, "#[vi_file* f] lightuserdata expected");
 
@@ -143,8 +129,7 @@ static int _llfunc_vi_file_close(lua_State* L)
 	return 1;
 }
 
-static int _llfunc_vi_file_read(lua_State* L)
-{
+static int _llfunc_vi_file_read(lua_State* L) {
 	if (!lua_islightuserdata(L, 1))
 		luaL_argerror(L, 1, "#[vi_file* f] lightuserdata expected");
 
@@ -162,8 +147,7 @@ static int _llfunc_vi_file_read(lua_State* L)
 	return 2;
 }
 
-static int _llfunc_vi_file_seek(lua_State* L)
-{
+static int _llfunc_vi_file_seek(lua_State* L) {
 	if (!lua_islightuserdata(L, 1))
 		luaL_argerror(L, 1, "#[vi_file* f] lightuserdata expected");
 
@@ -176,8 +160,7 @@ static int _llfunc_vi_file_seek(lua_State* L)
 	return 1;
 }
 
-static int _llfunc_vi_file_size(lua_State* L)
-{
+static int _llfunc_vi_file_size(lua_State* L) {
 	if (!lua_islightuserdata(L, 1))
 		luaL_argerror(L, 1, "#[vi_file* f] lightuserdata expected");
 

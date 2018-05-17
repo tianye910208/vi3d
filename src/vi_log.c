@@ -3,33 +3,28 @@
 
 #define LOG_TMP_LEN 1024
 
-static void _vi_log_print(const char* msg)
-{
+static void _vi_log_print(const char* msg) {
 	vi_sys_print(msg);
 }
 
 static vi_log_func __log_func = _vi_log_print;
 
-void vi_log_setfunc(vi_log_func func)
-{
+void vi_log_setfunc(vi_log_func func) {
 	__log_func = func;
 }
 
-vi_log_func vi_log_getfunc()
-{
+vi_log_func vi_log_getfunc() {
 	return __log_func;
 }
 
 
-void vi_log_1(const char* fmt)
-{
+void vi_log_1(const char* fmt) {
 	if (__log_func == NULL)
 		return;
 	__log_func(fmt);
 }
 
-void vi_log_2(const char* fmt, ...)
-{
+void vi_log_2(const char* fmt, ...) {
 	if (__log_func == NULL)
 		return;
 
@@ -50,12 +45,10 @@ void vi_log_2(const char* fmt, ...)
 	int n = vsnprintf(str, LOG_TMP_LEN, fmts, ap);
 	va_end(ap);
 
-	if (n > -1 && n < LOG_TMP_LEN)
-	{
+	if (n > -1 && n < LOG_TMP_LEN) {
 		__log_func(str);
 	}
-	else
-	{
+	else {
         va_list ap;
 	    va_start(ap, fmt);
 

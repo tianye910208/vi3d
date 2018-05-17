@@ -17,8 +17,7 @@ EGLContext eglContext;
 EGLSurface eglSurface;
 
 
-LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     LRESULT  lRet = 1;
 
     switch (uMsg)
@@ -40,8 +39,7 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 
-int egl_init(const char* name, int w, int h)
-{
+int egl_init(const char* name, int w, int h) {
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
     WNDCLASS winclass = {0};
@@ -75,13 +73,11 @@ int egl_init(const char* name, int w, int h)
 	EGLint configNum = 0;
 	EGLint majorVersion;
 	EGLint minorVersion;
-	EGLint ctxAttribList[] =
-	{
+	EGLint ctxAttribList[] = {
 		EGL_CONTEXT_CLIENT_VERSION, 2,
 		EGL_NONE
 	};
-	EGLint cfgAttribList[] =
-	{
+	EGLint cfgAttribList[] = {
 		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
 		EGL_RED_SIZE, 5,
 		EGL_GREEN_SIZE, 6,
@@ -120,16 +116,14 @@ int egl_init(const char* name, int w, int h)
 	return 0;
 }
 
-void egl_exit()
-{
+void egl_exit() {
     eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
     eglDestroyContext(eglDisplay, eglContext);
     eglDestroySurface(eglDisplay, eglSurface);
     eglTerminate(eglDisplay);
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	//init------------------------------------------
 	if (egl_init("vi3d", APP_W, APP_H) != 0)
         return 1;
@@ -144,10 +138,8 @@ int main(int argc, char *argv[])
 	t1 = GetTickCount();
 
 	MSG msg = { 0 };
-	while (1)
-	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
+	while (1) {
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT)
                 break;
 
@@ -155,8 +147,7 @@ int main(int argc, char *argv[])
 			DispatchMessage(&msg);
 
 		}
-		else
-		{
+		else {
 			t2 = GetTickCount();
 			dt = (float)(t2 - t1) / 1000.0f;
 			t1 = t2;

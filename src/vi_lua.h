@@ -5,8 +5,7 @@
 #include "lualib.h"
 #include "lauxlib.h"
 
-typedef struct _vi_lua_state
-{
+typedef struct _vi_lua_state {
 	lua_State* L;
 	
 	int func_update;

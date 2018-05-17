@@ -3,8 +3,7 @@
 
 #include "vi_sys.h"
 
-typedef struct _vi_app
-{
+typedef struct _vi_app {
 	float time;
 
 	int screen_w;

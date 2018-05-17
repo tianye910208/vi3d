@@ -7,8 +7,7 @@
 #include <android/asset_manager.h>
 #endif
 
-typedef struct _vi_file
-{
+typedef struct _vi_file {
 	FILE* fd;
 	void* ud;
 #ifdef VI3D_SYS_ANDROID
