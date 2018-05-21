@@ -223,20 +223,24 @@ static inline vec4* vec4_from_axis_angle(vec3 *axis, float angle, vec4 *r) {
 
 
 static inline vec3* mat4_mul_vec3(mat4 *m, vec3 *v, vec3 *r) {
-	float x = v->x * m->m00 + v->y * m->m10 + v->z * m->m20 + m->m30;
-	float y = v->x * m->m01 + v->y * m->m11 + v->z * m->m21 + m->m31;
-	float z = v->x * m->m02 + v->y * m->m12 + v->z * m->m22 + m->m32;
-	r->x = x;
-	r->y = y;
-	r->z = z;
+	float x = v->x;
+	float y = v->y;
+	float z = v->z;
+	r->x = x * m->m00 + y * m->m10 + z * m->m20 + m->m30;
+	r->y = x * m->m01 + y * m->m11 + z * m->m21 + m->m31;
+	r->z = x * m->m02 + y * m->m12 + z * m->m22 + m->m32;
 	return r;
 }
 
 static inline vec4* mat4_mul_vec4(mat4 *m, vec4 *v, vec4 *r) {
-	r->x = v->x * m->m00 + v->y * m->m10 + v->z * m->m20 + v->w * m->m30;
-	r->y = v->x * m->m01 + v->y * m->m11 + v->z * m->m21 + v->w * m->m31;
-	r->z = v->x * m->m02 + v->y * m->m12 + v->z * m->m22 + v->w * m->m32;
-	r->w = v->x * m->m03 + v->y * m->m13 + v->z * m->m23 + v->w * m->m33;
+	float x = v->x;
+	float y = v->y;
+	float z = v->z;
+	float w = v->w;
+	r->x = x * m->m00 + y * m->m10 + z * m->m20 + w * m->m30;
+	r->y = x * m->m01 + y * m->m11 + z * m->m21 + w * m->m31;
+	r->z = x * m->m02 + y * m->m12 + z * m->m22 + w * m->m32;
+	r->w = x * m->m03 + y * m->m13 + z * m->m23 + w * m->m33;
 	return r;
 }
 
