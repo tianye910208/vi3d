@@ -1,4 +1,5 @@
-#include "vi3d.h"
+#include "vi_math.h"
+#include "vi_lua.h"
 #ifdef VI3D_SYS_WIN
 #include <malloc.h>
 #endif
