@@ -36,7 +36,7 @@ static inline void vec2_add(vec2 *a, vec2 *b, vec2 *r) {
 	r->y = a->y + b->y;
 }
 
-static inline void vec2_del(vec2 *a, vec2 *b, vec2 *r) {
+static inline void vec2_sub(vec2 *a, vec2 *b, vec2 *r) {
 	r->x = a->x - b->x;
 	r->y = a->y - b->y;
 }
@@ -68,7 +68,7 @@ static inline void vec3_add(vec3 *a, vec3 *b, vec3 *r) {
 	r->z = a->z + b->z;
 }
 
-static inline void vec3_del(vec3 *a, vec3 *b, vec3 *r) {
+static inline void vec3_sub(vec3 *a, vec3 *b, vec3 *r) {
 	r->x = a->x - b->x;
 	r->y = a->y - b->y;
 	r->z = a->z - b->z;
@@ -123,7 +123,7 @@ static inline void vec4_add(vec4 *a, vec4 *b, vec4 *r) {
 	r->w = a->w + b->w;
 }
 
-static inline void vec4_del(vec4 *a, vec4 *b, vec4 *r) {
+static inline void vec4_sub(vec4 *a, vec4 *b, vec4 *r) {
 	r->x = a->x - b->x;
 	r->y = a->y - b->y;
 	r->z = a->z - b->z;

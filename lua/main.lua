@@ -144,6 +144,9 @@ function app_init()
     
     glDeleteBuffers(n, p)
     
+    print("============", __vec2)
+    print("xxxxxxxxxxxx", vec2)
+    
     return true
 end
 
