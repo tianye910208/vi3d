@@ -18,7 +18,7 @@ static void* userdata_get_or_new(lua_State* L, int idx, int size) {
 	return ret;
 }
 
-static int _llfunc_vec2(lua_State *L) {
+static int _llfunc_vec2_new(lua_State *L) {
 	vec2* arg = lua_touserdata(L, 1);
 	vec2* ret = lua_newuserdata(L, sizeof(vec2));
 	if (arg != NULL)
@@ -26,31 +26,102 @@ static int _llfunc_vec2(lua_State *L) {
 	return 1;
 }
 
-static int _llfunc_vec2_tostring(lua_State *L) {
-	vec3 *v = userdata_get_or_die(L, 1);
-	lua_pushfstring(L, "[%f, %f, %f]", v->x, v->y, v->z);
+static int _llfunc_vec2_new_with_meta(lua_State *L) {
+	vec2* arg = lua_touserdata(L, 2);
+	vec2* ret = lua_newuserdata(L, sizeof(vec2));
+	if (arg != NULL)
+		*ret = *arg;
+	lua_pushvalue(L, 1);
+	lua_setmetatable(L, -2);
 	return 1;
+}
+
+static int _llfunc_vec2_get(lua_State *L) {
+	vec2* v = userdata_get_or_die(L, 1);
+	lua_pushnumber(L, v->x);
+	lua_pushnumber(L, v->y);
+	return 2;
+}
+
+static int _llfunc_vec2_set(lua_State *L) {
+	vec2* v = userdata_get_or_die(L, 1);
+
+	int isnum = 0;
+	float f = (float)lua_tonumberx(L, 2, &isnum);
+	if (isnum)
+		v->x = f;
+	f = (float)lua_tonumberx(L, 3, &isnum);
+	if (isnum)
+		v->y = f;
+
+	return 0;
+}
+
+static int _llfunc_vec2_tostring(lua_State *L) {
+	vec2 *v = userdata_get_or_die(L, 1);
+	lua_pushfstring(L, "[%f, %f]", v->x, v->y);
+	return 1;
+}
+
+static int _llfunc_vec2_add(lua_State *L) {
+	vec2 *a = userdata_get_or_die(L, 1);
+	vec2 *b = userdata_get_or_die(L, 2);
+	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2_add(a, b, r);
+	return 1;
+}
+
+static int _llfunc_vec2_sub(lua_State *L) {
+	vec2 *a = userdata_get_or_die(L, 1);
+	vec2 *b = userdata_get_or_die(L, 2);
+	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2_sub(a, b, r);
+	return 1;
+}
+
+static int _llfunc_vec2_mul(lua_State *L) {
+	vec2 *v = userdata_get_or_die(L, 1);
+	float k = (float)luaL_checknumber(L, 2);
+	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2_mul(v, k, r);
+	return 1;
+}
+
+static int _llfunc_vec2_dot(lua_State *L) {
+	vec2 *a = userdata_get_or_die(L, 1);
+	vec2 *b = userdata_get_or_die(L, 2);
+	lua_pushnumber(L, vec2_dot(a, b));
+	return 1;
+}
+
+static int _llfunc_vec2_len(lua_State *L) {
+	vec2 *v = userdata_get_or_die(L, 1);
+	lua_pushnumber(L, vec2_len(v));
+	return 1;
+}
+
+static int _llfunc_vec2_normalize(lua_State *L) {
+	vec2 *v = userdata_get_or_die(L, 1);
+	vec2_normalize(v);
+	return 0;
 }
 
 static int ll_vec2(lua_State* L) {
 	const luaL_Reg __reg[] = {
-		{ "__tostring", _llfunc_vec2_tostring },
+		{ "vec2_new", _llfunc_vec2_new },
+		{ "vec2_new_with_meta", _llfunc_vec2_new_with_meta },
+		{ "vec2_get", _llfunc_vec2_get },
+		{ "vec2_set", _llfunc_vec2_set },
+		{ "vec2_tostring", _llfunc_vec2_tostring },
+		{ "vec2_add", _llfunc_vec2_add },
+		{ "vec2_sub", _llfunc_vec2_sub },
+		{ "vec2_mul", _llfunc_vec2_mul },
+		{ "vec2_dot", _llfunc_vec2_dot },
+		{ "vec2_len", _llfunc_vec2_len },
+		{ "vec2_normalize", _llfunc_vec2_normalize },
 		{ NULL, NULL }
 	};
-
-	lua_newtable(L);
-	luaL_newlib(L, __reg);
-	lua_setfield(L, -2, "__index");
-	lua_pushstring(L, "vec2");
-	lua_setfield(L, -2, "__metatable");
-	lua_pushcfunction(L, _llfunc_vec2_tostring);
-	lua_setfield(L, -2, "__tostring");
-	
-	lua_pushvalue(L, -1);
-	lua_pushcclosure(L, _llfunc_vec2, 1);
-	lua_setfield(L, -4, "vec2");
-
-	lua_setfield(L, -4, "_vec2");
+	luaL_setfuncs(L, __reg, 0);
 	return 1;
 }
 

@@ -144,8 +144,21 @@ function app_init()
     
     glDeleteBuffers(n, p)
     
-    print("============", __vec2)
-    print("xxxxxxxxxxxx", vec2)
+    print("============")
+    local a = vec2_new_with_meta({__tostring = vec2_tostring})
+    vec2_set(a,1,2)
+    print(a, getmetatable(a), vec2_get(a))
+    local b = vec2_new_with_meta({__tostring = vec2_tostring})
+    vec2_set(b,3,4)
+    print(b)
+    local c = vec2_add(a, b)
+    print(c)
+    local d = vec2_mul(a, 10, a)
+    print(d, a)
+    print(vec2_len(b))
+    print(vec2_dot(a, b))
+    
+    print("xxxxxxxxxxxx")
     
     return true
 end
