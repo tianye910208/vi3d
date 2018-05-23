@@ -29,11 +29,11 @@ local _vec2_v = {
 }
 
 _vec2.__index = function(u, k)
-    local f = _vec2_f[k]
+    local f = rawget(_vec2_f, k)
     if f then
         return f
     end
-    local i = _vec2_v[k]
+    local i = rawget(_vec2_v, k)
     if i then
         return vec2_geti(u, i)
     end
@@ -42,7 +42,7 @@ _vec2.__index = function(u, k)
 end
 
 _vec2.__newindex = function(u, k, v)
-    local i = _vec2_v[k]
+    local i = rawget(_vec2_v, k)
     if i then
         vec2_seti(u, i, v)
     else
