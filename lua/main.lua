@@ -75,14 +75,13 @@ function app_init()
         local p = vi_file_open(app.data_path.."lua/"..filename..".lua", "r")
         local s = vi_file_read(p, vi_file_size(p))
         vi_file_close(p)
-        
-        print("file_read:", s, p)
-        
+        print("require", filename)
         local f,err = load(s, filename)
         return f or err
     end
 
-    require("gles")
+    require("vi_gles")
+    require("vi_math")
     
     
     local extstr = glGetString(GL_EXTENSIONS)
@@ -144,20 +143,26 @@ function app_init()
     
     glDeleteBuffers(n, p)
     
-    print("============")
-    local a = vec2_new_with_meta({__tostring = vec2_tostring})
-    vec2_set(a,1,2)
-    print(a, getmetatable(a), vec2_get(a))
-    local b = vec2_new_with_meta({__tostring = vec2_tostring})
-    vec2_set(b,3,4)
-    print(b)
-    local c = vec2_add(a, b)
-    print(c)
-    local d = vec2_mul(a, 10, a)
-    print(d, a)
-    print(vec2_len(b))
-    print(vec2_dot(a, b))
+    print("============", vec2_new)
     
+    
+    local a = vec2()
+    a:set(1,2)
+    print(a, a:get(), a.x, a.y)
+    local b = vec2()
+    b:set(3,4)
+    print(b)
+    local c = a + b
+    print(c)
+    local d = a * 10
+    print(d, a)
+    print(#b)
+    print(a:dot(b))
+    
+    a.x = 3
+    a.y = 4
+    a:normalize()
+    print(a)
     print("xxxxxxxxxxxx")
     
     return true

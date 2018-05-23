@@ -13,26 +13,25 @@ static void* userdata_get_or_die(lua_State *L, int idx) {
 
 static void* userdata_get_or_new(lua_State* L, int idx, int size) {
 	void* ret = lua_touserdata(L, idx);
-	if (ret == NULL)
+	if (ret == NULL){
 		ret = lua_newuserdata(L, size);
+		lua_pushvalue(L, lua_upvalueindex(1));
+		lua_setmetatable(L, -2);
+	}
 	return ret;
 }
+
+
 
 static int _llfunc_vec2_new(lua_State *L) {
 	vec2* arg = lua_touserdata(L, 1);
 	vec2* ret = lua_newuserdata(L, sizeof(vec2));
 	if (arg != NULL)
 		*ret = *arg;
-	return 1;
-}
 
-static int _llfunc_vec2_new_with_meta(lua_State *L) {
-	vec2* arg = lua_touserdata(L, 2);
-	vec2* ret = lua_newuserdata(L, sizeof(vec2));
-	if (arg != NULL)
-		*ret = *arg;
-	lua_pushvalue(L, 1);
+	lua_pushvalue(L, lua_upvalueindex(1));
 	lua_setmetatable(L, -2);
+	
 	return 1;
 }
 
@@ -57,11 +56,32 @@ static int _llfunc_vec2_set(lua_State *L) {
 	return 0;
 }
 
+static int _llfunc_vec2_geti(lua_State *L) {
+	vec2* v = userdata_get_or_die(L, 1);
+	int i = (int)luaL_checkinteger(L, 2);
+	lua_pushnumber(L, v->p[i-1]);
+	return 1;
+}
+
+static int _llfunc_vec2_seti(lua_State *L) {
+	vec2* v = userdata_get_or_die(L, 1);
+	int i = (int)luaL_checkinteger(L, 2);
+	float f = (float)luaL_checknumber(L, 3);
+	v->p[i - 1] = f;
+	return 0;
+}
+
 static int _llfunc_vec2_tostring(lua_State *L) {
 	vec2 *v = userdata_get_or_die(L, 1);
 	lua_pushfstring(L, "[%f, %f]", v->x, v->y);
 	return 1;
 }
+
+static int _llfunc_vec2_metatable(lua_State *L) {
+	lua_pushvalue(L, lua_upvalueindex(1));
+	return 1;
+}
+
 
 static int _llfunc_vec2_add(lua_State *L) {
 	vec2 *a = userdata_get_or_die(L, 1);
@@ -107,12 +127,15 @@ static int _llfunc_vec2_normalize(lua_State *L) {
 }
 
 static int ll_vec2(lua_State* L) {
+	luaL_newmetatable(L, "vec2");
 	const luaL_Reg __reg[] = {
 		{ "vec2_new", _llfunc_vec2_new },
-		{ "vec2_new_with_meta", _llfunc_vec2_new_with_meta },
 		{ "vec2_get", _llfunc_vec2_get },
 		{ "vec2_set", _llfunc_vec2_set },
+		{ "vec2_geti", _llfunc_vec2_geti },
+		{ "vec2_seti", _llfunc_vec2_seti },
 		{ "vec2_tostring", _llfunc_vec2_tostring },
+		{ "vec2_metatable", _llfunc_vec2_metatable },
 		{ "vec2_add", _llfunc_vec2_add },
 		{ "vec2_sub", _llfunc_vec2_sub },
 		{ "vec2_mul", _llfunc_vec2_mul },
@@ -121,7 +144,7 @@ static int ll_vec2(lua_State* L) {
 		{ "vec2_normalize", _llfunc_vec2_normalize },
 		{ NULL, NULL }
 	};
-	luaL_setfuncs(L, __reg, 0);
+	luaL_setfuncs(L, __reg, 1);
 	return 1;
 }
 
