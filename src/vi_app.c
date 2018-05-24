@@ -79,8 +79,7 @@ void vi_app_exit() {
 
 void vi_app_loop(float dt) {
 	__app_instance->time += dt;
-	vi_lua_update(dt);
-	vi_lua_render(dt);
+	vi_lua_loop(dt);
 }
 
 

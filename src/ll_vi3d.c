@@ -48,7 +48,7 @@ static int _llfunc_vi_log(lua_State* L) {
 	return 0;
 }
 
-static int _llfunc_vi_lua_set_func(lua_State* L) {
+static int _llfunc_vi_lua_main(lua_State* L) {
 	int f1 = 0;
 	if (lua_isfunction(L, 1)) {
 		lua_pushvalue(L, 1);
@@ -64,7 +64,7 @@ static int _llfunc_vi_lua_set_func(lua_State* L) {
 		lua_pushvalue(L, 3);
 		f3 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
-	vi_lua_set_func(f1, f2, f3);
+	vi_lua_main(f1, f2, f3);
 	return 0;
 }
 
@@ -174,7 +174,7 @@ static int _llfunc_vi_file_size(lua_State* L) {
 static const luaL_Reg __lib_vi3d[] = {
 	{ "print", _llfunc_vi_log },
 	{ "vi_log", _llfunc_vi_log },
-	{ "vi_lua_set_func", _llfunc_vi_lua_set_func },
+	{ "vi_lua_main", _llfunc_vi_lua_main },
 	{ "vi_app_info", _llfunc_vi_app_info },
 	{ "vi_app_time", _llfunc_vi_app_time },
 	{ "vi_app_set_design_size", _llfunc_vi_app_set_design_size },
