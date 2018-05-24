@@ -1,4 +1,3 @@
-print("----------math------------")
 
 local rawget = rawget
 local gen_get_func = function(desc, geti, vmap, fmap)

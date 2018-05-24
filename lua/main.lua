@@ -143,7 +143,7 @@ function app_init()
     
     glDeleteBuffers(n, p)
     
-    print("============", vec2_new)
+    print("============")
     
     
     local a = vec2()
@@ -188,7 +188,7 @@ function app_init()
     pos:set(10,20,30)
     print(pos*m)
     
-    print("xxxxxxxxxxxx")
+    print("============")
     
     return true
 end
