@@ -46,12 +46,12 @@ static inline void vec2_mul(vec2 *v, float k, vec2 *r) {
 	r->y = v->y * k;
 }
 
-static inline float vec2_dot(vec2 *a, vec2 *b) {
-	return a->x * b->x + a->y * b->y;
-}
-
 static inline float vec2_len(vec2 *v) {
 	return sqrtf(v->x * v->x + v->y * v->y);
+}
+
+static inline float vec2_dot(vec2 *a, vec2 *b) {
+	return a->x * b->x + a->y * b->y;
 }
 
 static inline void vec2_normalize(vec2 *v) {
@@ -89,6 +89,14 @@ static inline void vec3_mul_mat4(vec3 *v, mat4 *m, vec3 *r) {
 	r->z = x * m->m02 + y * m->m12 + z * m->m22 + m->m32;
 }
 
+static inline float vec3_len(vec3 *v) {
+	return sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
+}
+
+static inline float vec3_dot(vec3 *a, vec3 *b) {
+	return a->x * b->x + a->y * b->y + a->z * b->z;
+}
+
 static inline void vec3_cross(vec3 *a, vec3 *b, vec3 *r) {
 	float x = a->y * b->z - a->z * b->y;
 	float y = a->z * b->x - a->x * b->z;
@@ -96,14 +104,6 @@ static inline void vec3_cross(vec3 *a, vec3 *b, vec3 *r) {
 	r->x = x;
 	r->y = y;
 	r->z = z;
-}
-
-static inline float vec3_dot(vec3 *a, vec3 *b) {
-	return a->x * b->x + a->y * b->y + a->z * b->z;
-}
-
-static inline float vec3_len(vec3 *v) {
-	return sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
 }
 
 static inline void vec3_normalize(vec3 *v) {
@@ -241,7 +241,7 @@ static inline void vec4_quat_slerp(vec4 *a, vec4 *b, float k, vec4 *r) {
 }
 
 
-static inline void vec4_set_quat_euler(vec4 *q, vec3 *euler) {
+static inline void vec4_quat_set_euler(vec4 *q, vec3 *euler) {
 	vec4 roll = { sinf(euler->x * 0.5f), 0, 0, cosf(euler->x * 0.5f) };
 	vec4 pitch = { 0, sinf(euler->y * 0.5f), 0, cosf(euler->y * 0.5f) };
 	vec4 yaw = { 0, 0, sinf(euler->z * 0.5f), cosf(euler->z * 0.5f) };
@@ -251,7 +251,7 @@ static inline void vec4_set_quat_euler(vec4 *q, vec3 *euler) {
 	vec4_quat_mul(q, &yaw, q);
 }
 
-static inline void vec4_set_quat_axis_angle(vec4 *q, vec3 *axis, float angle) {
+static inline void vec4_quat_set_axis_angle(vec4 *q, vec3 *axis, float angle) {
 	float t = sinf(angle * 0.5f);
 
 	q->x = axis->x * t;
@@ -264,7 +264,7 @@ static inline void vec4_set_quat_axis_angle(vec4 *q, vec3 *axis, float angle) {
 
 
 
-static inline void mat4_mul_mat4(mat4 *a, mat4 *b, mat4 *r) {
+static inline void mat4_mul(mat4 *a, mat4 *b, mat4 *r) {
 	float *rp = r->p;
 	float *ap = a->p;
 	float *bp = b->p;
@@ -343,7 +343,7 @@ static inline void mat4_rotate(mat4 *m, vec4 *q) {
 	mat4_set_quat(&t, q);
 
 	mat4 r;
-	mat4_mul_mat4(&t, m, &r);
+	mat4_mul(&t, m, &r);
 
 	*m = r;
 }
