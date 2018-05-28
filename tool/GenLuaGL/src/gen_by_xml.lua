@@ -139,7 +139,9 @@ end
 local load_f_list = function(name, tt, idx, def)
     local ttt = string.gsub(string.gsub(tt, "%s*%*$", ""), "^const%s*", "")
     local src = tt.." "..name..";\n"..
-                "    if(lua_istable(L, "..idx..")){\n"..
+                "    if(lua_isuserdata(L, "..idx..")) {\n"..
+                "        "..name.." = ("..tt..")lua_touserdata(L, "..idx..");\n"..
+                "    }else if(lua_istable(L, "..idx..")) {\n"..
                 "        int _ll_tabn = (int)lua_rawlen(L, "..idx..");\n"..
                 "#ifdef VI3D_SYS_WIN\n"..
                 "        "..ttt.." *_"..name.." = ("..ttt.." *)alloca(sizeof("..ttt..")*_ll_tabn);\n"..

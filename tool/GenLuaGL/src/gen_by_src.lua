@@ -67,7 +67,10 @@ static int _llfunc_glDrawElements(lua_State* L) {
     if(lua_isinteger(L, 4)){
         GLintptr offset = (GLintptr)lua_tointeger(L, 4);
         glDrawElements(mode, count, type, (const GLvoid *)offset);
-    }else{
+    }else if (lua_isuserdata(L, 4)){
+        const GLvoid * indices = (const GLvoid *)lua_touserdata(L, 4);
+        glDrawElements(mode, count, type, indices);
+    }else {
         const GLvoid * indices = (const GLvoid *)luaL_checkstring(L, 4);
         glDrawElements(mode, count, type, indices);
     }
@@ -87,6 +90,9 @@ static int _llfunc_glVertexAttribPointer(lua_State* L) {
     if(lua_isinteger(L, 6)){
         GLintptr offset = (GLintptr)lua_tointeger(L, 6);
         glVertexAttribPointer(index, size, type, normalized, stride, (const GLvoid *)offset);
+    }else if (lua_isuserdata(L, 6)){
+        const GLvoid * pointer = (const GLvoid *)lua_touserdata(L, 6);
+        glVertexAttribPointer(index, size, type, normalized, stride, pointer);
     }else{
         const GLvoid * pointer = (const GLvoid *)luaL_checkstring(L, 6);
         glVertexAttribPointer(index, size, type, normalized, stride, pointer);

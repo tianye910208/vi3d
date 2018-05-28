@@ -1376,7 +1376,9 @@ static int _llfunc_glTexParameterfv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
     const GLfloat * params;
-    if(lua_istable(L, 3)){
+    if(lua_isuserdata(L, 3)) {
+        params = (const GLfloat *)lua_touserdata(L, 3);
+    }else if(lua_istable(L, 3)) {
         int _ll_tabn = (int)lua_rawlen(L, 3);
 #ifdef VI3D_SYS_WIN
         GLfloat *_params = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1473,7 +1475,9 @@ static int _llfunc_glUniform1fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     const GLfloat * value;
-    if(lua_istable(L, 3)){
+    if(lua_isuserdata(L, 3)) {
+        value = (const GLfloat *)lua_touserdata(L, 3);
+    }else if(lua_istable(L, 3)) {
         int _ll_tabn = (int)lua_rawlen(L, 3);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1552,7 +1556,9 @@ static int _llfunc_glUniform2fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     const GLfloat * value;
-    if(lua_istable(L, 3)){
+    if(lua_isuserdata(L, 3)) {
+        value = (const GLfloat *)lua_touserdata(L, 3);
+    }else if(lua_istable(L, 3)) {
         int _ll_tabn = (int)lua_rawlen(L, 3);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1633,7 +1639,9 @@ static int _llfunc_glUniform3fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     const GLfloat * value;
-    if(lua_istable(L, 3)){
+    if(lua_isuserdata(L, 3)) {
+        value = (const GLfloat *)lua_touserdata(L, 3);
+    }else if(lua_istable(L, 3)) {
         int _ll_tabn = (int)lua_rawlen(L, 3);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1716,7 +1724,9 @@ static int _llfunc_glUniform4fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     const GLfloat * value;
-    if(lua_istable(L, 3)){
+    if(lua_isuserdata(L, 3)) {
+        value = (const GLfloat *)lua_touserdata(L, 3);
+    }else if(lua_istable(L, 3)) {
         int _ll_tabn = (int)lua_rawlen(L, 3);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1787,7 +1797,9 @@ static int _llfunc_glUniformMatrix2fv(lua_State* L) {
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     GLboolean transpose = (GLboolean)lua_toboolean(L, 3);
     const GLfloat * value;
-    if(lua_istable(L, 4)){
+    if(lua_isuserdata(L, 4)) {
+        value = (const GLfloat *)lua_touserdata(L, 4);
+    }else if(lua_istable(L, 4)) {
         int _ll_tabn = (int)lua_rawlen(L, 4);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1816,7 +1828,9 @@ static int _llfunc_glUniformMatrix3fv(lua_State* L) {
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     GLboolean transpose = (GLboolean)lua_toboolean(L, 3);
     const GLfloat * value;
-    if(lua_istable(L, 4)){
+    if(lua_isuserdata(L, 4)) {
+        value = (const GLfloat *)lua_touserdata(L, 4);
+    }else if(lua_istable(L, 4)) {
         int _ll_tabn = (int)lua_rawlen(L, 4);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1845,7 +1859,9 @@ static int _llfunc_glUniformMatrix4fv(lua_State* L) {
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
     GLboolean transpose = (GLboolean)lua_toboolean(L, 3);
     const GLfloat * value;
-    if(lua_istable(L, 4)){
+    if(lua_isuserdata(L, 4)) {
+        value = (const GLfloat *)lua_touserdata(L, 4);
+    }else if(lua_istable(L, 4)) {
         int _ll_tabn = (int)lua_rawlen(L, 4);
 #ifdef VI3D_SYS_WIN
         GLfloat *_value = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1903,7 +1919,9 @@ static int _llfunc_glVertexAttrib1f(lua_State* L) {
 static int _llfunc_glVertexAttrib1fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
-    if(lua_istable(L, 2)){
+    if(lua_isuserdata(L, 2)) {
+        v = (const GLfloat *)lua_touserdata(L, 2);
+    }else if(lua_istable(L, 2)) {
         int _ll_tabn = (int)lua_rawlen(L, 2);
 #ifdef VI3D_SYS_WIN
         GLfloat *_v = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1942,7 +1960,9 @@ static int _llfunc_glVertexAttrib2f(lua_State* L) {
 static int _llfunc_glVertexAttrib2fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
-    if(lua_istable(L, 2)){
+    if(lua_isuserdata(L, 2)) {
+        v = (const GLfloat *)lua_touserdata(L, 2);
+    }else if(lua_istable(L, 2)) {
         int _ll_tabn = (int)lua_rawlen(L, 2);
 #ifdef VI3D_SYS_WIN
         GLfloat *_v = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -1982,7 +2002,9 @@ static int _llfunc_glVertexAttrib3f(lua_State* L) {
 static int _llfunc_glVertexAttrib3fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
-    if(lua_istable(L, 2)){
+    if(lua_isuserdata(L, 2)) {
+        v = (const GLfloat *)lua_touserdata(L, 2);
+    }else if(lua_istable(L, 2)) {
         int _ll_tabn = (int)lua_rawlen(L, 2);
 #ifdef VI3D_SYS_WIN
         GLfloat *_v = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -2023,7 +2045,9 @@ static int _llfunc_glVertexAttrib4f(lua_State* L) {
 static int _llfunc_glVertexAttrib4fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
-    if(lua_istable(L, 2)){
+    if(lua_isuserdata(L, 2)) {
+        v = (const GLfloat *)lua_touserdata(L, 2);
+    }else if(lua_istable(L, 2)) {
         int _ll_tabn = (int)lua_rawlen(L, 2);
 #ifdef VI3D_SYS_WIN
         GLfloat *_v = (GLfloat *)alloca(sizeof(GLfloat)*_ll_tabn);
@@ -2128,7 +2152,10 @@ static int _llfunc_glDrawElements(lua_State* L) {
     if(lua_isinteger(L, 4)){
         GLintptr offset = (GLintptr)lua_tointeger(L, 4);
         glDrawElements(mode, count, type, (const GLvoid *)offset);
-    }else{
+    }else if (lua_isuserdata(L, 4)){
+        const GLvoid * indices = (const GLvoid *)lua_touserdata(L, 4);
+        glDrawElements(mode, count, type, indices);
+    }else {
         const GLvoid * indices = (const GLvoid *)luaL_checkstring(L, 4);
         glDrawElements(mode, count, type, indices);
     }
@@ -2149,6 +2176,9 @@ static int _llfunc_glVertexAttribPointer(lua_State* L) {
     if(lua_isinteger(L, 6)){
         GLintptr offset = (GLintptr)lua_tointeger(L, 6);
         glVertexAttribPointer(index, size, type, normalized, stride, (const GLvoid *)offset);
+    }else if (lua_isuserdata(L, 6)){
+        const GLvoid * pointer = (const GLvoid *)lua_touserdata(L, 6);
+        glVertexAttribPointer(index, size, type, normalized, stride, pointer);
     }else{
         const GLvoid * pointer = (const GLvoid *)luaL_checkstring(L, 6);
         glVertexAttribPointer(index, size, type, normalized, stride, pointer);
