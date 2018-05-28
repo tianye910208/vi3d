@@ -475,11 +475,11 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glDeleteBuffers(GLsizei n, const GLuint * buffers)
---glDeleteBuffers(<int>n, {[int]}buffers/<string>buffersPacked)
+--glDeleteBuffers(<int>n, {int}buffers/<string>buffersPacked)
 
 
 --void glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers)
---glDeleteFramebuffers(<int>n, {[int]}framebuffers/<string>framebuffersPacked)
+--glDeleteFramebuffers(<int>n, {int}framebuffers/<string>framebuffersPacked)
 
 
 --void glDeleteProgram(GLuint program)
@@ -487,7 +487,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers)
---glDeleteRenderbuffers(<int>n, {[int]}renderbuffers/<string>renderbuffersPacked)
+--glDeleteRenderbuffers(<int>n, {int}renderbuffers/<string>renderbuffersPacked)
 
 
 --void glDeleteShader(GLuint shader)
@@ -495,7 +495,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glDeleteTextures(GLsizei n, const GLuint * textures)
---glDeleteTextures(<int>n, {[int]}textures/<string>texturesPacked)
+--glDeleteTextures(<int>n, {int}textures/<string>texturesPacked)
 
 
 --void glDepthFunc(GLenum func)
@@ -555,19 +555,19 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glGenBuffers(GLsizei n, GLuint * buffers)
---local {[int]}buffers = glGenBuffers(<int>n)
+--local {int}buffers = glGenBuffers(<int>n)
 
 
 --void glGenFramebuffers(GLsizei n, GLuint * framebuffers)
---local {[int]}framebuffers = glGenFramebuffers(<int>n)
+--local {int}framebuffers = glGenFramebuffers(<int>n)
 
 
 --void glGenRenderbuffers(GLsizei n, GLuint * renderbuffers)
---local {[int]}renderbuffers = glGenRenderbuffers(<int>n)
+--local {int}renderbuffers = glGenRenderbuffers(<int>n)
 
 
 --void glGenTextures(GLsizei n, GLuint * textures)
---local {[int]}textures = glGenTextures(<int>n)
+--local {int}textures = glGenTextures(<int>n)
 
 
 --void glGenerateMipmap(GLenum target)
@@ -735,7 +735,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glShaderBinary(GLsizei n, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
---glShaderBinary(<int>n, {[int]}shaders/<string>shadersPacked, <int>binaryformat, <string>binary, <int>length)
+--glShaderBinary(<int>n, {int}shaders/<string>shadersPacked, <int>binaryformat, <string>binary, <int>length)
 
 
 --void glStencilFunc(GLenum func, GLint ref, GLuint mask)
@@ -771,7 +771,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)
---glTexParameterfv(<int>target, <int>pname, {[float]}params/<string>paramsPacked)
+--glTexParameterfv(<int>target, <int>pname, <userdata>params/{float}params/<string>paramsPacked)
 
 
 --void glTexParameteri(GLenum target, GLenum pname, GLint param)
@@ -779,7 +779,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glTexParameteriv(GLenum target, GLenum pname, const GLint * params)
---glTexParameteriv(<int>target, <int>pname, {[int]}params/<string>paramsPacked)
+--glTexParameteriv(<int>target, <int>pname, {int}params/<string>paramsPacked)
 
 
 --void glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid * data)
@@ -791,7 +791,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform1fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform1fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+--glUniform1fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniform1i(GLint location, GLint v0)
@@ -799,7 +799,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform1iv(GLint location, GLsizei count, const GLint * value)
---glUniform1iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+--glUniform1iv(<int>location, <int>count, {int}value/<string>valuePacked)
 
 
 --void glUniform2f(GLint location, GLfloat v0, GLfloat v1)
@@ -807,7 +807,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform2fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform2fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+--glUniform2fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniform2i(GLint location, GLint v0, GLint v1)
@@ -815,7 +815,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform2iv(GLint location, GLsizei count, const GLint * value)
---glUniform2iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+--glUniform2iv(<int>location, <int>count, {int}value/<string>valuePacked)
 
 
 --void glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
@@ -823,7 +823,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform3fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform3fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+--glUniform3fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniform3i(GLint location, GLint v0, GLint v1, GLint v2)
@@ -831,7 +831,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform3iv(GLint location, GLsizei count, const GLint * value)
---glUniform3iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+--glUniform3iv(<int>location, <int>count, {int}value/<string>valuePacked)
 
 
 --void glUniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
@@ -839,7 +839,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform4fv(GLint location, GLsizei count, const GLfloat * value)
---glUniform4fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+--glUniform4fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
@@ -847,19 +847,19 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glUniform4iv(GLint location, GLsizei count, const GLint * value)
---glUniform4iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+--glUniform4iv(<int>location, <int>count, {int}value/<string>valuePacked)
 
 
 --void glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+--glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+--glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
---glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+--glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 
 
 --void glUseProgram(GLuint program)
@@ -875,7 +875,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glVertexAttrib1fv(GLuint index, const GLfloat * v)
---glVertexAttrib1fv(<int>index, {[float]}v/<string>vPacked)
+--glVertexAttrib1fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 
 
 --void glVertexAttrib2f(GLuint index, GLfloat v0, GLfloat v1)
@@ -883,7 +883,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glVertexAttrib2fv(GLuint index, const GLfloat * v)
---glVertexAttrib2fv(<int>index, {[float]}v/<string>vPacked)
+--glVertexAttrib2fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 
 
 --void glVertexAttrib3f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2)
@@ -891,7 +891,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glVertexAttrib3fv(GLuint index, const GLfloat * v)
---glVertexAttrib3fv(<int>index, {[float]}v/<string>vPacked)
+--glVertexAttrib3fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 
 
 --void glVertexAttrib4f(GLuint index, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
@@ -899,7 +899,7 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --void glVertexAttrib4fv(GLuint index, const GLfloat * v)
---glVertexAttrib4fv(<int>index, {[float]}v/<string>vPacked)
+--glVertexAttrib4fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 
 
 --void glViewport(GLint x, GLint y, GLsizei width, GLsizei height)
@@ -919,9 +919,9 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 --[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)
---[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)
+--[Manual]glDrawElements(<int>mode, <int>count, <int>type, <int>offset/<userdata>indices/<string>indices)
 
 
 --[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
---[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
+--[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <int>offset/<userdata>pointer/<string>pointer)
 

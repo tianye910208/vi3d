@@ -128,14 +128,14 @@ local _src_list = {
         desc="[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)", 
         func="_llfunc_glDrawElements", 
         text=_llfunc_glDrawElements, 
-        docs="[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)"
+        docs="[Manual]glDrawElements(<int>mode, <int>count, <int>type, <int>offset/<userdata>indices/<string>indices)"
     },
     {
         name="glVertexAttribPointer", 
         desc="[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)", 
         func="_llfunc_glVertexAttribPointer", 
         text=_llfunc_glVertexAttribPointer, 
-        docs="[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)"
+        docs="[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <int>offset/<userdata>pointer/<string>pointer)"
     },
 }
 

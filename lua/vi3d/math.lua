@@ -197,15 +197,30 @@ _mat4.__newindex = gen_set_func("[mat4]set", mat4_seti, _mat4_v)
 
 
 
+_mat4_f.set_perspective = function(m, l, r, b, t, n, f)
+    m:set(
+        2 * n / (r - l),    0,                  0,                      0,
+        0,                  2 * n / (t - b),    0,                      0,
+        (r + l) / (r - l),  (t + b) / (t - b),  -(f + n) / (f - n),     -1,
+        0,                  0,                  -2 * f * n / (f - n),   0
+    )
+end
+
+_mat4_f.set_orthographic = function(m, l, r, b, t, n, f)
+    m:set(
+        2 / (r - l),        0,                  0,                  0,
+        0,                  2 / (t - b),        0,                  0,
+        0,                  0,                  -2 / (f - n),       0,
+        -(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n), 1
+    )
+end
 
 
-
-
-
-
-
-
-
+_mat4_f.set_projection = function(m, fov, aspect, n, f)
+    local ymax = n * math.tan(math.pi * fov / 360)
+	local xmax = ymax * aspect
+	m:set_perspective(-xmax, xmax, -ymax, ymax, n, f)
+end
 
 
 

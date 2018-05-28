@@ -133,7 +133,7 @@ local load_n_list = function(name, tt, idx, def)
                 "        "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n"..
                 "    }\n"
 
-    return src, "{[int]}"..name.."/<string>"..name.."Packed", name
+    return src, "{int}"..name.."/<string>"..name.."Packed", name
 end
 
 local load_f_list = function(name, tt, idx, def)
@@ -158,7 +158,7 @@ local load_f_list = function(name, tt, idx, def)
                 "        "..name.." = ("..tt..")luaL_checkstring(L, "..idx..");\n"..
                 "    }\n"
     
-    return src, "{[float]}"..name.."/<string>"..name.."Packed", name
+    return src, "<userdata>"..name.."/{float}"..name.."/<string>"..name.."Packed", name
 end
 
 local load_def_ptr = function(name, tt, idx, def)
@@ -229,7 +229,7 @@ local push_n_list = function(name, tt, idx, def)
                 "        lua_pushinteger(L, (lua_Integer)"..name.."[i]);\n"..
                 "        lua_rawseti(L, -2, i+1);\n"..
                 "    }\n"
-    return src, "{[int]}"..name
+    return src, "{int}"..name
 end
 
 

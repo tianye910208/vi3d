@@ -2,17 +2,24 @@ print("============test_cube============")
 
 
 local vShaderStr = [[
-    attribute vec4 pos;
+    precision mediump float;
+    attribute vec4 a_position;
+    attribute vec4 a_color;
+    varying vec4 v_color;
+    uniform mat4 mvp;
     void main()                    
-    {            
-       gl_Position = pos;       
+    {          
+        v_color = a_color;
+        gl_Position = mvp * a_position;       
     }   
 ]]
 
 local fShaderStr = [[
+    precision mediump float;
+    varying vec4 v_color;
     void main() 
     {               
-       gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        gl_FragColor = v_color;
     }  
 ]]
 
@@ -47,13 +54,9 @@ if programObject == 0 then
     print("Error glCreateProgram")
     return false
 end
-
-
 glAttachShader(programObject, vs)
 glAttachShader(programObject, fs)
-glBindAttribLocation(programObject, 0, "pos")
 glLinkProgram(programObject)
-
 if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
     local infoLen = glGetProgramiv(programObject, GL_INFO_LOG_LENGTH)
     if infoLen > 1 then
@@ -64,22 +67,35 @@ if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
     return false
 end
 
-glClearColor(1.0, 1.0, 1.0, 0.0)
-
+local posLocation = glGetAttribLocation(programObject, "a_position")
+local colorLocation = glGetAttribLocation(programObject, "a_color")
+local mvpLocation = glGetUniformLocation(programObject, "mvp");
 
 local vVertices = {
-    0.0, 0.5, 0.0,
-    -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0
+    -1.0,   -1.0,   1.0,    0.0,    1.0,    1.0,    0.0,    0.0,    1.0,  
+    1.0,    -1.0,   1.0,    0.0,    1.0,    0.0,    1.0,    0.0,    1.0,  
+    1.0,    1.0,    1.0,    1.0,    1.0,    0.0,    0.0,    1.0,    1.0,  
+    -1.0,   1.0,    1.0,    1.0,    1.0,    1.0,    1.0,    0.0,    1.0,  
+    -1.0,   -1.0,   -1.0,   0.0,    1.0,    0.0,    1.0,    1.0,    1.0,  
+    -1.0,   1.0,    -1.0,   1.0,    1.0,    1.0,    0.0,    1.0,    1.0,  
+    1.0,    1.0,    -1.0,   1.0,    1.0,    1.0,    1.0,    1.0,    1.0,  
+    1.0,    -1.0,   -1.0,   1.0,    1.0,    0.0,    0.0,    0.0,    1.0,  
 }
+
+local vIndexes = {
+    0, 1, 2, 0, 2, 3, 
+    4, 5, 6, 4, 6, 7,
+    5, 3, 2, 5, 2, 6, 
+    4, 7, 1, 4, 1, 0, 
+    7, 6, 2, 7, 2, 1, 
+    4, 0, 3, 4, 3, 5  
+}
+
 local verticeObject = ""
 for i,v in ipairs(vVertices) do
     verticeObject = verticeObject .. string.pack("<f", v)
 end
 
-local vIndexes = {
-    0,1,2
-}
 local indexesObject = ""
 for i,v in ipairs(vIndexes) do
     indexesObject = indexesObject .. string.pack("<I2", v)
@@ -87,19 +103,67 @@ end
 
 
 
+local buffer = glGenBuffers(2)
 
-return function(dt)
-    local app = vi_app_info()
+local vbo = buffer[1]
+glBindBuffer(GL_ARRAY_BUFFER, vbo)
+glBufferData(GL_ARRAY_BUFFER, #vVertices*4, verticeObject, GL_STATIC_DRAW)
+glBindBuffer(GL_ARRAY_BUFFER, 0)
+
+
+local ibo = buffer[2]
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
+glBufferData(GL_ELEMENT_ARRAY_BUFFER, #vIndexes*2, indexesObject, GL_STATIC_DRAW)
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+  
+
+
+
+local app = vi_app_info()
+
+local m = mat4()
+m:set_identity()
+m:scale(vec3(0.3, 0.3, 0.3))
+
+local q = vec4()
+q:quat_set_euler(vec3(0,45,0))
+--m:rotate(q)
+
+
+local v = mat4()
+v:set_identity()
+--v:translate(vec3(0, 1, -3))
+
+local p = mat4()
+p:set_identity()
+p:set_projection(45, app.viewport_w/app.viewport_h, 0.3, 100)
+p:transpose()
+
+
+glClearColor(1.0, 1.0, 1.0, 0.0)
+return function(dt)    
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
     
-    glClear(GL_COLOR_BUFFER_BIT)
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
     glUseProgram(programObject)
+    
+    local mvp = m * v * p
+    glUniformMatrix4fv(mvpLocation, 1, false, mvp)
+    
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, verticeObject)
-    glEnableVertexAttribArray(0)
+    glBindBuffer(GL_ARRAY_BUFFER, vbo)
+    glVertexAttribPointer(posLocation, 3, GL_FLOAT, false, 36, 0)
+    glEnableVertexAttribArray(posLocation)
+    glVertexAttribPointer(colorLocation, 4, GL_FLOAT, false, 36, 20)
+    glEnableVertexAttribArray(colorLocation)
 
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indexesObject)
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0)
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
 end
     
 

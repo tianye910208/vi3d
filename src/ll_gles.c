@@ -343,7 +343,7 @@ static int _llfunc_glCullFace(lua_State* L) {
 }
 
 //void glDeleteBuffers(GLsizei n, const GLuint * buffers)
-//glDeleteBuffers(<int>n, {[int]}buffers/<string>buffersPacked)
+//glDeleteBuffers(<int>n, {int}buffers/<string>buffersPacked)
 static int _llfunc_glDeleteBuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     const GLuint * buffers;
@@ -370,7 +370,7 @@ static int _llfunc_glDeleteBuffers(lua_State* L) {
 }
 
 //void glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers)
-//glDeleteFramebuffers(<int>n, {[int]}framebuffers/<string>framebuffersPacked)
+//glDeleteFramebuffers(<int>n, {int}framebuffers/<string>framebuffersPacked)
 static int _llfunc_glDeleteFramebuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     const GLuint * framebuffers;
@@ -407,7 +407,7 @@ static int _llfunc_glDeleteProgram(lua_State* L) {
 }
 
 //void glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers)
-//glDeleteRenderbuffers(<int>n, {[int]}renderbuffers/<string>renderbuffersPacked)
+//glDeleteRenderbuffers(<int>n, {int}renderbuffers/<string>renderbuffersPacked)
 static int _llfunc_glDeleteRenderbuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     const GLuint * renderbuffers;
@@ -444,7 +444,7 @@ static int _llfunc_glDeleteShader(lua_State* L) {
 }
 
 //void glDeleteTextures(GLsizei n, const GLuint * textures)
-//glDeleteTextures(<int>n, {[int]}textures/<string>texturesPacked)
+//glDeleteTextures(<int>n, {int}textures/<string>texturesPacked)
 static int _llfunc_glDeleteTextures(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     const GLuint * textures;
@@ -620,7 +620,7 @@ static int _llfunc_glFrontFace(lua_State* L) {
 }
 
 //void glGenBuffers(GLsizei n, GLuint * buffers)
-//local {[int]}buffers = glGenBuffers(<int>n)
+//local {int}buffers = glGenBuffers(<int>n)
 static int _llfunc_glGenBuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -641,7 +641,7 @@ static int _llfunc_glGenBuffers(lua_State* L) {
 }
 
 //void glGenFramebuffers(GLsizei n, GLuint * framebuffers)
-//local {[int]}framebuffers = glGenFramebuffers(<int>n)
+//local {int}framebuffers = glGenFramebuffers(<int>n)
 static int _llfunc_glGenFramebuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -662,7 +662,7 @@ static int _llfunc_glGenFramebuffers(lua_State* L) {
 }
 
 //void glGenRenderbuffers(GLsizei n, GLuint * renderbuffers)
-//local {[int]}renderbuffers = glGenRenderbuffers(<int>n)
+//local {int}renderbuffers = glGenRenderbuffers(<int>n)
 static int _llfunc_glGenRenderbuffers(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -683,7 +683,7 @@ static int _llfunc_glGenRenderbuffers(lua_State* L) {
 }
 
 //void glGenTextures(GLsizei n, GLuint * textures)
-//local {[int]}textures = glGenTextures(<int>n)
+//local {int}textures = glGenTextures(<int>n)
 static int _llfunc_glGenTextures(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     
@@ -1240,7 +1240,7 @@ static int _llfunc_glScissor(lua_State* L) {
 }
 
 //void glShaderBinary(GLsizei n, const GLuint * shaders, GLenum binaryformat, const void * binary, GLsizei length)
-//glShaderBinary(<int>n, {[int]}shaders/<string>shadersPacked, <int>binaryformat, <string>binary, <int>length)
+//glShaderBinary(<int>n, {int}shaders/<string>shadersPacked, <int>binaryformat, <string>binary, <int>length)
 static int _llfunc_glShaderBinary(lua_State* L) {
     GLsizei n = (GLsizei)luaL_checkinteger(L, 1);
     const GLuint * shaders;
@@ -1371,7 +1371,7 @@ static int _llfunc_glTexParameterf(lua_State* L) {
 }
 
 //void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)
-//glTexParameterfv(<int>target, <int>pname, {[float]}params/<string>paramsPacked)
+//glTexParameterfv(<int>target, <int>pname, <userdata>params/{float}params/<string>paramsPacked)
 static int _llfunc_glTexParameterfv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1413,7 +1413,7 @@ static int _llfunc_glTexParameteri(lua_State* L) {
 }
 
 //void glTexParameteriv(GLenum target, GLenum pname, const GLint * params)
-//glTexParameteriv(<int>target, <int>pname, {[int]}params/<string>paramsPacked)
+//glTexParameteriv(<int>target, <int>pname, {int}params/<string>paramsPacked)
 static int _llfunc_glTexParameteriv(lua_State* L) {
     GLenum target = (GLenum)luaL_checkinteger(L, 1);
     GLenum pname = (GLenum)luaL_checkinteger(L, 2);
@@ -1470,7 +1470,7 @@ static int _llfunc_glUniform1f(lua_State* L) {
 }
 
 //void glUniform1fv(GLint location, GLsizei count, const GLfloat * value)
-//glUniform1fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+//glUniform1fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniform1fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1511,7 +1511,7 @@ static int _llfunc_glUniform1i(lua_State* L) {
 }
 
 //void glUniform1iv(GLint location, GLsizei count, const GLint * value)
-//glUniform1iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+//glUniform1iv(<int>location, <int>count, {int}value/<string>valuePacked)
 static int _llfunc_glUniform1iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1551,7 +1551,7 @@ static int _llfunc_glUniform2f(lua_State* L) {
 }
 
 //void glUniform2fv(GLint location, GLsizei count, const GLfloat * value)
-//glUniform2fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+//glUniform2fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniform2fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1593,7 +1593,7 @@ static int _llfunc_glUniform2i(lua_State* L) {
 }
 
 //void glUniform2iv(GLint location, GLsizei count, const GLint * value)
-//glUniform2iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+//glUniform2iv(<int>location, <int>count, {int}value/<string>valuePacked)
 static int _llfunc_glUniform2iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1634,7 +1634,7 @@ static int _llfunc_glUniform3f(lua_State* L) {
 }
 
 //void glUniform3fv(GLint location, GLsizei count, const GLfloat * value)
-//glUniform3fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+//glUniform3fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniform3fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1677,7 +1677,7 @@ static int _llfunc_glUniform3i(lua_State* L) {
 }
 
 //void glUniform3iv(GLint location, GLsizei count, const GLint * value)
-//glUniform3iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+//glUniform3iv(<int>location, <int>count, {int}value/<string>valuePacked)
 static int _llfunc_glUniform3iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1719,7 +1719,7 @@ static int _llfunc_glUniform4f(lua_State* L) {
 }
 
 //void glUniform4fv(GLint location, GLsizei count, const GLfloat * value)
-//glUniform4fv(<int>location, <int>count, {[float]}value/<string>valuePacked)
+//glUniform4fv(<int>location, <int>count, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniform4fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1763,7 +1763,7 @@ static int _llfunc_glUniform4i(lua_State* L) {
 }
 
 //void glUniform4iv(GLint location, GLsizei count, const GLint * value)
-//glUniform4iv(<int>location, <int>count, {[int]}value/<string>valuePacked)
+//glUniform4iv(<int>location, <int>count, {int}value/<string>valuePacked)
 static int _llfunc_glUniform4iv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1791,7 +1791,7 @@ static int _llfunc_glUniform4iv(lua_State* L) {
 }
 
 //void glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
-//glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+//glUniformMatrix2fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniformMatrix2fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1822,7 +1822,7 @@ static int _llfunc_glUniformMatrix2fv(lua_State* L) {
 }
 
 //void glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
-//glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+//glUniformMatrix3fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniformMatrix3fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1853,7 +1853,7 @@ static int _llfunc_glUniformMatrix3fv(lua_State* L) {
 }
 
 //void glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value)
-//glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, {[float]}value/<string>valuePacked)
+//glUniformMatrix4fv(<int>location, <int>count, <bool>transpose, <userdata>value/{float}value/<string>valuePacked)
 static int _llfunc_glUniformMatrix4fv(lua_State* L) {
     GLint location = (GLint)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -1915,7 +1915,7 @@ static int _llfunc_glVertexAttrib1f(lua_State* L) {
 }
 
 //void glVertexAttrib1fv(GLuint index, const GLfloat * v)
-//glVertexAttrib1fv(<int>index, {[float]}v/<string>vPacked)
+//glVertexAttrib1fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 static int _llfunc_glVertexAttrib1fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
@@ -1956,7 +1956,7 @@ static int _llfunc_glVertexAttrib2f(lua_State* L) {
 }
 
 //void glVertexAttrib2fv(GLuint index, const GLfloat * v)
-//glVertexAttrib2fv(<int>index, {[float]}v/<string>vPacked)
+//glVertexAttrib2fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 static int _llfunc_glVertexAttrib2fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
@@ -1998,7 +1998,7 @@ static int _llfunc_glVertexAttrib3f(lua_State* L) {
 }
 
 //void glVertexAttrib3fv(GLuint index, const GLfloat * v)
-//glVertexAttrib3fv(<int>index, {[float]}v/<string>vPacked)
+//glVertexAttrib3fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 static int _llfunc_glVertexAttrib3fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
@@ -2041,7 +2041,7 @@ static int _llfunc_glVertexAttrib4f(lua_State* L) {
 }
 
 //void glVertexAttrib4fv(GLuint index, const GLfloat * v)
-//glVertexAttrib4fv(<int>index, {[float]}v/<string>vPacked)
+//glVertexAttrib4fv(<int>index, <userdata>v/{float}v/<string>vPacked)
 static int _llfunc_glVertexAttrib4fv(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     const GLfloat * v;
@@ -2143,7 +2143,7 @@ static int _llfunc_glReadPixels(lua_State* L) {
 
 
 //[Manual]void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices/int offset)
-//[Manual]glDrawElements(<int>mode, <int>count, <int>type, <string>indices/<int>offset)
+//[Manual]glDrawElements(<int>mode, <int>count, <int>type, <int>offset/<userdata>indices/<string>indices)
 static int _llfunc_glDrawElements(lua_State* L) {
     GLenum mode = (GLenum)luaL_checkinteger(L, 1);
     GLsizei count = (GLsizei)luaL_checkinteger(L, 2);
@@ -2165,7 +2165,7 @@ static int _llfunc_glDrawElements(lua_State* L) {
 
 
 //[Manual]void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer/int offset)
-//[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <string>pointer/<int>offset)
+//[Manual]glVertexAttribPointer(<int>index, <int>size, <int>type, <bool>normalized, <int>stride, <int>offset/<userdata>pointer/<string>pointer)
 static int _llfunc_glVertexAttribPointer(lua_State* L) {
     GLuint index = (GLuint)luaL_checkinteger(L, 1);
     GLint size = (GLint)luaL_checkinteger(L, 2);

@@ -24,10 +24,18 @@ static void* userdata_get_or_new(lua_State* L, int idx, int size) {
 
 
 static int _llfunc_vec2_new(lua_State *L) {
-	vec2* arg = lua_touserdata(L, 1);
+	int argc = lua_gettop(L);
 	vec2* ret = lua_newuserdata(L, sizeof(vec2));
-	if (arg != NULL)
-		*ret = *arg;
+
+	if (argc == 1) {
+		vec2* arg = lua_touserdata(L, 1);
+		if (arg != NULL)
+			*ret = *arg;
+	}
+	else if (argc == 3) {
+		ret->x = (float)luaL_checknumber(L, 1);
+		ret->y = (float)luaL_checknumber(L, 2);
+	}
 
 	lua_pushvalue(L, lua_upvalueindex(1));
 	lua_setmetatable(L, -2);
@@ -150,10 +158,19 @@ static int ll_vec2(lua_State* L) {
 
 
 static int _llfunc_vec3_new(lua_State *L) {
-	vec3* arg = lua_touserdata(L, 1);
+	int argc = lua_gettop(L);
 	vec3* ret = lua_newuserdata(L, sizeof(vec3));
-	if (arg != NULL)
-		*ret = *arg;
+
+	if (argc == 1) {
+		vec3* arg = lua_touserdata(L, 1);
+		if (arg != NULL)
+			*ret = *arg;
+	}
+	else if (argc == 3) {
+		ret->x = (float)luaL_checknumber(L, 1);
+		ret->y = (float)luaL_checknumber(L, 2);
+		ret->z = (float)luaL_checknumber(L, 3);
+	}
 
 	lua_pushvalue(L, lua_upvalueindex(1));
 	lua_setmetatable(L, -2);
@@ -296,10 +313,20 @@ static int ll_vec3(lua_State* L) {
 
 
 static int _llfunc_vec4_new(lua_State *L) {
-	vec4* arg = lua_touserdata(L, 1);
+	int argc = lua_gettop(L);
 	vec4* ret = lua_newuserdata(L, sizeof(vec4));
-	if (arg != NULL)
-		*ret = *arg;
+
+	if (argc == 1) {
+		vec4* arg = lua_touserdata(L, 1);
+		if (arg != NULL)
+			*ret = *arg;
+	}
+	else if (argc == 4) {
+		ret->x = (float)luaL_checknumber(L, 1);
+		ret->y = (float)luaL_checknumber(L, 2);
+		ret->z = (float)luaL_checknumber(L, 3);
+		ret->w = (float)luaL_checknumber(L, 4);
+	}
 
 	lua_pushvalue(L, lua_upvalueindex(1));
 	lua_setmetatable(L, -2);

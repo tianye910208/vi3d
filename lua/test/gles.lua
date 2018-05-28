@@ -1,37 +1,18 @@
 print("============test_gles============")
 
-function string.split(input, delimiter)
-    input = tostring(input)
-    delimiter = tostring(delimiter)
-    if (delimiter=='') then return false end
-    local pos,arr = 0, {}
-    -- for each divider found
-    for st,sp in function() return string.find(input, delimiter, pos, true) end do
-        table.insert(arr, string.sub(input, pos, st - 1))
-        pos = sp + 1
-    end
-    table.insert(arr, string.sub(input, pos))
-    return arr
-end
-
-
 
 local vShaderStr = [[
-    #version 300 es
-    layout(location = 0) in vec4 vPosition;
+    attribute vec4 a_position;
     void main()                    
     {            
-       gl_Position = vPosition;       
+       gl_Position = a_position;       
     }   
 ]]
 
 local fShaderStr = [[
-    #version 300 es   
-    precision mediump float;  
-    out vec4 fragColor; 
     void main() 
     {               
-       fragColor = vec4(1.0, 0.0, 0.0, 1.0);
+       gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }  
 ]]
 
@@ -58,30 +39,18 @@ function LoadShader(shaderType, shaderSrc)
     end
 end
 
-local programObject = 0
-local verticeObject = ""
-local indexesObject = ""
-
-
-local extstr = glGetString(GL_EXTENSIONS)
-for i,v in ipairs(string.split(extstr, " ")) do
-    print(i, v) 
-end
 
 local vs = LoadShader(GL_VERTEX_SHADER, vShaderStr)
 local fs = LoadShader(GL_FRAGMENT_SHADER, fShaderStr)
 
-programObject = glCreateProgram()
+local programObject = glCreateProgram()
 if programObject == 0 then
     print("Error glCreateProgram")
     return false
 end
-
-
 glAttachShader(programObject, vs)
 glAttachShader(programObject, fs)
 glLinkProgram(programObject)
-
 if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
     local infoLen = glGetProgramiv(programObject, GL_INFO_LOG_LENGTH)
     if infoLen > 1 then
@@ -92,7 +61,7 @@ if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
     return false
 end
 
-glClearColor(1.0, 1.0, 1.0, 0.0)
+local posLocation = glGetAttribLocation(programObject, "a_position")
 
 
 local vVertices = {
@@ -100,6 +69,7 @@ local vVertices = {
     -0.5, -0.5, 0.0,
     0.5, -0.5, 0.0
 }
+local verticeObject = ""
 for i,v in ipairs(vVertices) do
     verticeObject = verticeObject .. string.pack("<f", v)
 end
@@ -107,34 +77,48 @@ end
 local vIndexes = {
     0,1,2
 }
+local indexesObject = ""
 for i,v in ipairs(vIndexes) do
     indexesObject = indexesObject .. string.pack("<I2", v)
 end
 
---test table input and output
-local n = 10
-local t = glGenBuffers(n)
-local p = ""
-for i,v in ipairs(t) do
-    print("buffer", i, v)
-    p = p..string.pack("<I4", v)
-end
+local buffer = glGenBuffers(2)
 
-glDeleteBuffers(n, p)
+local vbo = buffer[1]
+glBindBuffer(GL_ARRAY_BUFFER, vbo)
+glBufferData(GL_ARRAY_BUFFER, #vVertices*4, verticeObject, GL_STATIC_DRAW)
+glBindBuffer(GL_ARRAY_BUFFER, 0)
 
+
+local ibo = buffer[2]
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
+glBufferData(GL_ELEMENT_ARRAY_BUFFER, #vIndexes*2, indexesObject, GL_STATIC_DRAW)
+glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+  
+
+
+
+glClearColor(1.0, 1.0, 1.0, 0.0)
+
+local app = vi_app_info()
 return function(dt)
-    local app = vi_app_info()
+    
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
     
     glClear(GL_COLOR_BUFFER_BIT)
 
     glUseProgram(programObject)
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, verticeObject)
-    glEnableVertexAttribArray(0)
+    glBindBuffer(GL_ARRAY_BUFFER, vbo)
+    
+    glVertexAttribPointer(posLocation, 3, GL_FLOAT, false, 12, 0)
+    glEnableVertexAttribArray(posLocation)
 
-    --glDrawArrays(GL_TRIANGLES, 0, 3) 
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indexesObject)
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0)
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
 end
     
 

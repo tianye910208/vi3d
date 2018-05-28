@@ -31,7 +31,9 @@ end
 
 local function app_loop(dt)
     for i,f in ipairs(app_func) do
-        f(dt)
+        if f then
+            f(dt)
+        end
     end
 end
 
