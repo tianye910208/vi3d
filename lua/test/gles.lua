@@ -66,8 +66,8 @@ local posLocation = glGetAttribLocation(programObject, "a_position")
 
 local vVertices = {
     0.0, 0.5, 0.0,
-    -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0
+    -0.5, 0, 0.0,
+    0.5, 0, 0.0
 }
 local verticeObject = ""
 for i,v in ipairs(vVertices) do
@@ -101,6 +101,7 @@ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
 glClearColor(1.0, 1.0, 1.0, 0.0)
 
 local app = vi_app_info()
+print(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
 return function(dt)
     
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)

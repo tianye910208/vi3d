@@ -2,7 +2,7 @@
 
 local app_func = {}
 local function app_init()
-	vi_app_set_design_size(1280, 720)
+	vi_app_set_design_size(800, 480)
     
     local app = vi_app_info()
     

@@ -536,7 +536,7 @@ static int _llfunc_mat4_set(lua_State *L) {
 	float* p = m->p;
 	for (int i = 0; i < 16; i++) {
 		int isnum = 0;
-		float f = (float)lua_tonumberx(L, 2, &isnum);
+		float f = (float)lua_tonumberx(L, 2 + i, &isnum);
 		if (isnum)
 			p[i] = f;
 	}

@@ -151,12 +151,12 @@ _vec4.__newindex = gen_set_func("[vec4]set", vec4_seti, _vec4_v)
 mat4 = mat4_new
 
 local _mat4_f = {
-    get = vec4_get,
-    set = vec4_set,
-    geti = vec4_geti,
-    seti = vec4_seti,
+    get = mat4_get,
+    set = mat4_set,
+    geti = mat4_geti,
+    seti = mat4_seti,
     
-    mul = vec4_mul,
+    mul = mat4_mul,
     
     set_identity = mat4_set_identity,
 	set_zero = mat4_set_zero,
@@ -217,9 +217,13 @@ end
 
 
 _mat4_f.set_projection = function(m, fov, aspect, n, f)
-    local ymax = n * math.tan(math.pi * fov / 360)
-	local xmax = ymax * aspect
-	m:set_perspective(-xmax, xmax, -ymax, ymax, n, f)
+    if fov and fov > 0 then
+        local ymax = n * math.tan(math.pi * fov / 360)
+        local xmax = ymax * aspect
+        m:set_perspective(-xmax, xmax, -ymax, ymax, n, f)
+    else
+        m:set_orthographic(-aspect, aspect, -1, 1, n, f)
+    end
 end
 
 

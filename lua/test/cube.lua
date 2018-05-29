@@ -10,7 +10,7 @@ local vShaderStr = [[
     void main()                    
     {          
         v_color = a_color;
-        gl_Position = mvp * a_position;       
+        gl_Position = mvp * a_position;
     }   
 ]]
 
@@ -123,33 +123,43 @@ local app = vi_app_info()
 
 local m = mat4()
 m:set_identity()
-m:scale(vec3(0.3, 0.3, 0.3))
 
 local q = vec4()
-q:quat_set_euler(vec3(0,45,0))
---m:rotate(q)
+local r = 0
+q:quat_set_euler(vec3(0, 0.1, 0))
+
+
+--m:scale(vec3(0.1, 0.1, 0.1))
+--m:translate(vec3(1,0,-10))
 
 
 local v = mat4()
 v:set_identity()
---v:translate(vec3(0, 1, -3))
+
+local s = vec4()
+s:quat_set_euler(vec3(-math.pi/6, 0, 0))
+v:rotate(s)
+v:translate(vec3(0, 0, -20))
 
 local p = mat4()
-p:set_identity()
-p:set_projection(45, app.viewport_w/app.viewport_h, 0.3, 100)
-p:transpose()
+p:set_projection(45, app.viewport_w/app.viewport_h, 0.1, 100)
 
 
 glClearColor(1.0, 1.0, 1.0, 0.0)
-return function(dt)    
+return function(dt)
+    m:rotate(q)
+    
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
     
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
     glUseProgram(programObject)
     
-    local mvp = m * v * p
+    local mvp = p * v * m
     glUniformMatrix4fv(mvpLocation, 1, false, mvp)
+    
+    
+    glEnable(GL_DEPTH_TEST)
     
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo)
