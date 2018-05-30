@@ -11,7 +11,7 @@
 #import "vi3d.h"
 
 
-void* main_func(void* args)
+void* _main(void* args)
 {
     while(true){
         vi_log("hello");
@@ -101,7 +101,7 @@ void* main_func(void* args)
     vi_app_set_screen_size(rect.size.width, rect.size.height);
     
     pthread_t tid;
-    pthread_create(&tid, 0, &main_func, 0);
+    pthread_create(&tid, 0, &_main, 0);
     
     return YES;
 }

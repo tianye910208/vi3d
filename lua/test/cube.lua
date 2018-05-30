@@ -123,6 +123,7 @@ return function(dt)
     
     
     glEnable(GL_DEPTH_TEST)
+    glCullFace(GL_FRONT)
     
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo)

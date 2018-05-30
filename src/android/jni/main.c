@@ -42,12 +42,12 @@ int egl_init()
 	EGLint cfgAttribList[] =
 	{
 		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-		EGL_RED_SIZE, 5,
-		EGL_GREEN_SIZE, 6,
-		EGL_BLUE_SIZE, 5,
-		EGL_ALPHA_SIZE, EGL_DONT_CARE,
-		EGL_DEPTH_SIZE, EGL_DONT_CARE,
-		EGL_STENCIL_SIZE, EGL_DONT_CARE,
+		EGL_RED_SIZE, 8,
+		EGL_GREEN_SIZE, 8,
+		EGL_BLUE_SIZE, 8,
+		EGL_ALPHA_SIZE, 8,
+		EGL_DEPTH_SIZE, 24,
+		EGL_STENCIL_SIZE, 8,
 		EGL_SAMPLE_BUFFERS, 0,
 		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
 		EGL_NONE
@@ -88,63 +88,17 @@ void egl_exit()
 }
 
 
-void win_loop()
-{
-	float dt;
-	struct timeval t1, t2;
-	struct timezone tz;
-	gettimeofday(&t1, &tz);
 
-	while (1)
-	{
-		if (nativeInputQueue && AInputQueue_hasEvents(nativeInputQueue) > 0)
-		{
-			AInputEvent* ev;
-			if (AInputQueue_getEvent(nativeInputQueue, &ev) >= 0)
-			{
-				//handle event
-			}
-			AInputQueue_finishEvent(nativeInputQueue, ev, 1);
-		}
-		else if (nativeShowWindow == NULL)
-		{
-			usleep(10000);
-		}
-		else if (nativeShowWindow != nativeWindow)
-		{ 
-			nativeWindow = nativeShowWindow;
-			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
-			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-				vi_log("eglCreateWindowSurface %d", eglGetError());
-			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-				vi_log("eglMakeCurrent %d", eglGetError());
-			//vi_app_set_screen_size(screenWidth, screenHeight);
-		}
-		else
-		{
-			gettimeofday(&t2, &tz);
-			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
-			t1 = t2;
-
-			vi_app_loop(dt);
-			eglSwapBuffers(eglDisplay, eglSurface);
-			usleep(10000);
-		}
-		
-	}
-}
-
-
-
-void* main_func(void* args)
+void* _main(void* args)
 {
 	//init------------------------------------------
 	if (egl_init() != 0)
 		return NULL;
 
+	
 	vi_app_init("", nativeActivity->internalDataPath);
-	vi_app_set_screen_size(screenWidth, screenHeight);
-
+	vi_app_main();
+	
 
 	//loop------------------------------------------
 	float dt;
@@ -172,9 +126,9 @@ void* main_func(void* args)
 			nativeWindow = nativeShowWindow;
 			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
 			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-				vi_log("eglCreateWindowSurface %d", eglGetError());
+				vi_log("[E]eglCreateWindowSurface %d", eglGetError());
 			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-				vi_log("eglMakeCurrent %d", eglGetError());
+				vi_log("[E]eglMakeCurrent %d", eglGetError());
 			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
 		else
@@ -253,15 +207,15 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
 {
 	screenWidth = ANativeWindow_getWidth(window);
 	screenHeight = ANativeWindow_getHeight(window);
-	
+	vi_app_set_screen_size(screenWidth, screenHeight);
+
 	vi_log("onNativeWindowCreated  %p, %p, w:%d h:%d", nativeShowWindow, window, screenWidth, screenHeight);
 	nativeShowWindow = window;
 
 	if (nativeWindow == NULL){
-		nativeWindow = nativeShowWindow;
-
+		nativeWindow = nativeShowWindow;	
 		pthread_t tid;
-		pthread_create(&tid, 0, &main_func, 0);
+		pthread_create(&tid, 0, &_main, 0);
 	}
 }
 
@@ -286,7 +240,7 @@ static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
 
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize)
 {
-	vi_log("Creating: %p", activity);
+	vi_log("onCreate: %p", activity);
 
 	if (nativeActivity != activity)
 	{

@@ -15,6 +15,7 @@
     <ClCompile Include="..\ll_all.c" />
     <ClCompile Include="..\ll_vi3d.c" />
     <ClCompile Include="..\ll_math.c" />
+    <ClCompile Include="..\vi_image.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\vi_app.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="..\vi3d.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\ll_all.h" />
+    <ClInclude Include="..\vi_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="vi3d.rc" />

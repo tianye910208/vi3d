@@ -100,10 +100,9 @@ glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
 
 glClearColor(1.0, 1.0, 1.0, 0.0)
 
-local app = vi_app_info()
-print(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
+
 return function(dt)
-    
+    local app = vi_app_info()
 	glViewport(app.viewport_x, app.viewport_y, app.viewport_w, app.viewport_h)
     
     glClear(GL_COLOR_BUFFER_BIT)

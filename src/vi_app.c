@@ -17,23 +17,22 @@ float vi_app_time() {
         return 0.0f;
 }
 
-int _vi_app_create() {
+void _vi_app_inst() {
     if (__app_instance == NULL) {
         __app_instance = vi_mem_alloc(sizeof(vi_app));
         memset(__app_instance, 0, sizeof(vi_app));
     }
-    return 0;
 }
 
 int vi_app_init(const char* datapath, const char* savepath) {
-    _vi_app_create();
-	
+	_vi_app_inst();
+
 	char* data_path = __app_instance->data_path;
 	strcpy(data_path, datapath);
 	int data_path_len = (int)strlen(data_path);
 	if (data_path_len > 0 && data_path[data_path_len - 1] != '/') {
 		data_path[data_path_len] = '/';
-		data_path[data_path_len+1] = '\0';
+		data_path[data_path_len + 1] = '\0';
 	}
 
 	char* save_path = __app_instance->save_path;
@@ -44,9 +43,11 @@ int vi_app_init(const char* datapath, const char* savepath) {
 		save_path[save_path_len + 1] = '\0';
 	}
 
-
 	vi_lua_init();
+	return 0;
+}
 
+int vi_app_main() {
 	char luafile[256];
 	memset(luafile, 0, sizeof(luafile));
 	strcpy(luafile, __app_instance->data_path);
@@ -68,12 +69,13 @@ int vi_app_init(const char* datapath, const char* savepath) {
 	return 0;
 }
 
-void vi_app_exit() {
+int vi_app_exit() {
 	vi_lua_exit();
 	if (__app_instance) {
 		vi_mem_free(__app_instance);
 		__app_instance = NULL;
 	}
+	return 0;
 }
 
 
@@ -98,7 +100,7 @@ void _vi_app_adjust_viewport() {
 }
 
 void vi_app_set_screen_size(int w, int h) {
-    _vi_app_create();
+	_vi_app_inst();
 	if (__app_instance) {
 		__app_instance->screen_w = w;
 		__app_instance->screen_h = h;
@@ -107,7 +109,7 @@ void vi_app_set_screen_size(int w, int h) {
 }
 
 void vi_app_set_design_size(int w, int h) {
-    _vi_app_create();
+	_vi_app_inst();
 	if (__app_instance) {
 		__app_instance->design_w = w;
 		__app_instance->design_h = h;

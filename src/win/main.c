@@ -79,12 +79,12 @@ int egl_init(const char* name, int w, int h) {
 	};
 	EGLint cfgAttribList[] = {
 		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-		EGL_RED_SIZE, 5,
-		EGL_GREEN_SIZE, 6,
-		EGL_BLUE_SIZE, 5,
-		EGL_ALPHA_SIZE, EGL_DONT_CARE,
-		EGL_DEPTH_SIZE, EGL_DONT_CARE,
-		EGL_STENCIL_SIZE, EGL_DONT_CARE,
+		EGL_RED_SIZE, 8,
+		EGL_GREEN_SIZE, 8,
+		EGL_BLUE_SIZE, 8,
+		EGL_ALPHA_SIZE, 8,
+		EGL_DEPTH_SIZE, 24,
+		EGL_STENCIL_SIZE, 8,
 		EGL_SAMPLE_BUFFERS, 0,
 		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
 		EGL_NONE
@@ -128,9 +128,9 @@ int main(int argc, char *argv[]) {
 	if (egl_init("vi3d", APP_W, APP_H) != 0)
         return 1;
 
-	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
-	vi_app_set_screen_size(APP_W, APP_H);
 	
+	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
+	vi_app_main();
 
 	//loop------------------------------------------
 	float dt;

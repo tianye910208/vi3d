@@ -25,7 +25,9 @@ vi_app* vi_app_info();
 float vi_app_time();
 
 int vi_app_init(const char* datapath, const char* savepath);
-void vi_app_exit();
+int vi_app_main();
+int vi_app_exit();
+
 void vi_app_loop(float dt);
 
 void vi_app_set_screen_size(int w, int h);

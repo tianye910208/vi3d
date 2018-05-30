@@ -26,6 +26,7 @@
     <ClCompile Include="..\vi3d.c" />
     <ClCompile Include="..\vi_app.c" />
     <ClCompile Include="..\vi_file.c" />
+    <ClCompile Include="..\vi_image.c" />
     <ClCompile Include="..\vi_log.c" />
     <ClCompile Include="..\vi_lua.c" />
     <ClCompile Include="..\vi_math.c" />
@@ -39,6 +40,7 @@
     <ClInclude Include="..\vi3d.h" />
     <ClInclude Include="..\vi_app.h" />
     <ClInclude Include="..\vi_file.h" />
+    <ClInclude Include="..\vi_image.h" />
     <ClInclude Include="..\vi_log.h" />
     <ClInclude Include="..\vi_lua.h" />
     <ClInclude Include="..\vi_math.h" />
@@ -140,7 +142,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\;..\..\3rd\GLES-Mali-v3.0.1-x64\include;..\..\3rd\lua-5.3.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\..\3rd\GLES-Mali-v3.0.1-x64\include;..\..\3rd\lua-5.3.3\src;..\..\3rd\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
