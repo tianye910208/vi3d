@@ -76,6 +76,34 @@ print(v2 * (1/v2.w))
 print(v3 * (1/v3.w))
 print(v4 * (1/v4.w))
 
+
+
+local m = mat4()
+m:set_identity()
+
+local q = vec4()
+local r = 0
+q:quat_set_euler(vec3(0, 0.3, 0))
+
+m:translate(vec3(1,0,-10))
+m:rotate(q)
+
+
+print(m)
+
+local m1 = mat4()
+m1:set_identity()
+m1:rotate(q)
+
+local m2 = mat4()
+m2:set_identity()
+m2:translate(vec3(1,0,-10))
+
+print(m1*m2)
+
+print(m2*m1)
+
+
 return function(dt) end
 
 

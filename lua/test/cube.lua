@@ -130,20 +130,21 @@ q:quat_set_euler(vec3(0, 0.1, 0))
 
 
 --m:scale(vec3(0.1, 0.1, 0.1))
---m:translate(vec3(1,0,-10))
+--m:translate(vec3(0,0,-20))
 
 
 local v = mat4()
 v:set_identity()
 
+
 local s = vec4()
-s:quat_set_euler(vec3(-math.pi/6, 0, 0))
+s:quat_set_euler(vec3(math.pi/6, 0, 0))
 v:rotate(s)
-v:translate(vec3(0, 0, -20))
+v:translate(vec3(0, 0, -10))
+
 
 local p = mat4()
-p:set_projection(45, app.viewport_w/app.viewport_h, 0.1, 100)
-
+p:set_projection(60, app.viewport_w/app.viewport_h, 0.1, 100)
 
 glClearColor(1.0, 1.0, 1.0, 0.0)
 return function(dt)
@@ -155,7 +156,7 @@ return function(dt)
 
     glUseProgram(programObject)
     
-    local mvp = p * v * m
+    local mvp = m * v * p
     glUniformMatrix4fv(mvpLocation, 1, false, mvp)
     
     

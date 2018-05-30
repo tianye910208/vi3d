@@ -269,25 +269,25 @@ static inline void mat4_mul(mat4 *a, mat4 *b, mat4 *r) {
 	float *ap = a->p;
 	float *bp = b->p;
 
-	rp[0] = ap[0] * bp[0] + ap[4] * bp[1] + ap[8] * bp[2] + ap[12] * bp[3];
-	rp[1] = ap[1] * bp[0] + ap[5] * bp[1] + ap[9] * bp[2] + ap[13] * bp[3];
-	rp[2] = ap[2] * bp[0] + ap[6] * bp[1] + ap[10] * bp[2] + ap[14] * bp[3];
-	rp[3] = ap[3] * bp[0] + ap[7] * bp[1] + ap[11] * bp[2] + ap[15] * bp[3];
+	rp[0] = ap[0] * bp[0] + ap[1] * bp[4] + ap[2] * bp[8] + ap[3] * bp[12];
+	rp[1] = ap[0] * bp[1] + ap[1] * bp[5] + ap[2] * bp[9] + ap[3] * bp[13];
+	rp[2] = ap[0] * bp[2] + ap[1] * bp[6] + ap[2] * bp[10] + ap[3] * bp[14];
+	rp[3] = ap[0] * bp[3] + ap[1] * bp[7] + ap[2] * bp[11] + ap[3] * bp[15];
 
-	rp[4] = ap[0] * bp[4] + ap[4] * bp[5] + ap[8] * bp[6] + ap[12] * bp[7];
-	rp[5] = ap[1] * bp[4] + ap[5] * bp[5] + ap[9] * bp[6] + ap[13] * bp[7];
-	rp[6] = ap[2] * bp[4] + ap[6] * bp[5] + ap[10] * bp[6] + ap[14] * bp[7];
-	rp[7] = ap[3] * bp[4] + ap[7] * bp[5] + ap[11] * bp[6] + ap[15] * bp[7];
+	rp[4] = ap[4] * bp[0] + ap[5] * bp[4] + ap[6] * bp[8] + ap[7] * bp[12];
+	rp[5] = ap[4] * bp[1] + ap[5] * bp[5] + ap[6] * bp[9] + ap[7] * bp[13];
+	rp[6] = ap[4] * bp[2] + ap[5] * bp[6] + ap[6] * bp[10] + ap[7] * bp[14];
+	rp[7] = ap[4] * bp[3] + ap[5] * bp[7] + ap[6] * bp[11] + ap[7] * bp[15];
 
-	rp[8] = ap[0] * bp[8] + ap[4] * bp[9] + ap[8] * bp[10] + ap[12] * bp[11];
-	rp[9] = ap[1] * bp[8] + ap[5] * bp[9] + ap[9] * bp[10] + ap[13] * bp[11];
-	rp[10] = ap[2] * bp[8] + ap[6] * bp[9] + ap[10] * bp[10] + ap[14] * bp[11];
-	rp[11] = ap[3] * bp[8] + ap[7] * bp[9] + ap[11] * bp[10] + ap[15] * bp[11];
+	rp[8] = ap[8] * bp[0] + ap[9] * bp[4] + ap[10] * bp[8] + ap[11] * bp[12];
+	rp[9] = ap[8] * bp[1] + ap[9] * bp[5] + ap[10] * bp[9] + ap[11] * bp[13];
+	rp[10] = ap[8] * bp[2] + ap[9] * bp[6] + ap[10] * bp[10] + ap[11] * bp[14];
+	rp[11] = ap[8] * bp[3] + ap[9] * bp[7] + ap[10] * bp[11] + ap[11] * bp[15];
 
-	rp[12] = ap[0] * bp[12] + ap[4] * bp[13] + ap[8] * bp[14] + ap[12] * bp[15];
-	rp[13] = ap[1] * bp[12] + ap[5] * bp[13] + ap[9] * bp[14] + ap[13] * bp[15];
-	rp[14] = ap[2] * bp[12] + ap[6] * bp[13] + ap[10] * bp[14] + ap[14] * bp[15];
-	rp[15] = ap[3] * bp[12] + ap[7] * bp[13] + ap[11] * bp[14] + ap[15] * bp[15];
+	rp[12] = ap[12] * bp[0] + ap[13] * bp[4] + ap[14] * bp[8] + ap[15] * bp[12];
+	rp[13] = ap[12] * bp[1] + ap[13] * bp[5] + ap[14] * bp[9] + ap[15] * bp[13];
+	rp[14] = ap[12] * bp[2] + ap[13] * bp[6] + ap[14] * bp[10] + ap[15] * bp[14];
+	rp[15] = ap[12] * bp[3] + ap[13] * bp[7] + ap[14] * bp[11] + ap[15] * bp[15];
 }
 
 
@@ -343,7 +343,7 @@ static inline void mat4_rotate(mat4 *m, vec4 *q) {
 	mat4_set_quat(&t, q);
 
 	mat4 r;
-	mat4_mul(&t, m, &r);
+	mat4_mul(m, &t, &r);
 
 	*m = r;
 }
