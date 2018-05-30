@@ -23,53 +23,15 @@ local fShaderStr = [[
     }  
 ]]
 
-function LoadShader(shaderType, shaderSrc)
-    local shader = glCreateShader(shaderType)
-    if shader == 0 then
-        return 0
-    end
-    
-    glShaderSource(shader, shaderSrc)
-    glCompileShader(shader)
 
-    if glGetShaderiv(shader, GL_COMPILE_STATUS) == 0  then
-        local infoLen = glGetShaderiv(shader, GL_INFO_LOG_LENGTH)
-        if infoLen > 1 then
-            local len, log = glGetShaderInfoLog(shader, infoLen)
-            print("[Error] compiling shader:", log)
-        end
-        glDeleteShader(shader)
-        return 0
-    else
-        return shader
-    end
-end
+local vs = vi_load_shader(GL_VERTEX_SHADER, vShaderStr)
+local fs = vi_load_shader(GL_FRAGMENT_SHADER, fShaderStr)
 
+local program = vi_link_program(vs, fs)
 
-local vs = LoadShader(GL_VERTEX_SHADER, vShaderStr)
-local fs = LoadShader(GL_FRAGMENT_SHADER, fShaderStr)
-
-local programObject = glCreateProgram()
-if programObject == 0 then
-    print("Error glCreateProgram")
-    return false
-end
-glAttachShader(programObject, vs)
-glAttachShader(programObject, fs)
-glLinkProgram(programObject)
-if glGetProgramiv(programObject, GL_LINK_STATUS) == 0 then
-    local infoLen = glGetProgramiv(programObject, GL_INFO_LOG_LENGTH)
-    if infoLen > 1 then
-        local len, log = glGetProgramInfoLog(programObject, infoLen)
-        print("Error linking program:", log)
-    end
-    glDeleteProgram(programObject)
-    return false
-end
-
-local posLocation = glGetAttribLocation(programObject, "a_position")
-local colorLocation = glGetAttribLocation(programObject, "a_color")
-local mvpLocation = glGetUniformLocation(programObject, "mvp");
+local posLocation = glGetAttribLocation(program, "a_position")
+local colorLocation = glGetAttribLocation(program, "a_color")
+local mvpLocation = glGetUniformLocation(program, "mvp")
 
 local vVertices = {
     -1.0,   -1.0,   1.0,    0.0,    1.0,    1.0,    0.0,    0.0,    1.0,  
@@ -154,7 +116,7 @@ return function(dt)
     
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
-    glUseProgram(programObject)
+    glUseProgram(program)
     
     local mvp = m * v * p
     glUniformMatrix4fv(mvpLocation, 1, false, mvp)

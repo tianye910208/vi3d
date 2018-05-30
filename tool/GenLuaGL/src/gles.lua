@@ -355,9 +355,50 @@ GL_INVALID_FRAMEBUFFER_OPERATION  = 0x0506
 
 
 
+function vi_load_shader(shaderType, shaderSrc)
+    local shader = glCreateShader(shaderType)
+    if shader == 0 then
+        return 0
+    end
+    
+    glShaderSource(shader, shaderSrc)
+    glCompileShader(shader)
+
+    if glGetShaderiv(shader, GL_COMPILE_STATUS) == 0  then
+        local infoLen = glGetShaderiv(shader, GL_INFO_LOG_LENGTH)
+        if infoLen > 1 then
+            local len, log = glGetShaderInfoLog(shader, infoLen)
+            print("[VI3D][E]compiling shader:", log)
+        end
+        glDeleteShader(shader)
+        return 0
+    end
+    
+    return shader
+end
 
 
-
-
+function vi_link_program(vs, fs)
+    local program = glCreateProgram()
+    if program == 0 then
+        print("[VI3D][E]glCreateProgram failed")
+        return 0
+    end
+    
+    glAttachShader(program, vs)
+    glAttachShader(program, fs)
+    glLinkProgram(program)
+    if glGetProgramiv(program, GL_LINK_STATUS) == 0 then
+        local len = glGetProgramiv(program, GL_INFO_LOG_LENGTH)
+        if len > 1 then
+            local _len, log = glGetProgramInfoLog(program, len)
+            print("[VI3D][E]linking program:", log)
+        end
+        glDeleteProgram(program)
+        return 0
+    end
+    
+    return program
+end
 
 
