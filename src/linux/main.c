@@ -40,7 +40,11 @@ int egl_init(const char *title, int w, int h)
 	if (nativeDisplay == NULL)
 		return 1;
 
-	nativeWindow = XCreateWindow(nativeDisplay, DefaultRootWindow(nativeDisplay), 0, 0, w, h, 0, CopyFromParent, InputOutput, CopyFromParent, 0, 0);
+    int screen = DefaultScreen(nativeDisplay);
+    int screenW = DisplayWidth(nativeDisplay, screen);
+    int screenH = DisplayHeight(nativeDisplay, screen);
+
+	nativeWindow = XCreateWindow(nativeDisplay, DefaultRootWindow(nativeDisplay), (screenW - w)/2, (screenH - h)/2, w, h, 0, CopyFromParent, InputOutput, CopyFromParent, 0, 0);
 
 	XStoreName(nativeDisplay, nativeWindow, title);
 	XSelectInput(nativeDisplay, nativeWindow, ExposureMask | StructureNotifyMask | FocusChangeMask | VisibilityChangeMask | KeyPressMask | KeyReleaseMask | KeymapStateMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask);

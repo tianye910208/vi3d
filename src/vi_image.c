@@ -18,16 +18,19 @@ struct _cb_data{
 	int read;
 };
 
-static int _cb_fread(struct _cb_data* p, char* data, int size) {
+static int _cb_fread(void* user, char* data, int size) {
+    struct _cb_data* p = (struct _cb_data*)user;
 	int n = vi_file_read(p->file, data, size);
 	p->read += n;
 	return n;
 }
-static void _cb_fskip(struct _cb_data* p, int n) {
+static void _cb_fskip(void* user, int n) {
+    struct _cb_data* p = (struct _cb_data*)user;
 	vi_file_seek(p->file, n, SEEK_CUR);
 	p->read += n;
 }
-static int _cb_feof(struct _cb_data* p) {
+static int _cb_feof(void* user) {
+    struct _cb_data* p = (struct _cb_data*)user;
 	return p->read >= p->size;
 }
 
@@ -37,6 +40,7 @@ int vi_image_info(const char* filename, int *x, int *y, int* comp) {
 	vi_file *f = vi_file_open(filename, "rb");
 	if (f == NULL)
 		return 0;
+
 
 	struct _cb_data p;
 	p.file = f;

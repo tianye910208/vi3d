@@ -1,7 +1,7 @@
 TARGET := test
 
 CC     := gcc
-CCFLAG := -I../ -I../../3rd/lua-5.3.3/src/
+CCFLAG := -I../ -I../../3rd/lua-5.3.3/src/ -I../../3rd/stb/
 LDFLAG := -L../../3rd/lua-5.3.3/lib_linux/
 LDLIBS := -lEGL -lGLESv2 -lX11 -llua -lm
 
