@@ -53,17 +53,21 @@ int egl_init(const char* name, int w, int h) {
     if (!RegisterClass(&winclass))
         return 1;
 
-
 	DWORD winstyle = WS_VISIBLE | WS_POPUP | WS_BORDER | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME;
     RECT winrect;
-    winrect.left = 0;
+	winrect.left = 0;
     winrect.top = 0;
     winrect.right = w;
     winrect.bottom = h;
     AdjustWindowRect(&winrect, winstyle, FALSE);
 
+	w = winrect.right - winrect.left;
+	h = winrect.bottom - winrect.top;
 
-    nativeWindow = CreateWindow(name, name, winstyle, 0, 0, winrect.right - winrect.left, winrect.bottom - winrect.top, NULL, NULL, hInstance, NULL);
+	int screenW = GetSystemMetrics(SM_CXSCREEN);
+	int screenH = GetSystemMetrics(SM_CYSCREEN);
+
+	nativeWindow = CreateWindow(name, name, winstyle, (screenW - w)/2, (screenH - h)/2, w, h, NULL, NULL, hInstance, NULL);
     if (nativeWindow == NULL)
         return 2;
     
