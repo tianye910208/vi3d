@@ -171,6 +171,41 @@ static int _llfunc_vi_file_size(lua_State* L) {
 	return 1;
 }
 
+static int _llfunc_vi_image_info(lua_State* L) {
+	const char* filepath = luaL_checkstring(L, 1);
+	int x, y, comp;
+	int ret = vi_image_info(filepath, &x, &y, &comp);
+
+	if (ret) {
+		lua_pushinteger(L, x);
+		lua_pushinteger(L, y);
+		lua_pushinteger(L, comp);
+	}
+	else {
+		lua_pushnil(L);
+		lua_pushnil(L);
+		lua_pushnil(L);
+	}
+	return 3;
+}
+
+static int _llfunc_vi_image_load(lua_State* L) {
+	const char* filepath = luaL_checkstring(L, 1);
+	vi_image* img = vi_image_load(filepath);
+
+	if (img) {
+		lua_pushlstring(L, img->data, img->size);
+		lua_pushinteger(L, img->x);
+		lua_pushinteger(L, img->y);
+		lua_pushinteger(L, img->comp);
+		return 4;
+	}
+	else {
+		return 0;
+	}
+	return 1;
+}
+
 static const luaL_Reg __lib_vi3d[] = {
 	{ "print", _llfunc_vi_log },
 	{ "vi_log", _llfunc_vi_log },
@@ -183,6 +218,8 @@ static const luaL_Reg __lib_vi3d[] = {
 	{ "vi_file_read", _llfunc_vi_file_read },
 	{ "vi_file_seek", _llfunc_vi_file_seek },
 	{ "vi_file_size", _llfunc_vi_file_size }, 
+	{ "vi_image_info", _llfunc_vi_image_info },
+	{ "vi_image_load", _llfunc_vi_image_load },
     {NULL, NULL}
 };
 
