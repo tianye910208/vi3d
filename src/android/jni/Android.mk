@@ -11,6 +11,7 @@ LOCAL_LDLIBS := -llog -landroid -lm -lEGL -lGLESv2
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../3rd/lua-5.3.3/src
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../3rd/stb
 
 
 SRC_FILES := $(wildcard $(LOCAL_PATH)/*.cpp)
