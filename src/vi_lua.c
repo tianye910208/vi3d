@@ -49,9 +49,9 @@ int vi_lua_exit() {
 	return 1;
 }
 
-int vi_lua_exec(const char* str) {
+int vi_lua_exec(const char* str, const char* chunkname) {
 	if (__lua_state)
-		return luaL_dostring(__lua_state->L, str);
+		return luaL_loadbuffer(__lua_state->L, str, strlen(str), chunkname) || lua_pcall(__lua_state->L, 0, LUA_MULTRET, 0);
 	return 1;
 }
 

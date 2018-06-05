@@ -16,7 +16,7 @@ vi_lua_state* vi_lua_getstate();
 
 int vi_lua_init();
 int vi_lua_exit();
-int vi_lua_exec(const char* str);
+int vi_lua_exec(const char* str, const char* chunkname);
 int vi_lua_call(int func);
 int vi_lua_loop(float dt);
 int vi_lua_main(int func_init, int func_loop, int func_fail);

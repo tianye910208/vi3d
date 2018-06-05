@@ -64,7 +64,7 @@ int vi_app_main() {
 	data[size] = '\0';
 	vi_file_read(f, data, size);
 	vi_file_close(f);
-	vi_lua_exec((const char*)data);
+	vi_lua_exec((const char*)data, luafile);
 	vi_mem_free(data);
 	return 0;
 }

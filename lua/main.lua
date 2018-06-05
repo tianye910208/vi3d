@@ -25,7 +25,6 @@ local function app_init()
     --table.insert(app_func, require("test/math"))
     table.insert(app_func, require("test/cube"))
     
-    
     return true
 end
 
