@@ -28,7 +28,7 @@ static int _llfunc_vec2_new(lua_State *L) {
 	vec2* ret = lua_newuserdata(L, sizeof(vec2));
 
 	if (argc == 1) {
-		vec2* arg = lua_touserdata(L, 1);
+		vec2* arg = (vec2*)lua_touserdata(L, 1);
 		if (arg != NULL)
 			*ret = *arg;
 	}
@@ -44,14 +44,14 @@ static int _llfunc_vec2_new(lua_State *L) {
 }
 
 static int _llfunc_vec2_get(lua_State *L) {
-	vec2* v = userdata_get_or_die(L, 1);
+	vec2* v = (vec2*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, v->x);
 	lua_pushnumber(L, v->y);
 	return 2;
 }
 
 static int _llfunc_vec2_set(lua_State *L) {
-	vec2* v = userdata_get_or_die(L, 1);
+	vec2* v = (vec2*)userdata_get_or_die(L, 1);
 
 	int isnum = 0;
 	float f = (float)lua_tonumberx(L, 2, &isnum);
@@ -65,14 +65,14 @@ static int _llfunc_vec2_set(lua_State *L) {
 }
 
 static int _llfunc_vec2_geti(lua_State *L) {
-	vec2* v = userdata_get_or_die(L, 1);
+	vec2* v = (vec2*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	lua_pushnumber(L, v->p[i-1]);
 	return 1;
 }
 
 static int _llfunc_vec2_seti(lua_State *L) {
-	vec2* v = userdata_get_or_die(L, 1);
+	vec2* v = (vec2*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	float f = (float)luaL_checknumber(L, 3);
 	v->p[i - 1] = f;
@@ -85,50 +85,50 @@ static int _llfunc_vec2_meta(lua_State *L) {
 }
 
 static int _llfunc_vec2_tostring(lua_State *L) {
-	vec2 *v = userdata_get_or_die(L, 1);
+	vec2 *v = (vec2*)userdata_get_or_die(L, 1);
 	lua_pushfstring(L, "[vec2][%f, %f]", v->x, v->y);
 	return 1;
 }
 
 static int _llfunc_vec2_add(lua_State *L) {
-	vec2 *a = userdata_get_or_die(L, 1);
-	vec2 *b = userdata_get_or_die(L, 2);
-	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2 *a = (vec2*)userdata_get_or_die(L, 1);
+	vec2 *b = (vec2*)userdata_get_or_die(L, 2);
+	vec2 *r = (vec2*)userdata_get_or_new(L, 3, sizeof(vec2));
 	vec2_add(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec2_sub(lua_State *L) {
-	vec2 *a = userdata_get_or_die(L, 1);
-	vec2 *b = userdata_get_or_die(L, 2);
-	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2 *a = (vec2*)userdata_get_or_die(L, 1);
+	vec2 *b = (vec2*)userdata_get_or_die(L, 2);
+	vec2 *r = (vec2*)userdata_get_or_new(L, 3, sizeof(vec2));
 	vec2_sub(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec2_mul(lua_State *L) {
-	vec2 *v = userdata_get_or_die(L, 1);
+	vec2 *v = (vec2*)userdata_get_or_die(L, 1);
 	float k = (float)luaL_checknumber(L, 2);
-	vec2 *r = userdata_get_or_new(L, 3, sizeof(vec2));
+	vec2 *r = (vec2*)userdata_get_or_new(L, 3, sizeof(vec2));
 	vec2_mul(v, k, r);
 	return 1;
 }
 
 static int _llfunc_vec2_len(lua_State *L) {
-	vec2 *v = userdata_get_or_die(L, 1);
+	vec2 *v = (vec2*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, vec2_len(v));
 	return 1;
 }
 
 static int _llfunc_vec2_dot(lua_State *L) {
-	vec2 *a = userdata_get_or_die(L, 1);
-	vec2 *b = userdata_get_or_die(L, 2);
+	vec2 *a = (vec2*)userdata_get_or_die(L, 1);
+	vec2 *b = (vec2*)userdata_get_or_die(L, 2);
 	lua_pushnumber(L, vec2_dot(a, b));
 	return 1;
 }
 
 static int _llfunc_vec2_normalize(lua_State *L) {
-	vec2 *v = userdata_get_or_die(L, 1);
+	vec2 *v = (vec2*)userdata_get_or_die(L, 1);
 	vec2_normalize(v);
 	return 0;
 }
@@ -162,7 +162,7 @@ static int _llfunc_vec3_new(lua_State *L) {
 	vec3* ret = lua_newuserdata(L, sizeof(vec3));
 
 	if (argc == 1) {
-		vec3* arg = lua_touserdata(L, 1);
+		vec3* arg = (vec3*)lua_touserdata(L, 1);
 		if (arg != NULL)
 			*ret = *arg;
 	}
@@ -179,7 +179,7 @@ static int _llfunc_vec3_new(lua_State *L) {
 }
 
 static int _llfunc_vec3_get(lua_State *L) {
-	vec3* v = userdata_get_or_die(L, 1);
+	vec3* v = (vec3*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, v->x);
 	lua_pushnumber(L, v->y);
 	lua_pushnumber(L, v->z);
@@ -187,7 +187,7 @@ static int _llfunc_vec3_get(lua_State *L) {
 }
 
 static int _llfunc_vec3_set(lua_State *L) {
-	vec3* v = userdata_get_or_die(L, 1);
+	vec3* v = (vec3*)userdata_get_or_die(L, 1);
 
 	int isnum = 0;
 	float f = (float)lua_tonumberx(L, 2, &isnum);
@@ -204,14 +204,14 @@ static int _llfunc_vec3_set(lua_State *L) {
 }
 
 static int _llfunc_vec3_geti(lua_State *L) {
-	vec3* v = userdata_get_or_die(L, 1);
+	vec3* v = (vec3*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	lua_pushnumber(L, v->p[i - 1]);
 	return 1;
 }
 
 static int _llfunc_vec3_seti(lua_State *L) {
-	vec3* v = userdata_get_or_die(L, 1);
+	vec3* v = (vec3*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	float f = (float)luaL_checknumber(L, 3);
 	v->p[i - 1] = f;
@@ -224,65 +224,65 @@ static int _llfunc_vec3_meta(lua_State *L) {
 }
 
 static int _llfunc_vec3_tostring(lua_State *L) {
-	vec3 *v = userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 1);
 	lua_pushfstring(L, "[vec3][%f, %f, %f]", v->x, v->y, v->z);
 	return 1;
 }
 
 static int _llfunc_vec3_add(lua_State *L) {
-	vec3 *a = userdata_get_or_die(L, 1);
-	vec3 *b = userdata_get_or_die(L, 2);
-	vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+	vec3 *a = (vec3*)userdata_get_or_die(L, 1);
+	vec3 *b = (vec3*)userdata_get_or_die(L, 2);
+	vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 	vec3_add(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec3_sub(lua_State *L) {
-	vec3 *a = userdata_get_or_die(L, 1);
-	vec3 *b = userdata_get_or_die(L, 2);
-	vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+	vec3 *a = (vec3*)userdata_get_or_die(L, 1);
+	vec3 *b = (vec3*)userdata_get_or_die(L, 2);
+	vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 	vec3_sub(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec3_mul(lua_State *L) {
-	vec3 *v = userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 1);
 	if (lua_isuserdata(L, 2)) {
-		mat4 *m = lua_touserdata(L, 2);
-		vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+		mat4 *m = (mat4*)lua_touserdata(L, 2);
+		vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 		vec3_mul_mat4(v, m, r);
 	}
 	else {
 		float k = (float)luaL_checknumber(L, 2);
-		vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+		vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 		vec3_mul(v, k, r);
 	}
 	return 1;
 }
 
 static int _llfunc_vec3_len(lua_State *L) {
-	vec3 *v = userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, vec3_len(v));
 	return 1;
 }
 
 static int _llfunc_vec3_dot(lua_State *L) {
-	vec3 *a = userdata_get_or_die(L, 1);
-	vec3 *b = userdata_get_or_die(L, 2);
+	vec3 *a = (vec3*)userdata_get_or_die(L, 1);
+	vec3 *b = (vec3*)userdata_get_or_die(L, 2);
 	lua_pushnumber(L, vec3_dot(a, b));
 	return 1;
 }
 
 static int _llfunc_vec3_cross(lua_State *L) {
-	vec3 *a = userdata_get_or_die(L, 1);
-	vec3 *b = userdata_get_or_die(L, 2);
-	vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+	vec3 *a = (vec3*)userdata_get_or_die(L, 1);
+	vec3 *b = (vec3*)userdata_get_or_die(L, 2);
+	vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 	vec3_cross(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec3_normalize(lua_State *L) {
-	vec3 *v = userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 1);
 	vec3_normalize(v);
 	return 0;
 }
@@ -317,7 +317,7 @@ static int _llfunc_vec4_new(lua_State *L) {
 	vec4* ret = lua_newuserdata(L, sizeof(vec4));
 
 	if (argc == 1) {
-		vec4* arg = lua_touserdata(L, 1);
+		vec4* arg = (vec4*)lua_touserdata(L, 1);
 		if (arg != NULL)
 			*ret = *arg;
 	}
@@ -335,7 +335,7 @@ static int _llfunc_vec4_new(lua_State *L) {
 }
 
 static int _llfunc_vec4_get(lua_State *L) {
-	vec4* v = userdata_get_or_die(L, 1);
+	vec4* v = (vec4*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, v->x);
 	lua_pushnumber(L, v->y);
 	lua_pushnumber(L, v->z);
@@ -344,7 +344,7 @@ static int _llfunc_vec4_get(lua_State *L) {
 }
 
 static int _llfunc_vec4_set(lua_State *L) {
-	vec4* v = userdata_get_or_die(L, 1);
+	vec4* v = (vec4*)userdata_get_or_die(L, 1);
 
 	int isnum = 0;
 	float f = (float)lua_tonumberx(L, 2, &isnum);
@@ -363,14 +363,14 @@ static int _llfunc_vec4_set(lua_State *L) {
 }
 
 static int _llfunc_vec4_geti(lua_State *L) {
-	vec4* v = userdata_get_or_die(L, 1);
+	vec4* v = (vec4*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	lua_pushnumber(L, v->p[i - 1]);
 	return 1;
 }
 
 static int _llfunc_vec4_seti(lua_State *L) {
-	vec4* v = userdata_get_or_die(L, 1);
+	vec4* v = (vec4*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	float f = (float)luaL_checknumber(L, 3);
 	v->p[i - 1] = f;
@@ -383,98 +383,98 @@ static int _llfunc_vec4_meta(lua_State *L) {
 }
 
 static int _llfunc_vec4_tostring(lua_State *L) {
-	vec4 *v = userdata_get_or_die(L, 1);
+	vec4 *v = (vec4*)userdata_get_or_die(L, 1);
 	lua_pushfstring(L, "[vec4][%f, %f, %f, %f]", v->x, v->y, v->z, v->w);
 	return 1;
 }
 
 static int _llfunc_vec4_add(lua_State *L) {
-	vec4 *a = userdata_get_or_die(L, 1);
-	vec4 *b = userdata_get_or_die(L, 2);
-	vec4 *r = userdata_get_or_new(L, 3, sizeof(vec4));
+	vec4 *a = (vec4*)userdata_get_or_die(L, 1);
+	vec4 *b = (vec4*)userdata_get_or_die(L, 2);
+	vec4 *r = (vec4*)userdata_get_or_new(L, 3, sizeof(vec4));
 	vec4_add(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec4_sub(lua_State *L) {
-	vec4 *a = userdata_get_or_die(L, 1);
-	vec4 *b = userdata_get_or_die(L, 2);
-	vec4 *r = userdata_get_or_new(L, 3, sizeof(vec4));
+	vec4 *a = (vec4*)userdata_get_or_die(L, 1);
+	vec4 *b = (vec4*)userdata_get_or_die(L, 2);
+	vec4 *r = (vec4*)userdata_get_or_new(L, 3, sizeof(vec4));
 	vec4_sub(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec4_mul(lua_State *L) {
-	vec4 *v = userdata_get_or_die(L, 1);
+	vec4 *v = (vec4*)userdata_get_or_die(L, 1);
 	if (lua_isuserdata(L, 2)) {
-		mat4 *m = lua_touserdata(L, 2);
-		vec4 *r = userdata_get_or_new(L, 3, sizeof(vec4));
+		mat4 *m = (mat4*)lua_touserdata(L, 2);
+		vec4 *r = (vec4*)userdata_get_or_new(L, 3, sizeof(vec4));
 		vec4_mul_mat4(v, m, r);
 	}
 	else {
 		float k = (float)luaL_checknumber(L, 2);
-		vec4 *r = userdata_get_or_new(L, 3, sizeof(vec4));
+		vec4 *r = (vec4*)userdata_get_or_new(L, 3, sizeof(vec4));
 		vec4_mul(v, k, r);
 	}
 	return 1;
 }
 
 static int _llfunc_vec4_len(lua_State *L) {
-	vec4 *v = userdata_get_or_die(L, 1);
+	vec4 *v = (vec4*)userdata_get_or_die(L, 1);
 	lua_pushnumber(L, vec4_len(v));
 	return 1;
 }
 
 static int _llfunc_vec4_normalize(lua_State *L) {
-	vec4 *v = userdata_get_or_die(L, 1);
+	vec4 *v = (vec4*)userdata_get_or_die(L, 1);
 	vec4_normalize(v);
 	return 0;
 }
 
 static int _llfunc_vec4_quat_mul(lua_State *L) {
-	vec4 *a = userdata_get_or_die(L, 1);
-	vec4 *b = userdata_get_or_die(L, 2);
-	vec4 *r = userdata_get_or_new(L, 3, sizeof(vec4));
+	vec4 *a = (vec4*)userdata_get_or_die(L, 1);
+	vec4 *b = (vec4*)userdata_get_or_die(L, 2);
+	vec4 *r = (vec4*)userdata_get_or_new(L, 3, sizeof(vec4));
 	vec4_quat_mul(a, b, r);
 	return 1;
 }
 
 static int _llfunc_vec4_quat_rot(lua_State *L) {
-	vec4 *q = userdata_get_or_die(L, 1);
-	vec3 *v = userdata_get_or_die(L, 2);
-	vec3 *r = userdata_get_or_new(L, 3, sizeof(vec3));
+	vec4 *q = (vec4*)userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 2);
+	vec3 *r = (vec3*)userdata_get_or_new(L, 3, sizeof(vec3));
 	vec4_quat_rot(q, v, r);
 	return 1;
 }
 
 static int _llfunc_vec4_quat_nlerp(lua_State *L) {
-	vec4 *a = userdata_get_or_die(L, 1);
-	vec4 *b = userdata_get_or_die(L, 2);
+	vec4 *a = (vec4*)userdata_get_or_die(L, 1);
+	vec4 *b = (vec4*)userdata_get_or_die(L, 2);
 	float k = (float)luaL_checknumber(L, 3);
-	vec4 *r = userdata_get_or_new(L, 4, sizeof(vec4));
+	vec4 *r = (vec4*)userdata_get_or_new(L, 4, sizeof(vec4));
 	vec4_quat_nlerp(a, b, k, r);
 	return 1;
 }
 
 static int _llfunc_vec4_quat_slerp(lua_State *L) {
-	vec4 *a = userdata_get_or_die(L, 1);
-	vec4 *b = userdata_get_or_die(L, 2);
+	vec4 *a = (vec4*)userdata_get_or_die(L, 1);
+	vec4 *b = (vec4*)userdata_get_or_die(L, 2);
 	float k = (float)luaL_checknumber(L, 3);
-	vec4 *r = userdata_get_or_new(L, 4, sizeof(vec4));
+	vec4 *r = (vec4*)userdata_get_or_new(L, 4, sizeof(vec4));
 	vec4_quat_slerp(a, b, k, r);
 	return 1;
 }
 
 static int _llfunc_vec4_quat_set_euler(lua_State *L) {
-	vec4 *q = userdata_get_or_die(L, 1);
-	vec3 *euler = userdata_get_or_die(L, 2);
+	vec4 *q = (vec4*)userdata_get_or_die(L, 1);
+	vec3 *euler = (vec3*)userdata_get_or_die(L, 2);
 	vec4_quat_set_euler(q, euler);
 	return 0;
 }
 
 static int _llfunc_vec4_quat_set_axis_angle(lua_State *L) {
-	vec4 *q = userdata_get_or_die(L, 1);
-	vec3 *axis = userdata_get_or_die(L, 2);
+	vec4 *q = (vec4*)userdata_get_or_die(L, 1);
+	vec3 *axis = (vec3*)userdata_get_or_die(L, 2);
 	float angle = (float)luaL_checknumber(L, 3);
 	vec4_quat_set_axis_angle(q, axis, angle);
 	return 0;
@@ -512,7 +512,7 @@ static int ll_vec4(lua_State* L) {
 
 
 static int _llfunc_mat4_new(lua_State *L) {
-	mat4* arg = lua_touserdata(L, 1);
+	mat4* arg = (mat4*)lua_touserdata(L, 1);
 	mat4* ret = lua_newuserdata(L, sizeof(mat4));
 	if (arg != NULL)
 		*ret = *arg;
@@ -524,7 +524,7 @@ static int _llfunc_mat4_new(lua_State *L) {
 }
 
 static int _llfunc_mat4_get(lua_State *L) {
-	mat4* m = userdata_get_or_die(L, 1);
+	mat4* m = (mat4*)userdata_get_or_die(L, 1);
 	float* p = m->p;
 	for (int i = 0; i < 16; i++)
 		lua_pushnumber(L, p[i]);
@@ -532,7 +532,7 @@ static int _llfunc_mat4_get(lua_State *L) {
 }
 
 static int _llfunc_mat4_set(lua_State *L) {
-	mat4* m = userdata_get_or_die(L, 1);
+	mat4* m = (mat4*)userdata_get_or_die(L, 1);
 	float* p = m->p;
 	for (int i = 0; i < 16; i++) {
 		int isnum = 0;
@@ -544,14 +544,14 @@ static int _llfunc_mat4_set(lua_State *L) {
 }
 
 static int _llfunc_mat4_geti(lua_State *L) {
-	mat4* m = userdata_get_or_die(L, 1);
+	mat4* m = (mat4*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	lua_pushnumber(L, m->p[i - 1]);
 	return 1;
 }
 
 static int _llfunc_mat4_seti(lua_State *L) {
-	mat4* m = userdata_get_or_die(L, 1);
+	mat4* m = (mat4*)userdata_get_or_die(L, 1);
 	int i = (int)luaL_checkinteger(L, 2);
 	float f = (float)luaL_checknumber(L, 3);
 	m->p[i - 1] = f;
@@ -564,7 +564,7 @@ static int _llfunc_mat4_meta(lua_State *L) {
 }
 
 static int _llfunc_mat4_tostring(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
 	lua_pushfstring(L, "[mat4][%f, %f, %f, %f]\n      [%f, %f, %f, %f]\n      [%f, %f, %f, %f]\n      [%f, %f, %f, %f]", 
 		m->m00, m->m01, m->m02, m->m03,
 		m->m10, m->m11, m->m12, m->m13, 
@@ -575,61 +575,61 @@ static int _llfunc_mat4_tostring(lua_State *L) {
 }
 
 static int _llfunc_mat4_mul(lua_State *L) {
-	mat4 *a = userdata_get_or_die(L, 1);
-	mat4 *b = userdata_get_or_die(L, 2);
-	mat4 *r = userdata_get_or_new(L, 3, sizeof(mat4));
+	mat4 *a = (mat4*)userdata_get_or_die(L, 1);
+	mat4 *b = (mat4*)userdata_get_or_die(L, 2);
+	mat4 *r = (mat4*)userdata_get_or_new(L, 3, sizeof(mat4));
 	mat4_mul(a, b, r);
 	return 1;
 }
 
 static int _llfunc_mat4_set_identity(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
 	mat4_set_identity(m);
 	return 0;
 }
 
 static int _llfunc_mat4_set_zero(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
 	mat4_set_zero(m);
 	return 0;
 }
 
 static int _llfunc_mat4_set_quat(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
-	vec4 *q = userdata_get_or_die(L, 2);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
+	vec4 *q = (vec4*)userdata_get_or_die(L, 2);
 	mat4_set_quat(m, q);
 	return 0;
 }
 
 static int _llfunc_mat4_translate(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
-	vec3 *v = userdata_get_or_die(L, 2);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 2);
 	mat4_translate(m, v);
 	return 0;
 }
 
 static int _llfunc_mat4_rotate(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
-	vec4 *q = userdata_get_or_die(L, 2);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
+	vec4 *q = (vec4*)userdata_get_or_die(L, 2);
 	mat4_rotate(m, q);
 	return 0;
 }
 
 static int _llfunc_mat4_scale(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
-	vec3 *v = userdata_get_or_die(L, 2);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
+	vec3 *v = (vec3*)userdata_get_or_die(L, 2);
 	mat4_scale(m, v);
 	return 0;
 }
 
 static int _llfunc_mat4_inverse(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
 	mat4_inverse(m);
 	return 0;
 }
 
 static int _llfunc_mat4_transpose(lua_State *L) {
-	mat4 *m = userdata_get_or_die(L, 1);
+	mat4 *m = (mat4*)userdata_get_or_die(L, 1);
 	mat4_transpose(m);
 	return 0;
 }
