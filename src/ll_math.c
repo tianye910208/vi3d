@@ -25,7 +25,7 @@ static void* userdata_get_or_new(lua_State* L, int idx, int size) {
 
 static int _llfunc_vec2_new(lua_State *L) {
 	int argc = lua_gettop(L);
-	vec2* ret = lua_newuserdata(L, sizeof(vec2));
+	vec2* ret = (vec2*)lua_newuserdata(L, sizeof(vec2));
 
 	if (argc == 1) {
 		vec2* arg = (vec2*)lua_touserdata(L, 1);
@@ -159,7 +159,7 @@ static int ll_vec2(lua_State* L) {
 
 static int _llfunc_vec3_new(lua_State *L) {
 	int argc = lua_gettop(L);
-	vec3* ret = lua_newuserdata(L, sizeof(vec3));
+	vec3* ret = (vec3*)lua_newuserdata(L, sizeof(vec3));
 
 	if (argc == 1) {
 		vec3* arg = (vec3*)lua_touserdata(L, 1);
@@ -314,7 +314,7 @@ static int ll_vec3(lua_State* L) {
 
 static int _llfunc_vec4_new(lua_State *L) {
 	int argc = lua_gettop(L);
-	vec4* ret = lua_newuserdata(L, sizeof(vec4));
+	vec4* ret = (vec4*)lua_newuserdata(L, sizeof(vec4));
 
 	if (argc == 1) {
 		vec4* arg = (vec4*)lua_touserdata(L, 1);
@@ -513,7 +513,7 @@ static int ll_vec4(lua_State* L) {
 
 static int _llfunc_mat4_new(lua_State *L) {
 	mat4* arg = (mat4*)lua_touserdata(L, 1);
-	mat4* ret = lua_newuserdata(L, sizeof(mat4));
+	mat4* ret = (mat4*)lua_newuserdata(L, sizeof(mat4));
 	if (arg != NULL)
 		*ret = *arg;
 
