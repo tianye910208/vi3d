@@ -1,4 +1,4 @@
-TARGET := test
+TARGET := vi3d
 
 CC     := gcc
 CCFLAG := -I../ -I../../3rd/GLES-Mali-v3.0.1-x64/include -I../../3rd/lua-5.3.3/src/ -I../../3rd/stb/
