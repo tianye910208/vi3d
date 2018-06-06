@@ -19,7 +19,7 @@ float vi_app_time() {
 
 void _vi_app_inst() {
     if (__app_instance == NULL) {
-        __app_instance = vi_mem_alloc(sizeof(vi_app));
+        __app_instance = (vi_app*)vi_mem_alloc(sizeof(vi_app));
         memset(__app_instance, 0, sizeof(vi_app));
     }
 }
@@ -60,7 +60,7 @@ int vi_app_main() {
 	}
 
 	int size = vi_file_size(f);
-	char *data = vi_mem_alloc(size + 1);
+	char *data = (char*)vi_mem_alloc(size + 1);
 	data[size] = '\0';
 	vi_file_read(f, data, size);
 	vi_file_close(f);

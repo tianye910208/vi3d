@@ -30,7 +30,7 @@ vi_file* vi_file_open(const char* filepath, const char* mode) {
 #else
 	FILE* fd = fopen(filepath, mode);
 	if (fd) {
-		vi_file* f = vi_mem_alloc(sizeof(vi_file));
+		vi_file* f = (vi_file*)vi_mem_alloc(sizeof(vi_file));
 		f->fd = fd;
 		f->ud = NULL;
 		return f;

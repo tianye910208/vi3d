@@ -194,7 +194,7 @@ static int _llfunc_vi_image_load(lua_State* L) {
 	vi_image* img = vi_image_load(filepath);
 
 	if (img) {
-		lua_pushlstring(L, img->data, img->size);
+		lua_pushlstring(L, (const char*)img->data, img->size);
 		lua_pushinteger(L, img->x);
 		lua_pushinteger(L, img->y);
 		lua_pushinteger(L, img->comp);

@@ -33,7 +33,7 @@ int vi_lua_init() {
 		return 1;
 	}
 
-	__lua_state = vi_mem_alloc(sizeof(vi_lua_state));
+	__lua_state = (vi_lua_state*)vi_mem_alloc(sizeof(vi_lua_state));
 	memset(__lua_state, 0, sizeof(vi_lua_state));
 	__lua_state->L = L;
 	return 0;

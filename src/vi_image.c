@@ -70,7 +70,7 @@ vi_image* vi_image_load(const char* filename) {
 	size = vi_file_read(f, data, size);
 	
 	int x, y, comp;
-	unsigned char * p = stbi_load_from_memory(data, size, &x, &y, &comp, 0);
+	unsigned char * p = stbi_load_from_memory((const stbi_uc*)data, size, &x, &y, &comp, 0);
 	if (p == NULL)
 		return NULL;
 
