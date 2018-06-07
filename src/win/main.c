@@ -16,10 +16,11 @@ EGLDisplay eglDisplay;
 EGLContext eglContext;
 EGLSurface eglSurface;
 
+vi_msg* msg;
+int     msgTouchDown = 0;
 
 LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     LRESULT  lRet = 1;
-
     switch (uMsg)
     {
     case WM_DESTROY:
@@ -28,8 +29,48 @@ LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	case WM_SIZE:
 		vi_app_set_screen_size(LOWORD(lParam), HIWORD(lParam));
 		break;
-    case WM_CHAR:
+    case WM_KEYDOWN:
+		if (msg = vi_msg_push(VI_MSG_KEY_DOWN, 1)) {
+			msg->data[0] = (int)wParam;
+		}
         break;
+	case WM_KEYUP:
+		if (msg = vi_msg_push(VI_MSG_KEY_UP, 1)) {
+			msg->data[0] = (int)wParam;
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		if (msg = vi_msg_push(VI_MSG_TOUCH_DOWN, 3)) {
+			msgTouchDown = 1;
+			msg->data[0] = LOWORD(lParam);
+			msg->data[1] = HIWORD(lParam);
+			msg->data[2] = 0;
+		}
+		break;
+	case WM_LBUTTONUP:
+		msgTouchDown = 0;
+		if (msg = vi_msg_push(VI_MSG_TOUCH_UP, 3)) {
+			msg->data[0] = LOWORD(lParam);
+			msg->data[1] = HIWORD(lParam);
+			msg->data[2] = 0;
+		}
+		break;
+	case WM_MOUSEMOVE:
+		if (msgTouchDown) {
+			if (wParam & MK_LBUTTON) {
+				msg = vi_msg_push(VI_MSG_TOUCH_MOVE, 3);
+			}
+			else {
+				msgTouchDown = 0;
+				msg = vi_msg_push(VI_MSG_TOUCH_UP, 3);
+			}
+			if (msg) {
+				msg->data[0] = LOWORD(lParam);
+				msg->data[1] = HIWORD(lParam);
+				msg->data[2] = 0;
+			}
+		}
+		break;
     default:
         lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
         break;
@@ -47,7 +88,6 @@ int egl_init(const char* name, int w, int h) {
 	winclass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON);
     winclass.lpfnWndProc = (WNDPROC)win_proc;
     winclass.hInstance = hInstance;
-    winclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
     winclass.lpszClassName = name;
 
     if (!RegisterClass(&winclass))
@@ -131,7 +171,6 @@ int main(int argc, char *argv[]) {
 	//init------------------------------------------
 	if (egl_init("vi3d", APP_W, APP_H) != 0)
         return 1;
-
 	
 	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
 	vi_app_main();
@@ -141,7 +180,7 @@ int main(int argc, char *argv[]) {
 	DWORD t1, t2;
 	t1 = GetTickCount();
 
-	MSG msg = { 0 };
+	MSG msg = {0};
 	while (1) {
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT)
@@ -149,7 +188,6 @@ int main(int argc, char *argv[]) {
 
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-
 		}
 		else {
 			t2 = GetTickCount();

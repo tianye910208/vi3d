@@ -29,7 +29,7 @@ static int _llfunc_vec2_new(lua_State *L) {
 
 	if (argc == 1) {
 		vec2* arg = (vec2*)lua_touserdata(L, 1);
-		if (arg != NULL)
+		if (arg)
 			*ret = *arg;
 	}
 	else if (argc == 3) {
@@ -163,7 +163,7 @@ static int _llfunc_vec3_new(lua_State *L) {
 
 	if (argc == 1) {
 		vec3* arg = (vec3*)lua_touserdata(L, 1);
-		if (arg != NULL)
+		if (arg)
 			*ret = *arg;
 	}
 	else if (argc == 3) {
@@ -318,7 +318,7 @@ static int _llfunc_vec4_new(lua_State *L) {
 
 	if (argc == 1) {
 		vec4* arg = (vec4*)lua_touserdata(L, 1);
-		if (arg != NULL)
+		if (arg)
 			*ret = *arg;
 	}
 	else if (argc == 4) {
@@ -514,7 +514,7 @@ static int ll_vec4(lua_State* L) {
 static int _llfunc_mat4_new(lua_State *L) {
 	mat4* arg = (mat4*)lua_touserdata(L, 1);
 	mat4* ret = (mat4*)lua_newuserdata(L, sizeof(mat4));
-	if (arg != NULL)
+	if (arg)
 		*ret = *arg;
 
 	lua_pushvalue(L, lua_upvalueindex(1));

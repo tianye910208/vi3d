@@ -49,22 +49,33 @@ static int _llfunc_vi_log(lua_State* L) {
 }
 
 static int _llfunc_vi_lua_main(lua_State* L) {
-	int f1 = 0;
+	int f1 = LUA_REFNIL;
 	if (lua_isfunction(L, 1)) {
 		lua_pushvalue(L, 1);
 		f1 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
-	int f2 = 0;
+	int f2 = LUA_REFNIL;
 	if (lua_isfunction(L, 2)) {
 		lua_pushvalue(L, 2);
 		f2 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
-	int f3 = 0;
+	int f3 = LUA_REFNIL;
 	if (lua_isfunction(L, 3)) {
 		lua_pushvalue(L, 3);
 		f3 = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
 	vi_lua_main(f1, f2, f3);
+	return 0;
+}
+
+static int _llfunc_vi_msg_pull(lua_State* L) {
+	vi_msg* m = vi_msg_pull();
+	if (m) {
+		lua_pushinteger(L, m->type);
+		for (int i = 0; i < m->size; i++)
+			lua_pushinteger(L, m->data[i]);
+		return m->size + 1;
+	}
 	return 0;
 }
 
@@ -113,7 +124,7 @@ static int _llfunc_vi_file_open(lua_State* L) {
 	const char* filepath = luaL_checkstring(L, 1);
 	const char* mode = luaL_checkstring(L, 2);
 	vi_file* f = vi_file_open(filepath, mode);
-	if (f != NULL)
+	if (f)
 		lua_pushlightuserdata(L, (void*)f);
 	else
 		lua_pushnil(L);
@@ -210,6 +221,7 @@ static const luaL_Reg __lib_vi3d[] = {
 	{ "print", _llfunc_vi_log },
 	{ "vi_log", _llfunc_vi_log },
 	{ "vi_lua_main", _llfunc_vi_lua_main },
+	{ "vi_msg_pull", _llfunc_vi_msg_pull },
 	{ "vi_app_info", _llfunc_vi_app_info },
 	{ "vi_app_time", _llfunc_vi_app_time },
 	{ "vi_app_set_design_size", _llfunc_vi_app_set_design_size },

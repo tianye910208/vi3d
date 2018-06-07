@@ -1,7 +1,7 @@
 #include "vi_log.h"
 #include <malloc.h>
 
-#define LOG_TMP_LEN 1024
+#define VI_LOG_MAXN 1024
 
 static void _vi_log_print(const char* msg) {
 	vi_sys_print(msg);
@@ -41,11 +41,11 @@ void vi_log_2(const char* fmt, ...) {
 	va_list ap;
 	va_start(ap, fmt);
 
-	char str[LOG_TMP_LEN + 1];
-	int n = vsnprintf(str, LOG_TMP_LEN, fmts, ap);
+	char str[VI_LOG_MAXN + 1];
+	int n = vsnprintf(str, VI_LOG_MAXN, fmts, ap);
 	va_end(ap);
 
-	if (n > -1 && n < LOG_TMP_LEN) {
+	if (n > -1 && n < VI_LOG_MAXN) {
 		__log_func(str);
 	}
 	else {

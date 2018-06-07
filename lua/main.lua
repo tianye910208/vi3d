@@ -1,4 +1,9 @@
-
+local function err_func(msg)
+    print(debug.traceback(msg))
+end
+local function msg_func(mid, d1, d2, d3, d4)
+    print(mid, d1, d2, d3, d4)
+end
 
 local app_func = {}
 local function app_init()
@@ -28,7 +33,17 @@ local function app_init()
     return true
 end
 
+local function msg_loop()
+    local mid, d1, d2, d3, d4 = vi_msg_pull()
+    if mid then
+        msg_func(mid, d1, d2, d3, d4)
+        msg_loop()
+    end
+end
+
 local function app_loop(dt)
+    msg_loop()
+    
     for i,f in ipairs(app_func) do
         if f then
             f(dt)
@@ -36,11 +51,7 @@ local function app_loop(dt)
     end
 end
 
-local function app_fail(msg)
-    print(debug.traceback(msg))
-end
-
-vi_lua_main(app_init, app_loop, app_fail)
+vi_lua_main(app_init, app_loop, err_func)
 
 
 

@@ -1,13 +1,11 @@
 #include "vi_lua.h"
 #include "vi_log.h"
 #include "vi_mem.h"
+#include "vi_msg.h"
 #include "ll_all.h"
 
 static vi_lua_state* __lua_state = NULL;
 
-vi_lua_state* vi_lua_getstate() {
-	return __lua_state;
-}
 
 static int _vi_lua_init(lua_State* L) {
 	luaL_openlibs(L);
@@ -15,6 +13,10 @@ static int _vi_lua_init(lua_State* L) {
 
 	lua_pushboolean(L, 1);  /* signal no errors */
 	return 1;
+}
+
+vi_lua_state* vi_lua_getstate() {
+	return __lua_state;
 }
 
 int vi_lua_init() {
@@ -36,6 +38,8 @@ int vi_lua_init() {
 	__lua_state = (vi_lua_state*)vi_mem_alloc(sizeof(vi_lua_state));
 	memset(__lua_state, 0, sizeof(vi_lua_state));
 	__lua_state->L = L;
+	__lua_state->app_loop = LUA_REFNIL;
+	__lua_state->err_func = LUA_REFNIL;
 	return 0;
 }
 
@@ -56,23 +60,22 @@ int vi_lua_exec(const char* str, const char* chunkname) {
 }
 
 int vi_lua_call(int func) {
-	if (func) {
+	if (func != LUA_REFNIL) {
 		lua_State *L = __lua_state->L;
 		lua_settop(L, 0);
-		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->func_fail);
+		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->err_func);
 		lua_rawgeti(L, LUA_REGISTRYINDEX, func);
-		lua_pcall(L, 0, 0, 1);
-		return 0;
+		return lua_pcall(L, 0, 0, 1);
 	}
 	return 1;
 }
 
 int vi_lua_loop(float dt) {
-	if (__lua_state->func_loop) {
+	if (__lua_state->app_loop != LUA_REFNIL) {
 		lua_State *L = __lua_state->L;
 		lua_settop(L, 0);
-		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->func_fail);
-		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->func_loop);
+		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->err_func);
+		lua_rawgeti(L, LUA_REGISTRYINDEX, __lua_state->app_loop);
 		lua_pushnumber(L, dt);
 		lua_pcall(L, 1, 0, 1);
 		return 0;
@@ -80,12 +83,18 @@ int vi_lua_loop(float dt) {
 	return 1;
 }
 
-int vi_lua_main(int func_init, int func_loop, int func_fail) {
+int vi_lua_main(int app_init, int app_loop, int err_func) {
 	if (__lua_state) {
-		__lua_state->func_loop = func_loop;
-		__lua_state->func_fail = func_fail;
+		if (__lua_state->app_loop != LUA_REFNIL)
+			luaL_unref(__lua_state->L, LUA_REGISTRYINDEX, __lua_state->app_loop);
+		if (__lua_state->err_func != LUA_REFNIL)
+			luaL_unref(__lua_state->L, LUA_REGISTRYINDEX, __lua_state->err_func);
 
-		vi_lua_call(func_init);
+		__lua_state->app_loop = app_loop;
+		__lua_state->err_func = err_func;
+
+		vi_lua_call(app_init);
+		luaL_unref(__lua_state->L, LUA_REGISTRYINDEX, app_init);
 		return 0;
 	}
 	return 1;
