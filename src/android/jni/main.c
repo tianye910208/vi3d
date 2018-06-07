@@ -14,6 +14,7 @@
 
 #include "vi3d.h"
 
+int runflag = 1;
 int screenWidth = 0;
 int screenHeight = 0;
 
@@ -29,18 +30,50 @@ EGLDisplay eglDisplay;
 EGLContext eglContext;
 EGLSurface eglSurface;
 
-int egl_init()
-{
+vi_msg* msg;
+int     msgid;
+void msg_proc(AInputEvent* ev) {
+	switch (AInputEvent_getType(ev)) {
+	case AINPUT_EVENT_TYPE_MOTION:
+		switch (AInputEvent_getSource(ev)) {
+		case AINPUT_SOURCE_TOUCHSCREEN:
+			msg = NULL;
+			switch(AMotionEvent_getAction(ev)) {
+			case AMOTION_EVENT_ACTION_MOVE:
+				msg = vi_msg_push(VI_MSG_TOUCH_MOVE, 3);
+				break;
+			case AMOTION_EVENT_ACTION_DOWN:
+				msg = vi_msg_push(VI_MSG_TOUCH_DOWN, 3);
+				break;
+			case AMOTION_EVENT_ACTION_UP:
+				msg = vi_msg_push(VI_MSG_TOUCH_UP, 3);
+				break;
+			}
+			if(msg) {
+				msg->data[0] = AMotionEvent_getX(ev, 0);
+				msg->data[1] = AMotionEvent_getY(ev, 0);
+				msg->data[2] = 0;
+			}
+			break;
+		case AINPUT_SOURCE_TRACKBALL:
+			break;
+		}
+		break;
+		
+	case AINPUT_EVENT_TYPE_KEY:
+		break;
+	}
+}
+
+int egl_init() {
 	EGLint configNum = 0;
 	EGLint majorVersion;
 	EGLint minorVersion;
-	EGLint ctxAttribList[] =
-	{
+	EGLint ctxAttribList[] = {
 		EGL_CONTEXT_CLIENT_VERSION, 2,
 		EGL_NONE
 	};
-	EGLint cfgAttribList[] =
-	{
+	EGLint cfgAttribList[] = {
 		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
 		EGL_RED_SIZE, 8,
 		EGL_GREEN_SIZE, 8,
@@ -79,8 +112,7 @@ int egl_init()
 	return 0;
 }
 
-void egl_exit()
-{
+void egl_exit() {
 	eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
 	eglDestroySurface(eglDisplay, eglSurface);
 	eglDestroyContext(eglDisplay, eglContext);
@@ -89,8 +121,7 @@ void egl_exit()
 
 
 
-void* _main(void* args)
-{
+void* _main(void* args) {
 	//init------------------------------------------
 	if (egl_init() != 0)
 		return NULL;
@@ -105,24 +136,19 @@ void* _main(void* args)
 	struct timeval t1, t2;
 	struct timezone tz;
 	gettimeofday(&t1, &tz);
-
-	while (1)
-	{
-		if (nativeInputQueue && AInputQueue_hasEvents(nativeInputQueue) > 0)
-		{
+	
+	runflag = 1;
+	while (runflag) {
+		if (nativeInputQueue && AInputQueue_hasEvents(nativeInputQueue) > 0) {
 			AInputEvent* ev;
 			if (AInputQueue_getEvent(nativeInputQueue, &ev) >= 0)
-			{
-				//handle event
-			}
+				msg_proc(ev);
 			AInputQueue_finishEvent(nativeInputQueue, ev, 1);
 		}
-		else if (nativeShowWindow == NULL)
-		{
+		else if (nativeShowWindow == NULL) {
 			usleep(10000);
 		}
-		else if (nativeShowWindow != nativeWindow)
-		{
+		else if (nativeShowWindow != nativeWindow) {
 			nativeWindow = nativeShowWindow;
 			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
 			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
@@ -131,8 +157,7 @@ void* _main(void* args)
 				vi_log("[E]eglMakeCurrent %d", eglGetError());
 			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
-		else
-		{
+		else {
 			gettimeofday(&t2, &tz);
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
@@ -156,55 +181,45 @@ void* _main(void* args)
 
 
 //NativeActivity-----------------------------------
-static void onStart(ANativeActivity* activity)
-{
+static void onStart(ANativeActivity* activity) {
 
 }
 
-static void onResume(ANativeActivity* activity)
-{
+static void onResume(ANativeActivity* activity) {
 
 }
 
-static void onPause(ANativeActivity* activity)
-{
+static void onPause(ANativeActivity* activity) {
 
 }
 
-static void onStop(ANativeActivity* activity)
-{
+static void onStop(ANativeActivity* activity) {
 
 }
 
-static void onDestroy(ANativeActivity* activity)
-{
+static void onDestroy(ANativeActivity* activity) {
+	runflag = 0;
+}
+
+static void onLowMemory(ANativeActivity* activity) {
 
 }
 
-static void onLowMemory(ANativeActivity* activity)
-{
-
-}
-
-static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen)
-{
+static void* onSaveInstanceState(ANativeActivity* activity, size_t* outLen) {
 	outLen = 0;
 	return 0;
 }
 
-static void onWindowFocusChanged(ANativeActivity* activity, int focused)
-{
+static void onWindowFocusChanged(ANativeActivity* activity, int focused) {
 	vi_log("onWindowFocusChanged %d", focused);
 
 }
 
-static void onConfigurationChanged(ANativeActivity* activity)
-{
+static void onConfigurationChanged(ANativeActivity* activity) {
 	vi_log("onConfigurationChanged");
 }
 
-static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window)
-{
+static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window) {
 	screenWidth = ANativeWindow_getWidth(window);
 	screenHeight = ANativeWindow_getHeight(window);
 	vi_app_set_screen_size(screenWidth, screenHeight);
@@ -212,38 +227,31 @@ static void onNativeWindowCreated(ANativeActivity* activity, ANativeWindow* wind
 	vi_log("onNativeWindowCreated  %p, %p, w:%d h:%d", nativeShowWindow, window, screenWidth, screenHeight);
 	nativeShowWindow = window;
 
-	if (nativeWindow == NULL){
+	if (nativeWindow == NULL) {
 		nativeWindow = nativeShowWindow;	
 		pthread_t tid;
 		pthread_create(&tid, 0, &_main, 0);
 	}
 }
 
-static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window)
-{
+static void onNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window) {
 	nativeShowWindow = NULL;
 	vi_log("onNativeWindowDestroyed %p", window);
 }
 
-static void onInputQueueCreated(ANativeActivity* activity, AInputQueue* queue)
-{
+static void onInputQueueCreated(ANativeActivity* activity, AInputQueue* queue) {
 	nativeInputQueue = queue;
 }
 
-static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
-{
+static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
 	nativeInputQueue = NULL;
 }
 
 
-
-
-void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize)
-{
+void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize) {
 	vi_log("onCreate: %p", activity);
 
-	if (nativeActivity != activity)
-	{
+	if (nativeActivity != activity) {
 		activity->callbacks->onStart = onStart;
 		activity->callbacks->onResume = onResume;
 		activity->callbacks->onPause = onPause;
@@ -259,7 +267,6 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 		activity->callbacks->onInputQueueDestroyed = onInputQueueDestroyed;
 	}
 	
-
 	nativeActivity = activity;
 	vi_sys_set_activity(nativeActivity);
 
