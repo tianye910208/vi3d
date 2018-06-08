@@ -1,7 +1,7 @@
 TARGET := lua
 
 CCFLAG := -I./ -I../../3rd/lua-5.3.3/src/
-LDFLAG := -L../../3rd/lua-5.3.3/lib_linux/
+LDFLAG := -L../../3rd/
 LDLIBS := -llua
 
 
@@ -13,7 +13,15 @@ SRC2 :=  $(wildcard ./*.c)
 OBJS := $(SRC2:./%.c=obj/%.o)
 OBJS += $(SRC1:./%.cpp=obj/%.o)
 
-all:$(OBJS)
+linux: LDFLAG += -L../../3rd/lua-5.3.3/lib_linux/
+linux: lua
+
+mingw: LDFLAG += -L../../3rd/lua-5.3.3/lib_mingw/
+mingw: lua
+
+all: linux
+
+lua:$(OBJS)
 	@echo [M]Link...
 	g++ $(OBJS) -o ../bin/$(TARGET) $(LDFLAG) $(LDLIBS)
 
