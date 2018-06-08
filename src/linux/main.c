@@ -21,13 +21,77 @@ EGLSurface eglSurface;
 
 Atom wmDeleteWindow;
 
-void win_proc(XEvent* pev)
+char *key_name[] = {  
+    "left",  
+    "second (or middle)",  
+    "right",  
+    "pull_up",  
+    "pull_down"  
+};  
+
+vi_msg* msg;
+int     msgTouchDown = 0;
+
+void msg_proc(XEvent* ev)
 {
-	switch (pev->type)
+	switch (ev->type)
 	{
 	case ConfigureNotify:
-		vi_app_set_screen_size(pev->xconfigure.width, pev->xconfigure.height);
+		vi_app_set_screen_size(ev->xconfigure.width, ev->xconfigure.height);
 		break;
+    case MotionNotify:  
+        if (msgTouchDown) {
+            if(msg = vi_msg_push(VI_MSG_TOUCH_MOVE, 3)) {
+                msg->data[0] = ev->xmotion.x;
+                msg->data[1] = ev->xmotion.y;
+                msg->data[2] = 0;
+            }
+        }
+        break;  
+    case ButtonPress:  
+        if (ev->xbutton.button == 1) {
+            msgTouchDown = 1;
+            if(msg = vi_msg_push(VI_MSG_TOUCH_DOWN, 3)) {
+                msg->data[0] = ev->xmotion.x;
+                msg->data[1] = ev->xmotion.y;
+                msg->data[2] = 0;
+            }
+        }
+        break;  
+    case ButtonRelease:  
+        if (ev->xbutton.button == 1) {
+            msgTouchDown = 0;
+            if(msg = vi_msg_push(VI_MSG_TOUCH_UP, 3)) {
+                msg->data[0] = ev->xmotion.x;
+                msg->data[1] = ev->xmotion.y;
+                msg->data[2] = 0;
+            }
+        }
+        break;  
+    case KeyPress:
+        if (msg = vi_msg_push(VI_MSG_KEY_DOWN, 1)) {
+            KeySym sym = XLookupKeysym(&ev->xkey, 0);
+            KeySym tmp;
+            XConvertCase(sym, &tmp, &sym);
+            msg->data[0] = sym & 0xFF;
+        }
+        break;
+    case KeyRelease:
+        if (XPending(nativeDisplay)) {
+            XEvent nev;
+            XPeekEvent(nativeDisplay, &nev);
+            if (nev.type == KeyPress && nev.xkey.time == ev->xkey.time && nev.xkey.keycode == ev->xkey.keycode) {
+                XNextEvent(nativeDisplay, &nev);
+                break;
+            }
+        }
+        if (msg = vi_msg_push(VI_MSG_KEY_UP, 1)) {
+            KeySym sym = XLookupKeysym(&ev->xkey, 0);
+            KeySym tmp;
+            XConvertCase(sym, &tmp, &sym);
+            msg->data[0] = sym & 0xFF;
+        }
+        break;
 	default:
 		break;
 	}
@@ -149,7 +213,7 @@ int main(int argc, char *argv[])
 			XNextEvent(nativeDisplay, &xev);
 			if (xev.type == ClientMessage && xev.xclient.data.l[0] == wmDeleteWindow)
 				break;
-			win_proc(&xev);
+			msg_proc(&xev);
 		}
 		else
 		{
