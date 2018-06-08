@@ -18,6 +18,7 @@ EGLSurface eglSurface;
 
 vi_msg* msg;
 int     msgTouchDown = 0;
+int     msgKeyDown[256] = {0};
 
 LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     LRESULT  lRet = 1;
@@ -30,13 +31,17 @@ LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		vi_app_set_screen_size(LOWORD(lParam), HIWORD(lParam));
 		break;
     case WM_KEYDOWN:
-		if (msg = vi_msg_push(VI_MSG_KEY_DOWN, 1)) {
-			msg->data[0] = (int)wParam;
+		if (msgKeyDown[wParam & 0xFF] == 0) {
+			if (msg = vi_msg_push(VI_MSG_KEY_DOWN, 1)) {
+				msg->data[0] = (int)wParam;
+				msgKeyDown[wParam & 0xFF] = 1;
+			}
 		}
         break;
 	case WM_KEYUP:
 		if (msg = vi_msg_push(VI_MSG_KEY_UP, 1)) {
 			msg->data[0] = (int)wParam;
+			msgKeyDown[wParam & 0xFF] = 0;
 		}
 		break;
 	case WM_LBUTTONDOWN:
