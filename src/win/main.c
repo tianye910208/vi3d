@@ -89,8 +89,10 @@ int egl_init(const char* name, int w, int h) {
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
     WNDCLASS winclass = {0};
-    winclass.style = CS_OWNDC;
+	winclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+	//winclass.hIcon = LoadIcon(NULL, IDI_WINLOGO);
 	winclass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON);
+	winclass.hCursor = LoadCursor(NULL, IDC_ARROW);
     winclass.lpfnWndProc = (WNDPROC)msg_proc;
     winclass.hInstance = hInstance;
     winclass.lpszClassName = name;
@@ -117,7 +119,8 @@ int egl_init(const char* name, int w, int h) {
         return 2;
     
     ShowWindow(nativeWindow, TRUE);
-
+	SetForegroundWindow(nativeWindow);
+	SetFocus(nativeWindow);
 
 	EGLint configNum = 0;
 	EGLint majorVersion;
