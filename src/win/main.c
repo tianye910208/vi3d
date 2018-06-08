@@ -19,7 +19,7 @@ EGLSurface eglSurface;
 vi_msg* msg;
 int     msgTouchDown = 0;
 
-LRESULT WINAPI win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     LRESULT  lRet = 1;
     switch (uMsg)
     {
@@ -86,7 +86,7 @@ int egl_init(const char* name, int w, int h) {
     WNDCLASS winclass = {0};
     winclass.style = CS_OWNDC;
 	winclass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON);
-    winclass.lpfnWndProc = (WNDPROC)win_proc;
+    winclass.lpfnWndProc = (WNDPROC)msg_proc;
     winclass.hInstance = hInstance;
     winclass.lpszClassName = name;
 
