@@ -64,6 +64,12 @@ typedef unsigned long long  uint64;
 #define vi_sys_print(msg) do{ printf("%s", msg); fflush(stdout); }while(0)
 #endif
 
+#ifdef VI3D_SYS_IOS
+#include <malloc/malloc.h>
+#else
+#include <malloc.h>
+#endif
+
 #ifdef VI3D_SYS_WIN
 #define WIN32_LEAN_AND_MEAN
 #define inline __inline

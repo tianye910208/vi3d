@@ -1,5 +1,5 @@
 #include "vi_log.h"
-#include <malloc.h>
+
 
 #define VI_LOG_MAXN 1024
 

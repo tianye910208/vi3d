@@ -20,6 +20,8 @@
 		1D043AF11EB051DD003AD0BB /* vi_sys.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AE21EB051DD003AD0BB /* vi_sys.c */; };
 		1D043AF21EB051DD003AD0BB /* vi3d.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D043AE41EB051DD003AD0BB /* vi3d.c */; };
 		1D043AFC1EB07506003AD0BB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D043AFB1EB07506003AD0BB /* OpenGLES.framework */; };
+		1D6B095120CE43FE0070BCCB /* ll_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B094E20CE43FE0070BCCB /* ll_math.c */; };
+		1D6B095220CE43FE0070BCCB /* vi_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B094F20CE43FE0070BCCB /* vi_image.c */; };
 		1DE466C21EA9EFFF007B3AE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE466C11EA9EFFF007B3AE7 /* main.m */; };
 		1DE466CD1EA9EFFF007B3AE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,9 @@
 		1D043AE41EB051DD003AD0BB /* vi3d.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi3d.c; path = ../../vi3d.c; sourceTree = "<group>"; };
 		1D043AE51EB051DD003AD0BB /* vi3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi3d.h; path = ../../vi3d.h; sourceTree = "<group>"; };
 		1D043AFB1EB07506003AD0BB /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		1D6B094E20CE43FE0070BCCB /* ll_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ll_math.c; path = ../../ll_math.c; sourceTree = "<group>"; };
+		1D6B094F20CE43FE0070BCCB /* vi_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_image.c; path = ../../vi_image.c; sourceTree = "<group>"; };
+		1D6B095020CE43FE0070BCCB /* vi_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_image.h; path = ../../vi_image.h; sourceTree = "<group>"; };
 		1DE466BD1EA9EFFF007B3AE7 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE466C11EA9EFFF007B3AE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +99,9 @@
 		1DE466BF1EA9EFFF007B3AE7 /* vi3d */ = {
 			isa = PBXGroup;
 			children = (
+				1D6B094E20CE43FE0070BCCB /* ll_math.c */,
+				1D6B094F20CE43FE0070BCCB /* vi_image.c */,
+				1D6B095020CE43FE0070BCCB /* vi_image.h */,
 				1D043ACE1EB051DD003AD0BB /* ll_all.c */,
 				1D043ACF1EB051DD003AD0BB /* ll_all.h */,
 				1D043AD01EB051DD003AD0BB /* ll_gles.c */,
@@ -154,7 +162,6 @@
 				TargetAttributes = {
 					1DE466BC1EA9EFFF007B3AE7 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 59L3B76TR9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -206,6 +213,8 @@
 				1D043AE61EB051DD003AD0BB /* ll_all.c in Sources */,
 				1D043AF11EB051DD003AD0BB /* vi_sys.c in Sources */,
 				1D043AE81EB051DD003AD0BB /* ll_vi3d.c in Sources */,
+				1D6B095220CE43FE0070BCCB /* vi_image.c in Sources */,
+				1D6B095120CE43FE0070BCCB /* ll_math.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +319,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 59L3B76TR9;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../3rd/lua-5.3.3/src";
+				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../3rd/lua-5.3.3/src",
+					"$(SRCROOT)/../../3rd/stb/",
+				);
 				INFOPLIST_FILE = vi3d/Info.plist;
 				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -331,8 +343,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 59L3B76TR9;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../3rd/lua-5.3.3/src";
+				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../3rd/lua-5.3.3/src",
+					"$(SRCROOT)/../../3rd/stb/",
+				);
 				INFOPLIST_FILE = vi3d/Info.plist;
 				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
