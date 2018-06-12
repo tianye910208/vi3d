@@ -10,6 +10,8 @@
 #define APP_W 800
 #define APP_H 480
 
+int runflag = 1;
+int actived = 1;
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow = 0;
@@ -36,6 +38,10 @@ void msg_proc(XEvent* ev)
 {
 	switch (ev->type)
 	{
+    case ClientMessage:
+        if(xev.xclient.data.l[0] == wmDeleteWindow)
+            runflag = 0;
+		break;
 	case ConfigureNotify:
 		vi_app_set_screen_size(ev->xconfigure.width, ev->xconfigure.height);
 		break;
@@ -205,14 +211,11 @@ int main(int argc, char *argv[])
 	gettimeofday(&t1, &tz);
 
 	XEvent xev;
-	while (1)
+	while (runflag)
 	{
-
 		if (XPending(nativeDisplay))
 		{
 			XNextEvent(nativeDisplay, &xev);
-			if (xev.type == ClientMessage && xev.xclient.data.l[0] == wmDeleteWindow)
-				break;
 			msg_proc(&xev);
 		}
 		else
@@ -221,8 +224,10 @@ int main(int argc, char *argv[])
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
 
-			vi_app_loop(dt);
-			eglSwapBuffers(eglDisplay, eglSurface);
+            if (actived) {
+			    vi_app_loop(dt);
+			    eglSwapBuffers(eglDisplay, eglSurface);
+            }
 			usleep(10000);
 		}
 

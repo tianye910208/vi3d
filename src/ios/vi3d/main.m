@@ -10,13 +10,36 @@
 #import <pthread.h>
 #import "vi3d.h"
 
-
+int runflag = 1;
+int actived = 1;
 void* _main(void* args)
 {
-    while(true){
-        vi_log("hello");
-        usleep(1000000);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    char* savedir = [[paths objectAtIndex:0] UTF8String];
+    char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
+
+    vi_app_init(datadir, savedir);
+	vi_app_main();
+
+	//loop------------------------------------------
+    float dt;
+	struct timeval t1, t2;
+	struct timezone tz;
+	gettimeofday(&t1, &tz);
+
+    while(1){
+        gettimeofday(&t2, &tz);
+        dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+        t1 = t2;
+        if(actived) {
+            vi_app_loop(dt);
+            eglSwapBuffers(eglDisplay, eglSurface);
+        }
+        usleep(10000);
     }
+
+    //eixt------------------------------------------
+    vi_app_exit();
     return NULL;
 }
 
@@ -85,20 +108,37 @@ void* _main(void* args)
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     CGRect rect = UIScreen.mainScreen.bounds;
     
     self.window = [[AppWindow alloc] initWithFrame:rect];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.window.rootViewController = [[UIViewController alloc] init];
-    [self.window.rootViewController prefersStatusBarHidden];
     
+
     [self.window setScreen:UIScreen.mainScreen];
-    [self.window makeKeyAndVisible];
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:true];
+        
     vi_app_set_screen_size(rect.size.width, rect.size.height);
+
+
+    CCEAGLView* glview = [CCEAGLView viewWithFrame: [self.window bounds]
+                                         pixelFormat: kEAGLColorFormatRGB565
+                                         depthFormat: GL_DEPTH24_STENCIL8_OES
+                                  preserveBackbuffer: NO
+                                          sharegroup: nil
+                                       multiSampling: NO
+                                     numberOfSamples: 0 ];
+    [glview setMultipleTouchEnabled:YES];
+
+
+    UIViewController* viewctl = [[UIViewController alloc] init];
+    [viewctl prefersStatusBarHidden];
+    viewctl.wantsFullScreenLayout = YES;
+    viewctl.view = glview;
+
+    [self.window.setRootViewController viewctl];
+    [self.window makeKeyAndVisible];
+
     
     pthread_t tid;
     pthread_create(&tid, 0, &_main, 0);
@@ -125,7 +165,7 @@ void* _main(void* args)
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    runflag = 0;
 }
 
 @end

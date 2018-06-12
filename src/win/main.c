@@ -7,6 +7,8 @@
 #define APP_W 800
 #define APP_H 480
 
+int runflag = 1;
+int actived = 1;
 
 EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow = NULL;
@@ -25,6 +27,7 @@ LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg)
     {
     case WM_DESTROY:
+		runflag = 0;
         PostQuitMessage(0);
         break;
 	case WM_SIZE:
@@ -189,11 +192,8 @@ int main(int argc, char *argv[]) {
 	t1 = GetTickCount();
 
 	MSG msg = {0};
-	while (1) {
+	while (runflag) {
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			if (msg.message == WM_QUIT)
-                break;
-
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
@@ -201,9 +201,11 @@ int main(int argc, char *argv[]) {
 			t2 = GetTickCount();
 			dt = (float)(t2 - t1) / 1000.0f;
 			t1 = t2;
-
-			vi_app_loop(dt);
-			eglSwapBuffers(eglDisplay, eglSurface);
+			
+			if(actived) {
+				vi_app_loop(dt);
+				eglSwapBuffers(eglDisplay, eglSurface);
+			}
 			Sleep(10);
 		}
 	}

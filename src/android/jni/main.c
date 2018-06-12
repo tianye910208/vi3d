@@ -15,6 +15,8 @@
 #include "vi3d.h"
 
 int runflag = 1;
+int actived = 1;
+
 int screenWidth = 0;
 int screenHeight = 0;
 
@@ -161,9 +163,10 @@ void* _main(void* args) {
 			gettimeofday(&t2, &tz);
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
-
-			vi_app_loop(dt);
-			eglSwapBuffers(eglDisplay, eglSurface);
+			if (actived) {
+				vi_app_loop(dt);
+				eglSwapBuffers(eglDisplay, eglSurface);
+			}
 			usleep(10000);
 		}
 
@@ -182,19 +185,19 @@ void* _main(void* args) {
 
 //NativeActivity-----------------------------------
 static void onStart(ANativeActivity* activity) {
-
+	actived = 1;
 }
 
 static void onResume(ANativeActivity* activity) {
-
+	actived = 1;
 }
 
 static void onPause(ANativeActivity* activity) {
-
+	actived = 0;
 }
 
 static void onStop(ANativeActivity* activity) {
-
+	actived = 0;
 }
 
 static void onDestroy(ANativeActivity* activity) {
