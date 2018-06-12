@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <pthread.h>
+#import <sys/time.h>
 #import "vi3d.h"
 
 int runflag = 1;
@@ -19,8 +20,8 @@ EAGLContext* eaglContext = NULL;
 void* _main(void* args)
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    char* savedir = [[paths objectAtIndex:0] UTF8String];
-    char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
+    const char* savedir = [[paths objectAtIndex:0] UTF8String];
+    const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
 
     vi_app_init(datadir, savedir);
 	vi_app_main();
@@ -31,7 +32,7 @@ void* _main(void* args)
 	struct timezone tz;
 	gettimeofday(&t1, &tz);
 
-    while(1){
+    while(runflag){
         gettimeofday(&t2, &tz);
         dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
         t1 = t2;
@@ -49,10 +50,11 @@ void* _main(void* args)
 
 
 
-@interface OpenGLView : UIView
+@interface OpenGLView : UIView {
     GLuint _defaultFrameBuffer;
 	GLuint _colorRenderBuffer;
 	GLuint _depthRenderBuffer;
+}
 @end
 
 
@@ -76,33 +78,23 @@ void* _main(void* args)
 		exit(1);
 	}
 
-    GLuint _colorRenderBuffer;
-    glGenRenderbuffers(1, &_colorRenderBuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
+    GLuint colorRenderBuffer;
+    glGenRenderbuffers(1, &colorRenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, colorRenderBuffer);
 	[eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
 
-    GLuint _depthRenderBuffer;
-    glGenRenderbuffers(1, &_depthRenderBuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
+    GLuint depthRenderBuffer;
+    glGenRenderbuffers(1, &depthRenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBuffer);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, self.frame.size.width, self.frame.size.height);
 
     GLuint framebuffer;
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderBuffer);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderBuffer);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
 
 	return self;
-}
-
-
-- (void)dealloc
-{
-    if (eaglContext) {
-        [eaglContext release];
-        eaglContext = nil;
-    }
-    [super dealloc];
 }
 
 
@@ -160,17 +152,14 @@ void* _main(void* args)
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[UIApplication sharedApplication] setStatusBarHidden:true];
-
     CGRect rect = UIScreen.mainScreen.bounds;
 
-    UIWindow* win = [[UIWindow alloc] initWithFrame:rect]];
+    UIWindow* win = [[UIWindow alloc] initWithFrame:rect];
     [win setScreen:UIScreen.mainScreen];
 	
     UIViewController *ctl = [[UIViewController alloc] init];
 	[ctl setView:[[OpenGLView alloc] initWithFrame:[win bounds]]];
     [ctl prefersStatusBarHidden];
-    ctl.wantsFullScreenLayout = YES;
 
     [win setRootViewController:ctl];
 	[win makeKeyAndVisible];

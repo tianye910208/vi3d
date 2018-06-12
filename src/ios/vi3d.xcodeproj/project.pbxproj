@@ -141,6 +141,7 @@
 				1DE466B91EA9EFFF007B3AE7 /* Sources */,
 				1DE466BA1EA9EFFF007B3AE7 /* Frameworks */,
 				1DE466BB1EA9EFFF007B3AE7 /* Resources */,
+				1D6B095320CF9EB30070BCCB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -194,6 +195,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D6B095320CF9EB30070BCCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "_SRC=$PWD/../../\n_DST=$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH\n\necho SRC: $_SRC\necho DST: $_DST\n\nfunction copydir()\n{\n    rm -fr $_DST/$1/*\n    mkdir -p $_DST/$1/\n    \n    if [ \"`ls $_SRC/$1`\" != \"\" ]; then\n        cp -RLp $_SRC/$1/* $_DST/$1/\n        echo copydir:$1 completed!\n    fi\n}\n\ncopydir res\ncopydir lua\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1DE466B91EA9EFFF007B3AE7 /* Sources */ = {
