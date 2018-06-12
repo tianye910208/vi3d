@@ -11,45 +11,16 @@
 #import <sys/time.h>
 #import "vi3d.h"
 
-int runflag = 1;
-int actived = 1;
 
-vi_msg* msg = NULL;
+int actived = 0;
 
 struct timeval t1, t2;
 
+vi_msg* msg = NULL;
+
+
 CAEAGLLayer* eaglLayer = NULL;
 EAGLContext* eaglContext = NULL;
-
-void* _main(void* args) {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    const char* savedir = [[paths objectAtIndex:0] UTF8String];
-    const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
-
-    vi_app_init(datadir, savedir);
-	vi_app_main();
-
-	//loop------------------------------------------
-    float dt;
-	struct timeval t1, t2;
-	gettimeofday(&t1, NULL);
-
-    while(runflag) {
-        gettimeofday(&t2, NULL);
-        dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
-        t1 = t2;
-        if(actived && eaglContext) {
-            vi_app_loop(dt);
-            [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
-        }
-        usleep(10000);
-    }
-
-    //eixt------------------------------------------
-    vi_app_exit();
-    return NULL;
-}
-
 
 
 @interface OpenGLView : UIView
@@ -194,17 +165,16 @@ void* _main(void* args) {
     [self.window setRootViewController:viewctl];
 	[self.window makeKeyAndVisible];
 
-    vi_app_set_screen_size(rect.size.width, rect.size.height);
-
-    //pthread_t tid;
-    //pthread_create(&tid, 0, &_main, 0);
+    
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     const char* savedir = [[paths objectAtIndex:0] UTF8String];
     const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
 
+    vi_app_set_screen_size(rect.size.width, rect.size.height);
     vi_app_init(datadir, savedir);
 	vi_app_main();
+    actived = 1;
     
     return YES;
 }
@@ -228,7 +198,8 @@ void* _main(void* args) {
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    runflag = 0;
+    vi_app_exit();
+    actived = 0;
 }
 
 @end
