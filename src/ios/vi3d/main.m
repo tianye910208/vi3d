@@ -14,11 +14,12 @@
 int runflag = 1;
 int actived = 1;
 
+struct timeval t1, t2;
+
 CAEAGLLayer* eaglLayer = NULL;
 EAGLContext* eaglContext = NULL;
 
-void* _main(void* args)
-{
+void* _main(void* args) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     const char* savedir = [[paths objectAtIndex:0] UTF8String];
     const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
@@ -29,11 +30,10 @@ void* _main(void* args)
 	//loop------------------------------------------
     float dt;
 	struct timeval t1, t2;
-	struct timezone tz;
-	gettimeofday(&t1, &tz);
+	gettimeofday(&t1, NULL);
 
-    while(runflag){
-        gettimeofday(&t2, &tz);
+    while(runflag) {
+        gettimeofday(&t2, NULL);
         dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
         t1 = t2;
         if(actived && eaglContext) {
@@ -60,8 +60,7 @@ void* _main(void* args)
 
 @implementation OpenGLView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 
 	eaglLayer = (CAEAGLLayer*) self.layer;
@@ -94,48 +93,55 @@ void* _main(void* args)
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderBuffer);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
 
+
+    gettimeofday(&t1, NULL);
+    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+	[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	return self;
 }
 
+- (void)render:(CADisplayLink*)displayLink {
+        gettimeofday(&t2, NULL);
+        dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+        t1 = t2;
+        if(actived && eaglContext) {
+            vi_app_loop(dt);
+            [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+        }
+}
 
 + (Class)layerClass {
 	return [CAEAGLLayer class];
 }
 
 
-- (void)setNeedsDisplay
-{
+- (void)setNeedsDisplay {
     //need refresh
 }
 
-- (void)setNeedsDisplayInRect:(CGRect)rect
-{
+- (void)setNeedsDisplayInRect:(CGRect)rect {
     //need refresh
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
 }
 
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [self touchesEnded:touches withEvent:event];
 }
 
@@ -166,8 +172,15 @@ void* _main(void* args)
 
     vi_app_set_screen_size(rect.size.width, rect.size.height);
 
-    pthread_t tid;
-    pthread_create(&tid, 0, &_main, 0);
+    //pthread_t tid;
+    //pthread_create(&tid, 0, &_main, 0);
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    const char* savedir = [[paths objectAtIndex:0] UTF8String];
+    const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
+
+    vi_app_init(datadir, savedir);
+	vi_app_main();
     
     return YES;
 }
