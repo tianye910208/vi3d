@@ -12,6 +12,10 @@
 
 int runflag = 1;
 int actived = 1;
+
+CAEAGLLayer* eaglLayer = NULL;
+EAGLContext* eaglContext = NULL;
+
 void* _main(void* args)
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -31,9 +35,9 @@ void* _main(void* args)
         gettimeofday(&t2, &tz);
         dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
         t1 = t2;
-        if(actived) {
+        if(actived && eaglContext) {
             vi_app_loop(dt);
-            eglSwapBuffers(eglDisplay, eglSurface);
+            [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
         }
         usleep(10000);
     }
@@ -45,12 +49,67 @@ void* _main(void* args)
 
 
 
-
-@interface AppWindow : UIWindow
-
+@interface OpenGLView : UIView
+    GLuint _defaultFrameBuffer;
+	GLuint _colorRenderBuffer;
+	GLuint _depthRenderBuffer;
 @end
 
-@implementation AppWindow { }
+
+@implementation OpenGLView
+
+- (id)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+
+	eaglLayer = (CAEAGLLayer*) self.layer;
+	eaglLayer.opaque = YES;
+		
+	eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+	if (!eaglContext) {
+		NSLog(@"[VI3D]Failed to get OpenGLES context");
+		exit(1);
+	}
+	
+	if (![EAGLContext setCurrentContext:eaglContext]) {
+		NSLog(@"[VI3D]Failed to set OpenGLES context");
+		exit(1);
+	}
+
+    GLuint _colorRenderBuffer;
+    glGenRenderbuffers(1, &_colorRenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
+	[eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
+
+    GLuint _depthRenderBuffer;
+    glGenRenderbuffers(1, &_depthRenderBuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, self.frame.size.width, self.frame.size.height);
+
+    GLuint framebuffer;
+	glGenFramebuffers(1, &framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderBuffer);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+
+	return self;
+}
+
+
+- (void)dealloc
+{
+    if (eaglContext) {
+        [eaglContext release];
+        eaglContext = nil;
+    }
+    [super dealloc];
+}
+
+
++ (Class)layerClass {
+	return [CAEAGLLayer class];
+}
+
 
 - (void)setNeedsDisplay
 {
@@ -60,11 +119,6 @@ void* _main(void* args)
 - (void)setNeedsDisplayInRect:(CGRect)rect
 {
     //need refresh
-}
-
-+(Class)layerClass
-{
-    return [CAEAGLLayer class];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -101,45 +155,28 @@ void* _main(void* args)
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) AppWindow *window;
-
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    CGRect rect = UIScreen.mainScreen.bounds;
-    
-    self.window = [[AppWindow alloc] initWithFrame:rect];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    
-
-    [self.window setScreen:UIScreen.mainScreen];
     [[UIApplication sharedApplication] setStatusBarHidden:true];
-        
+
+    CGRect rect = UIScreen.mainScreen.bounds;
+
+    UIWindow* win = [[UIWindow alloc] initWithFrame:rect]];
+    [win setScreen:UIScreen.mainScreen];
+	
+    UIViewController *ctl = [[UIViewController alloc] init];
+	[ctl setView:[[OpenGLView alloc] initWithFrame:[win bounds]]];
+    [ctl prefersStatusBarHidden];
+    ctl.wantsFullScreenLayout = YES;
+
+    [win setRootViewController:ctl];
+	[win makeKeyAndVisible];
+
     vi_app_set_screen_size(rect.size.width, rect.size.height);
 
-
-    CCEAGLView* glview = [CCEAGLView viewWithFrame: [self.window bounds]
-                                         pixelFormat: kEAGLColorFormatRGB565
-                                         depthFormat: GL_DEPTH24_STENCIL8_OES
-                                  preserveBackbuffer: NO
-                                          sharegroup: nil
-                                       multiSampling: NO
-                                     numberOfSamples: 0 ];
-    [glview setMultipleTouchEnabled:YES];
-
-
-    UIViewController* viewctl = [[UIViewController alloc] init];
-    [viewctl prefersStatusBarHidden];
-    viewctl.wantsFullScreenLayout = YES;
-    viewctl.view = glview;
-
-    [self.window.setRootViewController viewctl];
-    [self.window makeKeyAndVisible];
-
-    
     pthread_t tid;
     pthread_create(&tid, 0, &_main, 0);
     

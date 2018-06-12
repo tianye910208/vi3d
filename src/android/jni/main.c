@@ -136,8 +136,7 @@ void* _main(void* args) {
 	//loop------------------------------------------
 	float dt;
 	struct timeval t1, t2;
-	struct timezone tz;
-	gettimeofday(&t1, &tz);
+	gettimeofday(&t1, NULL);
 	
 	runflag = 1;
 	while (runflag) {
@@ -160,7 +159,7 @@ void* _main(void* args) {
 			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
 		else {
-			gettimeofday(&t2, &tz);
+			gettimeofday(&t2, NULL);
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
 			if (actived) {
