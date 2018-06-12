@@ -14,6 +14,8 @@
 int runflag = 1;
 int actived = 1;
 
+vi_msg* msg = NULL;
+
 struct timeval t1, t2;
 
 CAEAGLLayer* eaglLayer = NULL;
@@ -50,11 +52,8 @@ void* _main(void* args) {
 
 
 
-@interface OpenGLView : UIView {
-    GLuint _defaultFrameBuffer;
-	GLuint _colorRenderBuffer;
-	GLuint _depthRenderBuffer;
-}
+@interface OpenGLView : UIView
+
 @end
 
 
@@ -77,37 +76,40 @@ void* _main(void* args) {
 		exit(1);
 	}
 
+    GLuint depthRenderBuffer;
+    glGenRenderbuffers(1, &depthRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, self.frame.size.width, self.frame.size.height);
+
     GLuint colorRenderBuffer;
     glGenRenderbuffers(1, &colorRenderBuffer);
 	glBindRenderbuffer(GL_RENDERBUFFER, colorRenderBuffer);
 	[eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
 
-    GLuint depthRenderBuffer;
-    glGenRenderbuffers(1, &depthRenderBuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBuffer);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, self.frame.size.width, self.frame.size.height);
-
+    
     GLuint framebuffer;
 	glGenFramebuffers(1, &framebuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderBuffer);
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
 
 
     gettimeofday(&t1, NULL);
     CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
 	[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
 	return self;
 }
 
 - (void)render:(CADisplayLink*)displayLink {
-        gettimeofday(&t2, NULL);
-        dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
-        t1 = t2;
-        if(actived && eaglContext) {
-            vi_app_loop(dt);
-            [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
-        }
+    gettimeofday(&t2, NULL);
+    float dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
+    t1 = t2;
+    if(actived && eaglContext) {
+        vi_app_loop(dt);
+        [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+    }
 }
 
 + (Class)layerClass {
@@ -127,22 +129,44 @@ void* _main(void* args) {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
+    if((bool)(msg = vi_msg_push(VI_MSG_TOUCH_DOWN, 3))) {
+        msg->data[0] = point.x;
+        msg->data[1] = point.y;
+        msg->data[2] = 0;
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
+    if((bool)(msg = vi_msg_push(VI_MSG_TOUCH_MOVE, 3))) {
+        msg->data[0] = point.x;
+        msg->data[1] = point.y;
+        msg->data[2] = 0;
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
     CGPoint point = [touch locationInView:nil];
     
+    if((bool)(msg = vi_msg_push(VI_MSG_TOUCH_UP, 3))) {
+        msg->data[0] = point.x;
+        msg->data[1] = point.y;
+        msg->data[2] = 0;
+    }
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self touchesEnded:touches withEvent:event];
+    UITouch *touch = (UITouch *)[[touches allObjects] objectAtIndex:0];
+    CGPoint point = [touch locationInView:nil];
+    
+    if((bool)(msg = vi_msg_push(VI_MSG_TOUCH_UP, 3))) {
+        msg->data[0] = point.x;
+        msg->data[1] = point.y;
+        msg->data[2] = 0;
+    }
 }
 
 @end
@@ -152,7 +176,7 @@ void* _main(void* args) {
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (strong, nonatomic) UIWindow *window;
 @end
 
 @implementation AppDelegate
@@ -160,15 +184,15 @@ void* _main(void* args) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     CGRect rect = UIScreen.mainScreen.bounds;
 
-    UIWindow* win = [[UIWindow alloc] initWithFrame:rect];
-    [win setScreen:UIScreen.mainScreen];
+    self.window = [[UIWindow alloc] initWithFrame:rect];
+    [self.window  setScreen:UIScreen.mainScreen];
 	
-    UIViewController *ctl = [[UIViewController alloc] init];
-	[ctl setView:[[OpenGLView alloc] initWithFrame:[win bounds]]];
-    [ctl prefersStatusBarHidden];
+    UIViewController* viewctl = [[UIViewController alloc] init];
+	[viewctl setView:[[OpenGLView alloc] initWithFrame:[self.window bounds]]];
+    [viewctl prefersStatusBarHidden];
 
-    [win setRootViewController:ctl];
-	[win makeKeyAndVisible];
+    [self.window setRootViewController:viewctl];
+	[self.window makeKeyAndVisible];
 
     vi_app_set_screen_size(rect.size.width, rect.size.height);
 

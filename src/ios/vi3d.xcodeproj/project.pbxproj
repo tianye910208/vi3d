@@ -53,6 +53,7 @@
 		1D6B094E20CE43FE0070BCCB /* ll_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ll_math.c; path = ../../ll_math.c; sourceTree = "<group>"; };
 		1D6B094F20CE43FE0070BCCB /* vi_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_image.c; path = ../../vi_image.c; sourceTree = "<group>"; };
 		1D6B095020CE43FE0070BCCB /* vi_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_image.h; path = ../../vi_image.h; sourceTree = "<group>"; };
+		1D6B095620CFAE0D0070BCCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1DE466BD1EA9EFFF007B3AE7 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE466C11EA9EFFF007B3AE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		1D043AF81EB0745F003AD0BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D6B095620CFAE0D0070BCCB /* QuartzCore.framework */,
 				1D043AFB1EB07506003AD0BB /* OpenGLES.framework */,
 			);
 			name = Frameworks;
@@ -342,6 +344,7 @@
 					"$(SRCROOT)/../../3rd/stb/",
 				);
 				INFOPLIST_FILE = vi3d/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../3rd/lua-5.3.3/lib_ios/Debug";
@@ -366,6 +369,7 @@
 					"$(SRCROOT)/../../3rd/stb/",
 				);
 				INFOPLIST_FILE = vi3d/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(SRCROOT)/../../3rd/lua-5.3.3/lib_ios/Release";
