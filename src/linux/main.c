@@ -39,7 +39,7 @@ void msg_proc(XEvent* ev)
 	switch (ev->type)
 	{
     case ClientMessage:
-        if(xev.xclient.data.l[0] == wmDeleteWindow)
+        if(ev->xclient.data.l[0] == wmDeleteWindow)
             runflag = 0;
 		break;
 	case ConfigureNotify:
