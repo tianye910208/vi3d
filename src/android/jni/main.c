@@ -24,13 +24,8 @@ ANativeActivity* nativeActivity = NULL;
 ANativeWindow*	 nativeShowWindow = NULL;
 AInputQueue*     nativeInputQueue = NULL;
 
-EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
 EGLNativeWindowType  nativeWindow = NULL;
 
-EGLConfig  eglConfig;
-EGLDisplay eglDisplay;
-EGLContext eglContext;
-EGLSurface eglSurface;
 
 vi_msg* msg;
 int     msgid;
@@ -67,65 +62,9 @@ void msg_proc(AInputEvent* ev) {
 	}
 }
 
-int egl_init() {
-	EGLint configNum = 0;
-	EGLint majorVersion;
-	EGLint minorVersion;
-	EGLint ctxAttribList[] = {
-		EGL_CONTEXT_CLIENT_VERSION, 2,
-		EGL_NONE
-	};
-	EGLint cfgAttribList[] = {
-		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-		EGL_RED_SIZE, 8,
-		EGL_GREEN_SIZE, 8,
-		EGL_BLUE_SIZE, 8,
-		EGL_ALPHA_SIZE, 8,
-		EGL_DEPTH_SIZE, 24,
-		EGL_STENCIL_SIZE, 8,
-		EGL_SAMPLE_BUFFERS, 0,
-		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-		EGL_NONE
-	};
-
-
-	eglDisplay = eglGetDisplay(nativeDisplay);
-
-	if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
-		return 1;
-
-	if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
-		return 2;
-
-	if (!eglChooseConfig(eglDisplay, cfgAttribList, &eglConfig, 1, &configNum) || configNum < 1)
-		return 3;
-
-	eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, ctxAttribList);
-	if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
-		return 4;
-
-	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
-	if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-		return 5;
-
-	if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-		return 6;
-
-	return 0;
-}
-
-void egl_exit() {
-	eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
-	eglDestroySurface(eglDisplay, eglSurface);
-	eglDestroyContext(eglDisplay, eglContext);
-	eglTerminate(eglDisplay);
-}
-
-
-
 void* _main(void* args) {
 	//init------------------------------------------
-	if (egl_init() != 0)
+	if (vi_gles_egl_init(NULL, nativeWindow) != 0)
 		return NULL;
 
 	
@@ -151,11 +90,7 @@ void* _main(void* args) {
 		}
 		else if (nativeShowWindow != nativeWindow) {
 			nativeWindow = nativeShowWindow;
-			eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
-			if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-				vi_log("[E]eglCreateWindowSurface %d", eglGetError());
-			if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-				vi_log("[E]eglMakeCurrent %d", eglGetError());
+			vi_gles_egl_init(NULL, nativeWindow);
 			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
 		else {
@@ -164,7 +99,7 @@ void* _main(void* args) {
 			t1 = t2;
 			if (actived) {
 				vi_app_loop(dt);
-				eglSwapBuffers(eglDisplay, eglSurface);
+				vi_gles_egl_swap();
 			}
 			usleep(10000);
 		}
@@ -173,7 +108,6 @@ void* _main(void* args) {
 
 	//init------------------------------------------
 	vi_app_exit();
-	egl_exit();
 
 	return NULL;
 }

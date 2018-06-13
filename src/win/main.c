@@ -7,16 +7,10 @@
 #define APP_W 800
 #define APP_H 480
 
+HWND hwnd = NULL;
+
 int runflag = 1;
 int actived = 1;
-
-EGLNativeDisplayType nativeDisplay = EGL_DEFAULT_DISPLAY;
-EGLNativeWindowType  nativeWindow = NULL;
-
-EGLConfig  eglConfig;
-EGLDisplay eglDisplay;
-EGLContext eglContext;
-EGLSurface eglSurface;
 
 vi_msg* msg;
 int     msgTouchDown = 0;
@@ -88,7 +82,7 @@ LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 }
 
 
-int egl_init(const char* name, int w, int h) {
+int win_init(const char* name, int w, int h) {
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
     WNDCLASS winclass = {0};
@@ -117,72 +111,26 @@ int egl_init(const char* name, int w, int h) {
 	int screenW = GetSystemMetrics(SM_CXSCREEN);
 	int screenH = GetSystemMetrics(SM_CYSCREEN);
 
-	nativeWindow = CreateWindow(name, name, winstyle, (screenW - w)/2, (screenH - h)/2, w, h, NULL, NULL, hInstance, NULL);
-    if (nativeWindow == NULL)
+	hwnd = CreateWindow(name, name, winstyle, (screenW - w) / 2, (screenH - h) / 2, w, h, NULL, NULL, hInstance, NULL);
+	if (hwnd == NULL)
         return 2;
     
-    ShowWindow(nativeWindow, TRUE);
-	SetForegroundWindow(nativeWindow);
-	SetFocus(nativeWindow);
-
-	EGLint configNum = 0;
-	EGLint majorVersion;
-	EGLint minorVersion;
-	EGLint ctxAttribList[] = {
-		EGL_CONTEXT_CLIENT_VERSION, 2,
-		EGL_NONE
-	};
-	EGLint cfgAttribList[] = {
-		EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
-		EGL_RED_SIZE, 8,
-		EGL_GREEN_SIZE, 8,
-		EGL_BLUE_SIZE, 8,
-		EGL_ALPHA_SIZE, 8,
-		EGL_DEPTH_SIZE, 24,
-		EGL_STENCIL_SIZE, 8,
-		EGL_SAMPLE_BUFFERS, 0,
-		EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-		EGL_NONE
-	};
-
-
-	eglDisplay = eglGetDisplay(nativeDisplay);
-
-	if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
-		return 11;
-
-	if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
-		return 12;
-
-	if (!eglChooseConfig(eglDisplay, cfgAttribList, &eglConfig, 1, &configNum) || configNum < 1)
-		return 13;
-
-	eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, ctxAttribList);
-	if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS)
-		return 14;
-
-	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, nativeWindow, NULL);
-	if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS)
-		return 15;
-
-	if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS)
-		return 16;
+	ShowWindow(hwnd, TRUE);
+	SetForegroundWindow(hwnd);
+	SetFocus(hwnd);
 
 	return 0;
 }
 
-void egl_exit() {
-    eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
-    eglDestroyContext(eglDisplay, eglContext);
-    eglDestroySurface(eglDisplay, eglSurface);
-    eglTerminate(eglDisplay);
-}
 
 int main(int argc, char *argv[]) {
 	//init------------------------------------------
-	if (egl_init("vi3d", APP_W, APP_H) != 0)
+	if (win_init("vi3d", APP_W, APP_H) != 0)
         return 1;
 	
+	if (vi_gles_egl_init(NULL, hwnd) != 0)
+		return 2;
+
 	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
 	vi_app_main();
 
@@ -204,7 +152,7 @@ int main(int argc, char *argv[]) {
 			
 			if(actived) {
 				vi_app_loop(dt);
-				eglSwapBuffers(eglDisplay, eglSurface);
+				vi_gles_egl_swap();
 			}
 			Sleep(10);
 		}
@@ -212,7 +160,6 @@ int main(int argc, char *argv[]) {
 
 	//exit------------------------------------------
 	vi_app_exit();
-    egl_exit();
 
     return 0;
 }

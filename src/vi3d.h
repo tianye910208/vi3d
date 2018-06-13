@@ -12,6 +12,7 @@ extern "C" {
 #include "vi_app.h"
 #include "vi_msg.h"
 #include "vi_lua.h"
+#include "vi_gles.h"
 #include "vi_math.h"
 #include "vi_file.h"
 #include "vi_image.h"

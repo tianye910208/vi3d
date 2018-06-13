@@ -11,9 +11,8 @@ gen_by_src(srclist)
 
 
 local fd = io.open("out/ll_gles.c", "w+")
-fd:write("#include \"vi_sys.h\"\n")
+fd:write("#include \"vi_gles.h\"\n")
 fd:write("#include \"vi_lua.h\"\n")
-fd:write("#ifdef VI3D_SYS_WIN\n#include <malloc.h>\n#endif\n")
 
 fcopy("src/gles.lua", "out/gles.lua")
 local fdoc = io.open("out/gles.lua", "a")

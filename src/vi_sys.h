@@ -73,23 +73,9 @@ typedef unsigned long long  uint64;
 #ifdef VI3D_SYS_WIN
 #define WIN32_LEAN_AND_MEAN
 #define inline __inline
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
 #endif
-#ifdef VI3D_SYS_IOS
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
-#endif
-#ifdef VI3D_SYS_LINUX
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
-#endif
+
 #ifdef VI3D_SYS_ANDROID
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
 #include <android/native_activity.h>
 void vi_sys_set_activity(ANativeActivity* activity);
 ANativeActivity* vi_sys_get_activity();

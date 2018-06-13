@@ -1,8 +1,5 @@
-#include "vi_sys.h"
+#include "vi_gles.h"
 #include "vi_lua.h"
-#ifdef VI3D_SYS_WIN
-#include <malloc.h>
-#endif
 
 //void glActiveTexture(GLenum texture)
 //glActiveTexture(<int>texture)

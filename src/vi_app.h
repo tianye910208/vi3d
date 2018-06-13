@@ -1,8 +1,6 @@
 #ifndef _VI3D_APP_
 #define _VI3D_APP_
 
-#include "vi_sys.h"
-
 typedef struct _vi_app {
 	float time;
 

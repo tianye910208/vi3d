@@ -1,8 +1,8 @@
 #include "vi_app.h"
 #include "vi_mem.h"
 #include "vi_log.h"
-#include "vi_msg.h"
 #include "vi_lua.h"
+#include "vi_gles.h"
 #include "vi_file.h"
 
 static vi_app __app_instance = {0};
@@ -61,7 +61,7 @@ int vi_app_main() {
 
 int vi_app_exit() {
 	vi_lua_exit();
-	
+	vi_gles_egl_exit();
 	return 0;
 }
 

@@ -26,6 +26,7 @@
     <ClCompile Include="..\vi3d.c" />
     <ClCompile Include="..\vi_app.c" />
     <ClCompile Include="..\vi_file.c" />
+    <ClCompile Include="..\vi_gles.c" />
     <ClCompile Include="..\vi_image.c" />
     <ClCompile Include="..\vi_log.c" />
     <ClCompile Include="..\vi_lua.c" />
@@ -40,6 +41,7 @@
     <ClInclude Include="..\vi3d.h" />
     <ClInclude Include="..\vi_app.h" />
     <ClInclude Include="..\vi_file.h" />
+    <ClInclude Include="..\vi_gles.h" />
     <ClInclude Include="..\vi_image.h" />
     <ClInclude Include="..\vi_log.h" />
     <ClInclude Include="..\vi_lua.h" />
