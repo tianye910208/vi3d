@@ -11,8 +11,8 @@
 #define APP_H 480
 
 
-Display nativeDisplay = NULL;
-Window  nativeWindow = NULL;
+Display* nativeDisplay = NULL;
+Window   nativeWindow = 0;
 
 Atom wmDeleteWindow;
 
