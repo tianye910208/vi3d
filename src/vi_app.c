@@ -61,7 +61,7 @@ int vi_app_main() {
 
 int vi_app_exit() {
 	vi_lua_exit();
-	vi_gles_egl_exit();
+	vi_gles_exit();
 	return 0;
 }
 

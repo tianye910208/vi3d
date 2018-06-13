@@ -1,12 +1,10 @@
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include "resource.h"
 #include "vi3d.h"
-
+#include "resource.h"
 
 #define APP_W 800
 #define APP_H 480
 
+HINSTANCE hinst = NULL;
 HWND hwnd = NULL;
 
 int runflag = 1;
@@ -83,15 +81,15 @@ LRESULT WINAPI msg_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 
 int win_init(const char* name, int w, int h) {
-    HINSTANCE hInstance = GetModuleHandle(NULL);
+	HINSTANCE hinst = GetModuleHandle(NULL);
 
     WNDCLASS winclass = {0};
 	winclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	//winclass.hIcon = LoadIcon(NULL, IDI_WINLOGO);
-	winclass.hIcon = LoadIcon(hInstance, (LPCTSTR)IDI_ICON);
+	winclass.hIcon = LoadIcon(hinst, (LPCTSTR)IDI_ICON);
 	winclass.hCursor = LoadCursor(NULL, IDC_ARROW);
     winclass.lpfnWndProc = (WNDPROC)msg_proc;
-    winclass.hInstance = hInstance;
+	winclass.hInstance = hinst;
     winclass.lpszClassName = name;
 
     if (!RegisterClass(&winclass))
@@ -111,7 +109,7 @@ int win_init(const char* name, int w, int h) {
 	int screenW = GetSystemMetrics(SM_CXSCREEN);
 	int screenH = GetSystemMetrics(SM_CYSCREEN);
 
-	hwnd = CreateWindow(name, name, winstyle, (screenW - w) / 2, (screenH - h) / 2, w, h, NULL, NULL, hInstance, NULL);
+	hwnd = CreateWindow(name, name, winstyle, (screenW - w) / 2, (screenH - h) / 2, w, h, NULL, NULL, hinst, NULL);
 	if (hwnd == NULL)
         return 2;
     
@@ -128,7 +126,7 @@ int main(int argc, char *argv[]) {
 	if (win_init("vi3d", APP_W, APP_H) != 0)
         return 1;
 	
-	if (vi_gles_egl_init(NULL, hwnd) != 0)
+	if (vi_gles_init(NULL, hwnd) != 0)
 		return 2;
 
 	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
@@ -152,7 +150,7 @@ int main(int argc, char *argv[]) {
 			
 			if(actived) {
 				vi_app_loop(dt);
-				vi_gles_egl_swap();
+				vi_gles_swap();
 			}
 			Sleep(10);
 		}

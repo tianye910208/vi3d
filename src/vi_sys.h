@@ -73,6 +73,7 @@ typedef unsigned long long  uint64;
 #ifdef VI3D_SYS_WIN
 #define WIN32_LEAN_AND_MEAN
 #define inline __inline
+#include <Windows.h>
 #endif
 
 #ifdef VI3D_SYS_ANDROID

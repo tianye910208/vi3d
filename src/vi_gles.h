@@ -4,33 +4,63 @@
 #include "vi_sys.h"
 
 
-#ifdef VI3D_SYS_WIN
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
+#ifdef VI3D_SYS_ANDROID
+#define VI3D_GLES_EGL
 #endif
 
 #ifdef VI3D_SYS_IOS
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
+#define VI3D_GLES_AGL
+#endif
+
+#ifdef VI3D_SYS_WIN
+#ifndef VI3D_GLES_EGL
+#define VI3D_GLES_WGL
+#endif
 #endif
 
 #ifdef VI3D_SYS_LINUX
+#ifndef VI3D_GLES_EGL
+#define VI3D_GLES_GLX
+#endif
+#endif
+
+
+
+
+#ifdef VI3D_GLES_EGL
 #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
-#endif
 
-#ifdef VI3D_SYS_ANDROID
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
-#endif
-
+#define vi_gles_init vi_gles_egl_init
+#define vi_gles_exit vi_gles_egl_exit
+#define vi_gles_swap vi_gles_egl_swap
 
 int vi_gles_egl_init(EGLNativeDisplayType display, EGLNativeWindowType window);
 int vi_gles_egl_exit();
 int vi_gles_egl_swap();
+#endif
+
+#ifdef VI3D_GLES_AGL
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
+#endif
+
+#ifdef VI3D_GLES_WGL
+#include <GL/glew.h>
+#include <GL/wglew.h>
+
+#define vi_gles_init vi_gles_wgl_init
+#define vi_gles_exit vi_gles_wgl_exit
+#define vi_gles_swap vi_gles_wgl_swap
+
+int vi_gles_wgl_init(void* _display, HWND hwnd);
+int vi_gles_wgl_exit();
+int vi_gles_wgl_swap();
+#endif
+
+
+
 
 #endif 
 

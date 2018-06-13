@@ -144,14 +144,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\;..\..\3rd\GLES-Mali-v3.0.1-x64\include;..\..\3rd\lua-5.3.3\src;..\..\3rd\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\..\3rd\GLES-Mali-v3.0.1-x64\include;..\..\3rd\glew-2.1.0\include;..\..\3rd\lua-5.3.3\src;..\..\3rd\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>..\..\3rd\GLES-Mali-v3.0.1-x64\libGLESv2.lib;..\..\3rd\GLES-Mali-v3.0.1-x64\libEGL.lib;..\..\3rd\lua-5.3.3\lib_win64\lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\3rd\GLES-Mali-v3.0.1-x64\libGLESv2.lib;..\..\3rd\GLES-Mali-v3.0.1-x64\libEGL.lib;..\..\3rd\lua-5.3.3\lib_win64\lua.lib;..\..\3rd\glew-2.1.0\lib\x64\glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <StackReserveSize>
       </StackReserveSize>
