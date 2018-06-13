@@ -4,7 +4,6 @@
 #define APP_W 800
 #define APP_H 480
 
-HINSTANCE hinst = NULL;
 HWND hwnd = NULL;
 
 int runflag = 1;

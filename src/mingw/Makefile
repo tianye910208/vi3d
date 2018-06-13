@@ -1,9 +1,9 @@
 TARGET := vi3d
 
 CC     := gcc
-CCFLAG := -I../ -I../../3rd/GLES-Mali-v3.0.1-x64/include -I../../3rd/lua-5.3.3/src/ -I../../3rd/stb/
-LDFLAG := -L../../3rd/GLES-Mali-v3.0.1-x64/ -L../../3rd/lua-5.3.3/lib_mingw/
-LDLIBS := -lgdi32 -lEGL -lGLESv2 -llua
+CCFLAG := -I../ -I../../3rd/lua-5.3.3/src/ -I../../3rd/stb/
+LDFLAG := -L../../3rd/lua-5.3.3/lib_mingw/
+LDLIBS := -lgdi32 -llua
 
 
 
@@ -12,6 +12,19 @@ SRCS := $(wildcard ../*.c) \
 
 OBJS := $(SRCS:../%.c=obj/%.o)
 DEPS := $(OBJS:%.o=%.d)
+
+
+
+ifeq ($(EGL),1)
+	CCFLAG += -DVI3D_GLES_EGL -I../../3rd/GLES-Mali-v3.0.1-x64/include
+    LDFLAG += -L../../3rd/GLES-Mali-v3.0.1-x64/
+    LDLIBS += -lEGL -lGLESv2 
+else
+	CCFLAG += -I../../3rd/glew-2.1.0/include
+    LDFLAG += -L../../3rd/glew-2.1.0/lib/x64/
+    LDLIBS += -lopengl32 -lglew32
+endif
+
 
 all: $(DEPS) $(OBJS)
 	@echo [M]Link $(TARGET)
@@ -35,11 +48,10 @@ clean:
 	rm -rf bin
 	rm -rf obj
 
+
+
+
 -include $(DEPS)
-
-
-
-
 
 
 
