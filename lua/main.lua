@@ -26,6 +26,11 @@ local function app_init()
     require("vi3d/math")
     
     
+    print("GL_RENDERER", glGetString(GL_RENDERER))
+    print("GL_VENDOR", glGetString(GL_VENDOR))
+    print("GL_VERSION", glGetString(GL_VERSION))
+        
+    
     --table.insert(app_func, require("test/gles"))
     --table.insert(app_func, require("test/math"))
     table.insert(app_func, require("test/cube"))

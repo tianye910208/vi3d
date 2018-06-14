@@ -10,12 +10,12 @@
 #pragma comment(lib, "../../3rd/GLES-Mali-v3.0.1-x64/libEGL.lib")
 #endif
 
+static EGLConfig config = NULL;
 static EGLDisplay eglDisplay = EGL_NO_DISPLAY;
 static EGLContext eglContext = EGL_NO_CONTEXT;
 static EGLSurface eglSurface = EGL_NO_SURFACE;
 
 int vi_gles_egl_init(EGLNativeDisplayType display, EGLNativeWindowType  window) {
-	EGLConfig config = NULL;
 	
 	if (eglDisplay == EGL_NO_DISPLAY) {
 		eglDisplay = eglGetDisplay(display);

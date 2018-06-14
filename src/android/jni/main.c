@@ -86,7 +86,7 @@ void* _main(void* args) {
 		}
 		else if (nativeShowWindow != nativeWindow) {
 			nativeWindow = nativeShowWindow;
-			vi_gles_egl_init(NULL, nativeWindow);
+			vi_gles_init(NULL, nativeWindow);
 			//vi_app_set_screen_size(screenWidth, screenHeight);
 		}
 		else {
