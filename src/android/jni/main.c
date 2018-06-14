@@ -64,12 +64,8 @@ void msg_proc(AInputEvent* ev) {
 
 void* _main(void* args) {
 	//init------------------------------------------
-	if (vi_gles_egl_init(NULL, nativeWindow) != 0)
-		return NULL;
-
-	
-	vi_app_init("", nativeActivity->internalDataPath);
-	vi_app_main();
+	if(vi_app_init(NULL, nativeWindow, "", nativeActivity->internalDataPath)) return NULL;
+	if(vi_app_main()) return NULL;
 	
 
 	//loop------------------------------------------
@@ -97,10 +93,9 @@ void* _main(void* args) {
 			gettimeofday(&t2, NULL);
 			dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
 			t1 = t2;
-			if (actived) {
+			if (actived)
 				vi_app_loop(dt);
-				vi_gles_egl_swap();
-			}
+			
 			usleep(10000);
 		}
 

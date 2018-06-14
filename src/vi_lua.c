@@ -23,7 +23,7 @@ int vi_lua_init() {
 	lua_State* L = luaL_newstate();
 	if (L == NULL) {
 		vi_log("[VI3D][E]create lua state failed");
-		return 1;
+		return 201;
 	}
 	lua_pushcfunction(L, &_vi_lua_init);
 	int status = lua_pcall(L, 0, 1, 0);  /* do the call */
@@ -32,7 +32,7 @@ int vi_lua_init() {
 
 	if (status != LUA_OK || result == 0) {
 		vi_log("[VI3D][E]setup lua state failed");
-		return 1;
+		return 202;
 	}
 
 	__lua_state = (vi_lua_state*)vi_mem_alloc(sizeof(vi_lua_state));
@@ -40,6 +40,7 @@ int vi_lua_init() {
 	__lua_state->L = L;
 	__lua_state->app_loop = LUA_REFNIL;
 	__lua_state->err_func = LUA_REFNIL;
+
 	return 0;
 }
 

@@ -16,7 +16,7 @@ float vi_app_time() {
 }
 
 
-int vi_app_init(const char* datapath, const char* savepath) {
+int vi_app_init(void* display, void* window, const char* datapath, const char* savepath) {
 	char* data_path = __app_instance.data_path;
 	strcpy(data_path, datapath);
 	int data_path_len = (int)strlen(data_path);
@@ -33,7 +33,12 @@ int vi_app_init(const char* datapath, const char* savepath) {
 		save_path[save_path_len + 1] = '\0';
 	}
 
-	vi_lua_init();	
+	int err = vi_gles_init(display, window);
+	if (err) 
+		return err;
+	err = vi_lua_init();	
+	if (err)
+		return err;
 	return 0;
 }
 
@@ -46,7 +51,7 @@ int vi_app_main() {
 	vi_file* f = vi_file_open(luafile, "r");
 	if (!f) {
 		vi_log("[E]vi_app_init open file failed: %s", luafile);
-		return 1;
+		return 301;
 	}
 
 	int size = vi_file_size(f);
@@ -69,6 +74,7 @@ int vi_app_exit() {
 void vi_app_loop(float dt) {
 	__app_instance.time += dt;
 	vi_lua_loop(dt);
+	vi_gles_swap();
 }
 
 

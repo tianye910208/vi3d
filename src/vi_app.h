@@ -22,7 +22,7 @@ typedef struct _vi_app {
 vi_app* vi_app_info();
 float vi_app_time();
 
-int vi_app_init(const char* datapath, const char* savepath);
+int vi_app_init(void* display, void* window, const char* datapath, const char* savepath);
 int vi_app_main();
 int vi_app_exit();
 

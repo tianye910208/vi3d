@@ -172,8 +172,10 @@ EAGLContext* eaglContext = NULL;
     const char* datadir = [[[NSBundle mainBundle] resourcePath] UTF8String];
 
     vi_app_set_screen_size(rect.size.width, rect.size.height);
-    vi_app_init(datadir, savedir);
-	vi_app_main();
+
+    if(vi_app_init(datadir, savedir)) return NO;
+	if(vi_app_main()) return NO;
+
     actived = 1;
     
     return YES;

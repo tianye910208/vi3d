@@ -4,6 +4,12 @@
 
 #ifdef VI3D_GLES_EGL
 
+#ifdef VI3D_SYS_WIN
+#pragma comment(lib, "../../3rd/lua-5.3.3/lib_win64/lua.lib")
+#pragma comment(lib, "../../3rd/GLES-Mali-v3.0.1-x64/libGLESv2.lib")
+#pragma comment(lib, "../../3rd/GLES-Mali-v3.0.1-x64/libEGL.lib")
+#endif
+
 static EGLDisplay eglDisplay = EGL_NO_DISPLAY;
 static EGLContext eglContext = EGL_NO_CONTEXT;
 static EGLSurface eglSurface = EGL_NO_SURFACE;
@@ -15,11 +21,11 @@ int vi_gles_egl_init(EGLNativeDisplayType display, EGLNativeWindowType  window) 
 		eglDisplay = eglGetDisplay(display);
 
 		if (eglDisplay == EGL_NO_DISPLAY || eglGetError() != EGL_SUCCESS)
-			return 1;
+			return 101;
 
 		EGLint majorVersion, minorVersion;
 		if (!eglInitialize(eglDisplay, &majorVersion, &minorVersion) || eglGetError() != EGL_SUCCESS)
-			return 2;
+			return 102;
 		
 		EGLint cfgAttribList[] = {
 			EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
@@ -35,7 +41,7 @@ int vi_gles_egl_init(EGLNativeDisplayType display, EGLNativeWindowType  window) 
 		};
 		EGLint cfgNum = 0;
 		if (!eglChooseConfig(eglDisplay, cfgAttribList, &config, 1, &cfgNum) || cfgNum < 1)
-			return 3;
+			return 103;
 	}
 
 	if (eglContext == EGL_NO_CONTEXT) {
@@ -46,19 +52,19 @@ int vi_gles_egl_init(EGLNativeDisplayType display, EGLNativeWindowType  window) 
 		eglContext = eglCreateContext(eglDisplay, config, EGL_NO_CONTEXT, ctxAttribList);
 		if (eglContext == EGL_NO_CONTEXT || eglGetError() != EGL_SUCCESS) {
 			vi_log("[E]eglCreateContext %d", eglGetError());
-			return 4;
+			return 104;
 		}
 	}
 
 	eglSurface = eglCreateWindowSurface(eglDisplay, config, window, NULL);
 	if (eglSurface == EGL_NO_SURFACE || eglGetError() != EGL_SUCCESS) {
 		vi_log("[E]eglCreateWindowSurface %d", eglGetError());
-		return 5;
+		return 105;
 	}
 
 	if (!eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext) || eglGetError() != EGL_SUCCESS) {
 		vi_log("[E]eglMakeCurrent %d", eglGetError());
-		return 6;
+		return 106;
 	}
 
 	return 0;
@@ -86,82 +92,124 @@ int vi_gles_egl_swap() {
 	return 0;
 }
 
-#endif
+#endif//VI3D_GLES_EGL
 
+#ifdef VI3D_GLES_AGL
 
+int vi_gles_agl_init() {
+	return 0;
+}
 
+int vi_gles_agl_exit() {
+	return 0;
+}
+
+int vi_gles_agl_swap() {
+	return 0;
+}
+
+#endif//VI3D_GLES_AGL
 
 
 #ifdef VI3D_GLES_WGL
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "../../3rd/lua-5.3.3/lib_win64/lua.lib")
+#pragma comment(lib, "../../3rd/glew-2.1.0/lib/x64/glew32.lib")
+
 
 HWND hWnd;
 HDC hDC;
 HGLRC hRC;
-int vi_gles_wgl_init(void* _display, HWND hwnd) {
-	int err = wglewInit();
-	if (GLEW_OK != err) {
-		vi_log("[E]wglewInit %s", glewGetErrorString(err));
-	}
-	if (!WGLEW_ARB_create_context || !WGLEW_ARB_pixel_format) {
-		vi_log("[E]wglewInit %p %p", WGLEW_ARB_create_context, WGLEW_ARB_pixel_format);
-		return 1;
-	}
 
+int vi_gles_wgl_init(void* _display, HWND hwnd) {
 	hWnd = hwnd;
 	hDC = GetDC(hwnd);
-	
-	const int iPixelFormatAttributeList[] = {
-		WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,                        // 绘制到窗口
-		WGL_SUPPORT_OPENGL_ARB, GL_TRUE,                        // 支持OpenGL
-		WGL_ACCELERATION_ARB, WGL_FULL_ACCELERATION_ARB,        // 硬件加速
-		WGL_DOUBLE_BUFFER_ARB, GL_TRUE,                         // 双缓冲
-		WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,                  // RGBA
-		WGL_COLOR_BITS_ARB, 32,                                 // 颜色位数32
-		WGL_DEPTH_BITS_ARB, 24,                                 // 深度位数24
-		WGL_STENCIL_BITS_ARB, 8,                                // 模板位数8
-		WGL_SWAP_METHOD_ARB, WGL_SWAP_EXCHANGE_ARB,             // 双缓冲swap方式直接交换
-		WGL_SAMPLES_ARB, 4,										// 4倍抗锯齿
-		0
+
+	PIXELFORMATDESCRIPTOR pfd = {
+		sizeof(PIXELFORMATDESCRIPTOR),//描述器大小 
+		1,//版本
+		PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
+		PFD_TYPE_RGBA,//颜色格式RGBA
+		32, //颜色深度
+		0, 0, 0, 0, 0, 0,  //Color Bits Ignored        
+		0, //alpha通道缓冲，不设置        
+		0, // Shift Bit Ignored   
+		0, //累积缓冲
+		0, 0, 0, 0,// Accumulation Bits Ignored
+		16,//深度缓冲
+		0, //蒙板缓冲
+		0, //辅助缓冲
+		PFD_MAIN_PLANE,// Main Drawing Layer(主绘图区)  
+		0, //保留        
+		0, 0, 0 //Layer Masks Ignored   
 	};
 
-	const int iContextAttributeList[] = {
-		WGL_CONTEXT_MAJOR_VERSION_ARB, 3,                        // 主版本号
-		WGL_CONTEXT_MINOR_VERSION_ARB, 3,                        // 次版本号
-		WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-		0
-	};
+	int pixelformat = ChoosePixelFormat(hDC, &pfd);
+	if (pixelformat == 0)
+		return 101;
 
-	int iPixelFormat, iNumFormat;
-	wglChoosePixelFormatARB(hDC, iPixelFormatAttributeList, NULL, 1, &iPixelFormat, (UINT *)&iNumFormat);
+	if (!SetPixelFormat(hDC, pixelformat, &pfd))
+		return 102;
 
-	PIXELFORMATDESCRIPTOR pfd;
-	if (!SetPixelFormat(hDC, iPixelFormat, &pfd)) {
-		vi_log("[E]SetPixelFormat %d", GetLastError());
-		return 2;
+	hRC = wglCreateContext(hDC);
+	if (!hRC)
+		return 103;
+	if (!wglMakeCurrent(hDC, hRC))
+		return 104;
+
+	int err = glewInit();
+	if (err != GLEW_OK) {
+		vi_log("[E]wglewInit %s", glewGetErrorString(err));
+		return 105;
 	}
-
-	hRC = wglCreateContextAttribsARB(hDC, NULL, iContextAttributeList);
-	if (!hRC) {
-		vi_log("[E]wglCreateContextAttribsARB %d", GetLastError());
-		return 3;
-	}
-	
-	wglMakeCurrent(hDC, hRC);
 	return 0;
 }
 
 int vi_gles_wgl_exit() {
-	wglMakeCurrent(hDC, NULL);
-	wglDeleteContext(hRC);
-	ReleaseDC(hWnd, hDC);
+	if (hRC)
+		wglMakeCurrent(NULL, NULL);
+	if (hRC)
+		wglDeleteContext(hRC);
+	if (hWnd && hDC)
+		ReleaseDC(hWnd, hDC);
 	return 0;
 }
 
 int vi_gles_wgl_swap() {
-	return wglSwapLayerBuffers(hDC, WGL_SWAP_MAIN_PLANE);
+	return hDC && SwapBuffers(hDC);
+}
+
+#endif//VI3D_GLES_WGL
+
+
+#ifdef VI3D_GLES_GLX
+
+int vi_gles_glx_init() {
+	return 0;
+}
+
+int vi_gles_glx_exit() {
+	return 0;
+}
+
+int vi_gles_glx_swap() {
+	return 0;
 }
 
 
-#endif
+#endif//VI3D_GLES_GLX
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -122,14 +122,10 @@ int win_init(const char* name, int w, int h) {
 
 int main(int argc, char *argv[]) {
 	//init------------------------------------------
-	if (win_init("vi3d", APP_W, APP_H) != 0)
-        return 1;
-	
-	if (vi_gles_init(NULL, hwnd) != 0)
-		return 2;
-
-	vi_app_init(argc>1?argv[1]:"../../", argc>2?argv[2]:"../../usr/");
-	vi_app_main();
+	int err = 0;
+	if(err = win_init("vi3d", APP_W, APP_H)) return err;
+	if(err = vi_app_init(NULL, hwnd, argc>1 ? argv[1] : "../../", argc>2 ? argv[2] : "../../usr/")) return err;
+	if(err = vi_app_main()) return err;
 
 	//loop------------------------------------------
 	float dt;
@@ -147,10 +143,9 @@ int main(int argc, char *argv[]) {
 			dt = (float)(t2 - t1) / 1000.0f;
 			t1 = t2;
 			
-			if(actived) {
+			if(actived)
 				vi_app_loop(dt);
-				vi_gles_swap();
-			}
+			
 			Sleep(10);
 		}
 	}
