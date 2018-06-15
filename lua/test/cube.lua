@@ -2,8 +2,6 @@ print("============test_cube============")
 
 
 local vShaderStr = [[
-    precision mediump float;
-    
     attribute vec4 a_position;
     attribute vec2 a_texcoord;
     attribute vec4 a_color;
@@ -21,7 +19,9 @@ local vShaderStr = [[
 ]]
 
 local fShaderStr = [[
+#ifdef GL_ES
     precision mediump float;
+#endif
     
     varying vec2 v_texcoord;
     varying vec4 v_color;

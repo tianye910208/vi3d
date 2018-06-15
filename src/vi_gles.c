@@ -191,23 +191,40 @@ static GLXContext 	glxContext;
 
 int vi_gles_glx_init(Display* display, Window window) {
 	glxDisplay = display;
+	glxWindow = window;
 
 	GLint att[] = { 
-		GLX_RGBA, GLX_DEPTH_SIZE, 24, 
-		GLX_DOUBLEBUFFER, 
-		None 
+	    GLX_DOUBLEBUFFER, 
+        GLX_RGBA, 
+        GLX_RED_SIZE, 8,
+        GLX_GREEN_SIZE, 8,
+        GLX_BLUE_SIZE, 8,
+        GLX_ALPHA_SIZE, 8,
+        GLX_DEPTH_SIZE, 24,
+        GLX_STENCIL_SIZE, 8,
+        None 
 	};
+
 	XVisualInfo* vi = glXChooseVisual(glxDisplay, 0, att);
-	if(vi == NULL) 
+	if (vi == NULL) 
 		return 101;
 	
+    XSetWindowAttributes swa;
+    swa.colormap = XCreateColormap(glxDisplay, RootWindow(glxDisplay, vi->screen), vi->visual, AllocNone);
+    if (!XChangeWindowAttributes(glxDisplay, glxWindow, CWColormap, &swa))
+        return 102;
+
 	glxContext = glXCreateContext(glxDisplay, vi, NULL, GL_TRUE);
- 	glXMakeCurrent(glxDisplay, window, glxContext);
+    if (!glxContext)
+        return 103;
+
+ 	if (!glXMakeCurrent(glxDisplay, glxWindow, glxContext))
+        return 104;
  
 	int err = glewInit();
 	if (err != GLEW_OK) {
 		vi_log("[E]glewInit %s", glewGetErrorString(err));
-		return 102;
+		return 105;
 	}
 
 	return 0;
