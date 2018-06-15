@@ -22,7 +22,7 @@
 		1D043AFC1EB07506003AD0BB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D043AFB1EB07506003AD0BB /* OpenGLES.framework */; };
 		1D6B095120CE43FE0070BCCB /* ll_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B094E20CE43FE0070BCCB /* ll_math.c */; };
 		1D6B095220CE43FE0070BCCB /* vi_image.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B094F20CE43FE0070BCCB /* vi_image.c */; };
-		1D96B4DB20D3BFA10020B9B0 /* vi_gles.c in Sources */ = {isa = PBXBuildFile; fileRef = 1D96B4D920D3BFA10020B9B0 /* vi_gles.c */; };
+		1D96B4E120D3CBFA0020B9B0 /* vi_gles.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D96B4E020D3CBFA0020B9B0 /* vi_gles.m */; };
 		1DE466C21EA9EFFF007B3AE7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE466C11EA9EFFF007B3AE7 /* main.m */; };
 		1DE466CD1EA9EFFF007B3AE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -55,8 +55,8 @@
 		1D6B094F20CE43FE0070BCCB /* vi_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_image.c; path = ../../vi_image.c; sourceTree = "<group>"; };
 		1D6B095020CE43FE0070BCCB /* vi_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_image.h; path = ../../vi_image.h; sourceTree = "<group>"; };
 		1D6B095620CFAE0D0070BCCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1D96B4D920D3BFA10020B9B0 /* vi_gles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vi_gles.c; path = ../../vi_gles.c; sourceTree = "<group>"; };
 		1D96B4DA20D3BFA10020B9B0 /* vi_gles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vi_gles.h; path = ../../vi_gles.h; sourceTree = "<group>"; };
+		1D96B4E020D3CBFA0020B9B0 /* vi_gles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vi_gles.m; sourceTree = "<group>"; };
 		1DE466BD1EA9EFFF007B3AE7 /* vi3d.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vi3d.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE466C11EA9EFFF007B3AE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1DE466CC1EA9EFFF007B3AE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		1DE466BF1EA9EFFF007B3AE7 /* vi3d */ = {
 			isa = PBXGroup;
 			children = (
-				1D96B4D920D3BFA10020B9B0 /* vi_gles.c */,
+				1D96B4E020D3CBFA0020B9B0 /* vi_gles.m */,
 				1D96B4DA20D3BFA10020B9B0 /* vi_gles.h */,
 				1D6B094E20CE43FE0070BCCB /* ll_math.c */,
 				1D6B094F20CE43FE0070BCCB /* vi_image.c */,
@@ -224,10 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D96B4E120D3CBFA0020B9B0 /* vi_gles.m in Sources */,
 				1D043AEB1EB051DD003AD0BB /* vi_file.c in Sources */,
 				1D043AF21EB051DD003AD0BB /* vi3d.c in Sources */,
 				1D043AEC1EB051DD003AD0BB /* vi_log.c in Sources */,
-				1D96B4DB20D3BFA10020B9B0 /* vi_gles.c in Sources */,
 				1D043AF01EB051DD003AD0BB /* vi_msg.c in Sources */,
 				1DE466C21EA9EFFF007B3AE7 /* main.m in Sources */,
 				1D043AEE1EB051DD003AD0BB /* vi_math.c in Sources */,
