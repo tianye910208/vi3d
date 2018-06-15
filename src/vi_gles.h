@@ -61,6 +61,7 @@ int vi_gles_agl_swap();
 #endif//VI3D_GLES_AGL
 
 #ifdef VI3D_GLES_WGL
+#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GL/wglew.h>
 

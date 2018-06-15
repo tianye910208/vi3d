@@ -114,7 +114,7 @@ int vi_gles_agl_swap() {
 #ifdef VI3D_GLES_WGL
 #pragma comment(lib, "opengl32.lib")
 #pragma comment(lib, "../../3rd/lua-5.3.3/lib_win64/lua.lib")
-#pragma comment(lib, "../../3rd/glew-2.1.0/lib/x64/glew32.lib")
+#pragma comment(lib, "../../3rd/glew-2.1.0/lib/x64/glew32s.lib")
 
 
 HWND hWnd;
