@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <pthread.h>
-#import <sys/time.h>
-#import "vi3d.h"
+
+#include <sys/time.h>
+#include "vi3d.h"
 
 
 int actived = 0;
@@ -17,6 +17,10 @@ int actived = 0;
 struct timeval t1, t2;
 
 vi_msg* msg = NULL;
+
+
+EAGLContext* eaglContext = NULL;
+
 
 
 @interface OpenGLView : UIView
@@ -110,6 +114,36 @@ vi_msg* msg = NULL;
 
     [self.window setRootViewController:viewctl];
 	[self.window makeKeyAndVisible];
+    
+    eaglContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    if (!eaglContext) {
+        vi_log("[E]Failed to get OpenGLES context");
+        return NO;
+    }
+    
+    if (![EAGLContext setCurrentContext:eaglContext]) {
+        vi_log("[E]Failed to set OpenGLES context");
+        return NO;
+    }
+    
+    GLuint depthRenderBuffer;
+    glGenRenderbuffers(1, &depthRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8_OES, eglview.frame.size.width, eglview.frame.size.height);
+    
+    GLuint colorRenderBuffer;
+    glGenRenderbuffers(1, &colorRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderBuffer);
+    [eaglContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)eglview.layer];
+    
+    
+    GLuint framebuffer;
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
+
 
     
 
@@ -119,7 +153,7 @@ vi_msg* msg = NULL;
 
     vi_app_set_screen_size(rect.size.width, rect.size.height);
 
-    if(vi_app_init(eglview.layer, eglview.frame.size, datadir, savedir)) return NO;
+    if(vi_app_init(NULL, NULL, datadir, savedir)) return NO;
 	if(vi_app_main()) return NO;
 
     actived = 1;
@@ -136,8 +170,10 @@ vi_msg* msg = NULL;
     gettimeofday(&t2, NULL);
     float dt = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
     t1 = t2;
-    if(actived && eaglContext)
+    if(actived)
         vi_app_loop(dt);
+    
+    [eaglContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

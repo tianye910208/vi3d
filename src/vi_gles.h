@@ -50,13 +50,10 @@ int vi_gles_egl_swap();
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 
-#define vi_gles_init(x, y) vi_gles_agl_init()
-#define vi_gles_exit vi_gles_agl_exit
-#define vi_gles_swap vi_gles_agl_swap
+#define vi_gles_init(x, y)  0
+#define vi_gles_exit()      0
+#define vi_gles_swap()      0
 
-int vi_gles_agl_init();
-int vi_gles_agl_exit();
-int vi_gles_agl_swap();
 
 #endif//VI3D_GLES_AGL
 
