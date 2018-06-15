@@ -3,8 +3,7 @@ TARGET := vi3d
 CC     := gcc
 CCFLAG := -I../ -I../../3rd/lua-5.3.3/src/ -I../../3rd/stb/
 LDFLAG := -L../../3rd/lua-5.3.3/lib_linux/
-LDLIBS := -lEGL -lGLESv2 -lX11 -llua -lm
-
+LDLIBS := -lX11 -llua -lm
 
 
 SRCS := $(wildcard ../*.c) \
@@ -12,6 +11,17 @@ SRCS := $(wildcard ../*.c) \
 
 OBJS := $(SRCS:../%.c=obj/%.o)
 DEPS := $(OBJS:%.o=%.d)
+
+
+ifeq ($(EGL),1)
+    CCFLAG += -DVI3D_GLES_EGL
+    LDLIBS += -lEGL -lGLESv2
+else
+    CCFLAG += -I../../3rd/glew-2.1.0/include
+    LDFLAG += -L../../3rd/glew-2.1.0/lib/linux/
+    LDLIBS += -lGL -lGLU -lGLEW
+endif
+
 
 all: $(DEPS) $(OBJS)
 	@echo [M]Link $(TARGET)

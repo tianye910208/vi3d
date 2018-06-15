@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 	if (err = win_init("vi3d", APP_W, APP_H) != 0) return err;
 	
 	vi_app_set_screen_size(APP_W, APP_H);
-	if (err = vi_app_init(nativeDisplay, nativeWindow, argc>1 ? argv[1] : "../../", argc>2 ? argv[2] : "../../dat")) return err;
+	if (err = vi_app_init((void*)nativeDisplay, (void*)nativeWindow, argc>1 ? argv[1] : "../../", argc>2 ? argv[2] : "../../dat")) return err;
 	if (err = vi_app_main()) return err;
 
 	//loop------------------------------------------

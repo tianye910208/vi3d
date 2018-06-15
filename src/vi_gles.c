@@ -159,7 +159,7 @@ int vi_gles_wgl_init(void* _display, HWND hwnd) {
 
 	int err = glewInit();
 	if (err != GLEW_OK) {
-		vi_log("[E]wglewInit %s", glewGetErrorString(err));
+		vi_log("[E]glewInit %s", glewGetErrorString(err));
 		return 105;
 	}
 	return 0;
@@ -197,13 +197,19 @@ int vi_gles_glx_init(Display* display, Window window) {
 		GLX_DOUBLEBUFFER, 
 		None 
 	};
-	XVisualInfo vi = glXChooseVisual(glxDisplay, 0, att);
+	XVisualInfo* vi = glXChooseVisual(glxDisplay, 0, att);
 	if(vi == NULL) 
 		return 101;
 	
 	glxContext = glXCreateContext(glxDisplay, vi, NULL, GL_TRUE);
  	glXMakeCurrent(glxDisplay, window, glxContext);
  
+	int err = glewInit();
+	if (err != GLEW_OK) {
+		vi_log("[E]glewInit %s", glewGetErrorString(err));
+		return 102;
+	}
+
 	return 0;
 }
 
