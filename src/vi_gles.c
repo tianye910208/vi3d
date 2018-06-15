@@ -117,30 +117,30 @@ int vi_gles_agl_swap() {
 #pragma comment(lib, "../../3rd/glew-2.1.0/lib/x64/glew32s.lib")
 
 
-HWND hWnd;
-HDC hDC;
-HGLRC hRC;
+static HWND hWnd;
+static HDC hDC;
+static HGLRC hRC;
 
 int vi_gles_wgl_init(void* _display, HWND hwnd) {
 	hWnd = hwnd;
 	hDC = GetDC(hwnd);
 
 	PIXELFORMATDESCRIPTOR pfd = {
-		sizeof(PIXELFORMATDESCRIPTOR),//描述器大小 
-		1,//版本
+		sizeof(PIXELFORMATDESCRIPTOR),//size
+		1,//version
 		PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
-		PFD_TYPE_RGBA,//颜色格式RGBA
-		32, //颜色深度
+		PFD_TYPE_RGBA,//color format RGBA
+		32, //color depth
 		0, 0, 0, 0, 0, 0,  //Color Bits Ignored        
-		0, //alpha通道缓冲，不设置        
+		0, //alpha buffer    
 		0, // Shift Bit Ignored   
-		0, //累积缓冲
+		0, //Accumulation buffer
 		0, 0, 0, 0,// Accumulation Bits Ignored
-		16,//深度缓冲
-		0, //蒙板缓冲
-		0, //辅助缓冲
-		PFD_MAIN_PLANE,// Main Drawing Layer(主绘图区)  
-		0, //保留        
+		24,//depth buffer
+		8, //stencil buffer
+		0, //assistant buffer
+		PFD_MAIN_PLANE,// Main Drawing Layer
+		0, //reserved
 		0, 0, 0 //Layer Masks Ignored   
 	};
 
@@ -184,15 +184,37 @@ int vi_gles_wgl_swap() {
 
 #ifdef VI3D_GLES_GLX
 
-int vi_gles_glx_init() {
+
+static Display* 	glxDisplay;
+static Window   	glxWindow;
+static GLXContext 	glxContext;
+
+int vi_gles_glx_init(Display* display, Window window) {
+	glxDisplay = display;
+
+	GLint att[] = { 
+		GLX_RGBA, GLX_DEPTH_SIZE, 24, 
+		GLX_DOUBLEBUFFER, 
+		None 
+	};
+	XVisualInfo vi = glXChooseVisual(glxDisplay, 0, att);
+	if(vi == NULL) 
+		return 101;
+	
+	glxContext = glXCreateContext(glxDisplay, vi, NULL, GL_TRUE);
+ 	glXMakeCurrent(glxDisplay, window, glxContext);
+ 
 	return 0;
 }
 
 int vi_gles_glx_exit() {
+	glXMakeCurrent(glxDisplay, None, NULL);
+    glXDestroyContext(glxDisplay, glxContext);
 	return 0;
 }
 
 int vi_gles_glx_swap() {
+	glXSwapBuffers(glxDisplay, glxWindow);
 	return 0;
 }
 

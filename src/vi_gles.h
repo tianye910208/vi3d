@@ -77,14 +77,15 @@ int vi_gles_wgl_swap();
 
 
 #ifdef VI3D_GLES_GLX
+#define GLEW_STATIC
 #include <GL/glew.h>
-#include <GL/wglew.h>
+#include <GL/glxew.h>
 
-#define vi_gles_init(x, y) vi_gles_glx_init()
+#define vi_gles_init(x, y) vi_gles_glx_init((Display*)x, (Window)y)
 #define vi_gles_exit vi_gles_glx_exit
 #define vi_gles_swap vi_gles_glx_swap
 
-int vi_gles_glx_init();
+int vi_gles_glx_init(Display* display, Window window);
 int vi_gles_glx_exit();
 int vi_gles_glx_swap();
 
