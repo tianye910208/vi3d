@@ -6,8 +6,8 @@
 
 #ifdef VI3D_SYS_WIN
 #pragma comment(lib, "../../3rd/lua-5.3.3/lib_win64/lua.lib")
-#pragma comment(lib, "../../3rd/GLES-Mali-v3.0.1-x64/libGLESv2.lib")
-#pragma comment(lib, "../../3rd/GLES-Mali-v3.0.1-x64/libEGL.lib")
+#pragma comment(lib, "../../3rd/angle/lib/x64/libGLESv2.lib")
+#pragma comment(lib, "../../3rd/angle/lib/x64/libEGL.lib")
 #endif
 
 static EGLConfig config = NULL;

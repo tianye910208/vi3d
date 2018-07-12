@@ -16,8 +16,8 @@ DEPS := $(OBJS:%.o=%.d)
 
 
 ifeq ($(EGL),1)
-	CCFLAG += -DVI3D_GLES_EGL -I../../3rd/GLES-Mali-v3.0.1-x64/include
-    LDFLAG += -L../../3rd/GLES-Mali-v3.0.1-x64/
+    CCFLAG += -DVI3D_GLES_EGL -I../../3rd/angle/include
+    LDFLAG += -L../../3rd/angle/lib/x64/
     LDLIBS += -lEGL -lGLESv2 
 else
 	CCFLAG += -I../../3rd/glew-2.1.0/include
