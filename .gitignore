@@ -1,5 +1,12 @@
 .DS_Store
+.vs
 obj/
 bin/
 !tool/bin/
 xcuserdata
+/src/win/Debug
+/src/win/vi3d.sdf
+/src/win/vi3d.aps
+/src/win/vi3d.v12.suo
+/src/win/vi3d.vcxproj.user
+

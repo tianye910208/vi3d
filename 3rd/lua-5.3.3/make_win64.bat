@@ -1,5 +1,5 @@
 mkdir build & pushd build
-cmake -G "Visual Studio 12 2013 Win64" ..
+cmake -G "Visual Studio 15 Win64" ..
 popd
 
 cmake --build build --config Release
