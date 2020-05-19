@@ -21,8 +21,8 @@ ifeq ($(EGL),1)
     LDLIBS += -lEGL -lGLESv2 
 else
 	CCFLAG += -I../../3rd/glew-2.1.0/include
-    LDFLAG += -L../../3rd/glew-2.1.0/lib/x64/
-    LDLIBS += -lopengl32 -lglew32
+    LDFLAG += -L../../3rd/glew-2.1.0/lib/mingw/
+    LDLIBS += -lopengl32 -lglew32.dll
 endif
 
 
